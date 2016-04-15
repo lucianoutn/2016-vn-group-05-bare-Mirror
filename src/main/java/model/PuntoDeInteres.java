@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public interface PuntoDeInteres {
 
-	public boolean estaDisponible(LocalDate date);
+	public boolean estaDisponible(LocalDate date, Servicio valorX);
 
 	public boolean estaCerca(int x, int y);
 

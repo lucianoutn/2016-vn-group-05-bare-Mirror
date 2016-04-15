@@ -35,7 +35,7 @@ public class ParadaDeColectivo implements PuntoDeInteres{
 	}
 	
 	@Override
-	public boolean estaDisponible(LocalDate date) {
+	public boolean estaDisponible(LocalDate date, Servicio valorX) {
 		return true;
 	}
 	@Override

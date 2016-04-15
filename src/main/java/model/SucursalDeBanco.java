@@ -12,7 +12,7 @@ public class SucursalDeBanco implements PuntoDeInteres {
 	private int y;
 	
 	@Override
-	public boolean estaDisponible(LocalDate date) {
+	public boolean estaDisponible(LocalDate date, Servicio valorX) {
 		// TODO Auto-generated method stub
 		return false;
 	}

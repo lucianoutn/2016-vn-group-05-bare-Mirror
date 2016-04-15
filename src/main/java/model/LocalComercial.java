@@ -11,7 +11,7 @@ public class LocalComercial implements PuntoDeInteres{
 	private int x; //Asumimos que las coordenadas son cuadras
 	private int y;
 	@Override
-	public boolean estaDisponible(LocalDate date) {
+	public boolean estaDisponible(LocalDate date, Servicio valorX) {
 		// TODO Auto-generated method stub
 		return false;
 	}
