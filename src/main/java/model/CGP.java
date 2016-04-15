@@ -8,7 +8,7 @@ public class CGP implements PuntoDeInteres{
 	private String calle;
 	private String altura;
 	private int cuadrasDeCercania;
-	private int x;
+	private int x; //Asumimos que las coordenadas son cuadras
 	private int y;
 	//private DisponibilidadHoraria disponibilidadHoraria; 
 	@Override
@@ -23,10 +23,11 @@ public class CGP implements PuntoDeInteres{
 		return false;
 	}
 
+
 	@Override
-	public ArrayList<PuntoDeInteres> buscar(String textoLibre) {
+	public boolean encuentra(String textoLibre) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 }

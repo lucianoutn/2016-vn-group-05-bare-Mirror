@@ -6,9 +6,9 @@ import java.util.ArrayList;
 public class LocalComercial implements PuntoDeInteres{
 
 	private String calle;
-	private String altura;
+	private int altura;
 	private int cuadrasDeCercania;
-	private int x;
+	private int x; //Asumimos que las coordenadas son cuadras
 	private int y;
 	@Override
 	public boolean estaDisponible(LocalDate date) {
@@ -21,11 +21,12 @@ public class LocalComercial implements PuntoDeInteres{
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-	@Override
-	public ArrayList<PuntoDeInteres> buscar(String textoLibre) {
+	
+	public boolean encuentra(String textoLibre) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
+	//A partir de un texto libre, busco en todas los atributos si el objeto aplica al texto de busqueda
+	//Si alguno aplica, devuelvo true
 
 }

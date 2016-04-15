@@ -10,5 +10,8 @@ public interface PuntoDeInteres {
 	
 	public boolean estaCerca(int x, int y) ;
 	
-	public ArrayList<PuntoDeInteres> buscar(String textoLibre);
+}
+	public boolean encuentra(String textoLibre); 
+	//A partir de un texto libre, busco en todas los atributos si el objeto aplica al texto de busqueda
+	//Si alguno aplica, devuelvo true
 }
