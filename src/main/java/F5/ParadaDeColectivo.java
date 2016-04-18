@@ -3,6 +3,8 @@ package F5;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import org.uqbar.geodds.Point;
+
 public class ParadaDeColectivo implements PuntoDeInteres{
 	
 	//Declaraciones -- Inicio
@@ -39,7 +41,7 @@ public class ParadaDeColectivo implements PuntoDeInteres{
 		return true;
 	}
 	@Override
-	public boolean estaCerca(int x, int y) {
+	public boolean estaCerca(Point point) {
 		int distancia = Math.abs(x-this.x)+Math.abs(y-this.y);
 		return (distancia < toleranciaEnCuadras);
 	}

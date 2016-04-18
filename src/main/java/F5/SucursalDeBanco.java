@@ -5,6 +5,8 @@ import java.util.Collection;
 //import F5.PuntoDeInteres;
 //import F5.Sucursal;
 
+import org.uqbar.geodds.Point;
+
 public class SucursalDeBanco implements PuntoDeInteres {
 
 	private String calle;
@@ -17,7 +19,7 @@ public class SucursalDeBanco implements PuntoDeInteres {
 	
 	/* El POI de una Sucursal de Banco se encuentra cerca si, desde el punto actual esta a 5 cuadras */
 	@Override
-	public boolean estaCerca(int x, int y) {
+	public boolean estaCerca(Point point) {
 		int distancia = Math.abs(x-this.x) + Math.abs(y-this.y);
 		return (distancia < 5);
 	}

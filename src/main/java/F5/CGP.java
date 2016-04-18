@@ -4,69 +4,56 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.uqbar.geodds.Point;
+import org.uqbar.geodds.Polygon;
+
 public class CGP implements PuntoDeInteres {
 
 	private String calle;
 	private String altura;
-	private int x; // Asumimos que las coordenadas son cuadras
-	private int y;
-	private int rangoComuna;// supongo que el rango de la zona de el CGP será
+	private Point posicion;
+	private Polygon comuna;
 	private Collection<Servicio> servicios;
 
-	// private DisponibilidadHoraria disponibilidadHoraria;
-	public int getX() {
-		return x;
-	}
 
-	public void setX(int x) {
-		this.x = x;
-	}
 
-	public int getY() {
-		return y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
-
-	public int getRangoComuna() {
-		return rangoComuna;
-	}
-
-	public void setRangoComuna(int rangoComuna) {
-		this.rangoComuna = rangoComuna;
-	}
-
-	public CGP(int rango, int coordenadaX, int coordenadaY) {
-
-		this.setX(coordenadaX);
-		this.setY(coordenadaY);
-		this.setRangoComuna(rango);
+	public CGP(Point point, Polygon unaComuna) {
+		comuna = unaComuna;
+		posicion = point;
 
 	}
 
 	@Override
-	public boolean estaDisponible(LocalDate date, Servicio valorX) {
-		if (servicios.contains(valorX) && valorX.estaAbierto(date))
-			return true;
-
-		return false;
+	public boolean estaDisponible(LocalDate date, Servicio unServicio) {
+		return servicios.stream().anyMatch(s-> s.getName().equals(unServicio) && unServicio.estaAbierto(date));
 	}
 
 	@Override
-	public boolean estaCerca(int corX, int corY) {
-		if ((x - rangoComuna) < corX && corX < (x + rangoComuna) && (y - rangoComuna) < corY
-				&& corY < (y + rangoComuna))
-			return true;
-		else
-			return false;
+	public boolean estaCerca(Point point) {
+		return comuna.isInside(point); 
 	}
 
 	@Override
 	public boolean encuentra(String textoLibre) {
+		
+		return
+			encuentraCalle(textoLibre) &&
+			encuentraAltura(textoLibre) &&
+			servicios.stream().anyMatch(s-> encuentraServicio(s, textoLibre));
+		
+	}
 
-		return false;
+	private boolean encuentraServicio(Servicio s, String textoLibre) {
+		return s.getName().equals(textoLibre);
+	}
+
+
+	private boolean encuentraAltura(String textoLibre) {
+		return altura.equals(textoLibre);
+	}
+
+	private boolean encuentraCalle(String textoLibre) {
+		return calle.equals(textoLibre);
 	}
 
 }

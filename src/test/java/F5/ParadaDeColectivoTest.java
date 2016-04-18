@@ -20,14 +20,14 @@ public class ParadaDeColectivoTest {
 	@Test
 	public void laParadaEstaCerca() {
 		paradaDeBondi.setToleranciaEnCuadras(100);
-		Assert.assertEquals(true, paradaDeBondi.estaCerca(70,50));
+		Assert.assertEquals(true, paradaDeBondi.estaCerca(null));
 	}
 	
 	@Test
 	public void laParadaEstaDisponible() {
 		paradaDeBondi.setToleranciaEnCuadras(100);
 		LocalDate today = LocalDate.now();
-		Assert.assertEquals(true, paradaDeBondi.estaDisponible(today));
+		Assert.assertEquals(true, paradaDeBondi.estaDisponible(today, null));
 	}
 	
 	@Test

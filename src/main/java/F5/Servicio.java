@@ -5,6 +5,10 @@ import java.util.Collection;
 
 public class Servicio {
 	
+	public String getName() {
+		return name;
+	}
+	private String name;
 	private int horarioApertura;
 	private int horarioCierre;
 	private Collection<String>diasDeAtencion;

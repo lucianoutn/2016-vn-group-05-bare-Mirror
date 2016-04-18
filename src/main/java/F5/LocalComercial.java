@@ -3,6 +3,8 @@ package F5;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import org.uqbar.geodds.Point;
+
 public class LocalComercial implements PuntoDeInteres{
 
 	private String calle;
@@ -18,7 +20,7 @@ public class LocalComercial implements PuntoDeInteres{
 	}
 
 	@Override
-	public boolean estaCerca(int x, int y) {
+	public boolean estaCerca(Point point) {
 		// TODO Auto-generated method stub
 		return false;
 	}
