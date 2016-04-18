@@ -1,4 +1,4 @@
-package model;
+package F5;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -6,7 +6,8 @@ import java.util.ArrayList;
 public class LocalComercial implements PuntoDeInteres{
 
 	private String calle;
-	private int altura;
+	private String altura;
+	private String nombre;
 	private int cuadrasDeCercania;
 	private int x; //Asumimos que las coordenadas son cuadras
 	private int y;

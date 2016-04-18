@@ -1,9 +1,9 @@
-package model;
+package F5;
 
 import java.time.LocalDate;
 import java.util.Collection;
-import model.PuntoDeInteres;
-import model.Sucursal;
+//import F5.PuntoDeInteres;
+//import F5.Sucursal;
 
 public class SucursalDeBanco implements PuntoDeInteres {
 

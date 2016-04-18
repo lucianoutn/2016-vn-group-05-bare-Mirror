@@ -5,7 +5,7 @@ import org.junit.After;
 import java.time.LocalDate;
 
 import org.junit.Assert;
-import model.ParadaDeColectivo;
+//import F5.ParadaDeColectivo;
 
 public class ParadaDeColectivoTest {
 	private ParadaDeColectivo paradaDeBondi;

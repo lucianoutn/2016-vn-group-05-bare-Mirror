@@ -1,5 +1,6 @@
-package model;
+package F5;
 
+import java.time.LocalDate;
 import java.util.Collection;
 
 public class Servicio {
@@ -14,7 +15,7 @@ public class Servicio {
 		diasDeAtencion.add(dDA);
 		
 	}
-	estaAbierto(LocalDate X){
+	boolean estaAbierto(LocalDate X){
 		
 		return false;
 	}
