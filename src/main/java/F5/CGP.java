@@ -15,8 +15,6 @@ public class CGP implements PuntoDeInteres {
 	private Polygon comuna;
 	private Collection<Servicio> servicios;
 
-
-
 	public CGP(Point point, Polygon unaComuna) {
 		comuna = unaComuna;
 		posicion = point;
@@ -25,31 +23,23 @@ public class CGP implements PuntoDeInteres {
 
 	@Override
 	public boolean estaDisponible(LocalDate date, Servicio unServicio) {
-		return servicios.stream().anyMatch(s-> s.getName().equals(unServicio) && unServicio.estaAbierto(date));
+		return servicios.stream().anyMatch(s -> s.getName().equals(unServicio) && unServicio.estaAbierto(date));
 	}
 
 	@Override
 	public boolean estaCerca(Point point) {
-		return comuna.isInside(point); 
+		return comuna.isInside(point);
 	}
 
 	@Override
 	public boolean encuentra(String textoLibre) {
-		
-		return
-			encuentraCalle(textoLibre) &&
-			encuentraAltura(textoLibre) &&
-			servicios.stream().anyMatch(s-> encuentraServicio(s, textoLibre));
-		
+
+		return encuentraCalle(textoLibre) || servicios.stream().anyMatch(s -> encuentraServicio(s, textoLibre));
+
 	}
 
 	private boolean encuentraServicio(Servicio s, String textoLibre) {
 		return s.getName().equals(textoLibre);
-	}
-
-
-	private boolean encuentraAltura(String textoLibre) {
-		return altura.equals(textoLibre);
 	}
 
 	private boolean encuentraCalle(String textoLibre) {
@@ -57,5 +47,3 @@ public class CGP implements PuntoDeInteres {
 	}
 
 }
-
-

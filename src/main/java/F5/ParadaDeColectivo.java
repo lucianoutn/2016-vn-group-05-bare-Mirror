@@ -5,19 +5,42 @@ import java.util.ArrayList;
 
 import org.uqbar.geodds.Point;
 
-public class ParadaDeColectivo implements PuntoDeInteres{
-	
-	//Declaraciones -- Inicio
+public class ParadaDeColectivo implements PuntoDeInteres {
+
+	// Declaraciones -- Inicio
 	private String calle;
-	private int altura;
+	private String altura;
+
+	public String getAltura() {
+		return altura;
+	}
+
+	public void setAltura(String altura) {
+		this.altura = altura;
+	}
+
+	public String getCalle() {
+		return calle;
+	}
+
+	public Point getPosicion() {
+		return posicion;
+	}
+
 	private int toleranciaEnCuadras;
-	private int y; //Asumimos que las coordenadas son cuadras
-	private int x;
+	private Point posicion;
 	private String numeroDeLinea;
-	//Declaraciones -- Fin
-	
-	
-	//Getters y Setters -- Inicio
+	// Declaraciones -- Fin
+
+	public String getNumeroDeLinea() {
+		return numeroDeLinea;
+	}
+
+	public void setNumeroDeLinea(String numeroDeLinea) {
+		this.numeroDeLinea = numeroDeLinea;
+	}
+
+	// Getters y Setters -- Inicio
 	public int getToleranciaEnCuadras() {
 		return toleranciaEnCuadras;
 	}
@@ -25,32 +48,42 @@ public class ParadaDeColectivo implements PuntoDeInteres{
 	public void setToleranciaEnCuadras(int toleranciaEnCuadras) {
 		this.toleranciaEnCuadras = toleranciaEnCuadras;
 	}
-	//Getters y Setters -- Fin
-	
-	//Metodos -- Inicio
-	public ParadaDeColectivo (String calleDeParada, int alturaDeParada, int ejeY, int ejeX, String lineaDeColectivo){
+	// Getters y Setters -- Fin
+
+	public ParadaDeColectivo(String calleDeParada, String alturaDeParada, Point unaPosicion, String lineaDeColectivo) {
 		calle = calleDeParada;
 		altura = alturaDeParada;
-		y = ejeY;
-		x = ejeX;
+		posicion = unaPosicion;
 		numeroDeLinea = lineaDeColectivo;
 	}
-	
+
 	@Override
 	public boolean estaDisponible(LocalDate date, Servicio valorX) {
 		return true;
 	}
+
 	@Override
 	public boolean estaCerca(Point point) {
-		int distancia = Math.abs(x-this.x)+Math.abs(y-this.y);
-		return (distancia < toleranciaEnCuadras);
+		return cuadrasDeDistancia(point) <= toleranciaEnCuadras;
 	}
-
-
 
 	@Override
 	public boolean encuentra(String textoLibre) {
-		return (numeroDeLinea == textoLibre);
-			}
-	//Metodos -- Fin
+		return encuentraNumeroDeLinea(textoLibre) || encuentraCalle(textoLibre);
+	}
+
+	private boolean encuentraNumeroDeLinea(String textoLibre) {
+		return getNumeroDeLinea().equals(textoLibre);
+	}
+
+	private int cuadrasDeDistancia(Point point) {
+		return (int) Math.round(posicion.distance(point) / 100);
+		// Calculo la distancia entre los puntos y la divido por 100 asumiendo
+		// que cada cuadra es de 100m y lo redondeo
+	}
+
+	private boolean encuentraCalle(String textoLibre) {
+		return getCalle().equals(textoLibre);
+	}
+
 }

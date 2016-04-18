@@ -18,6 +18,7 @@ public class Sucursal {
 		
 	}
 	public boolean estaAbierto(LocalDate X){
+		// TODO REIMPLEMENTAR
 		if(X.isAfter(horarioInicial) && X.isBefore(horarioCierre))
 			{
 				return true;

@@ -25,6 +25,7 @@ public class SucursalDeBanco implements PuntoDeInteres {
 	}
 	
 	public boolean estaDisponible(LocalDate horaActual){
+		// TODO
 		 unaSucursal = null;
 		if (sucursales.contains(unaSucursal) && unaSucursal.estaAbierto(horaActual))
 			return true;
@@ -34,7 +35,7 @@ public class SucursalDeBanco implements PuntoDeInteres {
 
 	@Override
 	public boolean encuentra(String unNombreDeSucursal) {
-		return (unNombreDeBanco == unNombreDeSucursal);
+		return unNombreDeBanco.equals(unNombreDeSucursal);
 	}
 
 	@Override
