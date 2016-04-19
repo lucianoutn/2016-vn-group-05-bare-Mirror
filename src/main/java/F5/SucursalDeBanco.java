@@ -10,23 +10,26 @@ import org.uqbar.geodds.Polygon;
 
 public class SucursalDeBanco implements PuntoDeInteres {
 
+	// atributos
 	private String calle;
 	private int altura;
-	private int x;// Asumimos que las coordenadas son cuadras
-	private int y;
+	private Point posicion;
 	private String unNombreDeBanco;
 	private Collection<SucursalDeBanco> sucursales;
 	private LocalDate horarioInicial;
 	private LocalDate horarioCierre;
 	private Collection<String> diasDeAtencion;
 
+	// metodos
+
 	/*
 	 * El POI de una Sucursal de Banco se encuentra cerca si, desde el punto
 	 * actual esta a 5 cuadras
 	 */
 	@Override
-	public boolean estaCerca(Point point) {
-		int distancia = Math.abs(x - this.x) + Math.abs(y - this.y);
+	public boolean estaCerca(Point deOtroPoint) {
+
+		int distancia = (int) Math.abs(posicion.distance(deOtroPoint) / 100);
 		return (distancia < 5);
 	}
 
@@ -43,6 +46,10 @@ public class SucursalDeBanco implements PuntoDeInteres {
 	// public boolean estaCerca(arrayList<int> puntoDePartida, arrayList<int>
 	// puntoDeLlegada){
 	// }
+
+	public SucursalDeBanco(Point suPosicion) {
+		posicion= suPosicion;
+	}
 
 	public boolean estaDisponible(LocalDate horaActual) {
 		SucursalDeBanco unaSucursal = null;
@@ -69,4 +76,11 @@ public class SucursalDeBanco implements PuntoDeInteres {
 		return false;
 	}
 
+	public Point getPosicion() {
+		return posicion;
+	}
+
+	//public void setPosicion(Point posicion) {
+//		this.posicion = posicion;
+	//}
 }
