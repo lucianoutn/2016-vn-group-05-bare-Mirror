@@ -46,4 +46,9 @@ public class DispositivoTest {
 	public void elPuntoSeEncuentraDentroDeLaComuna() {
 		Assert.assertTrue(dispositivoTest.getComunaDelimitadaPor().isInside(new Point(5, 5)));
 	}
+	
+	@Test
+	public void elPuntoSeEncuentraALBordeDeLaComuna() {
+		Assert.assertFalse(dispositivoTest.getComunaDelimitadaPor().isInside(new Point(0, 0)));
+	}
 }
