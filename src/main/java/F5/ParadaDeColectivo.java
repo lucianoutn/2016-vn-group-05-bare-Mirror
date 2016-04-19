@@ -76,8 +76,8 @@ public class ParadaDeColectivo implements PuntoDeInteres {
 		return getNumeroDeLinea().equals(textoLibre);
 	}
 
-	private int cuadrasDeDistancia(Point point) {
-		return (int) Math.round(posicion.distance(point) / 100);
+	public int cuadrasDeDistancia(Point point) {
+		return (int) Math.abs(posicion.distance(point)/100);
 		// Calculo la distancia entre los puntos y la divido por 100 asumiendo
 		// que cada cuadra es de 100m y lo redondeo
 	}
