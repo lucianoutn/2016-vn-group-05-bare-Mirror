@@ -1,27 +1,30 @@
 package F5;
 
-import java.time.LocalDate;
-import java.util.Collection;
 
-public class Servicio {
+import java.util.ArrayList;
+
+
+public class Servicio { //TODO
 	
-	public String getName() {
-		return name;
+	private String nombre;
+	public String getNombre() {
+		return nombre;
 	}
-	private String name;
-	private int horarioApertura;
-	private int horarioCierre;
-	private Collection<String>diasDeAtencion;
+
+	private ArrayList<DiaAtencion> atencionAlPublico;
 	
-	public Servicio(int horA, int horC, String dDA){
-		horarioApertura= horA;
-		horarioCierre= horC;
-		diasDeAtencion.add(dDA);
-		
+	
+	public Servicio(String unNombre, ArrayList<DiaAtencion> diasDeAtencion){
+		nombre = unNombre;
+		atencionAlPublico = diasDeAtencion;
 	}
-	boolean estaAbierto(LocalDate X){
-		// TODO
-		return false;
+	
+	public boolean estaAbierto(Dias unDia, int unaHora){
+		return atencionAlPublico.stream().anyMatch(d-> d.getDia().equals(unDia) && d.estaAbierto(unaHora));
+	}
+	
+	public boolean contiene(String textoLibre){
+		return nombre.contains(textoLibre); //TODO testear
 	}
 }
 

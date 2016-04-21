@@ -1,7 +1,5 @@
 package F5;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 
 import org.uqbar.geodds.Point;
 
@@ -55,10 +53,11 @@ public class ParadaDeColectivo implements PuntoDeInteres {
 		altura = alturaDeParada;
 		posicion = unaPosicion;
 		numeroDeLinea = lineaDeColectivo;
+		toleranciaEnCuadras =1;
 	}
 
 	@Override
-	public boolean estaDisponible(LocalDate date, Servicio valorX) {
+	public boolean estaDisponible(Dias unDia, int hora , Servicio valorX) {
 		return true;
 	}
 

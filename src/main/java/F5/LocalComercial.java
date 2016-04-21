@@ -1,27 +1,29 @@
 package F5;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import org.uqbar.geodds.Point;
 
 public class LocalComercial implements PuntoDeInteres {
 
+	private String rubro;
 	private String calle;
-
 	private String altura;
 	private String nombre;
 	private int cuadrasDeCercania;
 	private Point posicion;
 
-	public LocalComercial(String unNombre) {
+	private ArrayList<DiaAtencion> atencionAlPublico;
+	
+	public LocalComercial(String unNombre, String unRubro, ArrayList<DiaAtencion> diasDeAtencion) {
 		nombre = unNombre;
+		rubro = unRubro;
+		atencionAlPublico = diasDeAtencion;
 	}
 
 	@Override
-	public boolean estaDisponible(LocalDate date, Servicio valorX) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean estaDisponible(Dias unDia, int hora , Servicio unServicio) {
+		return atencionAlPublico.stream().anyMatch(d->d.equals(unDia) && d.estaAbierto(hora)); 
 	}
 
 	@Override
@@ -36,17 +38,21 @@ public class LocalComercial implements PuntoDeInteres {
 	}
 
 	public boolean encuentra(String textoLibre) {
-		return encuentraCalle(textoLibre)  || encuentraNombre(textoLibre);
+		return encuentraCalle(textoLibre)  || encuentraNombre(textoLibre) || encuentraRubro(textoLibre);
 
 	}
 
 	
+	private boolean encuentraRubro(String textoLibre) {
+		return rubro.equals(textoLibre);
+	}
+
 	private boolean encuentraCalle(String textoLibre) {
-		return getCalle().equals(textoLibre);
+		return calle.equals(textoLibre);
 	}
 
 	private boolean encuentraNombre(String textoLibre) {
-		return getNombre().equals(textoLibre);
+		return nombre.equals(textoLibre);
 
 	}
 

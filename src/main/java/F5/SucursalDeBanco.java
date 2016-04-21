@@ -1,7 +1,8 @@
 package F5;
 
-import java.time.LocalDate;
-import java.util.Collection;
+
+import java.util.ArrayList;
+
 //import F5.PuntoDeInteres;
 //import F5.Sucursal;
 
@@ -10,15 +11,13 @@ import org.uqbar.geodds.Polygon;
 
 public class SucursalDeBanco implements PuntoDeInteres {
 
+
 	// atributos
 	private String calle;
 	private int altura;
 	private Point posicion;
 	private String unNombreDeBanco;
-	private Collection<SucursalDeBanco> sucursales;
-	private LocalDate horarioInicial;
-	private LocalDate horarioCierre;
-	private Collection<String> diasDeAtencion;
+	private ArrayList<SucursalDeBanco> sucursales;
 
 	// metodos
 
@@ -63,21 +62,49 @@ public class SucursalDeBanco implements PuntoDeInteres {
 			return true;
 		}
 		return false;
+=======
+	private String nombre;
+	private String calle;
+	private int altura;
+	private Point posicion;
+	private int toleranciaEnCuadras;
+	
+	private ArrayList<DiaAtencion> atencionAlPublico;
+	
+	
+	//
+	public SucursalDeBanco(String unNombre, ArrayList<DiaAtencion> diasDeAtencion){
+		nombre = unNombre;
+		toleranciaEnCuadras = 5;
+		atencionAlPublico = diasDeAtencion;
+		
+	} 
+
+	
+	@Override
+	public boolean estaDisponible(Dias unDia, int hora , Servicio valorX) {
+		
+		return atencionAlPublico.stream().anyMatch(d-> d.equals(unDia) && d.estaAbierto(hora));
+>>>>>>> implementacion
 	}
 
 	@Override
-	public boolean encuentra(String unNombreDeSucursal) {
-		return unNombreDeBanco.equals(unNombreDeSucursal);
+	public boolean estaCerca(Point point) {
+		return cuadrasDeDistancia(point) <= toleranciaEnCuadras;
 	}
-
+	
 	@Override
-	public boolean estaDisponible(LocalDate date, Servicio valorX) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean encuentra(String textoLibre) {
+		return nombre.equals(textoLibre);
 	}
 
+<<<<<<< HEAD
 	public Point getPosicion() {
 		return posicion;
+=======
+	private int cuadrasDeDistancia(Point point) {
+		return (int) Math.round(posicion.distance(point) / 100);
+>>>>>>> implementacion
 	}
 
 	//public void setPosicion(Point posicion) {

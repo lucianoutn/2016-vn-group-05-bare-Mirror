@@ -3,7 +3,10 @@ package F5;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
+<<<<<<< HEAD
 import org.junit.After;
+=======
+>>>>>>> implementacion
 import java.time.LocalDate;
 
 import org.junit.Assert;
@@ -16,9 +19,13 @@ public class ParadaDeColectivoTest {
 
 	@Before
 	public void Initialize() {
+<<<<<<< HEAD
 		unaPosicionRandom = new Point(100, 0);
 		posicionParada = new Point(0, 0);
 		paradaDeBondi = new ParadaDeColectivo("Mozart", "2600", posicionParada, "114");
+=======
+		paradaDeBondi = new ParadaDeColectivo("Mozart", "2600", new Point(100,100),"114");
+>>>>>>> implementacion
 	}
 
 	
@@ -37,8 +44,7 @@ public class ParadaDeColectivoTest {
 	@Test
 	public void laParadaEstaDisponible() {
 		paradaDeBondi.setToleranciaEnCuadras(100);
-		LocalDate today = LocalDate.now();
-		Assert.assertEquals(true, paradaDeBondi.estaDisponible(today, null));
+		Assert.assertEquals(true, paradaDeBondi.estaDisponible(Dias.Lunes, 1400, null));
 	}
 
 	@Test
