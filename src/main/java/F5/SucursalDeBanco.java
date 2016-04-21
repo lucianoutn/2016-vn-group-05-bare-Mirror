@@ -1,7 +1,8 @@
 package F5;
 
-import java.time.LocalDate;
-import java.util.Collection;
+
+import java.util.ArrayList;
+
 //import F5.PuntoDeInteres;
 //import F5.Sucursal;
 
@@ -9,40 +10,42 @@ import org.uqbar.geodds.Point;
 
 public class SucursalDeBanco implements PuntoDeInteres {
 
+	private String nombre;
 	private String calle;
 	private int altura;
-	private int x;//Asumimos que las coordenadas son cuadras
-	private int y;
-	private String unNombreDeBanco;
-	private Collection<Sucursal> sucursales;
-	private Sucursal unaSucursal;
+	private Point posicion;
+	private int toleranciaEnCuadras;
 	
-	/* El POI de una Sucursal de Banco se encuentra cerca si, desde el punto actual esta a 5 cuadras */
+	private ArrayList<DiaAtencion> atencionAlPublico;
+	
+	
+	//
+	public SucursalDeBanco(String unNombre, ArrayList<DiaAtencion> diasDeAtencion){
+		nombre = unNombre;
+		toleranciaEnCuadras = 5;
+		atencionAlPublico = diasDeAtencion;
+		
+	} 
+
+	
+	@Override
+	public boolean estaDisponible(Dias unDia, int hora , Servicio valorX) {
+		
+		return atencionAlPublico.stream().anyMatch(d-> d.equals(unDia) && d.estaAbierto(hora));
+	}
+
 	@Override
 	public boolean estaCerca(Point point) {
-		int distancia = Math.abs(x-this.x) + Math.abs(y-this.y);
-		return (distancia < 5);
+		return cuadrasDeDistancia(point) <= toleranciaEnCuadras;
 	}
 	
-	public boolean estaDisponible(LocalDate horaActual){
-		// TODO
-		 unaSucursal = null;
-		if (sucursales.contains(unaSucursal) && unaSucursal.estaAbierto(horaActual))
-			return true;
-
-		return false;
-	}
-
 	@Override
-	public boolean encuentra(String unNombreDeSucursal) {
-		return unNombreDeBanco.equals(unNombreDeSucursal);
+	public boolean encuentra(String textoLibre) {
+		return nombre.equals(textoLibre);
 	}
 
-	@Override
-	public boolean estaDisponible(LocalDate date, Servicio valorX) {
-		// TODO Auto-generated method stub
-		return false;
+	private int cuadrasDeDistancia(Point point) {
+		return (int) Math.round(posicion.distance(point) / 100);
 	}
-
 
 }

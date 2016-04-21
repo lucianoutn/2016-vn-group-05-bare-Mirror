@@ -1,7 +1,5 @@
 package F5;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 
 import org.uqbar.geodds.Point;
 
@@ -9,7 +7,7 @@ public interface PuntoDeInteres {
 
 	
 	
-	public boolean estaDisponible(LocalDate date, Servicio valorX);
+	public boolean estaDisponible(Dias unDia, int hora , Servicio unServicio);
 
 	public boolean estaCerca(Point point);
 
