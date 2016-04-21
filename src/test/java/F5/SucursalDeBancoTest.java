@@ -1,5 +1,7 @@
 package F5;
 
+import java.util.ArrayList;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +17,7 @@ public class SucursalDeBancoTest {
 	@Before
 	public void initialize() {
 		laPosicionDelBanco = new Point(0, 0);
-		unaSucursal = new SucursalDeBanco(laPosicionDelBanco);
+		unaSucursal = new SucursalDeBanco("Santander" , laPosicionDelBanco,  new ArrayList<DiaAtencion>());
 		unPuntoCerca = new Point(0, 4);
 		unPuntoLejos = new Point(0, 6);
 	}

@@ -3,15 +3,10 @@ package F5;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
-<<<<<<< HEAD
-import org.junit.After;
-=======
->>>>>>> implementacion
-import java.time.LocalDate;
-
 import org.junit.Assert;
 
 public class ParadaDeColectivoTest {
+
 	private ParadaDeColectivo paradaDeBondi;
 	private Point posicionParada, unaPosicionRandom;
 	// public ParadaDeColectivo (String calleDeParada, int alturaDeParada, int
@@ -19,13 +14,11 @@ public class ParadaDeColectivoTest {
 
 	@Before
 	public void Initialize() {
-<<<<<<< HEAD
+
 		unaPosicionRandom = new Point(100, 0);
 		posicionParada = new Point(0, 0);
-		paradaDeBondi = new ParadaDeColectivo("Mozart", "2600", posicionParada, "114");
-=======
 		paradaDeBondi = new ParadaDeColectivo("Mozart", "2600", new Point(100,100),"114");
->>>>>>> implementacion
+
 	}
 
 	
