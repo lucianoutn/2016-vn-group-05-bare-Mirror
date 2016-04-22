@@ -26,39 +26,30 @@ public class SucursalDeBancoTest {
 	}
 
 	@Test
-	public void elBancoEstaCercaDe() {
+	public void distanciaDelBanco() {
 		Assert.assertTrue(unaSucursal.estaCerca(unPuntoCerca));
-	}
-
-	@Test
-	public void elBancoEstaLejosDe() {
 		Assert.assertFalse(unaSucursal.estaCerca(unPuntoLejos));
 	}
-	
+		
 	@Test
-	public void elBancoNoEstaDisponibleLosMiercoles() {
-		unDia = new DiaAtencion(Dias.Martes,10,18);
-		otroDia = new DiaAtencion(Dias.Sabado,10,13);
+	public void elBancoEstaDisponibleSoloLosMiercolesDe9A18() {
+		unDia = new DiaAtencion(Dias.Miercoles,900,1800);
+		otroDia = new DiaAtencion(Dias.Sabado,1000,1300);
 		listaDeDias = new ArrayList<DiaAtencion>();
 		listaDeDias.add(unDia);
 		listaDeDias.add(otroDia);
 		otraSucursal = new SucursalDeBanco("Santander" , laPosicionDelBanco,  listaDeDias);
-		Assert.assertFalse(otraSucursal.estaDisponible(Dias.Miercoles, 11, null));
-	}
-	
-	@Test
-	public void elBancoEstaDisponibleLosMartesALas18() {
-		unDia = new DiaAtencion(Dias.Martes,10,18);
-		otroDia = new DiaAtencion(Dias.Sabado,10,13);
-		listaDeDias = new ArrayList<DiaAtencion>();
-		listaDeDias.add(unDia);
-		listaDeDias.add(otroDia);
-		otraSucursal = new SucursalDeBanco("Santander" , laPosicionDelBanco,  listaDeDias);
-		Assert.assertTrue(otraSucursal.estaDisponible(Dias.Martes, 18, null));
+		Assert.assertTrue(otraSucursal.estaDisponible(Dias.Miercoles, 900, null));
+		Assert.assertTrue(otraSucursal.estaDisponible(Dias.Miercoles, 1800, null));
+		Assert.assertFalse(otraSucursal.estaDisponible(Dias.Miercoles, 1801, null));
+		Assert.assertFalse(otraSucursal.estaDisponible(Dias.Lunes, 1600, null));
+		Assert.assertFalse(otraSucursal.estaDisponible(Dias.Viernes, 1800, null));
 	}
 	
 	@Test
 	public void encontrarUnBancoSantander(){
-		Assert.assertTrue(unaSucursal.encuentra("Santander"));	
+		Assert.assertTrue(unaSucursal.encuentra("Santander"));
+		Assert.assertFalse(unaSucursal.encuentra("santander"));
+		Assert.assertFalse(unaSucursal.encuentra("HSBC"));
 		}
 }

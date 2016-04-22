@@ -10,8 +10,8 @@ import org.uqbar.geodds.Point;
 public class LocalComercialTest {
 	
 	private LocalComercial unLocalComercial, otroLocalComercial;
-	private Point unaPosicion;
-	private DiaAtencion unDia, otroDia;
+	private Point unaPosicion, otraPosicion;
+	private DiaAtencion unDia;
 	private ArrayList<DiaAtencion> listaDeDias;
 
 	@Before
@@ -22,16 +22,20 @@ public class LocalComercialTest {
 	
 	@Test
 	public void elLocalComercialEstaCerca(){
+		otraPosicion = new Point(50,50);
 		unLocalComercial.setCuadrasDeCercania(5);
 		Assert.assertTrue(unLocalComercial.estaCerca(unaPosicion));
+		Assert.assertFalse(unLocalComercial.estaCerca(otraPosicion));
 	}
 
 	@Test
 	public void elLocalComercialEstaDisponibleUnLunes17hs(){
-		unDia = new DiaAtencion(Dias.Martes,10,20);
+		unDia = new DiaAtencion(Dias.Martes,1000,2000);
 		listaDeDias = new ArrayList<DiaAtencion>();
 		listaDeDias.add(unDia);
-		otroLocalComercial = new LocalComercial("Mimo","Corrientes","3052","Libreria",listaDeDias,null);
-		Assert.assertTrue(unLocalComercial.estaDisponible(Dias.Martes, 17, null));
+		otroLocalComercial = new LocalComercial("Mimo","Corrientes","3052","Libreria",listaDeDias,unaPosicion);
+		Assert.assertTrue(otroLocalComercial.estaDisponible(Dias.Martes,2000,null));
+		Assert.assertTrue(otroLocalComercial.estaDisponible(Dias.Martes,1000,null));
+		Assert.assertFalse(otroLocalComercial.estaDisponible(Dias.Sabado,1500,null));
 	}
 }

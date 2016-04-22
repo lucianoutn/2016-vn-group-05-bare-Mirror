@@ -29,11 +29,14 @@ public class ParadaDeColectivoTest {
 	@Test
 	public void laParadaEstaDisponible() {
 		paradaDeBondi.setToleranciaEnCuadras(100);
-		Assert.assertEquals(true, paradaDeBondi.estaDisponible(Dias.Lunes, 1400, null));
+		Assert.assertTrue(paradaDeBondi.estaDisponible(Dias.Lunes, 1400, null));
+		Assert.assertTrue(paradaDeBondi.estaDisponible(Dias.Sabado, 2400, null));
+		Assert.assertTrue(paradaDeBondi.estaDisponible(Dias.Domingo, 100, null));
 	}
 
 	@Test
 	public void encuentraLaParada() {
-		Assert.assertEquals(true, paradaDeBondi.encuentra("114"));
+		Assert.assertTrue(paradaDeBondi.encuentra("114"));
+		Assert.assertFalse(paradaDeBondi.encuentra("11"));
 	}
 }
