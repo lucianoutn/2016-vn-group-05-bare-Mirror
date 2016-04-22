@@ -18,25 +18,18 @@ public class SucursalDeBanco implements PuntoDeInteres {
 	private String nombre;
 	private int toleranciaEnCuadras;
 
-	
 	private ArrayList<DiaAtencion> atencionAlPublico;
-	
-	
 
 	public SucursalDeBanco(String unNombre, Point unaPosicion ,ArrayList<DiaAtencion> diasDeAtencion){
 		nombre = unNombre;
 		posicion = unaPosicion;
 		toleranciaEnCuadras = 5;
 		atencionAlPublico = diasDeAtencion;
-		
 	} 
 
-	
 	@Override
 	public boolean estaDisponible(Dias unDia, int hora , Servicio valorX) {
-		
-		return atencionAlPublico.stream().anyMatch(d-> d.equals(unDia) && d.estaAbierto(hora));
-
+		return atencionAlPublico.stream().anyMatch(d-> d.getDia().equals(unDia) && d.estaAbierto(hora));
 	}
 
 	@Override
@@ -58,5 +51,4 @@ public class SucursalDeBanco implements PuntoDeInteres {
 
 	}
 
-	
 }

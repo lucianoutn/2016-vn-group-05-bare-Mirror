@@ -14,18 +14,10 @@ public class ParadaDeColectivoTest {
 
 	@Before
 	public void Initialize() {
-
 		unaPosicionRandom = new Point(100, 0);
 		posicionParada = new Point(0, 0);
 		paradaDeBondi = new ParadaDeColectivo("Mozart", "2600", new Point(100,100),"114");
-
-	}
-
-	
-	@Test
-	public void laParadaEstaCerca() {
-		paradaDeBondi.setToleranciaEnCuadras(111);
-		Assert.assertTrue(paradaDeBondi.estaCerca(unaPosicionRandom));
+		paradaDeBondi.setToleranciaEnCuadras(100);
 	}
 	
 	@Test
@@ -44,5 +36,4 @@ public class ParadaDeColectivoTest {
 	public void encuentraLaParada() {
 		Assert.assertEquals(true, paradaDeBondi.encuentra("114"));
 	}
-
 }

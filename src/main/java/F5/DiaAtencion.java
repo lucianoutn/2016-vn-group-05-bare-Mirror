@@ -3,6 +3,7 @@ package F5;
 public class DiaAtencion {
 
 	private Dias dia;
+	
 	public Dias getDia() {
 		return dia;
 	}
@@ -19,8 +20,8 @@ public class DiaAtencion {
 	
 	public boolean estaAbierto(int hora)
 	{
-		return hora > horaApertura && hora < horaCierre;
+		return hora >= horaApertura && hora <= horaCierre;
 	}	
 }
 
-enum Dias {Lunes, Martes, Miercoles, Jueves, Viernes, Sabado, Domingo}
+enum Dias {Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,Domingo}

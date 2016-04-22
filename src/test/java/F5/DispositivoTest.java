@@ -1,7 +1,5 @@
 package F5;
 
-
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +14,7 @@ public class DispositivoTest {
 
 	@Before
 	public void initialize() {
-		dispositivoTest = new Dispositivo();
+		dispositivoTest = new Dispositivo(puntoDispositivo,comunaDelimitadaPor);
 		puntoDispositivo = new Point(1, 1); // punto donde se encuentra el
 											// dispositivo
 
@@ -30,10 +28,6 @@ public class DispositivoTest {
 		comunaDelimitadaPor.add(puntoB);
 		comunaDelimitadaPor.add(puntoC);
 		comunaDelimitadaPor.add(puntoD);
-
-		dispositivoTest.setPoint(puntoDispositivo);
-		dispositivoTest.setComunaDelimitadaPor(comunaDelimitadaPor);
-
 	}
 
 	@Test // se espera que el dispositvo ese fiscamente dentro del area

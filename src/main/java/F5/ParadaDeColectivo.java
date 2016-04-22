@@ -9,14 +9,6 @@ public class ParadaDeColectivo implements PuntoDeInteres {
 	private String calle;
 	private String altura;
 
-	public String getAltura() {
-		return altura;
-	}
-
-	public void setAltura(String altura) {
-		this.altura = altura;
-	}
-
 	public String getCalle() {
 		return calle;
 	}
@@ -24,36 +16,36 @@ public class ParadaDeColectivo implements PuntoDeInteres {
 	public Point getPosicion() {
 		return posicion;
 	}
+	
+	public String getAltura() {
+		return altura;
+	}
+	
+	public int getToleranciaEnCuadras() {
+		return toleranciaEnCuadras;
+	}
 
 	private int toleranciaEnCuadras;
 	private Point posicion;
 	private String numeroDeLinea;
+	
 	// Declaraciones -- Fin
 
 	public String getNumeroDeLinea() {
 		return numeroDeLinea;
 	}
 
-	public void setNumeroDeLinea(String numeroDeLinea) {
-		this.numeroDeLinea = numeroDeLinea;
-	}
-
-	// Getters y Setters -- Inicio
-	public int getToleranciaEnCuadras() {
-		return toleranciaEnCuadras;
-	}
-
+	//Se deja en setters porque no se lo considera propio de la clase
 	public void setToleranciaEnCuadras(int toleranciaEnCuadras) {
 		this.toleranciaEnCuadras = toleranciaEnCuadras;
 	}
-	// Getters y Setters -- Fin
 
 	public ParadaDeColectivo(String calleDeParada, String alturaDeParada, Point unaPosicion, String lineaDeColectivo) {
 		calle = calleDeParada;
 		altura = alturaDeParada;
 		posicion = unaPosicion;
 		numeroDeLinea = lineaDeColectivo;
-		toleranciaEnCuadras =1;
+		toleranciaEnCuadras = 1;
 	}
 
 	@Override

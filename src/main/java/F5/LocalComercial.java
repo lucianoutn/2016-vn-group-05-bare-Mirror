@@ -1,7 +1,6 @@
 package F5;
 
 import java.util.ArrayList;
-
 import org.uqbar.geodds.Point;
 
 public class LocalComercial implements PuntoDeInteres {
@@ -11,19 +10,23 @@ public class LocalComercial implements PuntoDeInteres {
 	private String altura;
 	private String nombre;
 	private int cuadrasDeCercania;
+
 	private Point posicion;
 
 	private ArrayList<DiaAtencion> atencionAlPublico;
 	
-	public LocalComercial(String unNombre, String unRubro, ArrayList<DiaAtencion> diasDeAtencion) {
+	public LocalComercial(String unNombre, String unaCalle, String unaAltura, String unRubro, ArrayList<DiaAtencion> diasDeAtencion, Point unaPosicion) {
 		nombre = unNombre;
+		calle = unaCalle;
+		altura = unaAltura;
+		posicion = unaPosicion;
 		rubro = unRubro;
 		atencionAlPublico = diasDeAtencion;
 	}
 
 	@Override
 	public boolean estaDisponible(Dias unDia, int hora , Servicio unServicio) {
-		return atencionAlPublico.stream().anyMatch(d->d.equals(unDia) && d.estaAbierto(hora)); 
+		return atencionAlPublico.stream().anyMatch(d->d.getDia().equals(unDia) && d.estaAbierto(hora)); 
 	}
 
 	@Override
@@ -42,7 +45,6 @@ public class LocalComercial implements PuntoDeInteres {
 
 	}
 
-	
 	private boolean encuentraRubro(String textoLibre) {
 		return rubro.equals(textoLibre);
 	}
@@ -70,6 +72,10 @@ public class LocalComercial implements PuntoDeInteres {
 
 	public String getNombre() {
 		return nombre;
+	}
+
+	public void setCuadrasDeCercania(int cuadrasDeCercania) {
+		this.cuadrasDeCercania = cuadrasDeCercania;
 	}
 
 }
