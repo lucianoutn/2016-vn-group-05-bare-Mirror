@@ -2,6 +2,7 @@ package F5;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 //import F5.PuntoDeInteres;
 //import F5.Sucursal;
@@ -18,9 +19,9 @@ public class SucursalDeBanco implements PuntoDeInteres {
 	private String nombre;
 	private int toleranciaEnCuadras;
 
-	private ArrayList<DiaAtencion> atencionAlPublico;
+	private List<DiaAtencion> atencionAlPublico;
 
-	public SucursalDeBanco(String unNombre, Point unaPosicion ,ArrayList<DiaAtencion> diasDeAtencion){
+	public SucursalDeBanco(String unNombre, Point unaPosicion ,List<DiaAtencion> diasDeAtencion){
 		nombre = unNombre;
 		posicion = unaPosicion;
 		toleranciaEnCuadras = 5;

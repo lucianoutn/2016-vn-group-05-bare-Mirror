@@ -58,22 +58,6 @@ public class LocalComercial implements PuntoDeInteres {
 
 	}
 
-	public String getCalle() {
-		return calle;
-	}
-
-	public void setCalle(String calle) {
-		this.calle = calle;
-	}
-
-	public String getAltura() {
-		return altura;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
 	public void setCuadrasDeCercania(int cuadrasDeCercania) {
 		this.cuadrasDeCercania = cuadrasDeCercania;
 	}

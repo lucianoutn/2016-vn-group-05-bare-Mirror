@@ -32,7 +32,7 @@ public class SucursalDeBancoTest {
 	}
 		
 	@Test
-	public void elBancoEstaDisponibleSoloLosMiercolesDe9A18() {
+	public void elBancoEstaDisponibleSoloLosMiercoles() {
 		unDia = new DiaAtencion(Dias.Miercoles,900,1800);
 		otroDia = new DiaAtencion(Dias.Sabado,1000,1300);
 		listaDeDias = new ArrayList<DiaAtencion>();
@@ -45,6 +45,7 @@ public class SucursalDeBancoTest {
 		Assert.assertFalse(otraSucursal.estaDisponible(Dias.Lunes, 1600, null));
 		Assert.assertFalse(otraSucursal.estaDisponible(Dias.Viernes, 1800, null));
 	}
+	
 	
 	@Test
 	public void encontrarUnBancoSantander(){

@@ -1,7 +1,7 @@
 package F5;
 
 import java.util.ArrayList;
-
+import java.util.List;
 
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
@@ -12,7 +12,7 @@ public class CGP implements PuntoDeInteres {
 	private String altura;
 	private Point posicion;
 	private Polygon comuna;
-	private ArrayList<Servicio> servicios;
+	private List<Servicio> servicios = new ArrayList<>();
 
 	public CGP(Point point, Polygon unaComuna) {
 		comuna = unaComuna;

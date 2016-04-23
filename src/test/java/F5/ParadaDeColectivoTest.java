@@ -3,6 +3,9 @@ package F5;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
+
+import static org.junit.Assert.*;
+
 import org.junit.Assert;
 
 public class ParadaDeColectivoTest {
@@ -30,9 +33,19 @@ public class ParadaDeColectivoTest {
 	public void laParadaEstaDisponible() {
 		paradaDeBondi.setToleranciaEnCuadras(100);
 		Assert.assertTrue(paradaDeBondi.estaDisponible(Dias.Lunes, 1400, null));
+		
+	}
+	
+	@Test
+	public void laParadaEstaDisponibleLosDiasSabadosA2400mts() throws Exception {
 		Assert.assertTrue(paradaDeBondi.estaDisponible(Dias.Sabado, 2400, null));
+	}
+	
+	@Test
+	public void laParadaEstaDisponibleLosDiasDomingosA() throws Exception {
 		Assert.assertTrue(paradaDeBondi.estaDisponible(Dias.Domingo, 100, null));
 	}
+	
 
 	@Test
 	public void encuentraLaParada() {
