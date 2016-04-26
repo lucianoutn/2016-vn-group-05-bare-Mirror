@@ -1,6 +1,7 @@
 package F5;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Servicio { //TODO
 	
@@ -9,10 +10,10 @@ public class Servicio { //TODO
 		return nombre;
 	}
 
-	private ArrayList<DiaAtencion> atencionAlPublico;
+	private List<DiaAtencion> atencionAlPublico;
 	
 	
-	public Servicio(String unNombre, ArrayList<DiaAtencion> diasDeAtencion){
+	public Servicio(String unNombre, List<DiaAtencion> diasDeAtencion){
 		nombre = unNombre;
 		atencionAlPublico = diasDeAtencion;
 	}
@@ -22,7 +23,7 @@ public class Servicio { //TODO
 	}
 	
 	public boolean contiene(String textoLibre){
-		return nombre.contains(textoLibre); //TODO testear
+		return nombre.equals(textoLibre); //TODO testear
 	}
 }
 

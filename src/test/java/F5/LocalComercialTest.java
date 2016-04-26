@@ -29,7 +29,7 @@ public class LocalComercialTest {
 	}
 
 	@Test
-	public void elLocalComercialEstaDisponibleUnLunes17hs(){
+	public void elLocalComercialEstaDisponibleUnMartes(){
 		unDia = new DiaAtencion(Dias.Martes,1000,2000);
 		listaDeDias = new ArrayList<DiaAtencion>();
 		listaDeDias.add(unDia);
@@ -37,5 +37,15 @@ public class LocalComercialTest {
 		Assert.assertTrue(otroLocalComercial.estaDisponible(Dias.Martes,2000,null));
 		Assert.assertTrue(otroLocalComercial.estaDisponible(Dias.Martes,1000,null));
 		Assert.assertFalse(otroLocalComercial.estaDisponible(Dias.Sabado,1500,null));
+	}
+	
+	public void elLocalComercialNoEstaDisponibleUnSabado15hs(){
+		
+		unDia = new DiaAtencion(Dias.Martes,1000,2000);
+		listaDeDias = new ArrayList<DiaAtencion>();
+		listaDeDias.add(unDia);
+		otroLocalComercial = new LocalComercial("Mimo","Corrientes","3052","Libreria",listaDeDias,unaPosicion);
+		Assert.assertFalse(otroLocalComercial.estaDisponible(Dias.Sabado,1500,null));
+		
 	}
 }

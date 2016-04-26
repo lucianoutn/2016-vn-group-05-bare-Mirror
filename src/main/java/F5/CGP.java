@@ -14,16 +14,22 @@ public class CGP implements PuntoDeInteres {
 	private Polygon comuna;
 	private List<Servicio> servicios = new ArrayList<>();
 
-	public CGP(Point point, Polygon unaComuna) {
-		comuna = unaComuna;
+
+	public CGP(Point point, Polygon unRadio) {
+		comuna = unRadio;
 		posicion = point;
 	}
 
+	public void anadirServicio(Servicio servic){
+		servicios.add(servic);
+		
+	}
+	
 	@Override
 	public boolean estaDisponible(Dias dia, int hora, Servicio unServicio) {
 		if (unServicio == null)
 			return servicios.stream().anyMatch(s-> s.estaAbierto(dia, hora));
-		return servicios.stream().anyMatch(s -> s.getNombre().equals(unServicio) && unServicio.estaAbierto(dia, hora));
+		return servicios.stream().anyMatch(s -> s.getNombre().equals(unServicio.getNombre()) && unServicio.estaAbierto(dia, hora));
 	}
 	
 	//Esta opcion de estaDisponible no forma parte de la interface. Si se desea hacer la busqueda
@@ -39,7 +45,7 @@ public class CGP implements PuntoDeInteres {
 
 	@Override
 	public boolean encuentra(String textoLibre) {
-		return encuentraCalle(textoLibre) || servicios.stream().anyMatch(s -> s.contiene(textoLibre));
+		return  servicios.stream().anyMatch(s -> s.contiene(textoLibre)) || encuentraCalle(textoLibre);
 	}
 
 	private boolean encuentraCalle(String textoLibre) {
