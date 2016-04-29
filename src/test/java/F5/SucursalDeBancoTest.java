@@ -20,7 +20,7 @@ public class SucursalDeBancoTest {
 	@Before
 	public void initialize() {
 		laPosicionDelBanco = new Point(0, 0);
-		unaSucursal = new SucursalDeBanco("Santander" , laPosicionDelBanco,  new ArrayList<DiaAtencion>());
+		unaSucursal = new SucursalDeBanco("Santander", laPosicionDelBanco, new ArrayList<DiaAtencion>());
 		unPuntoCerca = new Point(0, 4);
 		unPuntoLejos = new Point(0, 6);
 	}
@@ -30,27 +30,34 @@ public class SucursalDeBancoTest {
 		Assert.assertTrue(unaSucursal.estaCerca(unPuntoCerca));
 		Assert.assertFalse(unaSucursal.estaCerca(unPuntoLejos));
 	}
-		
+
 	@Test
-	public void elBancoEstaDisponibleSoloLosMiercoles() {
-		unDia = new DiaAtencion(Dias.Miercoles,900,1800);
-		otroDia = new DiaAtencion(Dias.Sabado,1000,1300);
+	public void elBancoEstaDisponibleLosMiercolesSoloDe9a18() {
+		unDia = new DiaAtencion(Dias.Miercoles, 900, 1800);
 		listaDeDias = new ArrayList<DiaAtencion>();
 		listaDeDias.add(unDia);
-		listaDeDias.add(otroDia);
-		otraSucursal = new SucursalDeBanco("Santander" , laPosicionDelBanco,  listaDeDias);
+		otraSucursal = new SucursalDeBanco("Santander", laPosicionDelBanco, listaDeDias);
 		Assert.assertTrue(otraSucursal.estaDisponible(Dias.Miercoles, 900, null));
 		Assert.assertTrue(otraSucursal.estaDisponible(Dias.Miercoles, 1800, null));
 		Assert.assertFalse(otraSucursal.estaDisponible(Dias.Miercoles, 1801, null));
-		Assert.assertFalse(otraSucursal.estaDisponible(Dias.Lunes, 1600, null));
-		Assert.assertFalse(otraSucursal.estaDisponible(Dias.Viernes, 1800, null));
+
 	}
-	
-	
+
 	@Test
-	public void encontrarUnBancoSantander(){
+	public void elBancoNoEstaDisponibleSabadosLuegoDeLas13() {
+		otroDia = new DiaAtencion(Dias.Sabado, 1000, 1300);
+		listaDeDias = new ArrayList<DiaAtencion>();
+		listaDeDias.add(otroDia);
+		otraSucursal = new SucursalDeBanco("Santander", laPosicionDelBanco, listaDeDias);
+		Assert.assertFalse(otraSucursal.estaDisponible(Dias.Sabado, 1301, null));
+		Assert.assertFalse(otraSucursal.estaDisponible(Dias.Sabado, 1600, null));
+		Assert.assertFalse(otraSucursal.estaDisponible(Dias.Sabado, 1800, null));
+	}
+
+	@Test
+	public void encontrarUnBancoSantander() {
 		Assert.assertTrue(unaSucursal.encuentra("Santander"));
 		Assert.assertFalse(unaSucursal.encuentra("santander"));
 		Assert.assertFalse(unaSucursal.encuentra("HSBC"));
-		}
+	}
 }
