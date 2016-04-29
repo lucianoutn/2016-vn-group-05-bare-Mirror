@@ -10,12 +10,12 @@ public class LocalComercial implements PuntoDeInteres {
 	private String altura;
 	private String nombre;
 	private int cuadrasDeCercania;
-
 	private Point posicion;
 
 	private ArrayList<DiaAtencion> atencionAlPublico;
-	
-	public LocalComercial(String unNombre, String unaCalle, String unaAltura, String unRubro, ArrayList<DiaAtencion> diasDeAtencion, Point unaPosicion) {
+
+	public LocalComercial(String unNombre, String unaCalle, String unaAltura, String unRubro,
+			ArrayList<DiaAtencion> diasDeAtencion, Point unaPosicion) {
 		nombre = unNombre;
 		calle = unaCalle;
 		altura = unaAltura;
@@ -25,8 +25,8 @@ public class LocalComercial implements PuntoDeInteres {
 	}
 
 	@Override
-	public boolean estaDisponible(Dias unDia, int hora , Servicio unServicio) {
-		return atencionAlPublico.stream().anyMatch(d->d.getDia().equals(unDia) && d.estaAbierto(hora)); 
+	public boolean estaDisponible(Dias unDia, int hora, Servicio unServicio) {
+		return atencionAlPublico.stream().anyMatch(d -> d.getDia().equals(unDia) && d.estaAbierto(hora));
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class LocalComercial implements PuntoDeInteres {
 	}
 
 	public boolean encuentra(String textoLibre) {
-		return encuentraCalle(textoLibre)  || encuentraNombre(textoLibre) || encuentraRubro(textoLibre);
+		return encuentraCalle(textoLibre) || encuentraNombre(textoLibre) || encuentraRubro(textoLibre);
 
 	}
 
