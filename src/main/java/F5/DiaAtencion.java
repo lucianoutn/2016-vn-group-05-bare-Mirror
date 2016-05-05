@@ -1,5 +1,7 @@
 package F5;
 
+
+
 public class DiaAtencion {
 
 	private Dias dia;
@@ -24,4 +26,4 @@ public class DiaAtencion {
 	}	
 }
 
-enum Dias {Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,Domingo}
+

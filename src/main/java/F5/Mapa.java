@@ -6,10 +6,10 @@ public class Mapa {
 	private List<PuntoDeInteres> puntosDeInteres = new ArrayList<>();
 	
 	public void anadirPOI(PuntoDeInteres poi) {
-	puntosDeInteres.add(poi);
+		puntosDeInteres.add(poi);
 	}
 	
 	public boolean contiene(PuntoDeInteres unPoi){
-	return (puntosDeInteres.stream().anyMatch(x->x == unPoi));
+		return (puntosDeInteres.stream().anyMatch(x->x == unPoi));
 	}
 }

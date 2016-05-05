@@ -34,8 +34,9 @@ public class MapaTest {
 	
 	@Test
 	public void unCGPEstaEnLaListaDePOIDelMapa(){
-	unaPosicion = new Point(100, 0);
+	//unaPosicion = new Point(100, 0);
 	// creo un poligono de 4 lados simulando la comuna
+	/*
 	puntoA = new Point(0, 0);
 	puntoB = new Point(10, 0);
 	puntoC = new Point(10, 10);
@@ -44,8 +45,8 @@ public class MapaTest {
 	unaComuna.add(puntoA);
 	unaComuna.add(puntoB);
 	unaComuna.add(puntoC);
-	unaComuna.add(puntoD);
-	unCGP = new CGP(unaPosicion, unaComuna);
+	unaComuna.add(puntoD);*/
+	unCGP = new CGP(null, null);
 	
 	map.anadirPOI(unCGP);
 	Assert.assertTrue(map.contiene(unCGP));

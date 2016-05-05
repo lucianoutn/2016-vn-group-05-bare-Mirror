@@ -2,6 +2,8 @@ package F5;
 
 import java.util.ArrayList;
 import F5.DiaAtencion;
+import TestFactory.BancoFactory;
+import TestFactory.PointFactory;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -9,34 +11,26 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 
 public class SucursalDeBancoTest {
-
-	private SucursalDeBanco unaSucursal, otraSucursal;
-	private Point laPosicionDelBanco;
-	private Point unPuntoCerca;
-	private Point unPuntoLejos;
-	private DiaAtencion unDia, otroDia;
-	private ArrayList<DiaAtencion> listaDeDias;
-
 	@Before
 	public void initialize() {
-		laPosicionDelBanco = new Point(0, 0);
-		unaSucursal = new SucursalDeBanco("Santander", laPosicionDelBanco, new ArrayList<DiaAtencion>());
-		unPuntoCerca = new Point(0, 4);
-		unPuntoLejos = new Point(0, 6);
+		
 	}
 
 	@Test
-	public void distanciaDelBanco() {
-		Assert.assertTrue(unaSucursal.estaCerca(unPuntoCerca));
-		Assert.assertFalse(unaSucursal.estaCerca(unPuntoLejos));
+	public void cercaBancoSantander() {
+		SucursalDeBanco bancoSantander = BancoFactory.BancoSantanderEnOrigenYMiercolesDe9A18();
+		Assert.assertFalse(bancoSantander.estaCerca(PointFactory.LejosBancoSantander()));
+	}
+	@Test
+	public void lejosBancoSantander() {
+		SucursalDeBanco bancoSantander = BancoFactory.BancoSantanderEnOrigenYMiercolesDe9A18();
+		Assert.assertFalse(bancoSantander.estaCerca(PointFactory.LejosBancoSantander()));
 	}
 
 	@Test
 	public void elBancoEstaDisponibleLosMiercolesSoloDe9a18() {
-		unDia = new DiaAtencion(Dias.Miercoles, 900, 1800);
-		listaDeDias = new ArrayList<DiaAtencion>();
-		listaDeDias.add(unDia);
-		otraSucursal = new SucursalDeBanco("Santander", laPosicionDelBanco, listaDeDias);
+		
+		SucursalDeBanco otraSucursal = BancoFactory.BancoSantanderEnOrigenYMiercolesDe9A18();
 		Assert.assertTrue(otraSucursal.estaDisponible(Dias.Miercoles, 900, null));
 		Assert.assertTrue(otraSucursal.estaDisponible(Dias.Miercoles, 1800, null));
 		Assert.assertFalse(otraSucursal.estaDisponible(Dias.Miercoles, 1801, null));
@@ -44,20 +38,49 @@ public class SucursalDeBancoTest {
 	}
 
 	@Test
-	public void elBancoNoEstaDisponibleSabadosLuegoDeLas13() {
-		otroDia = new DiaAtencion(Dias.Sabado, 1000, 1300);
-		listaDeDias = new ArrayList<DiaAtencion>();
-		listaDeDias.add(otroDia);
-		otraSucursal = new SucursalDeBanco("Santander", laPosicionDelBanco, listaDeDias);
+	public void elBancoNoEstaDisponibleSabados1301() {
+		
+		SucursalDeBanco otraSucursal = BancoFactory.BancoSabadoDe10a13(); 
 		Assert.assertFalse(otraSucursal.estaDisponible(Dias.Sabado, 1301, null));
-		Assert.assertFalse(otraSucursal.estaDisponible(Dias.Sabado, 1600, null));
-		Assert.assertFalse(otraSucursal.estaDisponible(Dias.Sabado, 1800, null));
+		
 	}
+	@Test
+	public void elBancoNoEstaDisponibleSabados1600() {
+		
+		SucursalDeBanco otraSucursal = BancoFactory.BancoSabadoDe10a13(); 
+		Assert.assertFalse(otraSucursal.estaDisponible(Dias.Sabado, 1600, null));
+		
+	}
+	@Test
+	public void elBancoNoEstaDisponibleSabados955() {
+		
+		SucursalDeBanco otraSucursal = BancoFactory.BancoSabadoDe10a13(); 
+		Assert.assertFalse(otraSucursal.estaDisponible(Dias.Sabado, 955, null));
+		
+	}
+	
 
 	@Test
 	public void encontrarUnBancoSantander() {
-		Assert.assertTrue(unaSucursal.encuentra("Santander"));
-		Assert.assertFalse(unaSucursal.encuentra("santander"));
-		Assert.assertFalse(unaSucursal.encuentra("HSBC"));
+		SucursalDeBanco santander= BancoFactory.BancoSantanderEnOrigenYMiercolesDe9A18();
+		Assert.assertTrue(santander.encuentra("Santander"));
+		
 	}
+	
+	@Test
+	public void noEncontrarUnBancoSantander() {
+		SucursalDeBanco santander= BancoFactory.BancoSantanderEnOrigenYMiercolesDe9A18();
+		Assert.assertFalse(santander.encuentra("HSBC"));
+		
+	}
+	
+	@Test
+	public void noEncontrarUnBancoSantanderConCaseSensitive() {
+		SucursalDeBanco santander= BancoFactory.BancoSantanderEnOrigenYMiercolesDe9A18();
+		Assert.assertFalse(santander.encuentra("santander"));
+		
+	}
+	
+	
+	
 }

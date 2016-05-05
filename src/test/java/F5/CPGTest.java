@@ -37,7 +37,7 @@ public class CPGTest {
 	}
 
 	@Test
-	public void elCGPEstaDisponibleUnLunesALaMañana() {
+	public void elCGPEstaDisponibleUnLunesALaManiana() {
 
 		unDia = new DiaAtencion(Dias.Lunes, 1000, 2000);
 		diasDeAtencion.add(unDia);
@@ -48,7 +48,7 @@ public class CPGTest {
 	}
 
 	@Test
-	public void elCGPRentasEstaDisponibleUnLunesALaMañana() {
+	public void elCGPRentasEstaDisponibleUnLunesALaManiana() {
 
 		unDia = new DiaAtencion(Dias.Lunes, 1000, 2000);
 		diasDeAtencion.add(unDia);
