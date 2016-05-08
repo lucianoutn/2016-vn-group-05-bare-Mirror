@@ -15,7 +15,7 @@ public class SGPTest {
 
 	
 	@Test
-	public void flatMapBancoDebeDevolver8ElementosEnLaLista(){
+	public void flatMapBancoDebeDevolver6ElementosEnLaLista(){
 		
 		SGP sgp = new SGP();
 		ArrayList<IConsultorBancos> mockBancos = new ArrayList<IConsultorBancos>();	
