@@ -1,5 +1,9 @@
 package F5;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import InterfacesExternas.IConsultorBancos;
 import InterfacesExternas.IConsultorCGP;
 
@@ -7,14 +11,21 @@ import InterfacesExternas.IConsultorCGP;
 //TODO ver si le cambiamos el nombre
 public class SGP {  
 
-	public IConsultorCGP consultorCgp;
-	public IConsultorBancos consultorBancos;
+	public List<IConsultorCGP> consultoresCgp = new ArrayList<IConsultorCGP>();
+	public List<IConsultorBancos> consultoresBancos = new ArrayList<IConsultorBancos>();
 	
-	public CGP getAllCGPs(){
-		return null;
+	public List<CGP> CGPsUbicadasEn(String unLugar){
+		return consultoresCgp.stream()
+				 			 .map(cgp-> cgp.cgpUbicadasEn(unLugar))
+				 			 .flatMap(l -> l.stream())
+				 			 .collect(Collectors.toList());
+							 
 	}
 	
-	public SucursalDeBanco getAllBanks(){
-		return null;
+	public List<SucursalDeBanco> bancosConServicio(String nombreBanco, String unServicio){
+		return consultoresBancos.stream()
+	 			 .map(banco-> banco.bancosQueCumplenCon(nombreBanco, unServicio))
+	 			 .flatMap(l -> l.stream())
+	 			 .collect(Collectors.toList());
 	}
 }
