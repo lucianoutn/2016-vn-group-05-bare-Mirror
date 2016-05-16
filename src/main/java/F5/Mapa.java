@@ -9,6 +9,10 @@ public class Mapa {
 		puntosDeInteres.add(poi);
 	}
 	
+	public void eliminarPOI(PuntoDeInteres poi){
+		puntosDeInteres.remove(poi);
+	}
+	
 	public boolean contiene(PuntoDeInteres unPoi){
 		return (puntosDeInteres.stream().anyMatch(x->x == unPoi));
 	}

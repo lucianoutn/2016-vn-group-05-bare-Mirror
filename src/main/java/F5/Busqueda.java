@@ -16,6 +16,20 @@ public class Busqueda {
 	// metodos
 
 	// public Busqueda(String fraseBuscada); //todo
+	
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+
+	public void setFecha(LocalTime fecha) {
+		this.fecha = fecha;
+	}
+
+	public void setTerminal(String terminal) {
+		this.terminal = terminal;
+	}
+
 
 	public void setTiempoDemora(LocalTime tiempoDemora) {
 		// debe ser parametrizable
@@ -23,32 +37,30 @@ public class Busqueda {
 	}
 	
 	
-	//eze dice: no es responsabilidad de la busqueda notificar la demora. sacar metodo
-	public void notificarDemora() {
-		// todo
-	}
-	//eze dice: no es responsabbilidad de la busqueda saber almacenarse. sacar metodo
-	public void almacenarBusqueda() {
-		// todo
-	}
-	
-	
 	public boolean realizadaPor(String unUsuario){
+		if (unUsuario == null || usuario == null)
+			return true;
 		return usuario.equals(unUsuario);
 	}
 	
 	public boolean realizadaEn(String unaTerminal){
-		return usuario.equals(unaTerminal);
+		if (unaTerminal == null || terminal == null)
+			return true;
+		return terminal.equals(unaTerminal);
 	}
 	
 	public boolean realizadaEnLaFecha(LocalTime unaFecha){
 		//TODO ver como validar que hayan sido el mismo dia
 		// hacer varios test
+		if (unaFecha == null )
+			return true;
 		return false;
 	}
 
 	public boolean buscoFrase(String unaFrase) {
-		return fraseBuscada.contains(unaFrase);
+		if(unaFrase == null || fraseBuscada == null)
+			return true;
+		return  fraseBuscada.contains(unaFrase);
 	}
 
 }
