@@ -11,6 +11,8 @@ public class GeneradorDeReporteTest {
 	
 	@Before
 	public void Initialize() {
+		
+		
 		Busqueda busquedaJuan = new Busqueda();
 		Busqueda busquedaPedro = new Busqueda();
 		Busqueda busquedaEnBoedo = new Busqueda();
@@ -19,6 +21,7 @@ public class GeneradorDeReporteTest {
 		busquedaJuan.setUsuario("juan");
 		busquedaPedro.setUsuario("pedro");
 		
+		RepositorioImpostor.limpiarLista();
 		RepositorioImpostor.setBusquedas(busquedaEnBoedo);
 		RepositorioImpostor.setBusquedas(busquedaJuan);
 		RepositorioImpostor.setBusquedas(busquedaPedro);
@@ -55,19 +58,19 @@ public class GeneradorDeReporteTest {
 	@Test
 	public void reporteSiEstaPedro(){
 	
-		Assert.assertEquals(1, generador.generarReporte(null, "pedro",null,null));
+		Assert.assertEquals(1, generador.generarReporte( "pedro","",null,""));
 	}
 	
 	@Test
 	public void reporteSiEstaJuan(){
 	
-		Assert.assertEquals(1, generador.generarReporte(null, "juan",null,null ));
+		Assert.assertEquals(1, generador.generarReporte("juan", "",null,""));
 	}
 	
 	@Test
 	public void reporteSiEstaEnBoedo(){
 	
-		Assert.assertEquals(1, generador.generarReporte(null, "boedo",null,null));
+		Assert.assertEquals(1, generador.generarReporte("", "boedo",null,""));
 	}
 	
 }

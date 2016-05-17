@@ -8,6 +8,10 @@ public final class RepositorioImpostor {
 	
 	private static List<Busqueda> busquedas = new ArrayList<Busqueda>();
 	
+	public static void limpiarLista(){
+		busquedas.clear();
+	}
+	
 	public static List<Busqueda> getBusquedas(){
 		return busquedas;
 	}
