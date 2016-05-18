@@ -22,8 +22,8 @@ public final class DayFactory {
 	
 	public static List<DiaAtencion> miercoles(int horaInicial, int horaCierre) {
 		List<DiaAtencion> dias = new ArrayList<DiaAtencion>();
-		DiaAtencion sabado = new DiaAtencion(Dias.Sabado, horaInicial, horaCierre);
-		dias.add(sabado);
+		DiaAtencion miercoles = new DiaAtencion(Dias.Miercoles, horaInicial, horaCierre);
+		dias.add(miercoles);
 		return dias;
 	}
 	
