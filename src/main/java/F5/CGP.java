@@ -9,6 +9,14 @@ import org.uqbar.geodds.Polygon;
 public class CGP implements PuntoDeInteres {
 
 	private String calle;
+	public String getCalle() {
+		return calle;
+	}
+
+	public void setCalle(String calle) {
+		this.calle = calle;
+	}
+
 	private String altura;
 	private Point posicion;
 	private Polygon comuna;

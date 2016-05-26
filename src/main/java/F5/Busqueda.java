@@ -41,7 +41,7 @@ public class Busqueda {
 		usuario=user;
 		terminal=ter;
 		fraseBuscada=frase;
-		RepositorioImpostor.setBusquedas(this);
+		RepositorioImpostor.agregarBusqueda(this);
 	}
 	
 	public boolean realizadaPor(String unUsuario){

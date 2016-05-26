@@ -21,10 +21,10 @@ public class GeneradorDeReporteTest {
 		busquedaJuan.setUsuario("juan");
 		busquedaPedro.setUsuario("pedro");
 		
-		RepositorioImpostor.limpiarLista();
-		RepositorioImpostor.setBusquedas(busquedaEnBoedo);
-		RepositorioImpostor.setBusquedas(busquedaJuan);
-		RepositorioImpostor.setBusquedas(busquedaPedro);
+		RepositorioImpostor.limpiar();
+		RepositorioImpostor.agregarBusqueda(busquedaEnBoedo);
+		RepositorioImpostor.agregarBusqueda(busquedaJuan);
+		RepositorioImpostor.agregarBusqueda(busquedaPedro);
 		
 	}
 	
@@ -40,7 +40,7 @@ public class GeneradorDeReporteTest {
 	public void reporteConNombrePepe(){
 		Busqueda busquedaSegunUsuario = new Busqueda();
 		busquedaSegunUsuario.setUsuario("pepe");
-		RepositorioImpostor.setBusquedas(busquedaSegunUsuario);
+		RepositorioImpostor.agregarBusqueda(busquedaSegunUsuario);
 	
 		Assert.assertEquals(1,generador.generarReporte("pepe", "", null, ""));
 
@@ -50,7 +50,7 @@ public class GeneradorDeReporteTest {
 	public void reporteSiEstaEnFlores(){
 		Busqueda busquedaSegunTerminal = new Busqueda();
 		busquedaSegunTerminal.setTerminal("flores");
-		RepositorioImpostor.setBusquedas(busquedaSegunTerminal);
+		RepositorioImpostor.agregarBusqueda(busquedaSegunTerminal);
 	
 		Assert.assertEquals(1, generador.generarReporte("", "flores", null, ""));
 	}

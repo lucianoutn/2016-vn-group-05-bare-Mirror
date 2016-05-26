@@ -14,7 +14,7 @@ public class SGP {
 	public List<IConsultorCGP> consultoresCgp = new ArrayList<IConsultorCGP>();
 	public List<IConsultorBancos> consultoresBancos = new ArrayList<IConsultorBancos>();
 	
-	public List<CGP> CGPsUbicadasEn(String unLugar){
+	public List<PuntoDeInteres> CGPsUbicadasEn(String unLugar){
 		return consultoresCgp.stream()
 				 			 .map(cgp-> cgp.cgpUbicadasEn(unLugar))
 				 			 .flatMap(l -> l.stream())
@@ -24,8 +24,25 @@ public class SGP {
 	
 	public List<SucursalDeBanco> bancosConServicio(String nombreBanco, String unServicio){
 		return consultoresBancos.stream()
-	 			 .map(banco-> banco.bancosQueCumplenCon(nombreBanco, unServicio))
+	 			 .map(banco-> banco.bancosQueCumplenCon(nombreBanco, unServicio)) 
 	 			 .flatMap(l -> l.stream())
 	 			 .collect(Collectors.toList());
+	}
+
+	public void agregarConsultorCgp(IConsultorCGP consultor){
+		consultoresCgp.add(consultor);
+	}
+	
+	public void agregarConsultorBanco(IConsultorBancos consultor){
+		consultoresBancos.add(consultor);
+	}
+	
+	
+	public List<PuntoDeInteres> dameNuevasCgp(){
+		return CGPsUbicadasEn(null);
+	}
+	
+	public List<SucursalDeBanco> dameNuevasSucursalesDeBanco(){
+		return bancosConServicio(null, null);
 	}
 }

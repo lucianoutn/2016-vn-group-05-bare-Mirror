@@ -12,7 +12,7 @@ public class RepositorioImpostorTest {
 	@Before
 	public void Initialize() {
 		
-	RepositorioImpostor.limpiarLista();//sin esto, queda basura de la busqueda anterior (En realidad no es basura)	
+	RepositorioImpostor.limpiar();//sin esto, queda basura de la busqueda anterior (En realidad no es basura)	
 	}
 	
 	

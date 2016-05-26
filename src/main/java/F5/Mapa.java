@@ -5,6 +5,10 @@ import java.util.List;
 public class Mapa {
 	private List<PuntoDeInteres> puntosDeInteres = new ArrayList<>();
 	
+	public Mapa(){
+		
+	}
+	
 	public void anadirPOI(PuntoDeInteres poi) {
 		puntosDeInteres.add(poi);
 	}
