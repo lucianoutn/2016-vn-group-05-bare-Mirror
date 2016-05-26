@@ -36,6 +36,13 @@ public class Busqueda {
 		this.tiempoDemora = tiempoDemora; // en segundos
 	}
 	
+	public void unaBusqueda(String user, String ter, String frase){
+		fecha=LocalTime.now();
+		usuario=user;
+		terminal=ter;
+		fraseBuscada=frase;
+		RepositorioImpostor.setBusquedas(this);
+	}
 	
 	public boolean realizadaPor(String unUsuario){
 		if (unUsuario == null || usuario == null)
