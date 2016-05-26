@@ -9,7 +9,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
-import static org.hamcrest.CoreMatchers.*;
 public class CPGTest {
 
 	private CGP unCGP;
@@ -43,7 +42,9 @@ public class CPGTest {
 		diasDeAtencion.add(unDia);
 		unServicio = new Servicio("rentas", diasDeAtencion);
 		unCGP.anadirServicio(unServicio);
-		Assert.assertThat("rentas", anyIn(unCGP.getServicios()));
+		
+		Assert.assertTrue(unCGP.getServicios().stream().anyMatch(s->s.getNombre().equals("rentas")));
+		//Assert.assertThat("rentas", anyIn(unCGP.getServicios()));
 
 	}
 

@@ -14,6 +14,10 @@ public class CGP implements PuntoDeInteres {
 	private Polygon comuna;
 	private List<Servicio> servicios = new ArrayList<>();
 
+	public List<Servicio> getServicios() {
+		return servicios;
+	}
+
 	public CGP(Point point, Polygon unaComuna) {
 		comuna = unaComuna;
 		posicion = point;

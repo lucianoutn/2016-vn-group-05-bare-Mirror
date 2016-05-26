@@ -5,7 +5,8 @@ import java.util.List;
 
 import F5.SucursalDeBanco;
 
-public class ConsultorBancosJson implements IConsultorBancos{
+public class ConsultorBancosMock implements IConsultorBancos{
+	//este es el que va a testear contra el ejemplo de respuesta json
 
 	@Override
 	public List<SucursalDeBanco> bancosQueCumplenCon(String nombreBanco, String unServicio) {
