@@ -20,13 +20,6 @@ public class GeneradorDeReporte {
 					 .count()
 					 ;		
 		
-		
-		// TODO hacer un test para cuando pide:
-		// 1) todos los parametros correctos
-		// 2) para un parametro null 
-		// 3) para dos parametros null
-		// 4) para tres parametros  null
-		// 5) para todos los parametros null
 	}
 
 	private List<Busqueda> buscarBusquedas() {

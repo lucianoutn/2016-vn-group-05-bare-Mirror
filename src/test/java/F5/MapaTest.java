@@ -7,6 +7,8 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+import TestFactory.LocalComercialFactory;
+
 public class MapaTest {
 	
 	private Mapa map;
@@ -25,7 +27,7 @@ public class MapaTest {
 	}
 	
 	@Test
-	public void unBancoEstaEnLaListaDePOIDelMapa(){
+	public void unBancoEstaEnElMapa(){
 	laPosicionDelBanco = new Point(0, 0);
 	SucursalDeBanco banco = new SucursalDeBanco("Santander", laPosicionDelBanco, new ArrayList<DiaAtencion>());
 	map.anadirPOI(banco);
@@ -33,19 +35,7 @@ public class MapaTest {
 	}
 	
 	@Test
-	public void unCGPEstaEnLaListaDePOIDelMapa(){
-	//unaPosicion = new Point(100, 0);
-	// creo un poligono de 4 lados simulando la comuna
-	/*
-	puntoA = new Point(0, 0);
-	puntoB = new Point(10, 0);
-	puntoC = new Point(10, 10);
-	puntoD = new Point(0, 10);
-	unaComuna = new Polygon();
-	unaComuna.add(puntoA);
-	unaComuna.add(puntoB);
-	unaComuna.add(puntoC);
-	unaComuna.add(puntoD);*/
+	public void unCGPEstaEnElMapa(){
 	unCGP = new CGP(null, null);
 	
 	map.anadirPOI(unCGP);
@@ -53,7 +43,7 @@ public class MapaTest {
 	}
 
 	@Test
-	public void unBancoYUnCGPEstanEnLaListaDePOIDelMapa(){
+	public void unBancoYUnCGPEstanEnElMapa(){
 	unaPosicion = new Point(100, 0);
 	// creo un poligono de 4 lados simulando la comuna
 	puntoA = new Point(0, 0);
@@ -76,5 +66,31 @@ public class MapaTest {
 	Assert.assertTrue(map.contiene(otroBanco));
 	Assert.assertTrue(map.contiene(otroCGP)); 
 	}
+
+
+	@Test
+	public void noEstaUnBancoEnUnMapaVacio(){
+	laPosicionDelBanco = new Point(0, 0);
+	SucursalDeBanco banco = new SucursalDeBanco("Santander", laPosicionDelBanco, new ArrayList<DiaAtencion>());
+	
+	Assert.assertFalse(map.contiene(banco));
+	}
+	
+	
+	@Test
+	public void noEstaUnBancoEnUnMapa(){
+	laPosicionDelBanco = new Point(0, 0);
+	SucursalDeBanco banco = new SucursalDeBanco("Santander", laPosicionDelBanco, new ArrayList<DiaAtencion>());
+	map.anadirPOI(LocalComercialFactory.mimoEsLibreriaPunto100_0DisponibleMiercoles10a20());
+	
+	Assert.assertFalse(map.contiene(banco));
+	}
+	
+	@Test
+	public void nullNoEstaEnElMapa(){
+		Assert.assertFalse(map.contiene(null));
+	}
+
+
 }
 

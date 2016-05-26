@@ -3,7 +3,7 @@ package F5;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Servicio { //TODO
+public class Servicio { 
 	
 	private String nombre;
 	public String getNombre() {
@@ -23,7 +23,7 @@ public class Servicio { //TODO
 	}
 	
 	public boolean contiene(String textoLibre){
-		return nombre.equals(textoLibre); //TODO testear
+		return nombre.contains(textoLibre); 
 	}
 }
 
