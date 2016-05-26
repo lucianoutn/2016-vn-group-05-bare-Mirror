@@ -50,7 +50,7 @@ public class simulacion {
 
 
 	private void usarDipositivo() {
-		actualizarRepositorio();
+		actualizarRepositorio(); // cada vez que se inicia el repositorio traigo todos los CGP
 		
 	}
 
