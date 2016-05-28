@@ -67,7 +67,7 @@ public class Busqueda {
 		
 		if (unaFecha == null )
 			return true;
-		return unaFecha.equals(LocalTime.now());
+		return unaFecha.equals(fecha);
 	}
 
 	public boolean buscoFrase(String unaFrase) {
