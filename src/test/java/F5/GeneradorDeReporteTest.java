@@ -1,5 +1,7 @@
 package F5;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.LocalTime;
 
 import org.junit.After;
@@ -7,84 +9,106 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-
 public class GeneradorDeReporteTest {
-	
+
 	private GeneradorDeReporte generador = new GeneradorDeReporte();
-	
+
 	@Before
 	public void Initialize() {
-		
 		
 		Busqueda busquedaJuan = new Busqueda();
 		Busqueda busquedaPedro = new Busqueda();
 		Busqueda busquedaEnBoedo = new Busqueda();
 		
+
 		busquedaEnBoedo.setTerminal("boedo");
 		busquedaJuan.setUsuario("juan");
 		busquedaPedro.setUsuario("pedro");
 		
-	
+
 		RepositorioImpostor.agregarBusqueda(busquedaEnBoedo);
 		RepositorioImpostor.agregarBusqueda(busquedaJuan);
 		RepositorioImpostor.agregarBusqueda(busquedaPedro);
-		
+
 	}
-	
+
 	@After
 	public void limpiar() {
 		RepositorioImpostor.limpiar();
 	}
 	
-	
-	
 	@Test
-	public void sinNingunaBusqueda(){
-		Assert.assertEquals(0,generador.generarReporte("", "", null, null));
+	public void busquedaConFechaDistintaTest(){
+		LocalTime fecha = LocalTime.of(8, 20);
+
+		Busqueda busquedaPorFecha = new Busqueda();
+		
+		busquedaPorFecha.setFecha(fecha);
+		
+		RepositorioImpostor.agregarBusqueda(busquedaPorFecha);
+		
+		Assert.assertEquals(0,generador.generarReporte("", "", LocalTime.now(), ""));
 	}
 	
 	@Test
-	public void reporteConNombrePepe(){
+	public void busquedaConFechaActual(){
+		LocalTime fecha = LocalTime.now();
+
+		Busqueda busquedaPorFecha = new Busqueda();
 		
+		busquedaPorFecha.setFecha(fecha);
+		
+		RepositorioImpostor.agregarBusqueda(busquedaPorFecha);
+		
+		Assert.assertEquals(1,generador.generarReporte("", "",fecha, ""));
+	}
+	
+	@Test
+	public void sinNingunaBusqueda() {
+		Assert.assertEquals(0, generador.generarReporte("", "", null, null));
+	}
+
+	@Test
+	public void reporteConNombrePepe() {
+
 		Busqueda busquedaSegunUsuario = new Busqueda();
 		busquedaSegunUsuario.setUsuario("roberto");
 		RepositorioImpostor.agregarBusqueda(busquedaSegunUsuario);
-	
-		Assert.assertEquals(1,generador.generarReporte("roberto", "", null, ""));
+
+		Assert.assertEquals(1, generador.generarReporte("roberto", "", null, ""));
 
 	}
-	
+
 	@Test
-	public void reporteSiEstaEnFlores(){
-		
+	public void reporteSiEstaEnFlores() {
+
 		Busqueda busquedaSegunTerminal = new Busqueda();
 		busquedaSegunTerminal.setTerminal("flores");
 		RepositorioImpostor.agregarBusqueda(busquedaSegunTerminal);
-	
+
 		Assert.assertEquals(1, generador.generarReporte("", "flores", null, ""));
 	}
-	
-	@Test
-	public void reporteSiEstaPedro(){
-	
-		Assert.assertEquals(1, generador.generarReporte( "pedro","",null,""));
-	}
-	
-	@Test
-	public void reporteSiEstaJuan(){
-		Assert.assertEquals(1, generador.generarReporte("juan", "",null,""));
-	}
-	
-	@Test
-	public void reporteSiEstaEnBoedo(){
-		Assert.assertEquals(1, generador.generarReporte("", "boedo",null,""));
-	}
-	
 
 	@Test
-	public void reporteCon5DePepe(){
-		
-		for (int i=0; i < 5 ; i++){
+	public void reporteSiEstaPedro() {
+
+		Assert.assertEquals(1, generador.generarReporte("pedro", "", null, ""));
+	}
+
+	@Test
+	public void reporteSiEstaJuan() {
+		Assert.assertEquals(1, generador.generarReporte("juan", "", null, ""));
+	}
+
+	@Test
+	public void reporteSiEstaEnBoedo() {
+		Assert.assertEquals(1, generador.generarReporte("", "boedo", null, ""));
+	}
+
+	@Test
+	public void reporteCon5DePepe() {
+
+		for (int i = 0; i < 5; i++) {
 			Busqueda busquedaSegunUsuario = new Busqueda();
 			busquedaSegunUsuario.setUsuario("pepe");
 			Busqueda busqueda = new Busqueda();
@@ -92,14 +116,13 @@ public class GeneradorDeReporteTest {
 			RepositorioImpostor.agregarBusqueda(busquedaSegunUsuario);
 			RepositorioImpostor.agregarBusqueda(busqueda);
 		}
-		Assert.assertEquals(5,generador.generarReporte("pepe", "", null, ""));
+		Assert.assertEquals(5, generador.generarReporte("pepe", "", null, ""));
 	}
-	
-	
+
 	@Test
-	public void reporteDeTodasLasBusquedasDevuelve13(){
-		
-		for (int i=0; i < 5 ; i++){
+	public void reporteDeTodasLasBusquedasDevuelve13() {
+
+		for (int i = 0; i < 5; i++) {
 			Busqueda busquedaSegunUsuario = new Busqueda();
 			busquedaSegunUsuario.setUsuario("alberto");
 			Busqueda busqueda = new Busqueda();
@@ -107,14 +130,13 @@ public class GeneradorDeReporteTest {
 			RepositorioImpostor.agregarBusqueda(busquedaSegunUsuario);
 			RepositorioImpostor.agregarBusqueda(busqueda);
 		}
-		Assert.assertEquals(13,generador.generarReporte(null, null, null, null));
+		Assert.assertEquals(13, generador.generarReporte(null, null, null, null));
 	}
-	
-	
+
 	@Test
-	public void reporteDeTodasLasBusquedasDeUnaFecha(){
+	public void reporteDeTodasLasBusquedasDeUnaFecha() {
 		RepositorioImpostor.limpiar();
-		for (int i=0; i < 5 ; i++){
+		for (int i = 0; i < 5; i++) {
 			Busqueda busquedaSegunUsuario = new Busqueda();
 			busquedaSegunUsuario.setUsuario("pepe");
 			busquedaSegunUsuario.setFecha(LocalTime.now());
@@ -123,14 +145,13 @@ public class GeneradorDeReporteTest {
 			RepositorioImpostor.agregarBusqueda(busquedaSegunUsuario);
 			RepositorioImpostor.agregarBusqueda(busqueda);
 		}
-		Assert.assertEquals(5,generador.generarReporte(null, null, LocalTime.now(), null));
+		Assert.assertEquals(5, generador.generarReporte(null, null, LocalTime.now(), null));
 	}
-	
-	
+
 	@Test
-	public void reporteDe5HechasEnAbasto(){
+	public void reporteDe5HechasEnAbasto() {
 		RepositorioImpostor.limpiar();
-		for (int i=0; i < 3 ; i++){
+		for (int i = 0; i < 3; i++) {
 			Busqueda busquedaSegunUsuario = new Busqueda();
 			busquedaSegunUsuario.setUsuario("pepe");
 			busquedaSegunUsuario.setFecha(LocalTime.now());
@@ -141,14 +162,13 @@ public class GeneradorDeReporteTest {
 			RepositorioImpostor.agregarBusqueda(busquedaSegunUsuario);
 			RepositorioImpostor.agregarBusqueda(busqueda);
 		}
-		Assert.assertEquals(3,generador.generarReporte(null, "abasto", null, null));
+		Assert.assertEquals(3, generador.generarReporte(null, "abasto", null, null));
 	}
-	
-	
+
 	@Test
-	public void reporteBusco6VecesFraseRenta(){
+	public void reporteBusco6VecesFraseRenta() {
 		RepositorioImpostor.limpiar();
-		for (int i=0; i < 3 ; i++){
+		for (int i = 0; i < 3; i++) {
 			Busqueda busquedaSegunUsuario = new Busqueda();
 			busquedaSegunUsuario.setUsuario("pepe");
 			busquedaSegunUsuario.setFecha(LocalTime.now());
@@ -161,8 +181,8 @@ public class GeneradorDeReporteTest {
 			RepositorioImpostor.agregarBusqueda(busquedaSegunUsuario);
 			RepositorioImpostor.agregarBusqueda(busqueda);
 		}
-		
-		for (int i=0; i < 3 ; i++){
+
+		for (int i = 0; i < 3; i++) {
 			Busqueda busquedaSegunUsuario = new Busqueda();
 			busquedaSegunUsuario.setUsuario("pepe");
 			busquedaSegunUsuario.setFecha(LocalTime.now());
@@ -170,11 +190,9 @@ public class GeneradorDeReporteTest {
 			busquedaSegunUsuario.setFraseBuscada("Impuestos");
 			Busqueda busqueda = new Busqueda();
 			RepositorioImpostor.agregarBusqueda(busquedaSegunUsuario);
-			
+
 		}
-		Assert.assertEquals(6,generador.generarReporte(null, null, null, "Renta"));
+		Assert.assertEquals(6, generador.generarReporte(null, null, null, "Renta"));
 	}
-	
-	
-	
+
 }

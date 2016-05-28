@@ -64,10 +64,10 @@ public class Busqueda {
 	}
 	
 	public boolean realizadaEnLaFecha(LocalTime unaFecha){
-		//TODO ver como validar que hayan sido el mismo dia y hacer varios test
+		
 		if (unaFecha == null )
 			return true;
-		return false;
+		return unaFecha.equals(LocalTime.now());
 	}
 
 	public boolean buscoFrase(String unaFrase) {
