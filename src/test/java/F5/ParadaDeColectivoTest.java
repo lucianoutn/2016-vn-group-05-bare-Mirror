@@ -7,7 +7,6 @@ import org.uqbar.geodds.Point;
 import static org.junit.Assert.*;
 
 import org.junit.Assert;
-import org.hamcrest.Matcher;
 import static org.hamcrest.CoreMatchers.*;
 public class ParadaDeColectivoTest {
 
@@ -56,8 +55,12 @@ public class ParadaDeColectivoTest {
 	
 
 	@Test
-	public void encuentraLaParada() {
+	public void encuentraLaParadaDel114() {
 		Assert.assertTrue(paradaDeBondi.encuentra("114"));
+	}
+	
+	@Test
+	public void noEncuentraLaParadaDel11() {
 		Assert.assertFalse(paradaDeBondi.encuentra("11"));
 	}
 }

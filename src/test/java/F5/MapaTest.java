@@ -23,7 +23,6 @@ public class MapaTest {
 	//private PuntoDeInteres poi;
 	public void Initialize(){
 	map = new Mapa();
-	
 	}
 	
 	@Test
@@ -43,7 +42,7 @@ public class MapaTest {
 	}
 
 	@Test
-	public void unBancoYUnCGPEstanEnElMapa(){
+	public void unBancoEstaEnElMapaConUnCGPyUnBanco(){
 	unaPosicion = new Point(100, 0);
 	// creo un poligono de 4 lados simulando la comuna
 	puntoA = new Point(0, 0);
@@ -64,9 +63,31 @@ public class MapaTest {
 	map.anadirPOI(otroCGP);
 	
 	Assert.assertTrue(map.contiene(otroBanco));
+	}
+	
+	@Test
+	public void unCGPEstaEnElMapaConUnCGPyUnBanco(){
+	unaPosicion = new Point(100, 0);
+	// creo un poligono de 4 lados simulando la comuna
+	puntoA = new Point(0, 0);
+	puntoB = new Point(10, 0);
+	puntoC = new Point(10, 10);
+	puntoD = new Point(0, 10);
+	unaComuna = new Polygon();
+	unaComuna.add(puntoA);
+	unaComuna.add(puntoB);
+	unaComuna.add(puntoC);
+	unaComuna.add(puntoD);
+	otroCGP = new CGP(unaPosicion, unaComuna);
+	
+	laPosicionDelBanco = new Point(0, 0);
+	SucursalDeBanco otroBanco = new SucursalDeBanco("Santander", laPosicionDelBanco, new ArrayList<DiaAtencion>());
+	
+	map.anadirPOI(otroBanco);
+	map.anadirPOI(otroCGP);
+	
 	Assert.assertTrue(map.contiene(otroCGP)); 
 	}
-
 
 	@Test
 	public void noEstaUnBancoEnUnMapaVacio(){
@@ -75,7 +96,6 @@ public class MapaTest {
 	
 	Assert.assertFalse(map.contiene(banco));
 	}
-	
 	
 	@Test
 	public void noEstaUnBancoEnUnMapa(){
@@ -90,7 +110,5 @@ public class MapaTest {
 	public void nullNoEstaEnElMapa(){
 		Assert.assertFalse(map.contiene(null));
 	}
-
-
 }
 
