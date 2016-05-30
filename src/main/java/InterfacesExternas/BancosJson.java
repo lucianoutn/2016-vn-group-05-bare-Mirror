@@ -1,6 +1,6 @@
 package InterfacesExternas;
 
-public class bancosJson {
+public class BancosJson {
 	
 	private String nombre;
 	private String x;
