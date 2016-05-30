@@ -1,13 +1,9 @@
 package F5;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalTime;
 public class GeneradorDeReporte {
-	
-	
-	
-	
+		
 	public long generarReporte(String unUsuario, String unaTerminal, LocalTime unaFecha, String unaFrase){
 		//buscar todas las busquedas
 		List<Busqueda> busquedas = buscarBusquedas();

@@ -9,6 +9,12 @@ import org.uqbar.geodds.Polygon;
 public class CGP implements PuntoDeInteres {
 
 	private String calle;
+	private String altura;
+	private Point posicion;
+	private Polygon comuna;
+	
+	private List<Servicio> servicios = new ArrayList<>();
+	
 	public String getCalle() {
 		return calle;
 	}
@@ -16,11 +22,6 @@ public class CGP implements PuntoDeInteres {
 	public void setCalle(String calle) {
 		this.calle = calle;
 	}
-
-	private String altura;
-	private Point posicion;
-	private Polygon comuna;
-	private List<Servicio> servicios = new ArrayList<>();
 
 	public List<Servicio> getServicios() {
 		return servicios;
@@ -63,6 +64,15 @@ public class CGP implements PuntoDeInteres {
 
 	private boolean encuentraCalle(String textoLibre) {
 		return calle.equals(textoLibre);
+	}
+
+	
+	public void setAltura(String unaAltura) {
+		this.altura = unaAltura;
+	}
+
+	public void setComuna(Polygon unPolygon) {
+		this.comuna = unPolygon;
 	}
 
 }

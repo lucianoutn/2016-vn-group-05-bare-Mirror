@@ -14,7 +14,6 @@ public class SucursalDeBanco implements PuntoDeInteres {
 	private String calle;
 	private int altura;
 	private Point posicion;
-	// private String unNombreDeBanco;
 	private String nombre;
 	private int toleranciaEnCuadras;
 
