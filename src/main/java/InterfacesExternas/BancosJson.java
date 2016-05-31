@@ -71,14 +71,10 @@ public class BancosJson {
 
 	public void setServicios(List<String> lista) {
 
-		this.servicios.addAll(lista);// = lista;
+		this.servicios = lista;
 
 	}
 
-	public void setServicios(String e) {
-		this.servicios.add(e);
-		
-	}
 	
 	//public void setServicios()
 
