@@ -3,20 +3,27 @@ package F5;
 import java.time.LocalTime;
 
 public class Busqueda {
-
+	public static int tiempoParaNotificar = 10;
+	
 	// atributos
 	private String fraseBuscada;
+	public String getFraseBuscada() {
+		return fraseBuscada;
+	}
+
+
+	public void setFraseBuscada(String fraseBuscada) {
+		this.fraseBuscada = fraseBuscada;
+	}
+
 	private String terminal;
 	private String usuario;
 	private int cantResultados;
 	private LocalTime fecha;
-	private LocalTime tiempoConsulta;
-	private LocalTime tiempoDemora; // en segundos
-
-	// metodos
-
-	// public Busqueda(String fraseBuscada); //todo
+	private int tiempoBusqueda;
 	
+
+		
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
@@ -31,11 +38,18 @@ public class Busqueda {
 	}
 
 
-	public void setTiempoDemora(LocalTime tiempoDemora) {
+	public void setTiempoBusqueda(int unTiempo) {
 		// debe ser parametrizable
-		this.tiempoDemora = tiempoDemora; // en segundos
+		this.tiempoBusqueda = unTiempo; // en segundos
 	}
 	
+	public void unaBusqueda(String user, String ter, String frase){
+		fecha=LocalTime.now();
+		usuario=user;
+		terminal=ter;
+		fraseBuscada=frase;
+		RepositorioImpostor.agregarBusqueda(this);
+	}
 	
 	public boolean realizadaPor(String unUsuario){
 		if (unUsuario == null || usuario == null)
@@ -46,21 +60,26 @@ public class Busqueda {
 	public boolean realizadaEn(String unaTerminal){
 		if (unaTerminal == null || terminal == null)
 			return true;
-		return terminal.equals(unaTerminal);
+		return terminal.equals(unaTerminal) || unaTerminal == null;
 	}
 	
 	public boolean realizadaEnLaFecha(LocalTime unaFecha){
-		//TODO ver como validar que hayan sido el mismo dia
-		// hacer varios test
+		
 		if (unaFecha == null )
 			return true;
-		return false;
+		return unaFecha.equals(fecha);
 	}
 
 	public boolean buscoFrase(String unaFrase) {
 		if(unaFrase == null || fraseBuscada == null)
 			return true;
-		return  fraseBuscada.contains(unaFrase);
+
+		return fraseBuscada.contains(unaFrase);
 	}
+	
+	public boolean excedioDemora(){
+		return tiempoBusqueda >= tiempoParaNotificar;		
+	}
+	
 
 }

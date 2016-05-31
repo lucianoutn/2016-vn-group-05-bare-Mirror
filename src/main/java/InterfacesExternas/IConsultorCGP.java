@@ -7,4 +7,5 @@ import F5.CGP;
 public interface IConsultorCGP {
 
 	public List<CGP> cgpUbicadasEn(String lugar);
+
 }

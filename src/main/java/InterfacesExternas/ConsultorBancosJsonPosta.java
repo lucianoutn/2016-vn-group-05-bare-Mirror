@@ -72,6 +72,7 @@ public class ConsultorBancosJsonPosta implements IConsultorBancos {
 		}
 
 		return new ArrayList<BancosJson>();
+
 	}
 
 }

@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import InterfacesExternas.IConsultorBancos;
 import Mocks.MockConsultorBanco;
-import TestFactory.LocalComercialFactory;
 
 public class SGPTest {
 

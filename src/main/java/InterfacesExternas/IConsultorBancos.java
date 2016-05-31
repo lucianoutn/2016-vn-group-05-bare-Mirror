@@ -6,7 +6,7 @@ import F5.SucursalDeBanco;
 
 public interface IConsultorBancos {
 
-	public List<SucursalDeBanco> bancosQueCumplenCon(String nombreBanco, String unServicio);
+	public List<SucursalDeBanco> bancosQueCumplenCon(String nombreBanco, String unServicio); 
 	
 	
 }

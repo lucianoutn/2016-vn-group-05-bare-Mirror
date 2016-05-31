@@ -9,7 +9,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
-
 public class CPGTest {
 
 	private CGP unCGP;
@@ -43,7 +42,9 @@ public class CPGTest {
 		diasDeAtencion.add(unDia);
 		unServicio = new Servicio("rentas", diasDeAtencion);
 		unCGP.anadirServicio(unServicio);
-		Assert.assertTrue(unCGP.estaDisponible(Dias.Lunes, 1500));
+		
+		Assert.assertTrue(unCGP.getServicios().stream().anyMatch(s->s.getNombre().equals("rentas")));
+		//Assert.assertThat("rentas", anyIn(unCGP.getServicios()));
 
 	}
 
@@ -65,5 +66,6 @@ public class CPGTest {
 		unCGP.anadirServicio(unServicio);
 		Assert.assertTrue(unCGP.encuentra("rentas"));
 	}
-
+	
+	
 }

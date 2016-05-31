@@ -12,7 +12,20 @@ public class CGP implements PuntoDeInteres {
 	private String altura;
 	private Point posicion;
 	private Polygon comuna;
+	
 	private List<Servicio> servicios = new ArrayList<>();
+	
+	public String getCalle() {
+		return calle;
+	}
+
+	public void setCalle(String calle) {
+		this.calle = calle;
+	}
+
+	public List<Servicio> getServicios() {
+		return servicios;
+	}
 
 	public CGP(Point point, Polygon unaComuna) {
 		comuna = unaComuna;
@@ -51,6 +64,15 @@ public class CGP implements PuntoDeInteres {
 
 	private boolean encuentraCalle(String textoLibre) {
 		return calle.equals(textoLibre);
+	}
+
+	
+	public void setAltura(String unaAltura) {
+		this.altura = unaAltura;
+	}
+
+	public void setComuna(Polygon unPolygon) {
+		this.comuna = unPolygon;
 	}
 
 }

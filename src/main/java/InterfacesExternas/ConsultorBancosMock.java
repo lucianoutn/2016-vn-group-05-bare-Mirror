@@ -46,21 +46,22 @@ public class ConsultorBancosMock implements IConsultorBancos {
 	private List<SucursalDeBanco> adaptarBancos() {
 		// TODO aca hago la adaptacion de los json a nuestro modelo.
 		List<SucursalDeBanco> sucursales = new ArrayList<SucursalDeBanco>();
-		//String nombre;
-		//Point pos;
-		
-		//List<DiaAtencion> diaDeAtencion;
+		// String nombre;
+		// Point pos;
+
+		// List<DiaAtencion> diaDeAtencion;
 		this.bancos.forEach(banco -> {
 			String nombre = banco.getNombre();
 			int x = Integer.parseInt(banco.getX());
 			int y = Integer.parseInt(banco.getY());
-			Point pos = new Point(x,y);
+			Point pos = new Point(x, y);
 			List<DiaAtencion> diaDeAtencion = new ArrayList<DiaAtencion>();
-			SucursalDeBanco sucursal = new SucursalDeBanco(nombre,pos,diaDeAtencion);
-			sucursales.add(sucursal);});
-		
-			
-		//public SucursalDeBanco(String unNombre, Point unaPosicion, List<DiaAtencion> diasDeAtencion)
+			SucursalDeBanco sucursal = new SucursalDeBanco(nombre, pos, diaDeAtencion);
+			sucursales.add(sucursal);
+		});
+
+		// public SucursalDeBanco(String unNombre, Point unaPosicion,
+		// List<DiaAtencion> diasDeAtencion)
 		return sucursales;
 	}
 

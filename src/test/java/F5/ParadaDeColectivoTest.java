@@ -7,7 +7,7 @@ import org.uqbar.geodds.Point;
 import static org.junit.Assert.*;
 
 import org.junit.Assert;
-
+import static org.hamcrest.CoreMatchers.*;
 public class ParadaDeColectivoTest {
 
 	private ParadaDeColectivo paradaDeBondi;
@@ -28,6 +28,13 @@ public class ParadaDeColectivoTest {
 		//falla por ser coordenadas geograficas q tiene en cuenta la curvatura de la tierra
 		Assert.assertNotEquals(100, paradaDeBondi.cuadrasDeDistancia(unaPosicionRandom));
 	}
+	
+
+	@Test
+    public void testAssertThatEqual() {
+        assertThat("123",is("123"));
+    }
+
 
 	@Test
 	public void laParadaEstaDisponible() {
@@ -48,8 +55,12 @@ public class ParadaDeColectivoTest {
 	
 
 	@Test
-	public void encuentraLaParada() {
+	public void encuentraLaParadaDel114() {
 		Assert.assertTrue(paradaDeBondi.encuentra("114"));
+	}
+	
+	@Test
+	public void noEncuentraLaParadaDel11() {
 		Assert.assertFalse(paradaDeBondi.encuentra("11"));
 	}
 }

@@ -14,7 +14,6 @@ public class SucursalDeBanco implements PuntoDeInteres {
 	private String calle;
 	private int altura;
 	private Point posicion;
-	// private String unNombreDeBanco;
 	private String nombre;
 	private int toleranciaEnCuadras;
 
@@ -33,7 +32,7 @@ public class SucursalDeBanco implements PuntoDeInteres {
 	}
 
 	@Override
-	public boolean estaDisponible(Dias unDia, int hora, Servicio valorX) {
+	public boolean estaDisponible(Dias unDia, int hora, Servicio unServicio) {
 		return atencionAlPublico.stream().anyMatch(d -> d.getDia().equals(unDia) && d.estaAbierto(hora));
 	}
 
