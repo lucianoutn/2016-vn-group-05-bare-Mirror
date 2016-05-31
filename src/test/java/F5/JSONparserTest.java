@@ -52,15 +52,15 @@ public class JSONparserTest {
 	public void elparserAnda() {
 		Assert.assertFalse(bancos.isEmpty());
 	}
-	
+
 	@Test
 	public void enLaListaTieneQueHaber2ySolo2Bancos() {
 		Assert.assertEquals(2, bancos.size());
 	}
-	
+
 	@Test
 	public void elNombreDelPrimerBancoDeLaListaEsCorrecto() {
-		Assert.assertArrayEquals(("Banco de la Plaza").toCharArray(), bancos.get(1).getNombre().toCharArray());
+		Assert.assertArrayEquals(("Banco de la Plaza").toCharArray(), bancos.get(0).getNombre().toCharArray());
 	}
 
 }

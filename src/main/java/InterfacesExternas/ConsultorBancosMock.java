@@ -3,6 +3,9 @@ package InterfacesExternas;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.uqbar.geodds.Point;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -11,7 +14,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+import org.uqbar.geodds.Point;
+import F5.DiaAtencion;
 import F5.SucursalDeBanco;
 
 public class ConsultorBancosMock implements IConsultorBancos {
@@ -19,9 +23,9 @@ public class ConsultorBancosMock implements IConsultorBancos {
 
 	// ATRIBUTOS
 
-	URL url;
+	private URL url;
 	private ObjectMapper objectMapper;
-	List<BancosJson> bancos;
+	private List<BancosJson> bancos;
 
 	// METODOS
 
@@ -36,23 +40,36 @@ public class ConsultorBancosMock implements IConsultorBancos {
 		// TODO aca me comunico con el sistema externo via Json y luego los
 		// adapto a mi modelo
 		consultarBancos(nombreBanco, unServicio);
-		return adaptarBancos(bancos);
+		return adaptarBancos();
 	}
 
-	private List<SucursalDeBanco> adaptarBancos(List<BancosJson> bancos) {
+	private List<SucursalDeBanco> adaptarBancos() {
 		// TODO aca hago la adaptacion de los json a nuestro modelo.
 		List<SucursalDeBanco> sucursales = new ArrayList<SucursalDeBanco>();
+		//String nombre;
+		//Point pos;
 		
+		//List<DiaAtencion> diaDeAtencion;
+		this.bancos.forEach(banco -> {
+			String nombre = banco.getNombre();
+			int x = Integer.parseInt(banco.getX());
+			int y = Integer.parseInt(banco.getY());
+			Point pos = new Point(x,y);
+			List<DiaAtencion> diaDeAtencion = new ArrayList<DiaAtencion>();
+			SucursalDeBanco sucursal = new SucursalDeBanco(nombre,pos,diaDeAtencion);
+			sucursales.add(sucursal);});
 		
-		
-		return new ArrayList<SucursalDeBanco>();
+			
+		//public SucursalDeBanco(String unNombre, Point unaPosicion, List<DiaAtencion> diasDeAtencion)
+		return sucursales;
 	}
 
 	private void consultarBancos(String nombreBanco, String unServicio) {
 		// TODO aca me comunico con el sistema externo y adapto el Json a
 		// bancosJson
-		
-		//En el mock no se usan los parametros de nombre y servicio xq siempre devuelve lo mismo
+
+		// En el mock no se usan los parametros de nombre y servicio xq siempre
+		// devuelve lo mismo
 		objectMapper = new ObjectMapper();
 		// el posta:
 		// BancosJson banco= objectMapper.readValue(url, BancosJson.class);
@@ -63,13 +80,13 @@ public class ConsultorBancosMock implements IConsultorBancos {
 		try {
 			bancos = Arrays.asList(objectMapper.readValue(file, BancosJson[].class));
 		} catch (JsonParseException e) {
-			//Auto-generated catch block
+			// Auto-generated catch block
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
-			//Auto-generated catch block
+			// Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			//Auto-generated catch block
+			// Auto-generated catch block
 			e.printStackTrace();
 		}
 

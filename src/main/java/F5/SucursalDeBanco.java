@@ -28,6 +28,10 @@ public class SucursalDeBanco implements PuntoDeInteres {
 		atencionAlPublico = diasDeAtencion;
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
+
 	@Override
 	public boolean estaDisponible(Dias unDia, int hora, Servicio valorX) {
 		return atencionAlPublico.stream().anyMatch(d -> d.getDia().equals(unDia) && d.estaAbierto(hora));
