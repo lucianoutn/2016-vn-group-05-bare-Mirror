@@ -1,6 +1,7 @@
 package InterfacesExternas;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.io.File;
 import java.io.IOException;
@@ -20,6 +21,7 @@ public class ConsultorBancosMock implements IConsultorBancos {
 
 	URL url;
 	private ObjectMapper objectMapper;
+	List<BancosJson> bancos;
 
 	// METODOS
 
@@ -33,46 +35,44 @@ public class ConsultorBancosMock implements IConsultorBancos {
 	public List<SucursalDeBanco> bancosQueCumplenCon(String nombreBanco, String unServicio) {
 		// TODO aca me comunico con el sistema externo via Json y luego los
 		// adapto a mi modelo
-		List<BancosJson> bancos = consultarBancos(nombreBanco, unServicio);
+		consultarBancos(nombreBanco, unServicio);
 		return adaptarBancos(bancos);
 	}
 
 	private List<SucursalDeBanco> adaptarBancos(List<BancosJson> bancos) {
 		// TODO aca hago la adaptacion de los json a nuestro modelo.
-		// Dependiendo el framework de json que usemos tal vez no sea necesaria
-		// la clase bancosJson
+		List<SucursalDeBanco> sucursales = new ArrayList<SucursalDeBanco>();
+		
+		
+		
 		return new ArrayList<SucursalDeBanco>();
 	}
 
-	private List<BancosJson> consultarBancos(String nombreBanco, String unServicio) {
+	private void consultarBancos(String nombreBanco, String unServicio) {
 		// TODO aca me comunico con el sistema externo y adapto el Json a
-		// bancosJson. devuelvo ARRAY LIST
-		// Dependiendo el framework de json que usemos tal vez no sea necesaria
-		// la clase bancosJson
-
-		// BancosJson banco = new BancosJson();
-		ObjectMapper objectMapper = new ObjectMapper();
+		// bancosJson
+		
+		//En el mock no se usan los parametros de nombre y servicio xq siempre devuelve lo mismo
+		objectMapper = new ObjectMapper();
 		// el posta:
 		// BancosJson banco= objectMapper.readValue(url, BancosJson.class);
 
 		// el mock:
-
-		File file = new File("ejRespuestaJSON");
+		File file = new File("src/test/java/F5/ejRespuestaJSON");
 
 		try {
-			BancosJson banco = objectMapper.readValue(file, BancosJson.class);
+			bancos = Arrays.asList(objectMapper.readValue(file, BancosJson[].class));
 		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
+			//Auto-generated catch block
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
+			//Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			//Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		return new ArrayList<BancosJson>();
 	}
 
 }
