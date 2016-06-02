@@ -27,40 +27,43 @@ public class ConsultorCGPMockTest {
 	public void initialize(){
 		unConsultorCGP = new ConsultorCGPMock();
 		
-		centrosDTO = new ArrayList<CentroDTO>();
-		centrosDTO.add(unCentroDTO);
-		
 		unCentroDTO = new CentroDTO();
 		unCentroDTO.setNroComuna(1);
-		unCentroDTO.setDomicilioCGP("Corrientes 3");	
+		unCentroDTO.setDomicilioCGP("Corrientes 57");
 		
+		centrosDTO = new ArrayList<CentroDTO>();
+		centrosDTO.add(unCentroDTO);
+			
 		unPunto = new Point(1,1);
 		
 	}
-	
-	@Test
-	public void testOriginal(){
-		CGPs = new ArrayList<CGP>();
 		
-		CGPs = unConsultorCGP.adaptarCGPs(centrosDTO);
-		
-		unCGP = CGPs.get(0);
-		
-		//Assert.assertFalse(CGPs.isEmpty());
-		//Assert.assertEquals("Corrientes ",unCGP.getCalle());
-		//Assert.assertEquals("3",unCGP.getAltura());
-	}
-	
 	@Test
 	public void unCGPestaEnLaCalleCorrientes(){
+		
 		CGPs = new ArrayList<CGP>();
 		
 		CGPs = unConsultorCGP.adaptarCGPs(centrosDTO);
 		
 		unCGP = CGPs.get(0);
 		
-		Assert.assertEquals("Corrientes ",unCGP.getCalle());
+		Assert.assertEquals("Corrientes",unCGP.getCalle());
 	}
+	
+	@Test
+	public void unCGPestaEnLaAltura57(){
+		
+		CGPs = new ArrayList<CGP>();
+		
+		CGPs = unConsultorCGP.adaptarCGPs(centrosDTO);
+		
+		unCGP = CGPs.get(0);
+		
+		Assert.assertEquals("57",unCGP.getAltura());
+	}
+	
+	
+	
 	
 	
 }

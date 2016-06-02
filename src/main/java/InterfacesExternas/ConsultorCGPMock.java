@@ -50,7 +50,7 @@ private String adaptarAltura(CentroDTO unCentro) {
 	
 	String unDomicilio = unCentro.getDomicilioCGP();
 	
-	String domicilio[] = unDomicilio.split("\\d",2);
+	String domicilio[] = unDomicilio.split(" ",2);
 	
 	return domicilio[1];
 	
@@ -60,7 +60,7 @@ private String adaptarCalle(CentroDTO unCentro) {
 	
 	String unDomicilio = unCentro.getDomicilioCGP();
 	
-	String domicilio[] = unDomicilio.split("\\d", 2);
+	String domicilio[] = unDomicilio.split(" ", 2);
 	
 	return domicilio[0];
 	
