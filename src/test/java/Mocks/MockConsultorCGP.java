@@ -29,7 +29,7 @@ public class MockConsultorCGP implements IConsultorCGP {
 		return cgps;
 	}
 
-	private List<CGP> agregaCGPDevueltaPorServicioExterno(CentroDTO unCentro) {
+	private List<CGP> adaptarCentro(CentroDTO unCentro) {
 		List<CGP> cgps = new ArrayList<CGP>();
 		List<Servicio> servicios = new ArrayList<Servicio>();
 		
@@ -38,7 +38,7 @@ public class MockConsultorCGP implements IConsultorCGP {
 		CGP unCGP = new CGP(PointFactory.PuntoOrigen(),new Polygon());
 		
 		//Mapeo la Comuna. Actualmente Hardcodeado. Ver el metodo para mas detalle
-		adaptaComuna(unCentro,unCGP);
+		mapearComuna(unCentro,unCGP);
 		
 		//En este caso, di por hecho que los domicilios son del tipo LETRAS--NUMEROS,
 		//donde las letras son el nombre de la calle y los numeros la altura
@@ -73,7 +73,7 @@ public class MockConsultorCGP implements IConsultorCGP {
 		unCGP.setCalle(this.obtenerCalleDeDomicilio(unCentro.getDomicilioCGP()));
 	}
 
-	private void adaptaComuna(CentroDTO unCentro, CGP unCGP) {
+	private void mapearComuna(CentroDTO unCentro, CGP unCGP) {
 		unCGP.setComuna(this.buscarComuna(unCentro.getNroComuna()));
 	}
 
@@ -83,7 +83,7 @@ public class MockConsultorCGP implements IConsultorCGP {
 	}
 
 	private Servicio adaptaAServicioCGP(ServicioDTO unServicioDTO) {
-		Servicio unServicioCGP;
+		Servicio unServicioCGP = null;
 		
 		String nombreServicioDTO = obtieneNombre(unServicioDTO);
 		//int horaDeApertura = unServicioDTO.obtieneHoraDeApertura;

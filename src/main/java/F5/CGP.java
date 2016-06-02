@@ -13,10 +13,18 @@ public class CGP implements PuntoDeInteres {
 	private Point posicion;
 	private Polygon comuna;
 	
+	public Polygon getComuna() {
+		return comuna;
+	}
+
 	private List<Servicio> servicios = new ArrayList<>();
 	
 	public String getCalle() {
 		return calle;
+	}
+	
+	public String getAltura() {
+		return altura;
 	}
 
 	public void setCalle(String calle) {
