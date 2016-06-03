@@ -27,6 +27,11 @@ public abstract class  PuntoDeInteres {
 
 	protected Point posicion;
 	protected List<DiaAtencion> atencionAlPublico;
+	
+	public void setToleranciaEnCuadras(int toleranciaEnCuadras) {
+		this.toleranciaEnCuadras = toleranciaEnCuadras;
+	}
+
 	protected int toleranciaEnCuadras;
 	public boolean estaDisponible(Dias unDia, int hora , Servicio unServicio){
 		return atencionAlPublico.stream().anyMatch(d -> d.getDia().equals(unDia) && d.estaAbierto(hora));
@@ -36,9 +41,7 @@ public abstract class  PuntoDeInteres {
 		return cuadrasDeDistancia(point) <= toleranciaEnCuadras;
 	}
 
-	public boolean encuentra(String textoLibre){
-		return true;
-	}
+	public abstract boolean encuentra(String textoLibre);
 
 	
 	protected int cuadrasDeDistancia(Point point) {

@@ -11,11 +11,6 @@ public class ParadaDeColectivo extends PuntoDeInteres {
 		return numeroDeLinea;
 	}
 
-	//Se deja en setters porque no se lo considera propio de la clase
-	public void setToleranciaEnCuadras(int toleranciaEnCuadras) {
-		this.toleranciaEnCuadras = toleranciaEnCuadras;
-	}
-
 	public ParadaDeColectivo(String calleDeParada, String alturaDeParada, Point unaPosicion, String lineaDeColectivo) {
 		calle = calleDeParada;
 		altura = alturaDeParada;

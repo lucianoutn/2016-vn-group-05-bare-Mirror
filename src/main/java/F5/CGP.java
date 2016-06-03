@@ -35,13 +35,9 @@ public class CGP extends PuntoDeInteres {
 	public boolean estaDisponible(Dias dia, int hora, Servicio unServicio) {
 		if (unServicio == null)
 			return servicios.stream().anyMatch(s -> s.estaAbierto(dia, hora));
-		return servicios.stream()
-				.anyMatch(s -> s.getNombre().equals(unServicio.getNombre()) && unServicio.estaAbierto(dia, hora));
+		return servicios.stream().anyMatch(s -> s.getNombre().equals(unServicio.getNombre()) && unServicio.estaAbierto(dia, hora));
 	}
 
-	// Esta opcion de estaDisponible no forma parte de la interface. Si se desea
-	// hacer la busqueda
-	// debe ingresarse null al servicio en la interface
 	public boolean estaDisponible(Dias date, int hora) {
 		return estaDisponible(date, hora, null);
 	}
@@ -59,8 +55,6 @@ public class CGP extends PuntoDeInteres {
 	private boolean encuentraCalle(String textoLibre) {
 		return calle.equals(textoLibre);
 	}
-
-	
 	
 	public void setComuna(Polygon unPolygon) {
 		this.comuna = unPolygon;
