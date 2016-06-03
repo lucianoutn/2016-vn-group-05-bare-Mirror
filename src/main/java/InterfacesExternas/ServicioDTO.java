@@ -6,8 +6,12 @@ import java.util.List;
 public class ServicioDTO {
 
 	private String nombre;
-	private List<RangoServicioDTO> servicios = new ArrayList<RangoServicioDTO>();
+	private List<RangoServicioDTO> rangos = new ArrayList<RangoServicioDTO>();
 	
+	public List<RangoServicioDTO> getRangos() {
+		return rangos;
+	}
+
 	public ServicioDTO(){}
 
 	public String getNombre() {

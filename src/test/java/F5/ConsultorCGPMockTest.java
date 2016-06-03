@@ -9,23 +9,23 @@ import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
 import InterfacesExternas.CentroDTO;
-import InterfacesExternas.ConsultorCGPMock;
+import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.ServicioDTO;
 import junit.framework.Assert;
 
 public class ConsultorCGPMockTest {
-	private ConsultorCGPMock consultorCGP;
+	private ConsultorCGP consultorCGP;
 	private CGP unCGP;
 	private List<CGP> CGPs;
 	private Polygon unPoligono;
 	private CentroDTO unCentroDTO;
 	private List<CentroDTO> centrosDTO;
 	private Point unPunto;
-	private ConsultorCGPMock unConsultorCGP;
+	private ConsultorCGP unConsultorCGP;
 	
 	@Before
 	public void initialize(){
-		unConsultorCGP = new ConsultorCGPMock();
+		unConsultorCGP = new ConsultorCGP();
 		
 		unCentroDTO = new CentroDTO();
 		unCentroDTO.setNroComuna(1);
@@ -43,7 +43,7 @@ public class ConsultorCGPMockTest {
 		
 		CGPs = new ArrayList<CGP>();
 		
-		CGPs = unConsultorCGP.adaptarCGPs(centrosDTO);
+		CGPs = unConsultorCGP.cgpAdapter.adaptarCGPs(centrosDTO);
 		
 		unCGP = CGPs.get(0);
 		
@@ -55,7 +55,7 @@ public class ConsultorCGPMockTest {
 		
 		CGPs = new ArrayList<CGP>();
 		
-		CGPs = unConsultorCGP.adaptarCGPs(centrosDTO);
+		CGPs = unConsultorCGP.cgpAdapter.adaptarCGPs(centrosDTO);
 		
 		unCGP = CGPs.get(0);
 		

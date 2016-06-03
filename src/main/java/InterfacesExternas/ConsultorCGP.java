@@ -7,6 +7,9 @@ import F5.CGP;
 
 public class ConsultorCGP implements IConsultorCGP {
 
+	public CentroDTOAdapter cgpAdapter = new CentroDTOAdapter();
+	
+	
 	@Override
 	public List<CGP> cgpUbicadasEn(String lugar) {
 		//aca me comunico con el sistema externo y devuelvo una lista de CentroDTO 
