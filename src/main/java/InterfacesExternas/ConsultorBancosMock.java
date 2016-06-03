@@ -37,14 +37,14 @@ public class ConsultorBancosMock implements IConsultorBancos {
 
 	@Override
 	public List<SucursalDeBanco> bancosQueCumplenCon(String nombreBanco, String unServicio) {
-		// TODO aca me comunico con el sistema externo via Json y luego los
+		// aca me comunico con el sistema externo via Json y luego los
 		// adapto a mi modelo
 		consultarBancos(nombreBanco, unServicio);
 		return adaptarBancos();
 	}
 
 	private List<SucursalDeBanco> adaptarBancos() {
-		// TODO aca hago la adaptacion de los json a nuestro modelo.
+		// aca hago la adaptacion de los json a nuestro modelo.
 		List<SucursalDeBanco> sucursales = new ArrayList<SucursalDeBanco>();
 		// String nombre;
 		// Point pos;
@@ -66,7 +66,7 @@ public class ConsultorBancosMock implements IConsultorBancos {
 	}
 
 	private void consultarBancos(String nombreBanco, String unServicio) {
-		// TODO aca me comunico con el sistema externo y adapto el Json a
+		// aca me comunico con el sistema externo y adapto el Json a
 		// bancosJson
 
 		// En el mock no se usan los parametros de nombre y servicio xq siempre

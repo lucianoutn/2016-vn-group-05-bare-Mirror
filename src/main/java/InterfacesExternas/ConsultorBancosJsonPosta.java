@@ -1,7 +1,11 @@
 package InterfacesExternas;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import org.uqbar.geodds.Point;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -12,6 +16,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import F5.DiaAtencion;
 import F5.SucursalDeBanco;
 
 public class ConsultorBancosJsonPosta implements IConsultorBancos {
@@ -19,9 +24,9 @@ public class ConsultorBancosJsonPosta implements IConsultorBancos {
 	// del servicio REST y va a traer el json de respuesta del banco "posta"
 
 	// ATRIBUTOS
-
-	URL url;
+	private URL url;
 	private ObjectMapper objectMapper;
+	private List<BancosJson> bancos;
 
 	// METODOS
 
@@ -33,46 +38,54 @@ public class ConsultorBancosJsonPosta implements IConsultorBancos {
 
 	@Override
 	public List<SucursalDeBanco> bancosQueCumplenCon(String nombreBanco, String unServicio) {
-		// TODO aca me comunico con el sistema externo via Json y luego los
+		// aca me comunico con el sistema externo via Json y luego los
 		// adapto a mi modelo
-		List<BancosJson> bancos = consultarBancos(nombreBanco, unServicio);
-		return adaptarBancos(bancos);
+		consultarBancos(nombreBanco, unServicio);
+		return adaptarBancos();
 	}
 
-	private List<SucursalDeBanco> adaptarBancos(List<BancosJson> bancos) {
-		// TODO aca hago la adaptacion de los json a nuestro modelo.
-		// Dependiendo el framework de json que usemos tal vez no sea necesaria
-		// la clase bancosJson
-		return new ArrayList<SucursalDeBanco>();
+	private List<SucursalDeBanco> adaptarBancos() {
+		// aca hago la adaptacion de los json a nuestro modelo.
+		List<SucursalDeBanco> sucursales = new ArrayList<SucursalDeBanco>();
+		this.bancos.forEach(banco -> {
+			String nombre = banco.getNombre();
+			double x = banco.getX();
+			double y = banco.getY();
+			Point pos = new Point(x, y);
+			List<DiaAtencion> diaDeAtencion = new ArrayList<DiaAtencion>();
+			SucursalDeBanco sucursal = new SucursalDeBanco(nombre, pos, diaDeAtencion);
+			sucursales.add(sucursal);
+		});
+		return sucursales;
 	}
 
-	private List<BancosJson> consultarBancos(String nombreBanco, String unServicio) {
-		// TODO aca me comunico con el sistema externo y adapto el Json a
-		// bancosJson. devuelvo ARRAY LIST
-		// Dependiendo el framework de json que usemos tal vez no sea necesaria
-		// la clase bancosJson
-		ObjectMapper objectMapper = new ObjectMapper();
+	private void consultarBancos(String nombreBanco, String unServicio) {
+		// aca me comunico con el sistema externo y adapto el Json a
+		// bancosJson
+		
 		try {
-			url = new URL("http://private-96b476-ddsutn.apiary-mock.com/banks?banco=banco&servicio=servicio");
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			url = new URL("http://private-96b476-ddsutn.apiary-mock.com/banks?banco=" + nombreBanco + "&servicio=" + unServicio);
+			//url = new URL("http://private-96b476-ddsutn.apiary-mock.com/banks?banco=banco&servicio=servicio");
+		} catch (MalformedURLException e1) {
+			// Auto-generated catch block
+			e1.printStackTrace();
 		}
+		objectMapper = new ObjectMapper();
+		
 		try {
-			BancosJson banco = objectMapper.readValue(url, BancosJson.class);
+			bancos = Arrays.asList(objectMapper.readValue(url, BancosJson[].class));
 		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
+			// Auto-generated catch block
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
+			// Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			// Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		return new ArrayList<BancosJson>();
-
+		
 	}
 
 }
