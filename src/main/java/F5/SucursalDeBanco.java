@@ -13,9 +13,6 @@ public class SucursalDeBanco extends PuntoDeInteres {
 	// atributos
 	private String nombre;
 	
-
-	private List<DiaAtencion> atencionAlPublico;
-
 	// metodos
 	public SucursalDeBanco(String unNombre, Point unaPosicion, List<DiaAtencion> diasDeAtencion) {
 		nombre = unNombre;
@@ -26,11 +23,6 @@ public class SucursalDeBanco extends PuntoDeInteres {
 
 	public String getNombre() {
 		return nombre;
-	}
-
-	@Override
-	public boolean estaDisponible(Dias unDia, int hora, Servicio unServicio) {
-		return atencionAlPublico.stream().anyMatch(d -> d.getDia().equals(unDia) && d.estaAbierto(hora));
 	}
 
 	@Override

@@ -10,9 +10,6 @@ public class LocalComercial extends PuntoDeInteres {
 	private String rubro;
 	private String nombre;
 	
-
-	private List<DiaAtencion> atencionAlPublico;
-
 	public LocalComercial(String unNombre, String unaCalle, String unaAltura, String unRubro,
 			List<DiaAtencion> diasDeAtencion, Point unaPosicion) {
 		nombre = unNombre;
@@ -21,11 +18,6 @@ public class LocalComercial extends PuntoDeInteres {
 		posicion = unaPosicion;
 		rubro = unRubro;
 		atencionAlPublico = diasDeAtencion;
-	}
-
-	@Override
-	public boolean estaDisponible(Dias unDia, int hora, Servicio unServicio) {
-		return atencionAlPublico.stream().anyMatch(d -> d.getDia().equals(unDia) && d.estaAbierto(hora));
 	}
 
 	public boolean encuentra(String textoLibre) {

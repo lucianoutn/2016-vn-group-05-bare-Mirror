@@ -1,6 +1,8 @@
 package F5;
 
 
+import java.util.List;
+
 import org.uqbar.geodds.Point;
 
 public abstract class  PuntoDeInteres {
@@ -24,9 +26,10 @@ public abstract class  PuntoDeInteres {
 	}
 
 	protected Point posicion;
+	protected List<DiaAtencion> atencionAlPublico;
 	protected int toleranciaEnCuadras;
 	public boolean estaDisponible(Dias unDia, int hora , Servicio unServicio){
-		return true;
+		return atencionAlPublico.stream().anyMatch(d -> d.getDia().equals(unDia) && d.estaAbierto(hora));
 	}
 
 	public boolean estaCerca(Point point){
