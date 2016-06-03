@@ -52,8 +52,8 @@ public class ConsultorBancosMock implements IConsultorBancos {
 		// List<DiaAtencion> diaDeAtencion;
 		this.bancos.forEach(banco -> {
 			String nombre = banco.getNombre();
-			int x = Integer.parseInt(banco.getX());
-			int y = Integer.parseInt(banco.getY());
+			double x = banco.getX();
+			double y = banco.getY();
 			Point pos = new Point(x, y);
 			List<DiaAtencion> diaDeAtencion = new ArrayList<DiaAtencion>();
 			SucursalDeBanco sucursal = new SucursalDeBanco(nombre, pos, diaDeAtencion);

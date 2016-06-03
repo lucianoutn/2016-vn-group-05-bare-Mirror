@@ -11,10 +11,10 @@ public class BancosJson {
 	private String nombre;
 
 	@JsonProperty("x")
-	private String x;
+	private Double x;
 
 	@JsonProperty("y")
-	private String y;
+	private Double y;
 
 	@JsonProperty("sucursal")
 	private String sucursal;
@@ -33,19 +33,19 @@ public class BancosJson {
 		this.nombre = nombre;
 	}
 
-	public String getX() {
+	public Double getX() {
 		return x;
 	}
 
-	public void setX(String x) {
+	public void setX(Double x) {
 		this.x = x;
 	}
 
-	public String getY() {
+	public Double getY() {
 		return y;
 	}
 
-	public void setY(String y) {
+	public void setY(Double y) {
 		this.y = y;
 	}
 
