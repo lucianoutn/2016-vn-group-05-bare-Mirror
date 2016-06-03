@@ -8,14 +8,11 @@ import java.util.List;
 
 import org.uqbar.geodds.Point;
 
-public class SucursalDeBanco implements PuntoDeInteres {
+public class SucursalDeBanco extends PuntoDeInteres {
 
 	// atributos
-	private String calle;
-	private int altura;
-	private Point posicion;
 	private String nombre;
-	private int toleranciaEnCuadras;
+	
 
 	private List<DiaAtencion> atencionAlPublico;
 
@@ -37,22 +34,10 @@ public class SucursalDeBanco implements PuntoDeInteres {
 	}
 
 	@Override
-	public boolean estaCerca(Point point) {
-		return cuadrasDeDistancia(point) <= toleranciaEnCuadras;
-	}
-
-	@Override
 	public boolean encuentra(String textoLibre) {
 		return nombre.equals(textoLibre);
 	}
 
-	public Point getPosicion() {
-		return posicion;
-	}
-
-	private int cuadrasDeDistancia(Point point) {
-		return (int) Math.round(posicion.distance(point) / 100);
-
-	}
+	
 
 }

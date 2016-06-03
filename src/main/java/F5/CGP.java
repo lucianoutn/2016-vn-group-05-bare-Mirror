@@ -6,11 +6,8 @@ import java.util.List;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-public class CGP implements PuntoDeInteres {
+public class CGP extends PuntoDeInteres {
 
-	private String calle;
-	private String altura;
-	private Point posicion;
 	private Polygon comuna;
 	
 	public Polygon getComuna() {
@@ -19,18 +16,7 @@ public class CGP implements PuntoDeInteres {
 
 	private List<Servicio> servicios = new ArrayList<>();
 	
-	public String getCalle() {
-		return calle;
-	}
 	
-	public String getAltura() {
-		return altura;
-	}
-
-	public void setCalle(String calle) {
-		this.calle = calle;
-	}
-
 	public List<Servicio> getServicios() {
 		return servicios;
 	}
@@ -75,10 +61,7 @@ public class CGP implements PuntoDeInteres {
 	}
 
 	
-	public void setAltura(String unaAltura) {
-		this.altura = unaAltura;
-	}
-
+	
 	public void setComuna(Polygon unPolygon) {
 		this.comuna = unPolygon;
 	}

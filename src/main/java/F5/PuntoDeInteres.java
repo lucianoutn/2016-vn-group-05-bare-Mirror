@@ -3,17 +3,43 @@ package F5;
 
 import org.uqbar.geodds.Point;
 
-public interface PuntoDeInteres {
+public abstract class  PuntoDeInteres {
+
+	protected String calle;
+	public String getCalle() {
+		return calle;
+	}
+
+	protected String altura;
+	public String getAltura() {
+		return altura;
+	}
+
+	public void setAltura(String altura) {
+		this.altura = altura;
+	}
+
+	public void setCalle(String calle) {
+		this.calle = calle;
+	}
+
+	protected Point posicion;
+	protected int toleranciaEnCuadras;
+	public boolean estaDisponible(Dias unDia, int hora , Servicio unServicio){
+		return true;
+	}
+
+	public boolean estaCerca(Point point){
+		return cuadrasDeDistancia(point) <= toleranciaEnCuadras;
+	}
+
+	public boolean encuentra(String textoLibre){
+		return true;
+	}
 
 	
-	
-	public boolean estaDisponible(Dias unDia, int hora , Servicio unServicio);
-
-	public boolean estaCerca(Point point);
-
-	public boolean encuentra(String textoLibre);
-	// A partir de un texto libre, busco en todas los atributos si el objeto
-	// aplica al texto de busqueda
-	// Si alguno aplica, devuelvo true
+	protected int cuadrasDeDistancia(Point point) {
+		return (int) Math.abs(posicion.distance(point)/100);
+	}
 	
 }

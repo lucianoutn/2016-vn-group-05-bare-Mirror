@@ -5,14 +5,11 @@ import java.util.List;
 
 import org.uqbar.geodds.Point;
 
-public class LocalComercial implements PuntoDeInteres {
+public class LocalComercial extends PuntoDeInteres {
 
 	private String rubro;
-	private String calle;
-	private String altura;
 	private String nombre;
-	private int cuadrasDeCercania;
-	private Point posicion;
+	
 
 	private List<DiaAtencion> atencionAlPublico;
 
@@ -29,17 +26,6 @@ public class LocalComercial implements PuntoDeInteres {
 	@Override
 	public boolean estaDisponible(Dias unDia, int hora, Servicio unServicio) {
 		return atencionAlPublico.stream().anyMatch(d -> d.getDia().equals(unDia) && d.estaAbierto(hora));
-	}
-
-	@Override
-	public boolean estaCerca(Point point) {
-		return cuadrasDeDistancia(point) <= cuadrasDeCercania;
-	}
-
-	private int cuadrasDeDistancia(Point point) {
-		return (int) Math.round(posicion.distance(point) / 100);
-		// Calculo la distancia entre los puntos y la divido por 100 asumiendo
-		// que cada cuadra es de 100m y lo redondeo
 	}
 
 	public boolean encuentra(String textoLibre) {
@@ -61,7 +47,7 @@ public class LocalComercial implements PuntoDeInteres {
 	}
 
 	public void setCuadrasDeCercania(int cuadrasDeCercania) {
-		this.cuadrasDeCercania = cuadrasDeCercania;
+		this.toleranciaEnCuadras = cuadrasDeCercania;
 	}
 
 }
