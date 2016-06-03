@@ -9,23 +9,26 @@ public class ConsultorCGP implements IConsultorCGP {
 
 	public CentroDTOAdapter cgpAdapter = new CentroDTOAdapter();
 	
+	public ISistemaExternoCGP sistemaExterno;
+	
+	public ConsultorCGP(ISistemaExternoCGP sistema){
+		sistemaExterno = sistema;
+	}
 	
 	@Override
 	public List<CGP> cgpUbicadasEn(String lugar) {
-		//aca me comunico con el sistema externo y devuelvo una lista de CentroDTO 
+		//aca me comunico con el sistema externo trayendo una lista de CentroDTO. Luego los adapto y devuelvo
 		List<CentroDTO> centros = consultarCgps(lugar);
 		return adaptarCentros(centros);
 		
 	}
 
 	private List<CGP> adaptarCentros(List<CentroDTO> centros) {
-		// aca adapto todos los centros al modelo de mi sistema
-		return null;
+		return cgpAdapter.adaptarCGPs(centros);
 	}
 
 	private List<CentroDTO> consultarCgps(String lugar) {
-		// aca me conecto con el otro sistema y devuelvo un ARRAY LIST de CentroDTO
-		return null;
+		return sistemaExterno.consultarCgpsDTO(lugar); 
 	}
 
 }

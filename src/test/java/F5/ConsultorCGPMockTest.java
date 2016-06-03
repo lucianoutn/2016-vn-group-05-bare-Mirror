@@ -11,6 +11,7 @@ import org.uqbar.geodds.Polygon;
 import InterfacesExternas.CentroDTO;
 import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.ServicioDTO;
+import InterfacesExternas.SistemaExternoCGPMock;
 import junit.framework.Assert;
 
 public class ConsultorCGPMockTest {
@@ -25,7 +26,7 @@ public class ConsultorCGPMockTest {
 	
 	@Before
 	public void initialize(){
-		unConsultorCGP = new ConsultorCGP();
+		unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
 		
 		unCentroDTO = new CentroDTO();
 		unCentroDTO.setNroComuna(1);
@@ -62,8 +63,40 @@ public class ConsultorCGPMockTest {
 		Assert.assertEquals("57",unCGP.getAltura());
 	}
 	
+	@Test
+	public void buscoEnElMockUnCgpDeLaCalleJunin(){
+		
+		List<CGP> cgps = unConsultorCGP.cgpUbicadasEn("Junin");
+		CGP cgpEncontrada = cgps.get(0);
+		
+		
+		Assert.assertEquals("Junin",cgpEncontrada.getCalle());
+	}
 	
+	@Test
+	public void buscoEnElMockUnCgpEnLaAltura521DeLaCalleJunin(){
+		
+		List<CGP> cgps = unConsultorCGP.cgpUbicadasEn("Junin");
+		CGP cgpEncontrada = cgps.get(0);
+		
+		Assert.assertEquals("521",cgpEncontrada.getAltura());
+	}
 	
+	@Test
+	public void buscoEnElMockUnCgpDeLaCalleJuninEstaDisponibleElLunesALas12(){
+		
+		List<CGP> cgps = unConsultorCGP.cgpUbicadasEn("Junin");
+		CGP cgpEncontrada = cgps.get(0);
+		
+		Assert.assertTrue(cgpEncontrada.estaDisponible(Dias.Lunes,1200));
+	}
 	
-	
+	@Test
+	public void buscoEnElMockUnCgpDeLaCalleJuninNoEstaDisponibleElMartesALas12(){
+		
+		List<CGP> cgps = unConsultorCGP.cgpUbicadasEn("Junin");
+		CGP cgpEncontrada = cgps.get(0);
+		
+		Assert.assertFalse(cgpEncontrada.estaDisponible(Dias.Martes,1200));
+	}
 }

@@ -35,6 +35,7 @@ CGP adaptarCentro(CentroDTO unCentro){
 	unCGP.setCalle(unaCalle);
 	unCGP.setComuna(unaComuna);
 	unCGP.setAltura(unaAltura);
+	unCGP.setServicios(servicios);
 	
 	return unCGP;
 }
@@ -60,9 +61,11 @@ private Servicio adaptarServicioDTO(ServicioDTO servDto) {
 }
 
 private DiaAtencion adaptarRangoDTO(RangoServicioDTO rango) {
-	//TODO ADAPTAR
-	//return new DiaAtencion(Dias.values(rango))
-	return null;
+	Dias unDia = Dias.values()[rango.getDia()];
+	int horaApertura = (100 *rango.getHorarioDesde()) + rango.getMinutoDesde();
+	int horaCierre = (100 * rango.getHorarioHasta()) + rango.getMinutoHasta();
+	return new DiaAtencion(unDia, horaApertura, horaCierre);
+	
 }
 
 private Point adaptarPosicion(String domicilioCGP) {

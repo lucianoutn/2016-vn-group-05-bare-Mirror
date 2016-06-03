@@ -8,8 +8,16 @@ public class CentroDTO {
 	private int nroComuna;
 	private List<String> zonas = new ArrayList<String>();
 	private String nombreDirector;
+	public void setNombreDirector(String nombreDirector) {
+		this.nombreDirector = nombreDirector;
+	}
+
 	private String domicilioCGP;
 	private String telefono;
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
 	private List<ServicioDTO> serviciosDTO = new ArrayList<ServicioDTO>();	
 	
 	public CentroDTO(){}

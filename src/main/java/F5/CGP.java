@@ -17,6 +17,10 @@ public class CGP extends PuntoDeInteres {
 	private List<Servicio> servicios = new ArrayList<>();
 	
 	
+	public void setServicios(List<Servicio> servicios) {
+		this.servicios = servicios;
+	}
+
 	public List<Servicio> getServicios() {
 		return servicios;
 	}
