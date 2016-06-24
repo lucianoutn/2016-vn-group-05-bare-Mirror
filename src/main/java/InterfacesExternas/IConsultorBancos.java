@@ -2,7 +2,6 @@ package InterfacesExternas;
 
 import java.util.List;
 
-import F5.OrigenDeDatos;
 import F5.SucursalDeBanco;
 
 public interface IConsultorBancos extends OrigenDeDatos {

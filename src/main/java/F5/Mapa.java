@@ -3,6 +3,8 @@ package F5;
 import java.util.ArrayList;
 import java.util.List;
 
+import InterfacesExternas.OrigenDeDatos;
+
 public class Mapa {
 
 	// atributos
@@ -11,9 +13,7 @@ public class Mapa {
 	private static List<Busqueda> busquedas = new ArrayList<Busqueda>();
 
 	// metodos
-	public Mapa() {
-
-	}
+	
 
 	public void anadirPOI(PuntoDeInteres poi) {
 		puntosDeInteres.add(poi);

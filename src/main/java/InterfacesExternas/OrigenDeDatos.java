@@ -1,4 +1,4 @@
-package F5;
+package InterfacesExternas;
 
 public interface OrigenDeDatos {
 
