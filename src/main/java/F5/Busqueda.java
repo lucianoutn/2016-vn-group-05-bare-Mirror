@@ -39,10 +39,10 @@ public class Busqueda {
 		this.tiempoBusqueda = unTiempo; // en segundos
 	}
 
-	public void unaBusqueda(String user, String ter, String frase) {
+	public void unaBusqueda(String user, String terminal, String frase) {
 		fecha = LocalTime.now();
 		usuario = user;
-		terminal = ter;
+		this.terminal = terminal;
 		fraseBuscada = frase;
 		Mapa.agregarBusqueda(this);
 	}

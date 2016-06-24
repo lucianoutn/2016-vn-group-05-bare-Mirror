@@ -13,7 +13,6 @@ public class Mapa {
 	private static List<Busqueda> busquedas = new ArrayList<Busqueda>();
 
 	// metodos
-	
 
 	public void anadirPOI(PuntoDeInteres poi) {
 		puntosDeInteres.add(poi);
