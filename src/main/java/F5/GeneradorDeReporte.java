@@ -19,6 +19,6 @@ public class GeneradorDeReporte {
 	}
 
 	private List<Busqueda> buscarBusquedas() {
-		return RepositorioImpostor.getBusquedas();
+		return Mapa.getBusquedas();
 	}
 }
