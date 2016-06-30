@@ -8,14 +8,24 @@ import InterfacesExternas.OrigenDeDatos;
 public class Mapa {
 
 	// atributos
-	private List<PuntoDeInteres> puntosDeInteres = new ArrayList<>();
+	private static List<PuntoDeInteres> puntosDeInteres = new ArrayList<>();
 	private List<OrigenDeDatos> origenesDeDatos = new ArrayList<>();
 	private static List<Busqueda> busquedas = new ArrayList<Busqueda>();
 
 	// metodos
 
+	
+	
 	public void anadirPOI(PuntoDeInteres poi) {
 		puntosDeInteres.add(poi);
+	}
+
+	public static List<PuntoDeInteres> getPuntosDeInteres() {
+		return puntosDeInteres;
+	}
+
+	public void setPuntosDeInteres(List<PuntoDeInteres> puntosDeInteres) {
+		this.puntosDeInteres = puntosDeInteres;
 	}
 
 	public void eliminarPOI(PuntoDeInteres poi) {
@@ -33,7 +43,11 @@ public class Mapa {
 	public static void limpiar() {
 		busquedas.clear();
 	}
-
+	
+	public static double cantidadDeMatcheosConPois(String unaFrase){
+		return puntosDeInteres.stream().filter(x -> x.encuentra(unaFrase)).count();
+	}
+	
 	public static List<Busqueda> getBusquedas() {
 		return busquedas;
 	}

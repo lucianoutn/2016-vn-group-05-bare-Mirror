@@ -1,6 +1,7 @@
 package F5;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class Busqueda {
 
@@ -12,10 +13,24 @@ public class Busqueda {
 	private int cantResultados;
 	private LocalTime fecha;
 	private int tiempoBusqueda;
+	private ArrayList<Observers> listaObservers;
 
 	// metodos
+	
+	public void setListaObservers(ArrayList<Observers> obs){
+		listaObservers= obs;
+	}
+	
 	public String getFraseBuscada() {
 		return fraseBuscada;
+	}
+
+	public LocalTime getFecha() {
+		return fecha;
+	}
+
+	public int getTiempoBusqueda() {
+		return tiempoBusqueda;
 	}
 
 	public void setFraseBuscada(String fraseBuscada) {
@@ -44,7 +59,14 @@ public class Busqueda {
 		usuario = user;
 		this.terminal = terminal;
 		fraseBuscada = frase;
+		this.buscoFrase(frase);
+		this.avisarAObservers();
 		Mapa.agregarBusqueda(this);
+	}
+
+	
+	private void avisarAObservers() {
+		this.listaObservers.stream().forEach(x -> Observers.notificarBusqueda(this));
 	}
 
 	public boolean realizadaPor(String unUsuario) {
@@ -69,12 +91,23 @@ public class Busqueda {
 	public boolean buscoFrase(String unaFrase) {
 		if (unaFrase == null || fraseBuscada == null)
 			return true;
-
-		return fraseBuscada.contains(unaFrase);
+		this.setFraseBuscada(unaFrase);
+		cantResultados = (int) Mapa.cantidadDeMatcheosConPois(unaFrase);
+		return (Mapa.cantidadDeMatcheosConPois(unaFrase)>0);
 	}
 
 	public boolean excedioDemora() {
 		return tiempoBusqueda >= tiempoParaNotificar;
 	}
+
+	public String getTerminal() {
+		return terminal;
+	}
+
+	public int getCantResultados() {
+		return cantResultados;
+	}
+
+	
 
 }
