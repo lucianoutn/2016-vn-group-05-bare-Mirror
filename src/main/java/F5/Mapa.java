@@ -10,7 +10,7 @@ import InterfacesExternas.ConsultorBancosJsonPosta;
 import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.OrigenDeDatos;
 
-public class Mapa {
+public final class Mapa {
 
 	// atributos
 	private static List<PuntoDeInteres> puntosDeInteres = new ArrayList<>();
@@ -31,8 +31,8 @@ public class Mapa {
 		return puntosDeInteres;
 	}
 
-	public void setPuntosDeInteres(List<PuntoDeInteres> puntosDeInteres) {
-		this.puntosDeInteres = puntosDeInteres;
+	public static void setPuntosDeInteres(List<PuntoDeInteres> parada101) {
+		Mapa.puntosDeInteres = parada101;
 	}
 
 	public void eliminarPOI(PuntoDeInteres poi) {
@@ -103,4 +103,5 @@ public class Mapa {
 	    }
 	    return list;
 	}
+
 }

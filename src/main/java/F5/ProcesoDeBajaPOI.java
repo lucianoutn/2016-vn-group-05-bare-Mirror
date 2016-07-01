@@ -1,5 +1,6 @@
 package F5;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class ProcesoDeBajaPOI extends ProcesoSobrePOIS {
 	// TODO para mi en el constructor iria la fecha de la baja.
 	// tmb hay q poner la instancia de mapa que tiene el repo
 
-	public ProcesoDeBajaPOI(Mapa mapa, Fecha fecha) {
+	public ProcesoDeBajaPOI(Mapa mapa, LocalDate fecha) {
 		this.mapa = mapa;
 	}
 

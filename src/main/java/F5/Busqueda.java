@@ -54,7 +54,8 @@ public class Busqueda {
 		this.tiempoBusqueda = unTiempo; // en segundos
 	}
 
-	public void unaBusqueda(String user, String terminal, String frase) {
+	public Busqueda(String user, String terminal, String frase,ArrayList<Observers> listaObservadores) {
+		listaObservers=listaObservadores;
 		fecha = LocalTime.now();
 		usuario = user;
 		this.terminal = terminal;
@@ -66,7 +67,8 @@ public class Busqueda {
 
 	
 	private void avisarAObservers() {
-		this.listaObservers.stream().forEach(x -> Observers.notificarBusqueda(this));
+		if(listaObservers!=null)
+		this.listaObservers.stream().forEach(x -> x.notificarBusqueda(this));
 	}
 
 	public boolean realizadaPor(String unUsuario) {
