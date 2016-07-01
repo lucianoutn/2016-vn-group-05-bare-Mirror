@@ -24,9 +24,9 @@ public class ConsultorBancosJsonPosta implements IConsultorBancos {
 	// del servicio REST y va a traer el json de respuesta del banco "posta"
 
 	// ATRIBUTOS
-	private URL url;
-	private ObjectMapper objectMapper;
-	private List<BancosJson> bancos;
+	private static URL url;
+	private static ObjectMapper objectMapper;
+	private static List<BancosJson> bancos;
 
 	// METODOS
 
@@ -84,8 +84,12 @@ public class ConsultorBancosJsonPosta implements IConsultorBancos {
 			// Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		
+	}
+
+	public static List<SucursalDeBanco> buscaPuntosDeInteresEnBanco(String nombre, String servicio) {
+		List<SucursalDeBanco> bancos = bancosQueCumplenCon(nombre,servicio); //TODO Lucho, ¿puedo tocar esto?
+		return bancos;
 	}
 
 }
