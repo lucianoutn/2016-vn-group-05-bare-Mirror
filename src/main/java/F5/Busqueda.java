@@ -13,11 +13,11 @@ public class Busqueda {
 	private int cantResultados;
 	private LocalTime fecha;
 	private int tiempoBusqueda;
-	private ArrayList<Observers> listaObservers;
+	private ArrayList<NotificadorDeBusqueda> listaObservers;
 
 	// metodos
 	
-	public void setListaObservers(ArrayList<Observers> obs){
+	public void setListaObservers(ArrayList<NotificadorDeBusqueda> obs){
 		listaObservers= obs;
 	}
 	
@@ -54,7 +54,7 @@ public class Busqueda {
 		this.tiempoBusqueda = unTiempo; // en segundos
 	}
 
-	public Busqueda(String user, String terminal, String frase,ArrayList<Observers> listaObservadores) {
+	public Busqueda(String user, String terminal, String frase,ArrayList<NotificadorDeBusqueda> listaObservadores) {
 		listaObservers=listaObservadores;
 		fecha = LocalTime.now();
 		usuario = user;

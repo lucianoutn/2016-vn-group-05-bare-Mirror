@@ -30,7 +30,8 @@ public final class Mapa {
 	public static List<PuntoDeInteres> getPuntosDeInteres() {
 		return puntosDeInteres;
 	}
-
+	
+	
 	public static void setPuntosDeInteres(List<PuntoDeInteres> parada101) {
 		Mapa.puntosDeInteres = parada101;
 	}
@@ -70,7 +71,7 @@ public final class Mapa {
 		
 		if(parametroBusqueda1!=null || parametroBusqueda2!=null)
 		//poisSistema = buscoEnElSistema(parametroBusqueda1,parametroBusqueda2);
-		addAllIfNotNull(poisSistema,buscoEnElSistema(parametroBusqueda1,parametroBusqueda2));
+		addAllIfNotNull(poisSistema,buscoEnElSistema(parametroBusqueda1,parametroBusqueda2)); //TODO Contrato debil
 		
 		//List<PuntoDeInteres> poisSistemasExternos = buscoEnSistemasExternos(parametroBusqueda1,parametroBusqueda2);
 		

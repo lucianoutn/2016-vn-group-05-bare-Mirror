@@ -8,7 +8,7 @@ import org.junit.Test;
 
 public class ReportesMultiplesTest {
 	public BusquedasPorFecha reporteroDeBusquedas = new BusquedasPorFecha();
-	public ArrayList<Observers> listaDeDosReporteros = new ArrayList<>();
+	public ArrayList<NotificadorDeBusqueda> listaDeDosReporteros = new ArrayList<>();
 	public ResultadosPorTerminal reporteroDeResultadosPorTerminal = new ResultadosPorTerminal();
 
 	@Before
@@ -20,7 +20,7 @@ public class ReportesMultiplesTest {
 	@Test
 	public void reportesVacio() {
 		Assert.assertEquals(0, reporteroDeBusquedas.generarReporte().size());
-		Assert.assertEquals(0, reporteroDeResultadosPorTerminal.generarReporte().size());
+		Assert.assertEquals(0, reporteroDeResultadosPorTerminal.generarReporte(null).size());
 	}
 	
 	@Test
@@ -28,7 +28,7 @@ public class ReportesMultiplesTest {
 		Busqueda unaBusq = new Busqueda("pedro", "flores", "101", listaDeDosReporteros);
 
 		Assert.assertEquals(1, reporteroDeBusquedas.generarReporte().size());
-		Assert.assertEquals(1, reporteroDeResultadosPorTerminal.generarReporte().size());
+		Assert.assertEquals(1, reporteroDeResultadosPorTerminal.generarReporte(null).size());
 	}
 	
 	
@@ -38,7 +38,7 @@ public class ReportesMultiplesTest {
 		Busqueda unaBusq2 = new Busqueda("pedro", "flores", "cgp", listaDeDosReporteros);
 
 		Assert.assertEquals(2, reporteroDeBusquedas.generarReporte().size());
-		Assert.assertEquals(1, reporteroDeResultadosPorTerminal.generarReporte().size());
+		Assert.assertEquals(1, reporteroDeResultadosPorTerminal.generarReporte(null).size());
 	}
 	
 	@Test
@@ -47,7 +47,7 @@ public class ReportesMultiplesTest {
 		Busqueda unaBusq2 = new Busqueda("alexis", "lugano", "cgp", listaDeDosReporteros);
 
 		Assert.assertEquals(1, reporteroDeBusquedas.generarReporte().size());
-		Assert.assertEquals(2, reporteroDeResultadosPorTerminal.generarReporte().size());
+		Assert.assertEquals(2, reporteroDeResultadosPorTerminal.generarReporte(null).size());
 	}
 	
 	

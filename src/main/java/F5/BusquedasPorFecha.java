@@ -2,7 +2,7 @@ package F5;
 
 import java.util.ArrayList;
 
-public class BusquedasPorFecha implements Observers {
+public class BusquedasPorFecha implements NotificadorDeBusqueda {
 	public  ArrayList<BusquedaPorFecha> reporte = new ArrayList<BusquedaPorFecha>();
 
 	public void notificarBusqueda(Busqueda unaBusqueda){

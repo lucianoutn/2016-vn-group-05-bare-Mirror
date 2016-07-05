@@ -9,7 +9,7 @@ import org.junit.Test;
 
 public class BusquedasPorFechaTest {
 	public BusquedasPorFecha reporteroDeBusquedas= new BusquedasPorFecha();
-	public ArrayList<Observers> listaDeUnReportero = new ArrayList<>();
+	public ArrayList<NotificadorDeBusqueda> listaDeUnReportero = new ArrayList<>();
 
 	@Test
 	public void generarReporteDeUnaBusqueda(){
