@@ -27,7 +27,7 @@ public final class Mapa {
 		puntosDeInteres.clear();
 	}
 
-	public static List<PuntoDeInteres> getPuntosDeInteres() {
+	public List<PuntoDeInteres> getPuntosDeInteres() {
 		return puntosDeInteres;
 	}
 	
@@ -64,7 +64,7 @@ public final class Mapa {
 		busquedas.add(busq);
 	}
 	
-	public static List<PuntoDeInteres> buscaPuntosDeInteresEnSistemaySistemasExternos(String parametroBusqueda1, String parametroBusqueda2){
+	public List<PuntoDeInteres> buscaPuntosDeInteresEnSistemaySistemasExternos(String parametroBusqueda1, String parametroBusqueda2){
 		
 		List<PuntoDeInteres> poisEncontrados = new ArrayList<PuntoDeInteres>();
 		List<PuntoDeInteres> poisSistema = new ArrayList<PuntoDeInteres>();

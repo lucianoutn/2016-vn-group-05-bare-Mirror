@@ -60,7 +60,6 @@ public class Busqueda {
 		usuario = user;
 		this.terminal = terminal;
 		fraseBuscada = frase;
-		this.buscoFrase(frase);
 		this.avisarAObservers();
 		Mapa.agregarBusqueda(this);
 	}
@@ -90,12 +89,13 @@ public class Busqueda {
 		return unaFecha.equals(fecha);
 	}
 
-	public boolean buscoFrase(String unaFrase) {
-		if (unaFrase == null || fraseBuscada == null)
-			return true;
+	public ArrayList<PuntoDeInteres> buscoFrase(String unaFrase,Mapa unMapa) {
 		this.setFraseBuscada(unaFrase);
-		cantResultados = (int) Mapa.cantidadDeMatcheosConPois(unaFrase);
-		return (Mapa.cantidadDeMatcheosConPois(unaFrase)>0);
+		if (unaFrase == null || fraseBuscada == null)
+			return (ArrayList<PuntoDeInteres>) unMapa.getPuntosDeInteres();
+		else
+			cantResultados = (int) Mapa.cantidadDeMatcheosConPois(unaFrase);
+			return (ArrayList<PuntoDeInteres>) unMapa.buscaPuntosDeInteresEnSistemaySistemasExternos(unaFrase, null);
 	}
 
 	public boolean excedioDemora() {
