@@ -2,6 +2,7 @@ package F5;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Busqueda {
 
@@ -25,6 +26,10 @@ public class Busqueda {
 		return fraseBuscada;
 	}
 
+	public String getUsuario() {
+		return usuario;
+	}
+	
 	public LocalTime getFecha() {
 		return fecha;
 	}
@@ -108,6 +113,8 @@ public class Busqueda {
 		return cantResultados;
 	}
 
+	public void aplicarFiltros(List criterios, Busqueda unaBusqueda){
+	}
 	
 
 }
