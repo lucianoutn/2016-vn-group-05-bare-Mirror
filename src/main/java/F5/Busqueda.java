@@ -20,7 +20,7 @@ public class Busqueda {
 	public void setListaObservers(ArrayList<NotificadorDeBusqueda> obs){
 		listaObservers= obs;
 	}
-	
+
 	public String getFraseBuscada() {
 		return fraseBuscada;
 	}
@@ -61,7 +61,6 @@ public class Busqueda {
 		this.terminal = terminal;
 		fraseBuscada = frase;
 		this.avisarAObservers();
-		Mapa.agregarBusqueda(this);
 	}
 
 	
@@ -94,7 +93,7 @@ public class Busqueda {
 		if (unaFrase == null || fraseBuscada == null)
 			return (ArrayList<PuntoDeInteres>) unMapa.getPuntosDeInteres();
 		else
-			cantResultados = (int) Mapa.cantidadDeMatcheosConPois(unaFrase);
+			cantResultados = (int) unMapa.cantidadDeMatcheosConPois(unaFrase);
 			return (ArrayList<PuntoDeInteres>) unMapa.buscaPuntosDeInteresEnSistemaySistemasExternos(unaFrase, null);
 	}
 

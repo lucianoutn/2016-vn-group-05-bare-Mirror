@@ -10,7 +10,7 @@ import InterfacesExternas.ConsultorBancosJsonPosta;
 import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.OrigenDeDatos;
 
-public final class Mapa {
+public class Mapa {
 
 	// atributos
 	private static List<PuntoDeInteres> puntosDeInteres = new ArrayList<>();
@@ -32,7 +32,7 @@ public final class Mapa {
 	}
 	
 	
-	public static void setPuntosDeInteres(List<PuntoDeInteres> parada101) {
+	public void setPuntosDeInteres(List<PuntoDeInteres> parada101) {
 		Mapa.puntosDeInteres = parada101;
 	}
 
@@ -47,20 +47,16 @@ public final class Mapa {
 	public void aniadirOrigenDeDatos(OrigenDeDatos origen) {
 		origenesDeDatos.add(origen);
 	}
-
-	public static void limpiar() {
-		busquedas.clear();
-	}
 	
-	public static double cantidadDeMatcheosConPois(String unaFrase){
+	public double cantidadDeMatcheosConPois(String unaFrase){
 		return puntosDeInteres.stream().filter(x -> x.encuentra(unaFrase)).count();
 	}
 	
-	public static List<Busqueda> getBusquedas() {
+	public List<Busqueda> getBusquedas() {
 		return busquedas;
 	}
 
-	public static void agregarBusqueda(Busqueda busq) {
+	public  void agregarBusqueda(Busqueda busq) {
 		busquedas.add(busq);
 	}
 	
@@ -83,14 +79,14 @@ public final class Mapa {
 	
 	
 	
-	public static List<PuntoDeInteres> buscoEnElSistema(String nombre, String servicio){
+	public List<PuntoDeInteres> buscoEnElSistema(String nombre, String servicio){
 		
 		return puntosDeInteres.stream().filter(	(unPOI-> unPOI.encuentra(nombre)	|| 
 												unPOI.encuentra(servicio)))
 												.collect(Collectors.toList());
 	}		
 		
-	public static List<PuntoDeInteres> buscoEnSistemasExternos(String parametroBusqueda1,String parametroBusqueda2){
+	public List<PuntoDeInteres> buscoEnSistemasExternos(String parametroBusqueda1,String parametroBusqueda2){
 		List<PuntoDeInteres> poisExternos = new ArrayList<PuntoDeInteres>();
 		poisExternos.addAll(ConsultorCGP.buscaPuntosDeInteresENCGP(parametroBusqueda1));
 		//poisExternos.addAll(ConsultorBancosJsonPosta.buscaPuntosDeInteresEnBanco(parametroBusqueda1,parametroBusqueda2));
@@ -98,7 +94,7 @@ public final class Mapa {
 		return poisExternos;
 	}
 	
-	public static List<PuntoDeInteres> addAllIfNotNull(List<PuntoDeInteres> list, Collection<? extends PuntoDeInteres> c) {
+	public List<PuntoDeInteres> addAllIfNotNull(List<PuntoDeInteres> list, Collection<? extends PuntoDeInteres> c) {
 	    if (c != null) {
 	        list.addAll(c);
 	    }
