@@ -25,9 +25,6 @@ public class Terminal {
 		unMapa.anadirPOI(unPoi);
 	}
 	
-	public void darDeBaja(PuntoDeInteres unPoi){
-		unMapa.eliminarPOI(unPoi);
-	}
 	
 	public void modificarPOI(PuntoDeInteres poiAModificar, PuntoDeInteres poiModificado){
 		unMapa.eliminarPOI(poiAModificar);
