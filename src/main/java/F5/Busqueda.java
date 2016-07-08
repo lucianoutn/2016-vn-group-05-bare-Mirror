@@ -16,9 +16,9 @@ public class Busqueda {
 	private ArrayList<NotificadorDeBusqueda> listaObservers;
 
 	// metodos
-	
-	public void setListaObservers(ArrayList<NotificadorDeBusqueda> obs){
-		listaObservers= obs;
+
+	public void setListaObservers(ArrayList<NotificadorDeBusqueda> obs) {
+		listaObservers = obs;
 	}
 
 	public String getFraseBuscada() {
@@ -41,21 +41,26 @@ public class Busqueda {
 		this.usuario = usuario;
 	}
 
-	public void setFecha(LocalTime fecha) {
-		this.fecha = fecha;
-	}
+	/*
+	 * public void setFecha(LocalTime fecha) { this.fecha = fecha; }
+	 */
 
 	public void setTerminal(String terminal) {
 		this.terminal = terminal;
 	}
 
-	public void setTiempoBusqueda(int unTiempo) {
+	/*
+	 * public void setTiempoBusqueda(int unTiempo) { this.tiempoBusqueda =
+	 * unTiempo; // en segundos }
+	 */
+
+	public static void setTiempoParaNotificar(int tiempoParaNotificar) {
 		// debe ser parametrizable
-		this.tiempoBusqueda = unTiempo; // en segundos
+		Busqueda.tiempoParaNotificar = tiempoParaNotificar; // en segundos
 	}
 
-	public Busqueda(String user, String terminal, String frase,ArrayList<NotificadorDeBusqueda> listaObservadores) {
-		listaObservers=listaObservadores;
+	public Busqueda(String user, String terminal, String frase, ArrayList<NotificadorDeBusqueda> listaObservadores) {
+		listaObservers = listaObservadores;
 		fecha = LocalTime.now();
 		usuario = user;
 		this.terminal = terminal;
@@ -63,10 +68,9 @@ public class Busqueda {
 		this.avisarAObservers();
 	}
 
-	
 	private void avisarAObservers() {
-		if(listaObservers!=null)
-		this.listaObservers.stream().forEach(x -> x.notificarBusqueda(this));
+		if (listaObservers != null)
+			this.listaObservers.stream().forEach(x -> x.notificarBusqueda(this));
 	}
 
 	public boolean realizadaPor(String unUsuario) {
@@ -88,13 +92,15 @@ public class Busqueda {
 		return unaFecha.equals(fecha);
 	}
 
-	public ArrayList<PuntoDeInteres> buscoFrase(String unaFrase,Mapa unMapa) {
+	public ArrayList<PuntoDeInteres> buscoFrase(String unaFrase, Mapa unMapa) {
 		this.setFraseBuscada(unaFrase);
+		LocalTime tiempoFinBusqueda = LocalTime.now();
+		this.tiempoBusqueda = tiempoFinBusqueda.toSecondOfDay() - this.fecha.toSecondOfDay();
 		if (unaFrase == null || fraseBuscada == null)
 			return (ArrayList<PuntoDeInteres>) unMapa.getPuntosDeInteres();
 		else
 			cantResultados = (int) unMapa.cantidadDeMatcheosConPois(unaFrase);
-			return (ArrayList<PuntoDeInteres>) unMapa.buscaPuntosDeInteresEnSistemaySistemasExternos(unaFrase, null);
+		return (ArrayList<PuntoDeInteres>) unMapa.buscaPuntosDeInteresEnSistemaySistemasExternos(unaFrase, null);
 	}
 
 	public boolean excedioDemora() {
@@ -108,7 +114,5 @@ public class Busqueda {
 	public int getCantResultados() {
 		return cantResultados;
 	}
-
-	
 
 }
