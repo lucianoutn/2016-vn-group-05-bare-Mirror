@@ -6,9 +6,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import InterfacesExternas.ConsultorBancosJsonPosta;
+import InterfacesExternas.ConsultorBancosMock;
 import InterfacesExternas.ConsultorCGP;
+import InterfacesExternas.IConsultorCGP;
+import InterfacesExternas.ISistemaExternoCGP;
 import InterfacesExternas.OrigenDeDatos;
+import InterfacesExternas.SistemaExternoCGPMock;
 
 public class Mapa {
 
@@ -16,6 +19,9 @@ public class Mapa {
 	private static List<PuntoDeInteres> puntosDeInteres = new ArrayList<>();
 	private List<OrigenDeDatos> origenesDeDatos = new ArrayList<>();
 	private static List<Busqueda> busquedas = new ArrayList<Busqueda>();
+	private ConsultorBancosMock consultorDeBancos = new ConsultorBancosMock();
+	private SistemaExternoCGPMock mockSistemaExternoCGP = new SistemaExternoCGPMock();
+	private ConsultorCGP consultorCGP = new ConsultorCGP(mockSistemaExternoCGP);
 
 	// metodos
 	
@@ -60,19 +66,17 @@ public class Mapa {
 		busquedas.add(busq);
 	}
 	
-	public List<PuntoDeInteres> buscaPuntosDeInteresEnSistemaySistemasExternos(String parametroBusqueda1, String parametroBusqueda2){
+	public List<PuntoDeInteres> buscaPuntosDeInteresEnSistemaySistemasExternos(String nombre, String servicio){
 		
-		List<PuntoDeInteres> poisEncontrados = new ArrayList<PuntoDeInteres>();
-		List<PuntoDeInteres> poisSistema = new ArrayList<PuntoDeInteres>();
+		List<PuntoDeInteres> poisSistema = new ArrayList<PuntoDeInteres>();	//Tiene los POIs encontrados en el Sistema
+		List<PuntoDeInteres> poisSistemasExternos = new ArrayList<PuntoDeInteres>(); //Tiene los POIs encontrados en el Sistema Externo
+		List<PuntoDeInteres> poisEncontrados = new ArrayList<PuntoDeInteres>(); //Tiene la union entre poisSistema y poisSistemasExternos
 		
-		if(parametroBusqueda1!=null || parametroBusqueda2!=null)
-		//poisSistema = buscoEnElSistema(parametroBusqueda1,parametroBusqueda2);
-		addAllIfNotNull(poisSistema,buscoEnElSistema(parametroBusqueda1,parametroBusqueda2)); //TODO Contrato debil
+		poisSistema = buscoEnElSistema(nombre, servicio);
+		addAllIfNotNull(poisEncontrados,poisSistema);
 		
-		//List<PuntoDeInteres> poisSistemasExternos = buscoEnSistemasExternos(parametroBusqueda1,parametroBusqueda2);
-		
-		poisEncontrados.addAll(poisSistema);
-		//poisEncontrados.addAll(poisSistemasExternos);
+		poisSistemasExternos = buscoEnSistemasExternos(nombre,servicio);
+		addAllIfNotNull(poisEncontrados,poisSistemasExternos);
 				
 		return poisEncontrados;
 	}
@@ -81,16 +85,28 @@ public class Mapa {
 	
 	public List<PuntoDeInteres> buscoEnElSistema(String nombre, String servicio){
 		
-		return puntosDeInteres.stream().filter(	(unPOI-> unPOI.encuentra(nombre)	|| 
-												unPOI.encuentra(servicio)))
+		if (nombre==null)
+			return puntosDeInteres.stream().filter(	(unPOI-> unPOI.encuentra(servicio)))
 												.collect(Collectors.toList());
+		if (servicio==null)
+			return puntosDeInteres.stream().filter(	(unPOI-> unPOI.encuentra(nombre)))
+					.collect(Collectors.toList());
+		
+		return puntosDeInteres.stream().filter(	(unPOI-> unPOI.encuentra(servicio) || unPOI.encuentra(nombre)))
+				.collect(Collectors.toList());
 	}		
 		
-	public List<PuntoDeInteres> buscoEnSistemasExternos(String parametroBusqueda1,String parametroBusqueda2){
+	public List<PuntoDeInteres> buscoEnSistemasExternos(String nombre,String servicio){
 		List<PuntoDeInteres> poisExternos = new ArrayList<PuntoDeInteres>();
-		poisExternos.addAll(ConsultorCGP.buscaPuntosDeInteresENCGP(parametroBusqueda1));
-		//poisExternos.addAll(ConsultorBancosJsonPosta.buscaPuntosDeInteresEnBanco(parametroBusqueda1,parametroBusqueda2));
-		
+		if(nombre==null){
+			addAllIfNotNull(poisExternos,consultorDeBancos.bancosQueCumplenCon(null, servicio));
+		} else if (servicio==null){
+			addAllIfNotNull(poisExternos,consultorCGP.buscaPuntosDeInteresENCGP(nombre));
+			addAllIfNotNull(poisExternos,consultorDeBancos.bancosQueCumplenCon(nombre, null));
+		} else {
+		addAllIfNotNull(poisExternos,consultorCGP.buscaPuntosDeInteresENCGP(nombre));
+		addAllIfNotNull(poisExternos,consultorDeBancos.bancosQueCumplenCon(nombre, servicio));
+		}
 		return poisExternos;
 	}
 	

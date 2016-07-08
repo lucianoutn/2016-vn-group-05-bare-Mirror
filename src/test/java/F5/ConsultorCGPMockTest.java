@@ -83,20 +83,20 @@ public class ConsultorCGPMockTest {
 	}
 	
 	@Test
-	public void buscoEnElMockUnCgpDeLaCalleJuninEstaDisponibleElLunesALas12(){
+	public void buscoEnElMockUnCgpDeLaCalleJuninEstaDisponibleElMartesALas12(){
 		
 		List<CGP> cgps = unConsultorCGP.cgpUbicadasEn("Junin");
 		CGP cgpEncontrada = cgps.get(0);
 		
-		Assert.assertTrue(cgpEncontrada.estaDisponible(Dias.Lunes,1200));
+		Assert.assertTrue(cgpEncontrada.estaDisponible(Dias.Martes,1200));
 	}
 	
 	@Test
-	public void buscoEnElMockUnCgpDeLaCalleJuninNoEstaDisponibleElMartesALas12(){
+	public void buscoEnElMockUnCgpDeLaCalleJuninNoEstaDisponibleElLunesALas12(){
 		
 		List<CGP> cgps = unConsultorCGP.cgpUbicadasEn("Junin");
 		CGP cgpEncontrada = cgps.get(0);
 		
-		Assert.assertFalse(cgpEncontrada.estaDisponible(Dias.Martes,1200));
+		Assert.assertFalse(cgpEncontrada.estaDisponible(Dias.Lunes,1200));
 	}
 }

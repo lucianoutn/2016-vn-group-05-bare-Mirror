@@ -87,9 +87,4 @@ public class ConsultorBancosJsonPosta implements IConsultorBancos {
 		
 	}
 
-	public static List<SucursalDeBanco> buscaPuntosDeInteresEnBanco(String nombre, String servicio) {
-		List<SucursalDeBanco> bancos = bancosQueCumplenCon(nombre,servicio); //TODO Lucho, ¿puedo tocar esto?
-		return bancos;
-	}
-
 }

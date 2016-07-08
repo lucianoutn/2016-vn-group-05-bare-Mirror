@@ -19,7 +19,9 @@ public class BusquedaTest {
 	
 	@Test
 	public void buscarEnMapaConUnElemento(){
+		
 		Mapa unMapa = new Mapa();
+		unMapa.limpiarPuntosDeInteres();
 		ParadaDeColectivo parada101 = new ParadaDeColectivo("Mozart", "2500", null, "101");
 		ArrayList<PuntoDeInteres> pois = new ArrayList<PuntoDeInteres>();
 		pois.add(parada101);
@@ -32,6 +34,7 @@ public class BusquedaTest {
 	@Test
 	public void buscarEnMapaConDosElementos(){
 		Mapa unMapa = new Mapa();
+		unMapa.limpiarPuntosDeInteres();
 		ParadaDeColectivo parada101 = new ParadaDeColectivo("Mozart", "2500", null, "101");
 		ArrayList<PuntoDeInteres> pois = new ArrayList<PuntoDeInteres>();
 		pois.add(parada101);

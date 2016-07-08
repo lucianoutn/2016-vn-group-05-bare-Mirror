@@ -10,9 +10,11 @@ import F5.SucursalDeBanco;
 
 public class ConsultorCGP implements IConsultorCGP {
 
-	public static CentroDTOAdapter cgpAdapter = new CentroDTOAdapter();
+	public CentroDTOAdapter cgpAdapter = new CentroDTOAdapter();
 	
-	public static ISistemaExternoCGP sistemaExterno;
+	public ISistemaExternoCGP sistemaExterno;
+	
+	public SistemaExternoCGPMock sistemaExternoDeCGP = new SistemaExternoCGPMock();
 	
 	public ConsultorCGP(ISistemaExternoCGP sistema){
 		sistemaExterno = sistema;
@@ -23,20 +25,20 @@ public class ConsultorCGP implements IConsultorCGP {
 		//aca me comunico con el sistema externo trayendo una lista de CentroDTO. Luego los adapto y devuelvo
 		List<CentroDTO> centros = consultarCgps(lugar);
 		return adaptarCentros(centros);
-		
 	}
 	
-	public static List<PuntoDeInteres> buscaPuntosDeInteresENCGP(String lugar) {
+	public List<PuntoDeInteres> buscaPuntosDeInteresENCGP(String lugar) {
+		//List<CentroDTO> centrosDTO = sistemaExterno.consultarCgpsDTO(lugar);
 		List<CentroDTO> centrosDTO = consultarCgps(lugar);
 		List<CGP> cgps = adaptarCentros(centrosDTO);
 		return cgps.stream().filter(unCGP->unCGP.encuentra(lugar)).collect(Collectors.toList());
 	}
 
-	private static List<CGP> adaptarCentros(List<CentroDTO> centros) {
+	private List<CGP> adaptarCentros(List<CentroDTO> centros) {
 		return cgpAdapter.adaptarCGPs(centros);
 	}
 
-	private static List<CentroDTO> consultarCgps(String lugar) {
+	private List<CentroDTO> consultarCgps(String lugar) {
 		return sistemaExterno.consultarCgpsDTO(lugar); 
 	}
 

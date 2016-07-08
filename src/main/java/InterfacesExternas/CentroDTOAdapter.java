@@ -29,7 +29,7 @@ CGP adaptarCentro(CentroDTO unCentro){
 	Polygon unaComuna = adaptarComuna(unCentro.getNroComuna());
 	String unaCalle = adaptarCalle(unCentro.getDomicilioCGP());
 	String unaAltura = adaptarAltura(unCentro.getDomicilioCGP());
-	List servicios = adaptarServicios(unCentro.getServiciosDTO());
+	List<Servicio> servicios = adaptarServicios(unCentro.getServiciosDTO());
 	
 	CGP unCGP = new CGP(posicionCGP, unaComuna);
 	unCGP.setCalle(unaCalle);
@@ -41,7 +41,7 @@ CGP adaptarCentro(CentroDTO unCentro){
 }
 
 private List<Servicio> adaptarServicios(List<ServicioDTO> serviciosDTO) {
-	List servicios = new ArrayList<Servicio>();
+	ArrayList<Servicio> servicios = new ArrayList<Servicio>();
 	
 	serviciosDTO.stream().forEach(servDto-> servicios.add(adaptarServicioDTO(servDto)));
 	
@@ -54,14 +54,14 @@ private Servicio adaptarServicioDTO(ServicioDTO servDto) {
 	
 	List<DiaAtencion> diasAtencion = new ArrayList<DiaAtencion>();
 	
-	servDto.getRangos().stream().forEach(rango-> diasAtencion.add(adaptarRangoDTO(rango)));
+	servDto.getRangos().stream().limit((servDto.getRangos().size())).forEach(rango-> diasAtencion.add(adaptarRangoDTO(rango)));
 
 	return new Servicio(nombre, diasAtencion);
 	
 }
 
 private DiaAtencion adaptarRangoDTO(RangoServicioDTO rango) {
-	Dias unDia = Dias.values()[rango.getDia()];
+	Dias unDia = Dias.values()[rango.getDia()+1];
 	int horaApertura = (100 *rango.getHorarioDesde()) + rango.getMinutoDesde();
 	int horaCierre = (100 * rango.getHorarioHasta()) + rango.getMinutoHasta();
 	return new DiaAtencion(unDia, horaApertura, horaCierre);

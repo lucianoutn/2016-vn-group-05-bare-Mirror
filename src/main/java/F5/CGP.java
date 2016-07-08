@@ -31,6 +31,8 @@ public class CGP extends PuntoDeInteres {
 	}
 
 	public void anadirServicio(Servicio servic) {
+		if(servicios==null)
+			servicios = new ArrayList<Servicio>();
 		servicios.add(servic);
 
 	}

@@ -20,10 +20,10 @@ public class MapaTest {
 	private Mapa map;
 	private Point laPosicionDelBanco;
 	private SucursalDeBanco banco, otroBanco;
-	private CGP unCGP,otroCGP;
+	private CGP unCGP,otroCGP,anotherCGP;
 	private Point unaPosicion, puntoA, puntoB, puntoC, puntoD;
 	private Polygon unaComuna;
-	private Servicio unServicio;
+	private Servicio unServicio,otroServicio;
 	private LocalComercial unLocalComercial;
 	private ConsultorCGP consultorCGP;
 	private List<CGP> CGPs;
@@ -141,8 +141,7 @@ public class MapaTest {
 		banco.setToleranciaEnCuadras(10);
 		map.limpiarPuntosDeInteres();
 		map.anadirPOI(banco);
-		
-		
+	
 		unaPosicion = new Point(100, 0);
 		puntoA = new Point(0, 0);
 		puntoB = new Point(10, 0);
@@ -163,7 +162,18 @@ public class MapaTest {
 		unLocalComercial = new LocalComercial("Macowins", "Gaona", "3031", "Ropa", new ArrayList<DiaAtencion>(), unaPosicion);
 		map.anadirPOI(unLocalComercial);
 		
-		Assert.assertTrue(map.buscaPuntosDeInteresEnSistemaySistemasExternos("Santander","Inscripcion").contains(otroCGP));
+		unaPosicion = new Point(10, 22);
+		puntoA = new Point(0, 0);
+		puntoB = new Point(10, 0);
+		puntoC = new Point(10, 10);
+		puntoD = new Point(0, 10);
+		unaComuna = new Polygon();
+		unaComuna.add(puntoA);
+		unaComuna.add(puntoB);
+		unaComuna.add(puntoC);
+		unaComuna.add(puntoD);
+
+		Assert.assertTrue(map.buscaPuntosDeInteresEnSistemaySistemasExternos("Comuna 11","Inscripcion").contains(otroCGP));
 		
 	}
 	
@@ -197,8 +207,59 @@ public class MapaTest {
 		map.anadirPOI(unLocalComercial);
 		
 		
-		Assert.assertTrue(map.buscaPuntosDeInteresEnSistemaySistemasExternos("Santander","").contains(banco));
+		Assert.assertTrue(map.buscaPuntosDeInteresEnSistemaySistemasExternos("Santander","Recoleccion de basura").contains(banco));
 		
+	}
+	
+	
+	@Test
+	public void buscoUnCGPUbicadoEnJuninFueraDelSistemaYLoEncuentro(){
+		
+		map.limpiarPuntosDeInteres();
+			
+		Assert.assertTrue(map.buscaPuntosDeInteresEnSistemaySistemasExternos("Junin","ABL").get(0).getAltura().equals("521"));
+		//Con este test vemos que la busqueda pega contra el Mock de Sistema Externo que devuelve CGPs, por el assert contra 521
+	}
+	
+	@Test
+	public void buscoUnLocalComercialDentroDelSistemaEnMapaYLoEncuentro(){
+		
+		map.limpiarPuntosDeInteres();
+			
+		unaPosicion = new Point(100, 0);
+		puntoA = new Point(0, 0);
+		puntoB = new Point(10, 0);
+		puntoC = new Point(10, 10);
+		puntoD = new Point(0, 10);
+		unaComuna = new Polygon();
+		unaComuna.add(puntoA);
+		unaComuna.add(puntoB);
+		unaComuna.add(puntoC);
+		unaComuna.add(puntoD);
+		otroCGP = new CGP(unaPosicion, unaComuna);
+		unServicio = new Servicio("Inscripcion", new ArrayList<DiaAtencion>());
+		otroCGP.anadirServicio(unServicio);
+		otroCGP.setCalle("Junin ");
+		otroCGP.setAltura("1900");
+		map.anadirPOI(otroCGP);
+		
+		unLocalComercial = new LocalComercial("Macowins", "Gaona", "3031", "Ropa", new ArrayList<DiaAtencion>(), unaPosicion);
+		map.anadirPOI(unLocalComercial);
+		
+
+		Assert.assertTrue(map.buscaPuntosDeInteresEnSistemaySistemasExternos("Macowins","Vestimenta").contains(unLocalComercial));
+		
+	}
+	
+	@Test
+	public void buscoUnBancoLlamadoDeLaPlazaFueraDelSistemaYLoEncuentro(){
+		
+		map.limpiarPuntosDeInteres();
+		
+		SucursalDeBanco unBanco = (SucursalDeBanco)map.buscaPuntosDeInteresEnSistemaySistemasExternos("Banco de la Plaza","ABL").get(0);
+		
+		Assert.assertTrue(unBanco.getNombre().equals("Banco de la Plaza"));
+
 	}
 }
 

@@ -1,11 +1,17 @@
 package InterfacesExternas;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+
+import F5.PuntoDeInteres;
 
 public class SistemaExternoCGPMock implements ISistemaExternoCGP{
 
+	
+	private List<CentroDTO> listaDeCentrosDTO = new ArrayList<>();
 	@Override
+	
 	public List<CentroDTO> consultarCgpsDTO(String lugar) {
 		
 		List<CentroDTO> listaDeCentrosDTO = new ArrayList<CentroDTO>();
@@ -35,23 +41,4 @@ public class SistemaExternoCGPMock implements ISistemaExternoCGP{
 		
 		return listaDeCentrosDTO;
 	}
-
 }
-
-
-/*
-int: número de la comuna (ej: 3)
-string: zonas que incluye (ej. “Balvanera, San Cristóbal” para la comuna 3)
-string: nombre del director 
-string: domicilio completo del CGP (ej: Junín 521)
-string: teléfono del CGP (4375-0644/45)
-lista de “serviciosDTO”: array de servicios que contiene 
-string nombre del servicio (ej: Atención ciudadana)
-lista de “rangos servicio DTO”: Array con días de servicio que contiene 
-int: número de día de la semana (ej: 1 = Lunes, 2 = Martes, etc.)
-int: horario desde (9)
-int: minutos desde (0)
-int: horario hasta (18)
-int: minutos hasta (0)
-
-*/
