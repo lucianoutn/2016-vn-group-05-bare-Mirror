@@ -2,6 +2,7 @@ package F5;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Busqueda {
 
@@ -88,13 +89,13 @@ public class Busqueda {
 		return unaFecha.equals(fecha);
 	}
 
-	public ArrayList<PuntoDeInteres> buscoFrase(String unaFrase,Mapa unMapa) {
+	public List<PuntoDeInteres> buscoFrase(String unaFrase,Mapa unMapa) {
 		this.setFraseBuscada(unaFrase);
 		if (unaFrase == null || fraseBuscada == null)
-			return (ArrayList<PuntoDeInteres>) unMapa.getPuntosDeInteres();
+			return unMapa.getPuntosDeInteres();
 		else
 			cantResultados = (int) unMapa.cantidadDeMatcheosConPois(unaFrase);
-			return (ArrayList<PuntoDeInteres>) unMapa.buscaPuntosDeInteresEnSistemaySistemasExternos(unaFrase, null);
+			return unMapa.buscaPuntosDeInteresEnSistemaySistemasExternos(unaFrase, null);
 	}
 
 	public boolean excedioDemora() {

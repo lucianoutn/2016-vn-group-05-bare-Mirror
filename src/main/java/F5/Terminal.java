@@ -1,6 +1,7 @@
 package F5;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Terminal {
 	
@@ -25,7 +26,6 @@ public class Terminal {
 		unMapa.anadirPOI(unPoi);
 	}
 	
-	
 	public void modificarPOI(PuntoDeInteres poiAModificar, PuntoDeInteres poiModificado){
 		unMapa.eliminarPOI(poiAModificar);
 		unMapa.anadirPOI(poiModificado);
@@ -35,7 +35,11 @@ public class Terminal {
 		unMapa.eliminarPOI(unPoi);
 	}
 	
-	public ArrayList<PuntoDeInteres> buscarEnTerminal(String unaFrase,String user){
+	public Mapa getUnMapa() {
+		return unMapa;
+	}
+
+	public List<PuntoDeInteres> buscarEnTerminal(String unaFrase,String user){
 		Busqueda unaBusqueda= new Busqueda(user,nombreDeTerminal,unaFrase,listaObservadores);
 		return unaBusqueda.buscoFrase(unaFrase, unMapa);
 	}

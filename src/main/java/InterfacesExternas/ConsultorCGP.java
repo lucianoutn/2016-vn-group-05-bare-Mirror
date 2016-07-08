@@ -28,7 +28,6 @@ public class ConsultorCGP implements IConsultorCGP {
 	}
 	
 	public List<PuntoDeInteres> buscaPuntosDeInteresENCGP(String lugar) {
-		//List<CentroDTO> centrosDTO = sistemaExterno.consultarCgpsDTO(lugar);
 		List<CentroDTO> centrosDTO = consultarCgps(lugar);
 		List<CGP> cgps = adaptarCentros(centrosDTO);
 		return cgps.stream().filter(unCGP->unCGP.encuentra(lugar)).collect(Collectors.toList());

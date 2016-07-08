@@ -16,7 +16,7 @@ import InterfacesExternas.SistemaExternoCGPMock;
 public class Mapa {
 
 	// atributos
-	private static List<PuntoDeInteres> puntosDeInteres = new ArrayList<>();
+	private List<PuntoDeInteres> puntosDeInteres = new ArrayList<>();
 	private List<OrigenDeDatos> origenesDeDatos = new ArrayList<>();
 	private static List<Busqueda> busquedas = new ArrayList<Busqueda>();
 	private ConsultorBancosMock consultorDeBancos = new ConsultorBancosMock();
@@ -29,6 +29,10 @@ public class Mapa {
 		puntosDeInteres.add(poi);
 	}
 	
+	public List<PuntoDeInteres> getPOIs(){
+		return puntosDeInteres;
+	}
+	
 	public void limpiarPuntosDeInteres(){
 		puntosDeInteres.clear();
 	}
@@ -38,8 +42,8 @@ public class Mapa {
 	}
 	
 	
-	public void setPuntosDeInteres(List<PuntoDeInteres> parada101) {
-		Mapa.puntosDeInteres = parada101;
+	public void setPuntosDeInteres(List<PuntoDeInteres> pois) {
+		this.puntosDeInteres.addAll(pois);
 	}
 
 	public void eliminarPOI(PuntoDeInteres poi) {
