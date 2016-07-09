@@ -3,6 +3,7 @@ package F5;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 
 public class ResultadosPorTerminal implements NotificadorDeBusqueda {
@@ -17,11 +18,10 @@ public class ResultadosPorTerminal implements NotificadorDeBusqueda {
 		else
 			reporte.add(new ResultadoPorTerminal(unaBusqueda.getTerminal(), unaBusqueda.getCantResultados()));
 	}
-
-	public ArrayList<ResultadoPorTerminal> generarReporte(String unaTerminal){ 
+	public List<ResultadoPorTerminal> generarReporte(String unaTerminal){ 
 		if(unaTerminal==null)
 			return reporte;
 		else
-			return (ArrayList<ResultadoPorTerminal>) reporte.stream().filter( (x -> x.getUnaTerminal().equals(unaTerminal))).collect(Collectors.toList());
+			return reporte.stream().filter( (x -> x.getUnaTerminal().equals(unaTerminal))).collect(Collectors.toList());
 	}
 }

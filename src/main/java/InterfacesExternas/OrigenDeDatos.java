@@ -7,5 +7,4 @@ import F5.SucursalDeBanco;
 public interface OrigenDeDatos {
 
 	List<SucursalDeBanco> bancosQueCumplenCon(String nombreBanco, String unServicio);
-
 }

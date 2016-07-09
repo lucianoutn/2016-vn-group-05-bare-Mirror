@@ -2,17 +2,22 @@ package F5;
 
 import java.util.ArrayList;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class BusquedaTest {
+	Mapa unMapa;
 	
+	@Before
+	public void Initialize(){
+		
+	}
 	
 	@Test
 	public void buscarEnMapaVacia(){
 		
-		Busqueda unaBusqueda = new Busqueda("pepe","flores", "cgp",null);
-		Assert.assertEquals(0, unaBusqueda.getCantResultados());
 		Mapa unMapa = new Mapa();
+		Busqueda unaBusqueda = new Busqueda("pepe","flores", "cgp",null);	
 		SucursalDeBanco unaSucursalDeBanco = new SucursalDeBanco("Servicios Financieros", null, new ArrayList<DiaAtencion>());
 		unMapa.anadirPOI(unaSucursalDeBanco);
 		Assert.assertTrue(unaBusqueda.buscoFrase("Servicios Financieros", unMapa).contains(unaSucursalDeBanco));
@@ -27,8 +32,12 @@ public class BusquedaTest {
 		ArrayList<PuntoDeInteres> pois = new ArrayList<PuntoDeInteres>();
 		pois.add(parada101);
 		unMapa.setPuntosDeInteres(pois);
-		Busqueda unaBusqueda = new Busqueda("pedro","flores", "101",new ArrayList<NotificadorDeBusqueda>());
-		Assert.assertTrue(unaBusqueda.buscoFrase("101", unMapa).contains(parada101));
+		
+		Busqueda unaBusqueda = new Busqueda("pedro","flores", "101",null);
+		unaBusqueda.buscoFrase("101", unMapa);
+		
+		Assert.assertEquals(1, unaBusqueda.buscoFrase("101",unMapa).size());
+
 	}
 	
 	@Test

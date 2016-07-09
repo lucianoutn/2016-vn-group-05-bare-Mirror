@@ -3,6 +3,7 @@ package InterfacesExternas;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.uqbar.geodds.Point;
 
@@ -40,9 +41,17 @@ public class ConsultorBancosMock implements IConsultorBancos {
 		// aca me comunico con el sistema externo via Json y luego los
 		// adapto a mi modelo
 		consultarBancos(nombreBanco, unServicio);
-		return adaptarBancos();
+		List<SucursalDeBanco> bancos = filtrarBancosQueCumplenCon(adaptarBancos(), nombreBanco);
+		return bancos;
 	}
 
+	private List<SucursalDeBanco> filtrarBancosQueCumplenCon(List<SucursalDeBanco> bancos, String nombreBanco){
+		
+		List<SucursalDeBanco> bancosFiltrados = bancos.stream().filter(unBanco->unBanco.encuentra(nombreBanco)).collect(Collectors.toList());;
+
+		return bancosFiltrados; 
+	}
+	
 	private List<SucursalDeBanco> adaptarBancos() {
 		// aca hago la adaptacion de los json a nuestro modelo.
 		List<SucursalDeBanco> sucursales = new ArrayList<SucursalDeBanco>();

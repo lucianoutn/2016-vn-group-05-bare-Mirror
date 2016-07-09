@@ -7,6 +7,7 @@ import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 import F5.CGP;
 import F5.Servicio;
+import F5.SucursalDeBanco;
 import InterfacesExternas.CentroDTO;
 import InterfacesExternas.IConsultorCGP;
 import InterfacesExternas.ServicioDTO;
@@ -111,6 +112,12 @@ public class MockConsultorCGP implements IConsultorCGP {
 	private String obtenerAlturaDeDomicilio(String domicilioCGP) {
 		String unDomicilio[] = domicilioCGP.split("\\d");
 		return unDomicilio[1];	
+	}
+
+	@Override
+	public List<SucursalDeBanco> bancosQueCumplenCon(String nombreBanco, String unServicio) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

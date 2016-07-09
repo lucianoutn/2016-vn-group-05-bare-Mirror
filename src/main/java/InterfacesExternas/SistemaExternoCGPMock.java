@@ -15,6 +15,10 @@ public class SistemaExternoCGPMock implements ISistemaExternoCGP{
 	public List<CentroDTO> consultarCgpsDTO(String lugar) {
 		
 		List<CentroDTO> listaDeCentrosDTO = new ArrayList<CentroDTO>();
+		if(lugar ==null)
+			return listaDeCentrosDTO;
+		
+		
 		
 		CentroDTO unCentroDTO = new CentroDTO();
 		unCentroDTO.setNroComuna(3);

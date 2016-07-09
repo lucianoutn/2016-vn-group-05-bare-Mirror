@@ -8,7 +8,7 @@ import InterfacesExternas.IConsultorBancos;
 import InterfacesExternas.IConsultorCGP;
 
 //Sistema de Gestion de Pois
-public class GestionDePois {
+public class SGP {
 
 	public List<IConsultorCGP> consultoresCgp = new ArrayList<IConsultorCGP>();
 	public List<IConsultorBancos> consultoresBancos = new ArrayList<IConsultorBancos>();

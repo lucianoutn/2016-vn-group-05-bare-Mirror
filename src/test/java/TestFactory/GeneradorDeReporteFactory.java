@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 import org.uqbar.geodds.Point;
 
-import F5.RepositorioImpostor;
+
 import F5.Busqueda;
-import F5.GeneradorDeReporte;
+
 
 public final class GeneradorDeReporteFactory {
 
