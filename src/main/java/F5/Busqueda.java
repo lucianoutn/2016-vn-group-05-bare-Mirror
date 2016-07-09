@@ -65,7 +65,6 @@ public class Busqueda {
 		usuario = user;
 		this.terminal = terminal;
 		fraseBuscada = frase;
-		this.avisarAObservers();
 	}
 
 	private void avisarAObservers() {
@@ -94,12 +93,15 @@ public class Busqueda {
 
 	public ArrayList<PuntoDeInteres> buscoFrase(String unaFrase, Mapa unMapa) {
 		this.setFraseBuscada(unaFrase);
-		LocalTime tiempoFinBusqueda = LocalTime.now();
-		this.tiempoBusqueda = tiempoFinBusqueda.toSecondOfDay() - this.fecha.toSecondOfDay();
+
 		if (unaFrase == null || fraseBuscada == null)
 			return (ArrayList<PuntoDeInteres>) unMapa.getPuntosDeInteres();
 		else
 			cantResultados = (int) unMapa.cantidadDeMatcheosConPois(unaFrase);
+		// calculo si la busqueda se demoró o no. Lucho
+		LocalTime tiempoFinBusqueda = LocalTime.now();
+		this.tiempoBusqueda = tiempoFinBusqueda.toSecondOfDay() - this.fecha.toSecondOfDay();
+		this.avisarAObservers();
 		return (ArrayList<PuntoDeInteres>) unMapa.buscaPuntosDeInteresEnSistemaySistemasExternos(unaFrase, null);
 	}
 
