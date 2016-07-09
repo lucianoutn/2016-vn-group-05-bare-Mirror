@@ -1,20 +1,38 @@
 package F5;
 
+import java.util.Properties;
+import javax.mail.Session;
+
 public class NotificadorDeAdministrador implements NotificadorDeBusqueda {
-	static int demora;
-	public Boolean busquedaRealizada;
 
-	public void setDemora(int demora) {
-		NotificadorDeAdministrador.demora = demora;
-	}
-
+	// atributos
+	
+	
+	// métodos
+	
 	public void notificarBusqueda(Busqueda unaBusqueda) {
 
-		if (unaBusqueda.getTiempoBusqueda() > demora) {
-			// notifica al admin.
-			busquedaRealizada = true;
+		if (unaBusqueda.excedioDemora()) {
+			
+			this.enviarNotificacion();
+			
+			
 		}
 
 	}
 
+	private void enviarNotificacion(){
+		
+		String smtpHostServer = "smtp.grupoF5.com.ar";
+	    String emailID = "administrador@grupoF5.com.ar";
+	    
+	    Properties props = System.getProperties();
+
+	    props.put("mail.smtp.host", smtpHostServer);
+
+	    Session session = Session.getInstance(props, null);
+	    
+	    EmailUtil.sendEmail(session, emailID,"SimpleEmail Testing Subject", "SimpleEmail Testing Body");
+		
+	}
 }
