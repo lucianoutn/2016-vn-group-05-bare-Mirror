@@ -16,7 +16,6 @@ public class NotificadorDeAdministrador implements NotificadorDeBusqueda {
 			
 			this.enviarNotificacion();
 			
-			
 		}
 
 	}
