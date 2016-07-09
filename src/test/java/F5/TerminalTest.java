@@ -9,6 +9,11 @@ import org.junit.Test;
 import org.junit.Assert;
 import org.uqbar.geodds.Polygon;
 
+import InterfacesExternas.ConsultorBancos;
+import InterfacesExternas.ConsultorCGP;
+import InterfacesExternas.SistemaExternoBancoMock;
+import InterfacesExternas.SistemaExternoCGPMock;
+
 
 
 public class TerminalTest {
@@ -26,7 +31,10 @@ public class TerminalTest {
 	@Before
 	public void initialize(){
 		
-		unMapa = new Mapa();
+		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
+		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
+		
+		unMapa = new Mapa(consultorBanco, unConsultorCGP);
 		posicionDelBanco = new Point(10, 22);
 		unBanco = new SucursalDeBanco("Santander", posicionDelBanco, new ArrayList<DiaAtencion>());
 		posicionDelLocalComercial = new Point(22, 10);

@@ -6,6 +6,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import InterfacesExternas.ConsultorBancos;
+import InterfacesExternas.ConsultorCGP;
+import InterfacesExternas.SistemaExternoBancoMock;
+import InterfacesExternas.SistemaExternoCGPMock;
+
 public class ResultadoPorTerminalTest {
 	public ResultadosPorTerminal reporteroDeResultadosPorTerminal= new ResultadosPorTerminal();
 	public ArrayList<NotificadorDeBusqueda> listaDeUnReportero = new ArrayList<>();
@@ -13,7 +18,10 @@ public class ResultadoPorTerminalTest {
 	
 	@Before
 	public void Initialize(){
-		unMapa=new Mapa();
+		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
+		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
+		
+		unMapa = new Mapa(consultorBanco, unConsultorCGP);
 	}
 	
 	@Test

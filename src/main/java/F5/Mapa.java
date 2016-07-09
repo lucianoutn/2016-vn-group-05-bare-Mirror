@@ -6,11 +6,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import InterfacesExternas.ConsultorBancosMock;
+import InterfacesExternas.ConsultorBancos;
+
 import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.IConsultorCGP;
 import InterfacesExternas.ISistemaExternoCGP;
 import InterfacesExternas.OrigenDeDatos;
+import InterfacesExternas.SistemaExternoBancoMock;
 import InterfacesExternas.SistemaExternoCGPMock;
 
 public class Mapa {
@@ -19,22 +21,25 @@ public class Mapa {
 	private List<PuntoDeInteres> puntosDeInteres = new ArrayList<>();
 	
 	private static List<Busqueda> busquedas = new ArrayList<Busqueda>();
-	private ConsultorBancosMock consultorDeBancos = new ConsultorBancosMock();
-	private SistemaExternoCGPMock mockSistemaExternoCGP = new SistemaExternoCGPMock();
-	private ConsultorCGP consultorCGP = new ConsultorCGP(mockSistemaExternoCGP);
+	private ConsultorBancos consultorDeBancos; 
+	public ConsultorBancos getConsultorDeBancos() {
+		return consultorDeBancos;
+	}
+
+
+	public ConsultorCGP getConsultorCGP() {
+		return consultorCGP;
+	}
+
+	private ConsultorCGP consultorCGP; 
 	
 	
-
-
-	/*
-	 * ¿No esta mal que haya referencias a mocks en esta clase??? capaz
-	 * conviene armar un constructor y que se pase por parametro el sistema
-	 * externo a utilizar asi podemos pasar el sistema posta o el mock
-	 * correspondiente. Lucho.
-	 */
-
-
-
+	public Mapa(ConsultorBancos c_bancos, ConsultorCGP c_cgp){
+		consultorCGP= c_cgp;
+		consultorDeBancos = c_bancos;
+	}
+	
+	
 	public void anadirPOI(PuntoDeInteres poi) {
 		puntosDeInteres.add(poi);
 	}
@@ -105,8 +110,15 @@ public class Mapa {
 	public List<PuntoDeInteres> buscoEnSistemasExternos(String nombre, String servicio) {
 		List<PuntoDeInteres> poisExternos = new ArrayList<PuntoDeInteres>();
 		
-		addAllIfNotNull(poisExternos, consultorCGP.buscaPuntosDeInteresENCGP(nombre)); 
-		addAllIfNotNull(poisExternos, consultorDeBancos.bancosQueCumplenCon(nombre, servicio));
+		if(nombre==null){
+ 			addAllIfNotNull(poisExternos,consultorDeBancos.bancosQueCumplenCon(null, servicio));
+ 		} else if (servicio==null){
+ 			addAllIfNotNull(poisExternos,consultorCGP.buscaPuntosDeInteresENCGP(nombre));
+ 			addAllIfNotNull(poisExternos,consultorDeBancos.bancosQueCumplenCon(nombre, null));
+ 		} else {
+	 		addAllIfNotNull(poisExternos,consultorCGP.buscaPuntosDeInteresENCGP(nombre));
+	 		addAllIfNotNull(poisExternos,consultorDeBancos.bancosQueCumplenCon(nombre, servicio));
+ 		}
 		return poisExternos;
 		
 	}

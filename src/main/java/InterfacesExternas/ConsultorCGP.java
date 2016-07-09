@@ -14,8 +14,7 @@ public class ConsultorCGP implements IConsultorCGP {
 	
 	public ISistemaExternoCGP sistemaExterno;
 	
-	public SistemaExternoCGPMock sistemaExternoDeCGP = new SistemaExternoCGPMock();
-	
+
 	public ConsultorCGP(ISistemaExternoCGP sistema){
 		sistemaExterno = sistema;
 	}
@@ -25,7 +24,7 @@ public class ConsultorCGP implements IConsultorCGP {
 		//aca me comunico con el sistema externo trayendo una lista de CentroDTO. Luego los adapto y devuelvo
 		List<CentroDTO> centros = consultarCgps(lugar);
 		return adaptarCentros(centros);
-	}
+	} 
 	
 	public List<PuntoDeInteres> buscaPuntosDeInteresENCGP(String lugar) {
 		List<CentroDTO> centrosDTO = consultarCgps(lugar);

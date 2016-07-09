@@ -5,18 +5,25 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import InterfacesExternas.ConsultorBancos;
+import InterfacesExternas.ConsultorCGP;
+import InterfacesExternas.SistemaExternoBancoMock;
+import InterfacesExternas.SistemaExternoCGPMock;
+
 public class BusquedaTest {
 	Mapa unMapa;
 	
 	@Before
 	public void Initialize(){
+		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
+		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
 		
+		unMapa = new Mapa(consultorBanco, unConsultorCGP);
 	}
 	
 	@Test
 	public void buscarEnMapaVacia(){
 		
-		Mapa unMapa = new Mapa();
 		Busqueda unaBusqueda = new Busqueda("pepe","flores", "cgp",null);	
 		SucursalDeBanco unaSucursalDeBanco = new SucursalDeBanco("Servicios Financieros", null, new ArrayList<DiaAtencion>());
 		unMapa.anadirPOI(unaSucursalDeBanco);
@@ -25,8 +32,7 @@ public class BusquedaTest {
 	
 	@Test
 	public void buscarEnMapaConUnElementoYEncontrarlo(){
-		
-		Mapa unMapa = new Mapa();
+
 		unMapa.limpiarPuntosDeInteres();
 		ParadaDeColectivo parada101 = new ParadaDeColectivo("Mozart", "2500", null, "101");
 		ArrayList<PuntoDeInteres> pois = new ArrayList<PuntoDeInteres>();
@@ -42,7 +48,7 @@ public class BusquedaTest {
 	
 	@Test
 	public void buscarEnMapaConDosElementosYEncuentroUnoDeEllos(){
-		Mapa unMapa = new Mapa();
+
 		unMapa.limpiarPuntosDeInteres();
 		ParadaDeColectivo parada101 = new ParadaDeColectivo("Mozart", "2500", null, "101");
 		ArrayList<PuntoDeInteres> pois = new ArrayList<PuntoDeInteres>();

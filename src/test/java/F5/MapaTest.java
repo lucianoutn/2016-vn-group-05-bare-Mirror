@@ -11,7 +11,9 @@ import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
 import InterfacesExternas.CentroDTO;
+import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;
+import InterfacesExternas.SistemaExternoBancoMock;
 import InterfacesExternas.SistemaExternoCGPMock;
 import TestFactory.LocalComercialFactory;
 
@@ -25,18 +27,21 @@ public class MapaTest {
 	private Polygon unaComuna;
 	private Servicio unServicio,otroServicio;
 	private LocalComercial unLocalComercial;
-	private ConsultorCGP consultorCGP;
+	
 	private List<CGP> CGPs;
 	private CentroDTO unCentroDTO;
 	private List<CentroDTO> centrosDTO;
-	private ConsultorCGP unConsultorCGP;
+	
 	
 	@Before
 	//private PuntoDeInteres poi;
 	public void Initialize(){
-	map = new Mapa();
+	ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
+	ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
 	
-	unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
+	map = new Mapa(consultorBanco, unConsultorCGP);
+	
+	
 	
 	unCentroDTO = new CentroDTO();
 	unCentroDTO.setNroComuna(1);

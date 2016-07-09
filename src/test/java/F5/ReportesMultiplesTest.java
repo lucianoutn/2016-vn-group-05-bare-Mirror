@@ -7,6 +7,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import InterfacesExternas.ConsultorBancos;
+import InterfacesExternas.ConsultorCGP;
+import InterfacesExternas.SistemaExternoBancoMock;
+import InterfacesExternas.SistemaExternoCGPMock;
+
 public class ReportesMultiplesTest {
 	public BusquedasPorFecha reporteroDeBusquedas = new BusquedasPorFecha();
 	public ArrayList<NotificadorDeBusqueda> listaDeDosReporteros = new ArrayList<>();
@@ -16,7 +21,9 @@ public class ReportesMultiplesTest {
 	public void initialize() {
 		listaDeDosReporteros.add(reporteroDeBusquedas);
 		listaDeDosReporteros.add(reporteroDeResultadosPorTerminal);
-		unMapa=new Mapa();
+		ConsultorBancos consultorBancos = new ConsultorBancos(new SistemaExternoBancoMock());
+		ConsultorCGP consultorCgp = new ConsultorCGP(new SistemaExternoCGPMock());
+		unMapa=new Mapa(consultorBancos, consultorCgp);
 	}
 	
 	

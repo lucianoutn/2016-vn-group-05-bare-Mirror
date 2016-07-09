@@ -6,8 +6,10 @@ import java.util.List;
 public class Terminal {
 	
 	private String nombreDeTerminal;
-	private Mapa unMapa = new Mapa();
+	private Mapa unMapa ;
 	private ArrayList<NotificadorDeBusqueda> listaObservadores= new ArrayList<>();
+	
+	
 	
 	public Terminal(String nombreTerminal, Mapa map){
 		nombreDeTerminal=nombreTerminal;

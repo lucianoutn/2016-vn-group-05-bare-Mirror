@@ -8,6 +8,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.omg.CORBA.INITIALIZE;
 
+import InterfacesExternas.ConsultorBancos;
+import InterfacesExternas.ConsultorCGP;
+import InterfacesExternas.SistemaExternoBancoMock;
+import InterfacesExternas.SistemaExternoCGPMock;
+
 
 public class BusquedasPorFechaTest {
 	public BusquedasPorFecha reporteroDeBusquedas= new BusquedasPorFecha();
@@ -16,8 +21,11 @@ public class BusquedasPorFechaTest {
 	
 	@Before
 	public void Initialize(){
+		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
+		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
 		
-		unMapa = new Mapa();
+		unMapa = new Mapa(consultorBanco, unConsultorCGP);
+		
 		
 	}
 
