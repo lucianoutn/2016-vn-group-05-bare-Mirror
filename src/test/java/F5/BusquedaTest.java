@@ -4,17 +4,21 @@ import java.awt.List;
 import java.util.ArrayList;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class BusquedaTest {
+	Mapa unMapa;
 	
-	
+	@Before
+	public void Initialize(){
+		
+	}
 	
 	@Test
 	public void buscarEnMapaVacia(){
 		Busqueda unaBusqueda = new Busqueda("pepe","flores", "cgp",null);
 		Assert.assertEquals(0, unaBusqueda.getCantResultados());
-		Mapa unMapa = new Mapa();
 	}
 	
 	@Test
@@ -22,12 +26,13 @@ public class BusquedaTest {
 		
 		Mapa unMapa = new Mapa();
 		unMapa.limpiarPuntosDeInteres();
-		ParadaDeColectivo parada101 = new ParadaDeColectivo("Mozart", "2500", null, "101");
+		//ParadaDeColectivo parada101 = new ParadaDeColectivo("Mozart", "2500", null, "101");
 		ArrayList<PuntoDeInteres> pois = new ArrayList<PuntoDeInteres>();
-		pois.add(parada101);
+		//pois.add(parada101);
 		unMapa.setPuntosDeInteres(pois);
 		
 		Busqueda unaBusqueda = new Busqueda("pedro","flores", "101",null);
+		unaBusqueda.buscoFrase("101", unMapa);
 		Assert.assertEquals(1, unaBusqueda.buscoFrase("101",unMapa).size());
 	}
 	
