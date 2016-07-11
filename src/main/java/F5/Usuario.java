@@ -11,6 +11,10 @@ public class Usuario {
 	
 	private List<AccionPostBusqueda> accionesRealizables = new ArrayList<AccionPostBusqueda>();
 	
+	public List<AccionPostBusqueda> getAccionesRealizables() {
+		return accionesRealizables;
+	}
+
 	public Usuario(String unNombre){
 		nombre=unNombre;
 	}
@@ -21,10 +25,16 @@ public class Usuario {
 	}
 
 	public void agregarAcciones(List<AccionPostBusqueda> acciones) {
-		accionesRealizables.addAll(acciones);		
+		if(acciones!=null)
+			accionesRealizables.addAll(acciones);		
+	}
+	
+	public void agregarAccion(AccionPostBusqueda unaAccion){
+		accionesRealizables.add(unaAccion);
 	}
 
 	public void quitarAcciones(List<AccionPostBusqueda> acciones) {
-		accionesRealizables.removeAll(acciones);
+		if(acciones!=null)
+			accionesRealizables.removeAll(acciones);
 	}
 }
