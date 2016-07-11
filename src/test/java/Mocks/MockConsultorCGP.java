@@ -6,6 +6,7 @@ import java.util.regex.*;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 import F5.CGP;
+import F5.Comuna;
 import F5.Servicio;
 import F5.SucursalDeBanco;
 import InterfacesExternas.CentroDTO;
@@ -19,11 +20,11 @@ public class MockConsultorCGP implements IConsultorCGP {
 	public List<CGP> cgpUbicadasEn(String lugar) {
 		List<CGP> cgps = new ArrayList<CGP>();
 		
-		CGP unCgp = new CGP(PointFactory.PuntoMuyGrande(), new Polygon());
+		CGP unCgp = new CGP(PointFactory.PuntoMuyGrande(), new Comuna((Integer) null,new Polygon()));
 		unCgp.setCalle(lugar);
 		cgps.add(unCgp);
 		
-		CGP otroCgp = new CGP(PointFactory.LejosBancoSantander(), new Polygon());
+		CGP otroCgp = new CGP(PointFactory.LejosBancoSantander(), new Comuna((Integer) null,new Polygon()));
 		unCgp.setCalle(lugar);
 		cgps.add(otroCgp);
 		
@@ -36,7 +37,7 @@ public class MockConsultorCGP implements IConsultorCGP {
 		
 		//Creo la instancia de CGP que voy a completar con los datos que vienen del sistema externo
 		//y agregar a la lista de CGPs
-		CGP unCGP = new CGP(PointFactory.PuntoOrigen(),new Polygon());
+		CGP unCGP = new CGP(PointFactory.PuntoOrigen(),new Comuna((Integer) null,new Polygon()));
 		
 		//Mapeo la Comuna. Actualmente Hardcodeado. Ver el metodo para mas detalle
 		mapearComuna(unCentro,unCGP);
@@ -96,12 +97,12 @@ public class MockConsultorCGP implements IConsultorCGP {
 		return unServicioDTO.getNombre();
 	}
 
-	private Polygon buscarComuna(int nroComuna) {
+	private Comuna buscarComuna(int nroComuna) {
 		// TODO Mas adelante, desarrollar el metodo que recorre la lista de comunas y las reconoce por numero de comuna
 		Point unPuntoHardcodeado = new Point(0,0);
 		Polygon unPolygonHardcodeado = new Polygon();
 		unPolygonHardcodeado.add(unPuntoHardcodeado);
-		return unPolygonHardcodeado;
+		return new Comuna(nroComuna, unPolygonHardcodeado);
 	}
 	
 	private String obtenerCalleDeDomicilio(String domicilioCGP) {

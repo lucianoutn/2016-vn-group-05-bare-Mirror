@@ -43,7 +43,7 @@ public class TerminalTest {
 		posicionDelCGP = new Point(40,53);
 		puntoADeLaComuna = new Point(1,1);
 		puntoBDeLaComuna = new Point(2,2);
-		unCGP = new CGP(posicionDelCGP, comunaDelCGP);
+		unCGP = new CGP(posicionDelCGP, new Comuna(1,comunaDelCGP));
 		
 	}
 	

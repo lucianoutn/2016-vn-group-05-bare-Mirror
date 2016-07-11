@@ -9,9 +9,9 @@ public class LocalComercial extends PuntoDeInteres {
 
 	private String rubro;
 	private String nombre;
-	private ArrayList<String> palabrasClaves= new ArrayList<>();
+	private List<String> palabrasClaves= new ArrayList<>();
 	
-	public void agregarPalabrasClaves(ArrayList<String> palabras){
+	public void agregarPalabrasClaves(List<String> palabras){
 		palabrasClaves= palabras;
 	}
 	

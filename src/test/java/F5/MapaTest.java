@@ -79,7 +79,7 @@ public class MapaTest {
 	unaComuna.add(puntoB);
 	unaComuna.add(puntoC);
 	unaComuna.add(puntoD);
-	otroCGP = new CGP(unaPosicion, unaComuna);
+	otroCGP = new CGP(unaPosicion, new Comuna(1,unaComuna));
 	
 	laPosicionDelBanco = new Point(0, 0);
 	SucursalDeBanco otroBanco = new SucursalDeBanco("Santander", laPosicionDelBanco, new ArrayList<DiaAtencion>());
@@ -103,7 +103,7 @@ public class MapaTest {
 	unaComuna.add(puntoB);
 	unaComuna.add(puntoC);
 	unaComuna.add(puntoD);
-	otroCGP = new CGP(unaPosicion, unaComuna);
+	otroCGP = new CGP(unaPosicion, new Comuna(1,unaComuna));
 	
 	laPosicionDelBanco = new Point(0, 0);
 	SucursalDeBanco otroBanco = new SucursalDeBanco("Santander", laPosicionDelBanco, new ArrayList<DiaAtencion>());
@@ -155,7 +155,7 @@ public class MapaTest {
 		unaComuna.add(puntoB);
 		unaComuna.add(puntoC);
 		unaComuna.add(puntoD);
-		otroCGP = new CGP(unaPosicion, unaComuna);
+		otroCGP = new CGP(unaPosicion, new Comuna(1,unaComuna));
 		unServicio = new Servicio("Inscripcion", new ArrayList<DiaAtencion>());
 		otroCGP.anadirServicio(unServicio);
 		otroCGP.setCalle("Callao");
@@ -199,7 +199,7 @@ public class MapaTest {
 		unaComuna.add(puntoB);
 		unaComuna.add(puntoC);
 		unaComuna.add(puntoD);
-		otroCGP = new CGP(unaPosicion, unaComuna);
+		otroCGP = new CGP(unaPosicion, new Comuna(1,unaComuna));
 		unServicio = new Servicio("Inscripcion", new ArrayList<DiaAtencion>());
 		otroCGP.anadirServicio(unServicio);
 		otroCGP.setCalle("Callao");
@@ -239,7 +239,7 @@ public class MapaTest {
 		unaComuna.add(puntoB);
 		unaComuna.add(puntoC);
 		unaComuna.add(puntoD);
-		otroCGP = new CGP(unaPosicion, unaComuna);
+		otroCGP = new CGP(unaPosicion, new Comuna(1,unaComuna));
 		unServicio = new Servicio("Inscripcion", new ArrayList<DiaAtencion>());
 		otroCGP.anadirServicio(unServicio);
 		otroCGP.setCalle("Junin ");

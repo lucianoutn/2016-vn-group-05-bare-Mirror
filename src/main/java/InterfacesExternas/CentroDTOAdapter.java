@@ -7,6 +7,7 @@ import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
 import F5.CGP;
+import F5.Comuna;
 import F5.DiaAtencion;
 import F5.Dias;
 import F5.Servicio;
@@ -31,9 +32,8 @@ CGP adaptarCentro(CentroDTO unCentro){
 	String unaAltura = adaptarAltura(unCentro.getDomicilioCGP());
 	List<Servicio> servicios = adaptarServicios(unCentro.getServiciosDTO());
 	
-	CGP unCGP = new CGP(posicionCGP, unaComuna);
+	CGP unCGP = new CGP(posicionCGP, new Comuna( 1,unaComuna));
 	unCGP.setCalle(unaCalle);
-	unCGP.setComuna(unaComuna);
 	unCGP.setAltura(unaAltura);
 	unCGP.setServicios(servicios);
 	

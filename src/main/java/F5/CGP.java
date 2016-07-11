@@ -8,12 +8,9 @@ import org.uqbar.geodds.Polygon;
 
 public class CGP extends PuntoDeInteres {
 
-	private Polygon comuna;
+	private Comuna comuna;
 	
-	public Polygon getComuna() {
-		return comuna;
-	}
-
+	
 	private List<Servicio> servicios = new ArrayList<>();
 	
 	
@@ -25,7 +22,7 @@ public class CGP extends PuntoDeInteres {
 		return servicios;
 	}
 
-	public CGP(Point point, Polygon unaComuna) {
+	public CGP(Point point, Comuna unaComuna) {
 		comuna = unaComuna;
 		posicion = point;
 	}
@@ -50,7 +47,7 @@ public class CGP extends PuntoDeInteres {
 
 	@Override
 	public boolean estaCerca(Point point) {
-		return comuna.isInside(point);
+		return comuna.getComuna().isInside(point);
 	}
 
 	@Override
@@ -62,8 +59,8 @@ public class CGP extends PuntoDeInteres {
 		return calle.equals(textoLibre);
 	}
 	
-	public void setComuna(Polygon unPolygon) {
-		this.comuna = unPolygon;
+	public void setComuna(Comuna comuna) {
+		this.comuna = comuna;
 	}
 
 }

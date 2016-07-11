@@ -31,7 +31,7 @@ public class CPGTest {
 		unaComuna.add(puntoB);
 		unaComuna.add(puntoC);
 		unaComuna.add(puntoD);
-		unCGP = new CGP(unaPosicion, unaComuna);
+		unCGP = new CGP(unaPosicion, new Comuna(1,unaComuna));
 
 	}
 

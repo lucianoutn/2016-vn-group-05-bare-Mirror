@@ -21,6 +21,9 @@ public class ProcesoSobreUsuario implements ProcesoSobrePOIS {
 		usuarios=RepositorioDeUsuarios.getUsuarios();
 	}
 	
+	public ProcesoSobreUsuario(Comuna comuna){
+		
+	}
 	public void ejecutar(){
 		this.agregarAccionesAUsuario(accionesParaAgregar);
 		this.quitarAccionesAUsuario(accionesParaQuitar);

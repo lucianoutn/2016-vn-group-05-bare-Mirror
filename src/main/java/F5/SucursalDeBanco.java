@@ -10,10 +10,10 @@ import org.uqbar.geodds.Point;
 
 public class SucursalDeBanco extends PuntoDeInteres {
 
-	// atributos
+
 	private String nombre;
 	
-	// metodos
+
 	public SucursalDeBanco(String unNombre, Point unaPosicion, List<DiaAtencion> diasDeAtencion) {
 		nombre = unNombre;
 		posicion = unaPosicion;
