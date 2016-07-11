@@ -15,8 +15,8 @@ public class ProcesoSobreLocalComercialTest {
 	public void Initialize(){
 		
 		
-		ProcesoLocalAhora = new ProcesoSobreLocalComercialMock(LocalDate.now(), "/rutaFalsa.txt", new RepositorioDePOIs(null, null));
-		ProcesoLocalTarde = new ProcesoSobreLocalComercialMock(LocalDate.of(2000, 04,30), "/rutaFalsa.txt", new RepositorioDePOIs(null, null));
+		ProcesoLocalAhora = new ProcesoSobreLocalComercialMock(LocalDate.now(), "/rutaFalsa.txt", new RepositorioDePOIs(null, null),1);
+		ProcesoLocalTarde = new ProcesoSobreLocalComercialMock(LocalDate.of(2000, 04,30), "/rutaFalsa.txt", new RepositorioDePOIs(null, null),1 );
 		
 	}
 	
