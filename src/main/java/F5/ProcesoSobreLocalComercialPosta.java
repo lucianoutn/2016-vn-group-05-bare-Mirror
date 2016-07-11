@@ -26,7 +26,7 @@ public class ProcesoSobreLocalComercialPosta implements ProcesoSobreLocalComerci
 	}
 
 	public void ejecutar() {
-
+		if( LocalDate.now().equals(fecha))
 		this.actualizarLocalComercial();
 	}
 

@@ -17,7 +17,7 @@ public class ProcesoSobreLocalComercialMock implements ProcesoSobreLocalComercia
 	}
 
 	public void ejecutar() {
-
+		if( LocalDate.now().equals(fecha))
 		this.actualizarLocalComercial();
 	}
 	
