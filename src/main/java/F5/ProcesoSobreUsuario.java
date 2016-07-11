@@ -2,7 +2,7 @@ package F5;
 
 import F5.ProcesoSobrePOIS;
 
-public class ProcesoSobreUsuario extends ProcesoSobrePOIS {
+public class ProcesoSobreUsuario implements ProcesoSobrePOIS {
 	
 	//TODO armar constructor con las cosas que sean necesarias mandarle
 	

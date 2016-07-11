@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import InterfacesExternas.IConsultorBancos;
 import InterfacesExternas.IConsultorCGP;
 
-//Sistema de Gestion de Pois
+//Sistema de Gestion de Pois. Se tiene que ir TODO
 public class SGP {
 
 	public List<IConsultorCGP> consultoresCgp = new ArrayList<IConsultorCGP>();

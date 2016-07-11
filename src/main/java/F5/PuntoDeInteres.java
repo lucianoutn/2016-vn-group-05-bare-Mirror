@@ -1,11 +1,16 @@
 package F5;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.uqbar.geodds.Point;
 
 public abstract class  PuntoDeInteres {
+	
+	public void agregarPalabrasClaves(ArrayList<String> palabras){
+		
+	}
 
 	protected String calle;
 	public String getCalle() {

@@ -8,7 +8,7 @@ import org.uqbar.geodds.Point;
 
 import F5.ProcesoSobrePOIS;
 
-public class ProcesoDeBajaPOI extends ProcesoSobrePOIS {
+public class ProcesoDeBajaPOI implements ProcesoSobrePOIS {
 
 	private List<PuntoDeInteres> puntosDeInteresParaBajas = new ArrayList<>();
 	private RepositorioDePOIs mapa;
