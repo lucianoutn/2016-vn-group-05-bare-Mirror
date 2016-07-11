@@ -12,7 +12,7 @@ import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.SistemaExternoBancoMock;
 import InterfacesExternas.SistemaExternoCGPMock;
 
-public class AccionesSobreUsuarioTest {
+public class ProcesoAccionesSobreUsuarioTest {
 
 	
 	private Usuario unUsuario;
