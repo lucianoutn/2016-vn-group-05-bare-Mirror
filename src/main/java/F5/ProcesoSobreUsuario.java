@@ -5,7 +5,7 @@ import java.util.List;
 
 import F5.ProcesoSobrePOIS;
 
-public class ProcesoSobreUsuario extends ProcesoSobrePOIS {
+public class ProcesoSobreUsuario implements ProcesoSobrePOIS {
 	
 	private List<Usuario> usuarios = new ArrayList<Usuario>();
 	private List<AccionPostBusqueda> accionesParaAgregar = new ArrayList<AccionPostBusqueda>();

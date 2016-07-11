@@ -1,17 +1,25 @@
 package F5;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import org.uqbar.geodds.Point;
 
 public abstract class  PuntoDeInteres {
+
 	public PuntoDeInteres(){
 		Id = UUID.randomUUID().toString();
 	}
 	
 	public String Id;
+
+	
+	public void agregarPalabrasClaves(List<String> palabras){
+		
+	}
+
 
 	protected String calle;
 	public String getCalle() {
