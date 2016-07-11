@@ -7,16 +7,19 @@ import java.util.List;
 import org.uqbar.geodds.Point;
 
 import F5.ProcesoSobrePOIS;
+import InterfacesExternas.IBajaPoi;
 
 public class ProcesoDeBajaPOI extends ProcesoSobrePOIS {
 
 	private List<PuntoDeInteres> puntosDeInteresParaBajas = new ArrayList<>();
 	private RepositorioDePOIs mapa;
+	private IBajaPoi servicioBaja;
 	// TODO para mi en el constructor iria la fecha de la baja.
 	// tmb hay q poner la instancia de mapa que tiene el repo
 
-	public ProcesoDeBajaPOI(RepositorioDePOIs mapa, LocalDate fecha) {
+	public ProcesoDeBajaPOI(RepositorioDePOIs mapa, LocalDate fecha, IBajaPoi servicio) {
 		this.mapa = mapa;
+		servicioBaja = servicio;
 	}
 
 	public void ejecutar() {
@@ -25,8 +28,7 @@ public class ProcesoDeBajaPOI extends ProcesoSobrePOIS {
 	}
 
 	public void pedirBajas() {
-		// TODO usa un servicio REST que devuelve los POIS (alguna forma de
-		// identificarlo y la fecha en la que le tenemos que dar la baja
+		puntosDeInteresParaBajas = servicioBaja.poisADarDeBaja(); // el mock de rest esta devolviendo una lista vacia
 
 	}
 

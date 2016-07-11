@@ -2,10 +2,16 @@ package F5;
 
 
 import java.util.List;
+import java.util.UUID;
 
 import org.uqbar.geodds.Point;
 
 public abstract class  PuntoDeInteres {
+	public PuntoDeInteres(){
+		Id = UUID.randomUUID().toString();
+	}
+	
+	public String Id;
 
 	protected String calle;
 	public String getCalle() {
@@ -46,6 +52,12 @@ public abstract class  PuntoDeInteres {
 	
 	protected int cuadrasDeDistancia(Point point) {
 		return (int) Math.abs(posicion.distance(point)/100);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		
+		return this.Id.equals(((PuntoDeInteres)obj).Id);
 	}
 	
 }
