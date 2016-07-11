@@ -18,7 +18,13 @@ public class ProcesoSobreLocalComercialPosta implements ProcesoSobreLocalComerci
 	private LocalDate fecha;
 	private File archivo;
 	private RepositorioDePOIs unMapa;
-
+	private boolean localesComercialesActualizados= false;
+	
+	public boolean isLocalesComercialesActualizados() {
+		return localesComercialesActualizados;
+	}
+	
+	
 	public ProcesoSobreLocalComercialPosta(LocalDate horarioDeEjecucion, String rutaArchivo, RepositorioDePOIs map) {
 		ruta = rutaArchivo;
 		unMapa = map;
@@ -34,6 +40,7 @@ public class ProcesoSobreLocalComercialPosta implements ProcesoSobreLocalComerci
 		archivo = new File(ruta);
 		FileReader lector = null;
 		String linea;
+		localesComercialesActualizados=true;
 		try {
 			lector = new FileReader(archivo);
 			BufferedReader br = new BufferedReader(lector);

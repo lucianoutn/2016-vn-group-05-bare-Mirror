@@ -6,9 +6,14 @@ import java.time.LocalDate;
 public class ProcesoSobreLocalComercialMock implements ProcesoSobreLocalComercial {
 	private String ruta;
 	private LocalDate fecha;
-	private File archivo;
 	private RepositorioDePOIs unMapa;
-	private boolean localesComercialesActualizados;
+	private boolean localesComercialesActualizados= false;
+
+	
+	
+	public boolean isLocalesComercialesActualizados() {
+		return localesComercialesActualizados;
+	}
 
 	public ProcesoSobreLocalComercialMock(LocalDate horarioDeEjecucion, String rutaArchivo, RepositorioDePOIs map) {
 		ruta = rutaArchivo;
