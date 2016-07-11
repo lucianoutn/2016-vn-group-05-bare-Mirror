@@ -72,5 +72,15 @@ public class ProcesoAccionesSobreUsuarioTest {
 		Assert.assertTrue(unProceso.getUsuarios().size() == 1);
 	}
 	
+	@Test
+	public void dosUsuariosEnElProcesoQueSeCreaParaTodosLosUsuariosDelSistema(){
+		
+		RepositorioDeUsuarios.usuarios = new ArrayList<Usuario>();
+		RepositorioDeUsuarios.addUsuario(unUsuario);
+		RepositorioDeUsuarios.addUsuario(otroUsuario);
+		ProcesoSobreUsuario unProceso = new ProcesoSobreUsuario();
+		Assert.assertTrue(unProceso.getUsuarios().size() == 2);
+	}
+	
 
 }
