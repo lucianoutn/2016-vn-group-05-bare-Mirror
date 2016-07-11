@@ -19,16 +19,18 @@ public class ProcesoSobreLocalComercialPosta implements ProcesoSobreLocalComerci
 	private File archivo;
 	private RepositorioDePOIs unMapa;
 	private boolean localesComercialesActualizados= false;
+	private int horarioPlanificacion;
 	
 	public boolean isLocalesComercialesActualizados() {
 		return localesComercialesActualizados;
 	}
 	
 	
-	public ProcesoSobreLocalComercialPosta(LocalDate horarioDeEjecucion, String rutaArchivo, RepositorioDePOIs map) {
+	public ProcesoSobreLocalComercialPosta(LocalDate horarioDeEjecucion, String rutaArchivo, RepositorioDePOIs map, int horaPlanificacion) {
 		ruta = rutaArchivo;
 		unMapa = map;
 		fecha = horarioDeEjecucion;
+		horarioDeEjecucion = horarioDeEjecucion;
 	}
 
 	public void ejecutar() {
@@ -80,5 +82,12 @@ public class ProcesoSobreLocalComercialPosta implements ProcesoSobreLocalComerci
 		
 	}
 
+	
+	@Override
+	public void anteCambioDeHorario(int horario) {
+		if(horario == horarioPlanificacion)
+			ejecutar();
+		
+	}
 
 }

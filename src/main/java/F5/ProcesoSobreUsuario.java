@@ -15,11 +15,13 @@ public class ProcesoSobreUsuario implements ProcesoSobrePOIS {
 
 	private List<AccionPostBusqueda> accionesParaAgregar = new ArrayList<AccionPostBusqueda>();
 	private List<AccionPostBusqueda> accionesParaQuitar = new ArrayList<AccionPostBusqueda>();
+	private int horarioPlanificacion;
 	
-	public ProcesoSobreUsuario(List<Usuario> algunosUsuarios, List<AccionPostBusqueda> accionesAAgregar, List<AccionPostBusqueda> accionesAQuitar){
+	public ProcesoSobreUsuario(List<Usuario> algunosUsuarios, List<AccionPostBusqueda> accionesAAgregar, List<AccionPostBusqueda> accionesAQuitar, int horaPlanificacion){
 		usuarios=algunosUsuarios;
 		accionesParaAgregar=accionesAAgregar;
 		accionesParaQuitar=accionesAQuitar;
+		horarioPlanificacion = horaPlanificacion;
 	}
 	
 	public ProcesoSobreUsuario(){
@@ -44,6 +46,13 @@ public class ProcesoSobreUsuario implements ProcesoSobrePOIS {
 	
 	public void quitarAccionesAUsuario(List<AccionPostBusqueda> acciones){
 		usuarios.forEach(usuario->usuario.quitarAcciones(acciones));
+	}
+	
+	@Override
+	public void anteCambioDeHorario(int horario) {
+		if(horario == horarioPlanificacion)
+			ejecutar();
+		
 	}
 
 }

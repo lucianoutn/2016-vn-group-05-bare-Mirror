@@ -50,7 +50,7 @@ public class ProcesoAccionesSobreUsuarioTest {
 	
 	@Test
 	public void seAgregaUnaAccionQueImprimeCorrectamente(){
-		unProcesoSobreUsuario = new ProcesoSobreUsuario(usuarios, acciones, null);
+		unProcesoSobreUsuario = new ProcesoSobreUsuario(usuarios, acciones, null, 1);
 		unProcesoSobreUsuario.ejecutar();
 		Assert.assertEquals(1,unUsuario.getAccionesRealizables().size());
 	}

@@ -13,14 +13,16 @@ public class ProcesoDeBajaPOI implements ProcesoSobrePOIS {
 
 	private List<PuntoDeInteres> puntosDeInteresParaBajas = new ArrayList<>();
 	private RepositorioDePOIs repoDePOIs;
+	private int horarioPlanificacion;
 	
 	private IBajaPoi servicioBaja;
 	// TODO para mi en el constructor iria la fecha de la baja.
 	// tmb hay q poner la instancia de mapa que tiene el repo
 
-	public ProcesoDeBajaPOI(RepositorioDePOIs mapa, LocalDate fecha, IBajaPoi servicio) {
+	public ProcesoDeBajaPOI(RepositorioDePOIs mapa, LocalDate fecha, IBajaPoi servicio, int horaPlanificacion) {
 		this.repoDePOIs = mapa;
 		servicioBaja = servicio;
+		horarioPlanificacion = horaPlanificacion;
 	}
 	
 	public RepositorioDePOIs getRepoDePOIs() {
@@ -43,5 +45,13 @@ public class ProcesoDeBajaPOI implements ProcesoSobrePOIS {
 	public void darDeBajaAPOI() {
 		this.puntosDeInteresParaBajas.forEach(poi -> repoDePOIs.eliminarPOI(poi));
 	}
+
+	@Override
+	public void anteCambioDeHorario(int horario) {
+		if(horario == horarioPlanificacion)
+			ejecutar();
+		
+	}
+	
 
 }

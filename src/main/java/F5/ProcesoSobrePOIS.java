@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import F5.RepositorioDePOIs;//emi: usamos el mapa de repo ahora? lucho
 
 
-public interface ProcesoSobrePOIS {//quizá habría que mandar el repositorio impostor al ejecutar
+public interface ProcesoSobrePOIS extends INotificarCambioHorario{
 	
 	public void ejecutar();
 	

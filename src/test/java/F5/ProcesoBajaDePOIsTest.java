@@ -49,7 +49,7 @@ public class ProcesoBajaDePOIsTest {
 		
 		mockRESTBajaPOIs = new BajaPoisRestMock(unRepositorioDePOIs);
 
-		procesoDeBajaPOI = new ProcesoDeBajaPOI(otroRepositorioDePOIs, LocalDate.now(), mockRESTBajaPOIs);
+		procesoDeBajaPOI = new ProcesoDeBajaPOI(otroRepositorioDePOIs, LocalDate.now(), mockRESTBajaPOIs, 1);
 				
 	}
 	

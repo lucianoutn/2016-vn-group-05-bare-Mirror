@@ -3,12 +3,12 @@ package F5;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Terminal {
+public class Terminal implements INotificarCambioHorario {
 	
 	private String nombreDeTerminal;
 	private RepositorioDePOIs unMapa ;
 	private List<NotificadorDeBusqueda> listaObservadores= new ArrayList<NotificadorDeBusqueda>();
-	private List<ProcesoSobrePOIS> procesosBatch =  new ArrayList<ProcesoSobrePOIS>();	
+	private List<INotificarCambioHorario> procesosBatch =  new ArrayList<INotificarCambioHorario>();	
 	
 	public Terminal(String nombreTerminal, RepositorioDePOIs map){
 		nombreDeTerminal=nombreTerminal;
@@ -44,4 +44,12 @@ public class Terminal {
 		Busqueda unaBusqueda= new Busqueda(new Usuario(user, null),nombreDeTerminal,unaFrase,listaObservadores);
 		return unaBusqueda.buscoFrase(unaFrase, unMapa);
 	}
+
+	@Override
+	public void anteCambioDeHorario(int horario) {
+		procesosBatch.forEach(proceso-> proceso.anteCambioDeHorario(horario));
+		
+	}
+	
+	
 }

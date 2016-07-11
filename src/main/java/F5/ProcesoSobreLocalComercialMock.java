@@ -8,6 +8,7 @@ public class ProcesoSobreLocalComercialMock implements ProcesoSobreLocalComercia
 	private LocalDate fecha;
 	private RepositorioDePOIs unMapa;
 	private boolean localesComercialesActualizados= false;
+	private int horarioPlanificacion;
 
 	
 	
@@ -15,7 +16,8 @@ public class ProcesoSobreLocalComercialMock implements ProcesoSobreLocalComercia
 		return localesComercialesActualizados;
 	}
 
-	public ProcesoSobreLocalComercialMock(LocalDate horarioDeEjecucion, String rutaArchivo, RepositorioDePOIs map) {
+	public ProcesoSobreLocalComercialMock(LocalDate horarioDeEjecucion, String rutaArchivo, RepositorioDePOIs map, int horaPlanificacion) {
+		horarioDeEjecucion = horarioDeEjecucion;
 		ruta = rutaArchivo;
 		unMapa = map;
 		fecha = horarioDeEjecucion;
@@ -28,6 +30,13 @@ public class ProcesoSobreLocalComercialMock implements ProcesoSobreLocalComercia
 	
 	public void actualizarLocalComercial(){
 		localesComercialesActualizados=true;
+		
+	}
+	
+	@Override
+	public void anteCambioDeHorario(int horario) {
+		if(horario == horarioPlanificacion)
+			ejecutar();
 		
 	}
 
