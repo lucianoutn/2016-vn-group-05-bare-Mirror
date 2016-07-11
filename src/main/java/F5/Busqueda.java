@@ -104,7 +104,7 @@ public class Busqueda {
 		LocalTime tiempoFinBusqueda = LocalTime.now();
 		this.tiempoBusqueda = tiempoFinBusqueda.toSecondOfDay() - this.fecha.toSecondOfDay();
 		this.avisarAObservers();
-		
+		this.usuario.ejecutarAcciones();
 		return unMapa.buscaPuntosDeInteresEnSistemaySistemasExternos(unaFrase, null);
 	}
 

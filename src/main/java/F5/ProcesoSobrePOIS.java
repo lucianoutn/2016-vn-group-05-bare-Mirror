@@ -13,8 +13,5 @@ public class ProcesoSobrePOIS {//quizá habría que mandar el repositorio impost
 	}
 	
 	
-	public void agregarAccionesAUsuarios(){
-		//TODO acá si que estoy perdido con qué hacer.
-	}
-	
+
 }

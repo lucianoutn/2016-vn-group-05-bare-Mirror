@@ -1,18 +1,38 @@
 package F5;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import F5.ProcesoSobrePOIS;
 
 public class ProcesoSobreUsuario extends ProcesoSobrePOIS {
 	
-	//TODO armar constructor con las cosas que sean necesarias mandarle
+	private List<Usuario> usuarios = new ArrayList<Usuario>();
+	private List<AccionPostBusqueda> accionesParaAgregar = new ArrayList<AccionPostBusqueda>();
+	private List<AccionPostBusqueda> accionesParaQuitar = new ArrayList<AccionPostBusqueda>();
+	
+	public ProcesoSobreUsuario(List<Usuario> algunosUsuarios, List<AccionPostBusqueda> accionesAAgregar, List<AccionPostBusqueda> accionesAQuitar){
+		usuarios=algunosUsuarios;
+		accionesParaAgregar=accionesAAgregar;
+		accionesParaQuitar=accionesAQuitar;
+	}
+	
+	public ProcesoSobreUsuario(){
+		usuarios=RepositorioDeUsuarios.getUsuarios();
+	}
 	
 	public void ejecutar(){
-		this.agregarAccionesAUsuarios();
+		this.agregarAccionesAUsuario(accionesParaAgregar);
+		this.quitarAccionesAUsuario(accionesParaQuitar);
 	}
 	
 	
-	public void agregarAccionesAUsuarios(){
-		//TODO acá si que estoy perdido con qué hacer.
+	public void agregarAccionesAUsuario(List<AccionPostBusqueda> acciones){
+		usuarios.forEach(usuario->usuario.agregarAcciones(acciones));
+	}
+	
+	public void quitarAccionesAUsuario(List<AccionPostBusqueda> acciones){
+		usuarios.forEach(usuario->usuario.quitarAcciones(acciones));
 	}
 
 }

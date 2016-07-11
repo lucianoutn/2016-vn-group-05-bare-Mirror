@@ -40,9 +40,7 @@ public class MapaTest {
 	ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
 	
 	map = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
-	
-	
-	
+		
 	unCentroDTO = new CentroDTO();
 	unCentroDTO.setNroComuna(1);
 	unCentroDTO.setDomicilioCGP("Corrientes 57");
