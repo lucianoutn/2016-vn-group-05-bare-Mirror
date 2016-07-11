@@ -11,14 +11,14 @@ import InterfacesExternas.SistemaExternoBancoMock;
 import InterfacesExternas.SistemaExternoCGPMock;
 
 public class BusquedaTest {
-	Mapa unMapa;
+	RepositorioDePOIs unMapa;
 	
 	@Before
 	public void Initialize(){
 		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
 		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
 		
-		unMapa = new Mapa(consultorBanco, unConsultorCGP);
+		unMapa = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
 	}
 	
 	@Test

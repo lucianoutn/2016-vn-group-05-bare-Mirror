@@ -17,14 +17,14 @@ import InterfacesExternas.SistemaExternoCGPMock;
 public class BusquedasPorFechaTest {
 	public BusquedasPorFecha reporteroDeBusquedas= new BusquedasPorFecha();
 	public ArrayList<NotificadorDeBusqueda> listaDeUnReportero = new ArrayList<>();
-	public Mapa unMapa;
+	public RepositorioDePOIs unMapa;
 	
 	@Before
 	public void Initialize(){
 		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
 		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
 		
-		unMapa = new Mapa(consultorBanco, unConsultorCGP);
+		unMapa = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
 		
 		
 	}

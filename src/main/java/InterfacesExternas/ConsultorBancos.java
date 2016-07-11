@@ -34,7 +34,15 @@ public class ConsultorBancos implements IConsultorBancos {
 	public List<SucursalDeBanco> bancosQueCumplenCon(String nombreBanco, String unServicio) {
 		// aca me comunico con el sistema externo via Json y luego los
 		// adapto a mi modelo
-		List<BancosJson> bancosJson = sistemaExterno.consultarBancos(nombreBanco, unServicio);
+		List<BancosJson> bancosJson = new ArrayList<BancosJson>();
+		if(nombreBanco==null){
+			bancosJson = sistemaExterno.consultarBancos(null, unServicio);
+		} else if (unServicio==null){
+			bancosJson = sistemaExterno.consultarBancos(nombreBanco, null);
+		} else {
+			bancosJson = sistemaExterno.consultarBancos(nombreBanco, unServicio);
+		}
+		
 		List<SucursalDeBanco> bancosAdaptados = adaptarBancos(bancosJson);
 		List<SucursalDeBanco> bancos = filtrarBancosQueCumplenCon(bancosAdaptados, nombreBanco);
 		return bancos;

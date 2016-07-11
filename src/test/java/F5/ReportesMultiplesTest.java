@@ -16,14 +16,14 @@ public class ReportesMultiplesTest {
 	public BusquedasPorFecha reporteroDeBusquedas = new BusquedasPorFecha();
 	public ArrayList<NotificadorDeBusqueda> listaDeDosReporteros = new ArrayList<>();
 	public ResultadosPorTerminal reporteroDeResultadosPorTerminal = new ResultadosPorTerminal();
-	public Mapa unMapa;
+	public RepositorioDePOIs unMapa;
 	@Before
 	public void initialize() {
 		listaDeDosReporteros.add(reporteroDeBusquedas);
 		listaDeDosReporteros.add(reporteroDeResultadosPorTerminal);
 		ConsultorBancos consultorBancos = new ConsultorBancos(new SistemaExternoBancoMock());
 		ConsultorCGP consultorCgp = new ConsultorCGP(new SistemaExternoCGPMock());
-		unMapa=new Mapa(consultorBancos, consultorCgp);
+		unMapa=new RepositorioDePOIs(consultorBancos, consultorCgp);
 	}
 	
 	

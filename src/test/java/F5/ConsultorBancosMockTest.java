@@ -18,7 +18,7 @@ public class ConsultorBancosMockTest {
 	private String nombreBanco;
 	private String servicioBanco;
 	private List<SucursalDeBanco> sucursales;
-	private Mapa unMapa;
+	private RepositorioDePOIs unMapa;
 
 	@Before
 	public void Initialize() {
@@ -29,7 +29,7 @@ public class ConsultorBancosMockTest {
 		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
 		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
 		
-		unMapa = new Mapa(consultorBanco, unConsultorCGP);
+		unMapa = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
 		
 	}
 

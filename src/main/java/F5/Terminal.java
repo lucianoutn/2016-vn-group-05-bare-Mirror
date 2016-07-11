@@ -6,12 +6,12 @@ import java.util.List;
 public class Terminal {
 	
 	private String nombreDeTerminal;
-	private Mapa unMapa ;
+	private RepositorioDePOIs unMapa ;
 	private ArrayList<NotificadorDeBusqueda> listaObservadores= new ArrayList<>();
 	
 	
 	
-	public Terminal(String nombreTerminal, Mapa map){
+	public Terminal(String nombreTerminal, RepositorioDePOIs map){
 		nombreDeTerminal=nombreTerminal;
 		unMapa=map;
 	}
@@ -37,7 +37,7 @@ public class Terminal {
 		unMapa.eliminarPOI(unPoi);
 	}
 	
-	public Mapa getUnMapa() {
+	public RepositorioDePOIs getUnMapa() {
 		return unMapa;
 	}
 

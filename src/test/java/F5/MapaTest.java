@@ -19,7 +19,7 @@ import TestFactory.LocalComercialFactory;
 
 public class MapaTest {
 	
-	private Mapa map;
+	private RepositorioDePOIs map;
 	private Point laPosicionDelBanco;
 	private SucursalDeBanco banco, otroBanco;
 	private CGP unCGP,otroCGP,anotherCGP;
@@ -39,7 +39,7 @@ public class MapaTest {
 	ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
 	ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
 	
-	map = new Mapa(consultorBanco, unConsultorCGP);
+	map = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
 	
 	
 	

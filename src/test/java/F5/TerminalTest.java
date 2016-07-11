@@ -21,7 +21,7 @@ public class TerminalTest {
 	private SucursalDeBanco unBanco;
 	private LocalComercial unLocalComercial;
 	private Terminal unaTerminal;
-	private Mapa unMapa;
+	private RepositorioDePOIs unMapa;
 	private Point posicionDelBanco, posicionDelLocalComercial, posicionDelCGP;
 	private Polygon comunaDelCGP;
 	private CGP unCGP;
@@ -34,7 +34,7 @@ public class TerminalTest {
 		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
 		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
 		
-		unMapa = new Mapa(consultorBanco, unConsultorCGP);
+		unMapa = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
 		posicionDelBanco = new Point(10, 22);
 		unBanco = new SucursalDeBanco("Santander", posicionDelBanco, new ArrayList<DiaAtencion>());
 		posicionDelLocalComercial = new Point(22, 10);

@@ -7,16 +7,25 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import InterfacesExternas.ConsultorBancos;
+import InterfacesExternas.ConsultorCGP;
+import InterfacesExternas.SistemaExternoBancoMock;
+import InterfacesExternas.SistemaExternoCGPMock;
+
 public class NotificadorDeDemoraDeBusquedaTest {
 
-	private Mapa map;
+	private RepositorioDePOIs map;
 	private Terminal miTerminal;
 	private NotificadorDeAdministradorMock notiDeAdminPorMailMock;
 	private int tiempoDeDemoraOriginal = Busqueda.tiempoParaNotificar;
 
 	@Before
 	public void Initialize() {
-		map = new Mapa();
+		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
+		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
+		
+		map = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
+		
 		String nombre = "terminal1";
 		miTerminal = new Terminal(nombre, map);
 		notiDeAdminPorMailMock = new NotificadorDeAdministradorMock();

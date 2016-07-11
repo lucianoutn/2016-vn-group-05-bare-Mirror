@@ -15,7 +15,7 @@ import InterfacesExternas.OrigenDeDatos;
 import InterfacesExternas.SistemaExternoBancoMock;
 import InterfacesExternas.SistemaExternoCGPMock;
 
-public class Mapa {
+public class RepositorioDePOIs {
 
 	// atributos
 	private List<PuntoDeInteres> puntosDeInteres = new ArrayList<>();
@@ -34,7 +34,7 @@ public class Mapa {
 	private ConsultorCGP consultorCGP; 
 	
 	
-	public Mapa(ConsultorBancos c_bancos, ConsultorCGP c_cgp){
+	public RepositorioDePOIs(ConsultorBancos c_bancos, ConsultorCGP c_cgp){
 		consultorCGP= c_cgp;
 		consultorDeBancos = c_bancos;
 	}
@@ -110,17 +110,10 @@ public class Mapa {
 	public List<PuntoDeInteres> buscoEnSistemasExternos(String nombre, String servicio) {
 		List<PuntoDeInteres> poisExternos = new ArrayList<PuntoDeInteres>();
 		
-		if(nombre==null){
- 			addAllIfNotNull(poisExternos,consultorDeBancos.bancosQueCumplenCon(null, servicio));
- 		} else if (servicio==null){
- 			addAllIfNotNull(poisExternos,consultorCGP.buscaPuntosDeInteresENCGP(nombre));
- 			addAllIfNotNull(poisExternos,consultorDeBancos.bancosQueCumplenCon(nombre, null));
- 		} else {
-	 		addAllIfNotNull(poisExternos,consultorCGP.buscaPuntosDeInteresENCGP(nombre));
-	 		addAllIfNotNull(poisExternos,consultorDeBancos.bancosQueCumplenCon(nombre, servicio));
- 		}
+		addAllIfNotNull(poisExternos,consultorCGP.buscaPuntosDeInteresENCGP(nombre));
+ 		addAllIfNotNull(poisExternos,consultorDeBancos.bancosQueCumplenCon(nombre, servicio));
+
 		return poisExternos;
-		
 	}
 
 	public List<PuntoDeInteres> addAllIfNotNull(List<PuntoDeInteres> list, Collection<? extends PuntoDeInteres> c) {

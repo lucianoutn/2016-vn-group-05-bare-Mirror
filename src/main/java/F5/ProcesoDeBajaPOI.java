@@ -11,11 +11,11 @@ import F5.ProcesoSobrePOIS;
 public class ProcesoDeBajaPOI extends ProcesoSobrePOIS {
 
 	private List<PuntoDeInteres> puntosDeInteresParaBajas = new ArrayList<>();
-	private Mapa mapa;
+	private RepositorioDePOIs mapa;
 	// TODO para mi en el constructor iria la fecha de la baja.
 	// tmb hay q poner la instancia de mapa que tiene el repo
 
-	public ProcesoDeBajaPOI(Mapa mapa, LocalDate fecha) {
+	public ProcesoDeBajaPOI(RepositorioDePOIs mapa, LocalDate fecha) {
 		this.mapa = mapa;
 	}
 

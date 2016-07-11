@@ -92,7 +92,7 @@ public class Busqueda {
 		return unaFecha.equals(fecha);
 	}
 
-	public List<PuntoDeInteres> buscoFrase(String unaFrase,Mapa unMapa) {
+	public List<PuntoDeInteres> buscoFrase(String unaFrase,RepositorioDePOIs unMapa) {
 
 		this.setFraseBuscada(unaFrase);
 
