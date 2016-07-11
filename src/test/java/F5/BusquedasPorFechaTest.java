@@ -2,6 +2,7 @@ package F5;
 
 import java.nio.charset.UnmappableCharacterException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -16,7 +17,7 @@ import InterfacesExternas.SistemaExternoCGPMock;
 
 public class BusquedasPorFechaTest {
 	public BusquedasPorFecha reporteroDeBusquedas= new BusquedasPorFecha();
-	public ArrayList<NotificadorDeBusqueda> listaDeUnReportero = new ArrayList<>();
+	public List<NotificadorDeBusqueda> listaDeUnReportero = new ArrayList<NotificadorDeBusqueda>();
 	public RepositorioDePOIs unMapa;
 	
 	@Before
@@ -32,7 +33,7 @@ public class BusquedasPorFechaTest {
 	@Test
 	public void generarReporteDeUnaBusqueda(){
 		listaDeUnReportero.add(reporteroDeBusquedas);
-		Busqueda unaBusq = new Busqueda("pedro","flores", "101",listaDeUnReportero);
+		Busqueda unaBusq = new Busqueda(new Usuario("pedro"),"flores", "101",listaDeUnReportero);
 		unaBusq.buscoFrase("101", unMapa);
 		
 		Assert.assertEquals(1, reporteroDeBusquedas.generarReporte().size());
@@ -47,9 +48,9 @@ public class BusquedasPorFechaTest {
 	@Test
 	public void generarReporteDeDosBusquedas(){
 		listaDeUnReportero.add(reporteroDeBusquedas);
-		Busqueda unaBusq = new Busqueda("pedro","flores", "101",listaDeUnReportero);
+		Busqueda unaBusq = new Busqueda(new Usuario("pedro"),"flores", "101",listaDeUnReportero);
 		unaBusq.buscoFrase("101", unMapa);
-		Busqueda segundaBusqueda= new Busqueda("carlos", "recoleta", "101", listaDeUnReportero);
+		Busqueda segundaBusqueda= new Busqueda(new Usuario("carlos"), "recoleta", "101", listaDeUnReportero);
 		segundaBusqueda.buscoFrase("101", unMapa);
 		
 		Assert.assertEquals(2, reporteroDeBusquedas.generarReporte().size());

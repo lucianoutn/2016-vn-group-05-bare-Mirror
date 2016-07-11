@@ -10,15 +10,15 @@ public class Busqueda {
 	public static int tiempoParaNotificar = 10;
 	private String fraseBuscada;
 	private String terminal;
-	private String usuario;
+	private Usuario usuario;
 	private int cantResultados;
 	private LocalTime fecha;
 	private int tiempoBusqueda;
-	private ArrayList<NotificadorDeBusqueda> listaObservers;
+	private List<NotificadorDeBusqueda> listaObservers;
 
 	// metodos
 
-	public void setListaObservers(ArrayList<NotificadorDeBusqueda> obs) {
+	public void setListaObservers(List<NotificadorDeBusqueda> obs) {
 		listaObservers = obs;
 	}
 
@@ -38,7 +38,7 @@ public class Busqueda {
 		this.fraseBuscada = fraseBuscada;
 	}
 
-	public void setUsuario(String usuario) {
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 
@@ -60,7 +60,7 @@ public class Busqueda {
 		Busqueda.tiempoParaNotificar = tiempoParaNotificar; // en segundos
 	}
 
-	public Busqueda(String user, String terminal, String frase, ArrayList<NotificadorDeBusqueda> listaObservadores) {
+	public Busqueda(Usuario user, String terminal, String frase, List<NotificadorDeBusqueda> listaObservadores) {
 		listaObservers = listaObservadores;
 		fecha = LocalTime.now();
 		usuario = user;
@@ -104,6 +104,7 @@ public class Busqueda {
 		LocalTime tiempoFinBusqueda = LocalTime.now();
 		this.tiempoBusqueda = tiempoFinBusqueda.toSecondOfDay() - this.fecha.toSecondOfDay();
 		this.avisarAObservers();
+		
 		return unMapa.buscaPuntosDeInteresEnSistemaySistemasExternos(unaFrase, null);
 	}
 

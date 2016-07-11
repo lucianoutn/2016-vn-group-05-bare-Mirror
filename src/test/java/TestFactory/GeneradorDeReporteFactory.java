@@ -7,6 +7,7 @@ import org.uqbar.geodds.Point;
 
 
 import F5.Busqueda;
+import F5.Usuario;
 
 
 public final class GeneradorDeReporteFactory {
@@ -15,7 +16,7 @@ public final class GeneradorDeReporteFactory {
 	private static Busqueda busquedaSegunTerminal;
 	
 	public static Busqueda agregarBusquedaDeUsuarioPepe(){
-		busquedaSegunUsuario.setUsuario("pepe");
+		busquedaSegunUsuario.setUsuario(new Usuario("pepe"));
 		return busquedaSegunUsuario;
 	}
 	
