@@ -22,7 +22,7 @@ public class ConsultorBancosPostaTest {
 
 	@Before
 	public void Initialize() {
-		nombreBanco = new String("BancodelaPlaza");
+		nombreBanco = new String("Banco de la Plaza");
 		servicioBanco = new String("depositos");
 		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
 		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
@@ -47,6 +47,6 @@ public class ConsultorBancosPostaTest {
 	@Test
 	public void elNombreDelPrimerBancoDeLaListaEsCorrecto() {
 		sucursales = unMapa.getConsultorDeBancos().bancosQueCumplenCon(nombreBanco, servicioBanco);
-		Assert.assertArrayEquals(("Banco de la Plaza").toCharArray(), sucursales.get(0).getNombre().toCharArray());
+		Assert.assertEquals("Banco de la Plaza", sucursales.get(0).getNombre());
 	}
 }

@@ -34,8 +34,9 @@ public class ConsultorBancos implements IConsultorBancos {
 	public List<SucursalDeBanco> bancosQueCumplenCon(String nombreBanco, String unServicio) {
 		// aca me comunico con el sistema externo via Json y luego los
 		// adapto a mi modelo
-		sistemaExterno.consultarBancos(nombreBanco, unServicio);
-		List<SucursalDeBanco> bancos = filtrarBancosQueCumplenCon(adaptarBancos(), nombreBanco);
+		List<BancosJson> bancosJson = sistemaExterno.consultarBancos(nombreBanco, unServicio);
+		List<SucursalDeBanco> bancosAdaptados = adaptarBancos(bancosJson);
+		List<SucursalDeBanco> bancos = filtrarBancosQueCumplenCon(bancosAdaptados, nombreBanco);
 		return bancos;
 	}
 
@@ -45,14 +46,12 @@ public class ConsultorBancos implements IConsultorBancos {
 
 		return bancosFiltrados; 
 	}
-	
-	
 
-	private List<SucursalDeBanco> adaptarBancos() {
+	private List<SucursalDeBanco> adaptarBancos(List<BancosJson> bancosJson) {
 		// aca hago la adaptacion de los json a nuestro modelo.
 		List<SucursalDeBanco> sucursales = new ArrayList<SucursalDeBanco>();
 
-		this.bancos.forEach(banco -> {
+		bancosJson.forEach(banco -> {
 			String nombre = banco.getNombre();
 			double x = banco.getX();
 			double y = banco.getY();
