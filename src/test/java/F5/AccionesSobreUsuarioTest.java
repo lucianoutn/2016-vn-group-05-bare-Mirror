@@ -13,6 +13,7 @@ import InterfacesExternas.SistemaExternoBancoMock;
 import InterfacesExternas.SistemaExternoCGPMock;
 
 public class AccionesSobreUsuarioTest {
+
 	
 	private Usuario unUsuario;
 	private Usuario otroUsuario;
@@ -61,4 +62,5 @@ public class AccionesSobreUsuarioTest {
 		Assert.assertTrue(unaAccion.isAccionEjecutada());
 	}
 	
+
 }

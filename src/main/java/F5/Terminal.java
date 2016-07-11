@@ -7,9 +7,8 @@ public class Terminal {
 	
 	private String nombreDeTerminal;
 	private RepositorioDePOIs unMapa ;
-	private ArrayList<NotificadorDeBusqueda> listaObservadores= new ArrayList<>();
-	
-	
+	private List<NotificadorDeBusqueda> listaObservadores= new ArrayList<NotificadorDeBusqueda>();
+	private List<ProcesoSobrePOIS> procesosBatch =  new ArrayList<ProcesoSobrePOIS>();	
 	
 	public Terminal(String nombreTerminal, RepositorioDePOIs map){
 		nombreDeTerminal=nombreTerminal;

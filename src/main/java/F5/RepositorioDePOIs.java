@@ -25,8 +25,7 @@ public class RepositorioDePOIs {
 	public ConsultorBancos getConsultorDeBancos() {
 		return consultorDeBancos;
 	}
-
-
+	
 	public ConsultorCGP getConsultorCGP() {
 		return consultorCGP;
 	}
