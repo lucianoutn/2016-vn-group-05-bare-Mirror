@@ -21,41 +21,37 @@ import F5.DiaAtencion;
 import F5.SucursalDeBanco;
 
 public class ConsultorBancos implements IConsultorBancos {
-	
-	
-	
+
 	private List<BancosJson> bancos = new ArrayList<BancosJson>();
 	private ISistemaExternoBanco sistemaExterno;
-	public ConsultorBancos(ISistemaExternoBanco sistema){
+
+	public ConsultorBancos(ISistemaExternoBanco sistema) {
 		sistemaExterno = sistema;
 	}
 
 	@Override
 	public List<SucursalDeBanco> bancosQueCumplenCon(String nombreBanco, String unServicio) {
-		
-		//TODO EZE DICE: ACA HAY UN CODE SMELL, EL CONSULTOR DE BANCO TIENE QUE SABER MANEJAR LOS NULLS
+
+		// TODO EZE DICE: ACA HAY UN CODE SMELL, EL CONSULTOR DE BANCO TIENE QUE
+		// SABER MANEJAR LOS NULLS
 		// NO ES RESPONSABILIDAD DEL CONSULTOR VALIDAR LOS NULLS
-		
-	
+
 		List<BancosJson> bancosJson = new ArrayList<BancosJson>();
-		if(nombreBanco==null){
-			bancosJson = sistemaExterno.consultarBancos(null, unServicio);
-		} else if (unServicio==null){
-			bancosJson = sistemaExterno.consultarBancos(nombreBanco, null);
-		} else {
-			bancosJson = sistemaExterno.consultarBancos(nombreBanco, unServicio);
-		}
-		
+
+		bancosJson = sistemaExterno.consultarBancos(nombreBanco, unServicio);
+
 		List<SucursalDeBanco> bancosAdaptados = adaptarBancos(bancosJson);
 		List<SucursalDeBanco> bancos = filtrarBancosQueCumplenCon(bancosAdaptados, nombreBanco);
 		return bancos;
 	}
 
-	private List<SucursalDeBanco> filtrarBancosQueCumplenCon(List<SucursalDeBanco> bancos, String nombreBanco){
-		
-		List<SucursalDeBanco> bancosFiltrados = bancos.stream().filter(unBanco->unBanco.encuentra(nombreBanco)).collect(Collectors.toList());;
+	private List<SucursalDeBanco> filtrarBancosQueCumplenCon(List<SucursalDeBanco> bancos, String nombreBanco) {
 
-		return bancosFiltrados; 
+		List<SucursalDeBanco> bancosFiltrados = bancos.stream().filter(unBanco -> unBanco.encuentra(nombreBanco))
+				.collect(Collectors.toList());
+		;
+
+		return bancosFiltrados;
 	}
 
 	private List<SucursalDeBanco> adaptarBancos(List<BancosJson> bancosJson) {
@@ -73,5 +69,5 @@ public class ConsultorBancos implements IConsultorBancos {
 		});
 		return sucursales;
 	}
-	
+
 }
