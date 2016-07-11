@@ -31,8 +31,8 @@ public class ProcesoAccionesSobreUsuarioTest {
 	
 	@Before
 	public void initialize(){
-		unUsuario = new Usuario("Juan", null);
-		otroUsuario = new Usuario("Pedro", null);
+		unUsuario = new Usuario("Juan", new Comuna(1, null));
+		otroUsuario = new Usuario("Pedro", new Comuna(2, null));
 		usuarios.add(unUsuario);
 		usuarios.add(otroUsuario);
 		
@@ -60,6 +60,16 @@ public class ProcesoAccionesSobreUsuarioTest {
 		unUsuario.agregarAccion(unaAccion);
 		unaBusqueda.buscoFrase("Junin", unMapa);
 		Assert.assertTrue(unaAccion.isAccionEjecutada());
+	}
+	
+	@Test
+	public void filtraUnUsuarioEnLaComunaUno(){
+		
+		RepositorioDeUsuarios.usuarios = new ArrayList<Usuario>();
+		RepositorioDeUsuarios.addUsuario(unUsuario);
+		RepositorioDeUsuarios.addUsuario(otroUsuario);
+		ProcesoSobreUsuario unProceso = new ProcesoSobreUsuario(new Comuna(1, null));
+		Assert.assertTrue(unProceso.getUsuarios().size() == 1);
 	}
 	
 

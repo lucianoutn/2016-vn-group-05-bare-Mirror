@@ -9,6 +9,10 @@ import F5.ProcesoSobrePOIS;
 public class ProcesoSobreUsuario implements ProcesoSobrePOIS {
 	
 	private List<Usuario> usuarios = new ArrayList<Usuario>();
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
 	private List<AccionPostBusqueda> accionesParaAgregar = new ArrayList<AccionPostBusqueda>();
 	private List<AccionPostBusqueda> accionesParaQuitar = new ArrayList<AccionPostBusqueda>();
 	
