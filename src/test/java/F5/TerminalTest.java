@@ -1,6 +1,7 @@
 package F5;
 
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
@@ -9,6 +10,7 @@ import org.junit.Test;
 import org.junit.Assert;
 import org.uqbar.geodds.Polygon;
 
+import InterfacesExternas.BajaPoisRestMock;
 import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.SistemaExternoBancoMock;
@@ -19,14 +21,16 @@ import InterfacesExternas.SistemaExternoCGPMock;
 public class TerminalTest {
 
 	private SucursalDeBanco unBanco;
-	private LocalComercial unLocalComercial;
+	private LocalComercial unLocalComercial, otroLocalComercial;
 	private Terminal unaTerminal;
-	private RepositorioDePOIs unMapa;
+	private RepositorioDePOIs unMapa, unRepositorioDePOIs;
 	private Point posicionDelBanco, posicionDelLocalComercial, posicionDelCGP;
 	private Polygon comunaDelCGP;
 	private CGP unCGP;
-	Point puntoADeLaComuna,puntoBDeLaComuna;
-	
+	private Point puntoADeLaComuna,puntoBDeLaComuna;
+	private Reloj unReloj;
+	private ProcesoDeBajaPOI unProcesoDeBajaDePOI;
+	private BajaPoisRestMock bajaDePOIsMock;
 	
 	@Before
 	public void initialize(){
@@ -35,16 +39,25 @@ public class TerminalTest {
 		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
 		
 		unMapa = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
-		posicionDelBanco = new Point(10, 22);
+
+		posicionDelBanco = new Point (10,22);
 		unBanco = new SucursalDeBanco("Santander", posicionDelBanco, new ArrayList<DiaAtencion>());
-		posicionDelLocalComercial = new Point(22, 10);
-		unLocalComercial = new LocalComercial("Shopping", "Honduras", "10", "Ropa", new ArrayList<DiaAtencion>(), posicionDelLocalComercial);
+		
+		posicionDelLocalComercial = new Point(20, 10);
+		otroLocalComercial = new LocalComercial("Naic", "Rivadavia", "10", "Ropa Deportiva", new ArrayList<DiaAtencion>(), posicionDelLocalComercial);
+		
+		unLocalComercial = new LocalComercial("Shopping", "Honduras", "10", "Ropa", new ArrayList<DiaAtencion>(), new Point(22, 10));
 		unaTerminal = new Terminal("Caballito", unMapa);
+		
 		posicionDelCGP = new Point(40,53);
 		puntoADeLaComuna = new Point(1,1);
 		puntoBDeLaComuna = new Point(2,2);
 		unCGP = new CGP(posicionDelCGP, new Comuna(1,comunaDelCGP));
 		
+		unRepositorioDePOIs = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
+		
+		unReloj = new Reloj(100);
+		unReloj.setHora(900);
 	}
 	
 	
@@ -82,6 +95,60 @@ public class TerminalTest {
 		Assert.assertTrue(unaTerminal.getUnMapa().getPOIs().get(2).getAltura().equals("50"));
 	}
 	
+	@Test
+	public void aumentoLaHoraDelRelojConMetodoAumetarModuloHorarioCorrectamente(){
+		
+		unReloj.aumentarModuloHorario();
+		
+		Assert.assertEquals(1000,unReloj.getHora());
+	}
 	
+	@Test
+	public void laAccionDelProcesoSeEjecutaDespuesDeAumentarLaHoraDelReloj(){
+		
+bajaDePOIsMock = new BajaPoisRestMock(unMapa);
+		
+		unMapa.anadirPOI(unBanco);
+		unMapa.anadirPOI(unLocalComercial);
+		
+		
+		unRepositorioDePOIs.anadirPOI(unBanco);
+		unRepositorioDePOIs.anadirPOI(unLocalComercial);
+		unRepositorioDePOIs.anadirPOI(otroLocalComercial);
+		
+		unProcesoDeBajaDePOI = new ProcesoDeBajaPOI(unRepositorioDePOIs, LocalDate.now(), bajaDePOIsMock, 1000);
+		
+		unaTerminal.anadirProcesoBatch(unProcesoDeBajaDePOI);
+		
+		unReloj.suscribirANotificadorDeCambioHorario(unaTerminal);
+		
+		unReloj.aumentarModuloHorario();
+		
+		Assert.assertEquals(1,unProcesoDeBajaDePOI.getRepoDePOIs().getPOIs().size());
+	}
+	
+	@Test
+	public void laAccionDelProcesoNoSeEjecutaDespuesDeAumentarLaHoraDelReloj(){
+		
+bajaDePOIsMock = new BajaPoisRestMock(unMapa);
+		
+		unMapa.anadirPOI(unBanco);
+		unMapa.anadirPOI(unLocalComercial);
+		
+		
+		unRepositorioDePOIs.anadirPOI(unBanco);
+		unRepositorioDePOIs.anadirPOI(unLocalComercial);
+		unRepositorioDePOIs.anadirPOI(otroLocalComercial);
+		
+		unProcesoDeBajaDePOI = new ProcesoDeBajaPOI(unRepositorioDePOIs, LocalDate.now(), bajaDePOIsMock, 900);
+		
+		unaTerminal.anadirProcesoBatch(unProcesoDeBajaDePOI);
+		
+		unReloj.suscribirANotificadorDeCambioHorario(unaTerminal);
+		
+		unReloj.aumentarModuloHorario();
+		
+		Assert.assertEquals(3,unProcesoDeBajaDePOI.getRepoDePOIs().getPOIs().size());
+	}
 	
 }

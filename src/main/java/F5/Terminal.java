@@ -15,6 +15,14 @@ public class Terminal implements INotificarCambioHorario {
 		unMapa=map;
 	}
 	
+	public List<INotificarCambioHorario> getProcesosBatch() {
+		return procesosBatch;
+	}
+
+	public void anadirProcesoBatch(INotificarCambioHorario unProceso){
+		procesosBatch.add(unProceso);
+	}
+	
 	public void activarAccion(NotificadorDeBusqueda unObservador){
 		listaObservadores.add(unObservador);
 	}
@@ -48,7 +56,6 @@ public class Terminal implements INotificarCambioHorario {
 	@Override
 	public void anteCambioDeHorario(int horario) {
 		procesosBatch.forEach(proceso-> proceso.anteCambioDeHorario(horario));
-		
 	}
 	
 	

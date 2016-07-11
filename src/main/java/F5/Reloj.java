@@ -13,18 +13,29 @@ public class Reloj {
 		moduloHorario = unModuloHorario;
 	}
 	
+	public int getHora() {
+		return hora;
+	}
+	
 	public void suscribirANotificadorDeCambioHorario(INotificarCambioHorario unNotificado){
 		aNotificar.add(unNotificado);
 	}
 	
+	public List<INotificarCambioHorario> getaNotificar() {
+		return aNotificar;
+	}
+
+	public void setHora(int hora) {
+		this.hora = hora;
+	}
+
 	public void aumentarModuloHorario(){
-		hora= hora + moduloHorario;
+		hora = hora + moduloHorario;
 		notificarCambioHorario();
 	}
 
 	private void notificarCambioHorario() {
-		aNotificar.forEach(notificado -> notificado.anteCambioDeHorario(hora));
-		
+		aNotificar.forEach(notificado -> notificado.anteCambioDeHorario(hora));	
 	}
 	
 	
