@@ -41,7 +41,7 @@ public class Terminal {
 	}
 
 	public List<PuntoDeInteres> buscarEnTerminal(String unaFrase,String user){
-		Busqueda unaBusqueda= new Busqueda(new Usuario(user),nombreDeTerminal,unaFrase,listaObservadores);
+		Busqueda unaBusqueda= new Busqueda(new Usuario(user, null),nombreDeTerminal,unaFrase,listaObservadores);
 		return unaBusqueda.buscoFrase(unaFrase, unMapa);
 	}
 }

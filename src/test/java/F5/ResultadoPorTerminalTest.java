@@ -32,7 +32,7 @@ public class ResultadoPorTerminalTest {
 	@Test
 	public void reporteDeUnaBusquedaEnUnaTerminal(){
 		listaDeUnReportero.add(reporteroDeResultadosPorTerminal);
-		Busqueda unaBusq = new Busqueda(new Usuario("pedro"),"flores", "101",listaDeUnReportero);
+		Busqueda unaBusq = new Busqueda(new Usuario("pedro", null),"flores", "101",listaDeUnReportero);
 		unaBusq.buscoFrase("101", unMapa);
 		Assert.assertEquals(1, reporteroDeResultadosPorTerminal.generarReporte(null).size());
 	}
@@ -40,8 +40,8 @@ public class ResultadoPorTerminalTest {
 	@Test
 	public void reporteDeDosBusquedasEnUnaTerminal(){
 		listaDeUnReportero.add(reporteroDeResultadosPorTerminal);
-		Busqueda unaBusq = new Busqueda(new Usuario("pedro"),"flores", "101",listaDeUnReportero);
-		Busqueda unaBusq2 = new Busqueda(new Usuario("pedro"),"flores", "cgp",listaDeUnReportero);
+		Busqueda unaBusq = new Busqueda(new Usuario("pedro", null),"flores", "101",listaDeUnReportero);
+		Busqueda unaBusq2 = new Busqueda(new Usuario("pedro", null),"flores", "cgp",listaDeUnReportero);
 		unaBusq.buscoFrase("101", unMapa);
 		unaBusq2.buscoFrase("101", unMapa);
 		Assert.assertEquals(1, reporteroDeResultadosPorTerminal.generarReporte(null).size());
@@ -50,8 +50,8 @@ public class ResultadoPorTerminalTest {
 	@Test
 	public void reporteDeDosBusquedasEndosTerminalesDistintas(){
 		listaDeUnReportero.add(reporteroDeResultadosPorTerminal);
-		Busqueda unaBusq = new Busqueda(new Usuario("pedro"),"flores", "101",listaDeUnReportero);
-		Busqueda unaBusq2 = new Busqueda(new Usuario("tony"),"lugano", "cgp",listaDeUnReportero);
+		Busqueda unaBusq = new Busqueda(new Usuario("pedro", null),"flores", "101",listaDeUnReportero);
+		Busqueda unaBusq2 = new Busqueda(new Usuario("tony", null),"lugano", "cgp",listaDeUnReportero);
 		unaBusq.buscoFrase("101", unMapa);
 		unaBusq2.buscoFrase("101", unMapa);
 		Assert.assertEquals(2, reporteroDeResultadosPorTerminal.generarReporte(null).size());

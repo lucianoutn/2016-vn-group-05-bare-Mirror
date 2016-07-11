@@ -31,8 +31,8 @@ public class ProcesoAccionesSobreUsuarioTest {
 	
 	@Before
 	public void initialize(){
-		unUsuario = new Usuario("Juan");
-		otroUsuario = new Usuario("Pedro");
+		unUsuario = new Usuario("Juan", null);
+		otroUsuario = new Usuario("Pedro", null);
 		usuarios.add(unUsuario);
 		usuarios.add(otroUsuario);
 		

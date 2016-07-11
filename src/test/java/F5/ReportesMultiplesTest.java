@@ -36,7 +36,7 @@ public class ReportesMultiplesTest {
 		
 	@Test
 	public void reportesConUnaBusqueda() {
-		Busqueda unaBusq = new Busqueda(new Usuario("pedro"), "flores", "101", listaDeDosReporteros);
+		Busqueda unaBusq = new Busqueda(new Usuario("pedro", null), "flores", "101", listaDeDosReporteros);
 		unaBusq.buscoFrase("101", unMapa);
 		Assert.assertEquals(1, reporteroDeBusquedas.generarReporte().size());
 		Assert.assertEquals(1, reporteroDeResultadosPorTerminal.generarReporte(null).size());
@@ -46,8 +46,8 @@ public class ReportesMultiplesTest {
 	@Test
 	public void reportesConDosBusquedaEnUnaMismaTerminalParaFlores() {
 		
-		Busqueda unaBusq = new Busqueda(new Usuario("pedro"),"flores", "101", listaDeDosReporteros);
-		Busqueda unaBusq2 = new Busqueda(new Usuario("pedro"), "flores", "cgp", listaDeDosReporteros);
+		Busqueda unaBusq = new Busqueda(new Usuario("pedro", null),"flores", "101", listaDeDosReporteros);
+		Busqueda unaBusq2 = new Busqueda(new Usuario("pedro", null), "flores", "cgp", listaDeDosReporteros);
 		unaBusq.buscoFrase("101", unMapa);
 		unaBusq2.buscoFrase("cgp", unMapa); 
 		Assert.assertEquals(2, reporteroDeResultadosPorTerminal.generarReporte("flores").size());
@@ -56,8 +56,8 @@ public class ReportesMultiplesTest {
 	@Test
 	public void reportesConDosBusquedaEnUnaMismaTerminal() {
 		unMapa.limpiarPuntosDeInteres();
-		Busqueda unaBusq = new Busqueda(new Usuario("pedro"),"flores", "101", listaDeDosReporteros);
-		Busqueda unaBusq2 = new Busqueda(new Usuario("pedro"), "flores", "cgp", listaDeDosReporteros);
+		Busqueda unaBusq = new Busqueda(new Usuario("pedro", null),"flores", "101", listaDeDosReporteros);
+		Busqueda unaBusq2 = new Busqueda(new Usuario("pedro", null), "flores", "cgp", listaDeDosReporteros);
 		unaBusq.buscoFrase("101", unMapa);
 		unaBusq2.buscoFrase("cgp", unMapa); 
 		Assert.assertEquals(2, reporteroDeBusquedas.generarReporte().size()); 
@@ -65,8 +65,8 @@ public class ReportesMultiplesTest {
 	@Test
 	public void reportesConDosBusquedaEnDosTerminalesDistintas() {
 		unMapa.limpiarPuntosDeInteres();
-		Busqueda unaBusq = new Busqueda(new Usuario("pedro"), "flores", "101", listaDeDosReporteros);
-		Busqueda unaBusq2 = new Busqueda(new Usuario("alexis"), "lugano", "cgp", listaDeDosReporteros);
+		Busqueda unaBusq = new Busqueda(new Usuario("pedro", null), "flores", "101", listaDeDosReporteros);
+		Busqueda unaBusq2 = new Busqueda(new Usuario("alexis", null), "lugano", "cgp", listaDeDosReporteros);
 		unaBusq.buscoFrase("101", unMapa);
 		unaBusq2.buscoFrase("cgp", unMapa);
 		Assert.assertEquals(1, reporteroDeBusquedas.generarReporte().size());

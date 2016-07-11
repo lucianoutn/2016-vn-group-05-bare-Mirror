@@ -5,6 +5,12 @@ import java.util.List;
 
 public class Usuario {
 	private String nombre;
+	private Comuna comuna;
+	
+	public Comuna getComuna() {
+		return comuna;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -15,8 +21,9 @@ public class Usuario {
 		return accionesRealizables;
 	}
 
-	public Usuario(String unNombre){
+	public Usuario(String unNombre, Comuna unaComuna){
 		nombre=unNombre;
+		comuna = unaComuna;
 	}
 
 	public void ejecutarAcciones() {

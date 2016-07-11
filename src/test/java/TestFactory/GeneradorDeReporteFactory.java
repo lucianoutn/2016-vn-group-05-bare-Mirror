@@ -16,7 +16,7 @@ public final class GeneradorDeReporteFactory {
 	private static Busqueda busquedaSegunTerminal;
 	
 	public static Busqueda agregarBusquedaDeUsuarioPepe(){
-		busquedaSegunUsuario.setUsuario(new Usuario("pepe"));
+		busquedaSegunUsuario.setUsuario(new Usuario("pepe", null));
 		return busquedaSegunUsuario;
 	}
 	

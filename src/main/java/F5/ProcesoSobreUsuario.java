@@ -2,6 +2,7 @@ package F5;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import F5.ProcesoSobrePOIS;
 
@@ -22,7 +23,10 @@ public class ProcesoSobreUsuario implements ProcesoSobrePOIS {
 	}
 	
 	public ProcesoSobreUsuario(Comuna comuna){
-		
+		usuarios=				RepositorioDeUsuarios
+								.getUsuarios().stream()
+								.filter(usuario-> usuario.getComuna().getNroComuna() == comuna.getNroComuna())
+								.collect(Collectors.toList());;
 	}
 	public void ejecutar(){
 		this.agregarAccionesAUsuario(accionesParaAgregar);
