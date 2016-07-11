@@ -50,7 +50,7 @@ public class ReportesMultiplesTest {
 		Busqueda unaBusq2 = new Busqueda(new Usuario("pedro", null), "flores", "cgp", listaDeDosReporteros);
 		unaBusq.buscoFrase("101", unMapa);
 		unaBusq2.buscoFrase("cgp", unMapa); 
-		Assert.assertEquals(2, reporteroDeResultadosPorTerminal.generarReporte("flores").size());
+		Assert.assertEquals(1, reporteroDeResultadosPorTerminal.generarReporte("flores").size());
 	}
 	
 	@Test
