@@ -57,6 +57,6 @@ public class Terminal implements INotificarCambioHorario {
 	public void anteCambioDeHorario(int horario) {
 		procesosBatch.forEach(proceso-> proceso.anteCambioDeHorario(horario));
 	}
-	
+
 	
 }

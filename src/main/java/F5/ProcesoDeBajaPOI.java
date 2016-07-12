@@ -6,14 +6,15 @@ import java.util.List;
 
 import org.uqbar.geodds.Point;
 
-import F5.ProcesoSobrePOIS;
+import F5.Proceso;
 import InterfacesExternas.IBajaPoi;
 
-public class ProcesoDeBajaPOI implements ProcesoSobrePOIS {
+public class ProcesoDeBajaPOI extends Proceso {
 
 	private List<PuntoDeInteres> puntosDeInteresParaBajas = new ArrayList<>();
 	private RepositorioDePOIs repoDePOIs;
 	private int horarioPlanificacion;
+	private EstadosDelProceso estado;
 	
 	private IBajaPoi servicioBaja;
 	// TODO para mi en el constructor iria la fecha de la baja.

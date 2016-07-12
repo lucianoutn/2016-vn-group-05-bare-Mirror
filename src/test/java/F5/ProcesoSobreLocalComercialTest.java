@@ -8,8 +8,8 @@ import org.junit.Test;
 
 public class ProcesoSobreLocalComercialTest {
 	
-	private ProcesoSobreLocalComercial ProcesoLocalAhora;
-	private ProcesoSobreLocalComercial ProcesoLocalTarde;
+	private ProcesoSobreLocalComercialClaseAbst ProcesoLocalAhora;
+	private ProcesoSobreLocalComercialClaseAbst ProcesoLocalTarde;
 	
 	@Before
 	public void Initialize(){

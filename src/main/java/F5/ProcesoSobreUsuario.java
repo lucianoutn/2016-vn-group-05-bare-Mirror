@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import F5.ProcesoSobrePOIS;
+import F5.Proceso;
 
-public class ProcesoSobreUsuario implements ProcesoSobrePOIS {
+public class ProcesoSobreUsuario extends Proceso {
 	
 	private List<Usuario> usuarios = new ArrayList<Usuario>();
 	public List<Usuario> getUsuarios() {
