@@ -6,7 +6,6 @@ public abstract class ProcesoSobreLocalComercialClaseAbst extends Proceso {
 
 	private LocalDate fecha;
 	private boolean losLocalesComercialesEstanActualizados = false;
-	private int horarioPlanificacion;
 	private String ruta;
 	private RepositorioDePOIs unMapa;
 	
@@ -39,14 +38,7 @@ public abstract class ProcesoSobreLocalComercialClaseAbst extends Proceso {
 		losLocalesComercialesEstanActualizados = true;
 	}
 
-	
-	
 	public boolean isLocalesComercialesActualizados() {
 		return losLocalesComercialesEstanActualizados;
-	}
-	
-	public void anteCambioDeHorario(int horario) {
-		if(horario == horarioPlanificacion)
-			ejecutar();
 	}
 }

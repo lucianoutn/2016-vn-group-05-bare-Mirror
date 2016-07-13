@@ -17,6 +17,7 @@ public class ProcesoSobreLocalComercialMock extends ProcesoSobreLocalComercialCl
 		this.setRuta(rutaArchivo);
 		setUnMapa(map);
 		this.setFecha(horarioDeEjecucion);
+		this.inicializarEstado();
 	}
 	
 	public void actualizarLocalComercial(){

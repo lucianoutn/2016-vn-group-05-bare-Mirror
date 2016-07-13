@@ -54,6 +54,7 @@ public class TerminalTest {
 		puntoBDeLaComuna = new Point(2,2);
 		unCGP = new CGP(posicionDelCGP, new Comuna(1,comunaDelCGP));
 		
+				
 		unRepositorioDePOIs = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
 		
 		unReloj = new Reloj(100);
@@ -110,7 +111,6 @@ bajaDePOIsMock = new BajaPoisRestMock(unMapa);
 		
 		unMapa.anadirPOI(unBanco);
 		unMapa.anadirPOI(unLocalComercial);
-		
 		
 		unRepositorioDePOIs.anadirPOI(unBanco);
 		unRepositorioDePOIs.anadirPOI(unLocalComercial);

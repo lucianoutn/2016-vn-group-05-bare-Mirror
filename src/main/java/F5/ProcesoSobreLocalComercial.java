@@ -21,10 +21,11 @@ public class ProcesoSobreLocalComercial extends ProcesoSobreLocalComercialClaseA
 		setUnMapa(map);
 		this.setFecha(horarioDeEjecucion);
 		horarioDeEjecucion = horarioDeEjecucion;
+		this.inicializarEstado();
 	}
 	
 	public void ejecutar() {
-		if( LocalDate.now().equals(this.getFecha()))
+		if(LocalDate.now().equals(this.getFecha()))
 		this.actualizarLocalComercial();
 	}
 
@@ -63,6 +64,7 @@ public class ProcesoSobreLocalComercial extends ProcesoSobreLocalComercialClaseA
 					}
 					
 					puntosQueMatchean.stream().forEach(poi->poi.agregarPalabrasClaves(palabrasClaves));
+					this.setCantidadDeElementosAfectados(puntosQueMatchean.size());
 				}
 				br.close();
 			}

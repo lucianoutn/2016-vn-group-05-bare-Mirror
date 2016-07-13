@@ -20,7 +20,7 @@ public class NotificadorDeAdministrador implements NotificadorDeBusqueda {
 
 	}
 
-	private void enviarNotificacion(){
+	public void enviarNotificacion(){
 		
 		String smtpHostServer = "smtp.grupoF5.com.ar";
 	    String emailID = "administrador@grupoF5.com.ar";
