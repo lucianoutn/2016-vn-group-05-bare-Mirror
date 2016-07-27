@@ -15,13 +15,13 @@ public class ProcesoDeBajaPOI extends Proceso {
 	// TODO para mi en el constructor iria la fecha de la baja.
 	// tmb hay q poner la instancia de mapa que tiene el repo
 
-	public ProcesoDeBajaPOI(RepositorioDePOIs mapa, LocalDate fecha, IBajaPoi servicio, int horaPlanificacion) {
+	public ProcesoDeBajaPOI(RepositorioDePOIs mapa, IBajaPoi servicio, int horaPlanificacion) {
 		repoDePOIs = mapa;
 		servicioBaja = servicio;
 		this.setHorarioPlanificacion(horaPlanificacion);
 		this.inicializarEstado();
 	}
-	
+
 	public RepositorioDePOIs getRepoDePOIs() {
 		return repoDePOIs;
 	}
@@ -34,7 +34,11 @@ public class ProcesoDeBajaPOI extends Proceso {
 	}
 
 	public void pedirBajas() {
-		puntosDeInteresParaBajas = servicioBaja.poisADarDeBaja(); // el mock de rest esta devolviendo una lista vacia
+		puntosDeInteresParaBajas = servicioBaja.poisADarDeBaja(); // el mock de
+																	// rest esta
+																	// devolviendo
+																	// una lista
+																	// vacia
 		this.setCantidadDeElementosAfectados(puntosDeInteresParaBajas.size());
 	}
 

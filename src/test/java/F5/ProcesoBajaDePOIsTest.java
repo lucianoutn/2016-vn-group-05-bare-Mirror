@@ -25,44 +25,42 @@ public class ProcesoBajaDePOIsTest {
 	private LocalComercial otroLocalComercial;
 	private BajaPoisRestMock mockRESTBajaPOIs;
 	private ProcesoDeBajaPOI procesoDeBajaPOI;
-	
-	
-	
+
 	@Before
-	public void initialize(){
-		
+	public void initialize() {
+
 		unaSucursalDeBanco = new SucursalDeBanco("Rio", new Point(10, 10), new ArrayList<DiaAtencion>());
-		unLocalComercial = new LocalComercial("Macowins", "Pedernera", "10", "Ropa", new ArrayList<DiaAtencion>(), new Point(10, 10));
-		otroLocalComercial = new LocalComercial("Naic", "Rivadavia", "10", "Ropa Deportiva", new ArrayList<DiaAtencion>(), new Point(20, 10));
-		
+		unLocalComercial = new LocalComercial("Macowins", "Pedernera", "10", "Ropa", new ArrayList<DiaAtencion>(),
+				new Point(10, 10));
+		otroLocalComercial = new LocalComercial("Naic", "Rivadavia", "10", "Ropa Deportiva",
+				new ArrayList<DiaAtencion>(), new Point(20, 10));
+
 		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
 		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
 		unRepositorioDePOIs = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
 		unRepositorioDePOIs.anadirPOI(unaSucursalDeBanco);
 		unRepositorioDePOIs.anadirPOI(unLocalComercial);
-		
+
 		otroRepositorioDePOIs = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
 		otroRepositorioDePOIs.anadirPOI(unaSucursalDeBanco);
 		otroRepositorioDePOIs.anadirPOI(unLocalComercial);
 		otroRepositorioDePOIs.anadirPOI(otroLocalComercial);
-		
-		
+
 		mockRESTBajaPOIs = new BajaPoisRestMock(unRepositorioDePOIs);
 
-		procesoDeBajaPOI = new ProcesoDeBajaPOI(otroRepositorioDePOIs, LocalDate.now(), mockRESTBajaPOIs, 1);
-				
+		procesoDeBajaPOI = new ProcesoDeBajaPOI(otroRepositorioDePOIs, mockRESTBajaPOIs, 1);
+
 	}
-	
 
 	@Test
-	public void elMockDelRESTtieneDosPOIsADarDeBaja(){
+	public void elMockDelRESTtieneDosPOIsADarDeBaja() {
 		procesoDeBajaPOI.ejecutar();
-		Assert.assertEquals(2,procesoDeBajaPOI.getPuntosDeInteresParaBajas().size());
+		Assert.assertEquals(2, procesoDeBajaPOI.getPuntosDeInteresParaBajas().size());
 	}
-	
+
 	@Test
-	public void doyDeBajaLosPOIsQueMeDevuelveElMockDelRESTyQuedaUnSoloPOI(){
+	public void doyDeBajaLosPOIsQueMeDevuelveElMockDelRESTyQuedaUnSoloPOI() {
 		procesoDeBajaPOI.ejecutar();
-		Assert.assertEquals(1,procesoDeBajaPOI.getRepoDePOIs().getPOIs().size());
+		Assert.assertEquals(1, procesoDeBajaPOI.getRepoDePOIs().getPOIs().size());
 	}
 }
