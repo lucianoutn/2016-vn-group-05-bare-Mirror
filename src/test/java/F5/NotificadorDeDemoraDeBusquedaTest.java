@@ -17,15 +17,16 @@ public class NotificadorDeDemoraDeBusquedaTest {
 	private RepositorioDePOIs map;
 	private Terminal miTerminal;
 	private NotificadorDeAdministradorMock notiDeAdminPorMailMock;
-	private int tiempoDeDemoraOriginal = Busqueda.tiempoParaNotificar;
+	// private int tiempoDeDemoraOriginal = Busqueda.tiempoParaNotificar; //no
+	// hace falta xq no es mas estatico
 
 	@Before
 	public void Initialize() {
 		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
 		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
-		
+
 		map = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
-		
+
 		String nombre = "terminal1";
 		miTerminal = new Terminal(nombre, map);
 		notiDeAdminPorMailMock = new NotificadorDeAdministradorMock();
@@ -35,7 +36,7 @@ public class NotificadorDeDemoraDeBusquedaTest {
 
 	@Test
 	public void siUnaBusquedaDemoraMasDelTiempoEstipuladoSeEnviaNoti() {
-		Busqueda.setTiempoParaNotificar(-1);
+		notiDeAdminPorMailMock.setTiempoParaNotificar(-1);
 		miTerminal.buscarEnTerminal("unString", "unUser");
 		Assert.assertTrue(notiDeAdminPorMailMock.notificado);
 
@@ -43,14 +44,15 @@ public class NotificadorDeDemoraDeBusquedaTest {
 
 	@Test
 	public void siUnaBusquedaDemoraMenosDelTiempoEstipuladoNoSeNotifica() {
-		Busqueda.setTiempoParaNotificar(10);
+		notiDeAdminPorMailMock.setTiempoParaNotificar(10);
 		miTerminal.buscarEnTerminal("unString", "unUser");
 		Assert.assertFalse(notiDeAdminPorMailMock.notificado);
 	}
-	
-	@After
-	public void volverASetearLaDemoraComoEstaba(){
-		Busqueda.setTiempoParaNotificar(this.tiempoDeDemoraOriginal);
-	}
 
+	// no hace falta xq no es mas estatico
+	/*
+	 * @After public void volverASetearLaDemoraComoEstaba() {
+	 * notiDeAdminPorMailMock.setTiempoParaNotificar(this.tiempoDeDemoraOriginal
+	 * ); }
+	 */
 }
