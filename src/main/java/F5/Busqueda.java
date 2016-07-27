@@ -59,25 +59,6 @@ public class Busqueda {
 			this.listaObservers.stream().forEach(x -> x.notificarBusqueda(this));
 	}
 
-	public boolean realizadaPor(String unUsuario) {
-		if (unUsuario == null || usuario == null)
-			return true;
-		return usuario.equals(unUsuario);
-	}
-
-	public boolean realizadaEn(String unaTerminal) {
-		if (unaTerminal == null || terminal == null)
-			return true;
-		return terminal.equals(unaTerminal) || unaTerminal == null;
-	}
-
-	public boolean realizadaEnLaFecha(LocalTime unaFecha) {
-
-		if (unaFecha == null)
-			return true;
-		return unaFecha.equals(fecha);
-	}
-
 	public List<PuntoDeInteres> buscoFrase(String unaFrase, RepositorioDePOIs unMapa) {
 
 		this.setFraseBuscada(unaFrase);
