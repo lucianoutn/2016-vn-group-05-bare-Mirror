@@ -7,13 +7,13 @@ import java.util.List;
 public class Busqueda {
 
 	// atributos
-	public static int tiempoParaNotificar = 10;
+
 	private String fraseBuscada;
 	private String terminal;
 	private Usuario usuario;
 	private int cantResultados;
 	private LocalTime fecha;
-	private int tiempoBusqueda;
+	public int tiempoBusqueda;
 	private List<NotificadorDeBusqueda> listaObservers;
 
 	// metodos
@@ -42,22 +42,8 @@ public class Busqueda {
 		this.usuario = usuario;
 	}
 
-	/*
-	 * public void setFecha(LocalTime fecha) { this.fecha = fecha; }
-	 */
-
 	public void setTerminal(String terminal) {
 		this.terminal = terminal;
-	}
-
-	/*
-	 * public void setTiempoBusqueda(int unTiempo) { this.tiempoBusqueda =
-	 * unTiempo; // en segundos }
-	 */
-
-	public static void setTiempoParaNotificar(int tiempoParaNotificar) {
-		// debe ser parametrizable
-		Busqueda.tiempoParaNotificar = tiempoParaNotificar; // en segundos
 	}
 
 	public Busqueda(Usuario user, String terminal, String frase, List<NotificadorDeBusqueda> listaObservadores) {
@@ -92,7 +78,7 @@ public class Busqueda {
 		return unaFecha.equals(fecha);
 	}
 
-	public List<PuntoDeInteres> buscoFrase(String unaFrase,RepositorioDePOIs unMapa) {
+	public List<PuntoDeInteres> buscoFrase(String unaFrase, RepositorioDePOIs unMapa) {
 
 		this.setFraseBuscada(unaFrase);
 
@@ -106,10 +92,6 @@ public class Busqueda {
 		this.avisarAObservers();
 		this.usuario.ejecutarAcciones();
 		return unMapa.buscaPuntosDeInteresEnSistemaySistemasExternos(unaFrase, null);
-	}
-
-	public boolean excedioDemora() {
-		return tiempoBusqueda >= tiempoParaNotificar;
 	}
 
 	public String getTerminal() {
