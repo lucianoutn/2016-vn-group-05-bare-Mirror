@@ -12,12 +12,15 @@ public class ProcesoDeBajaPOI extends Proceso {
 	private List<PuntoDeInteres> puntosDeInteresParaBajas = new ArrayList<>();
 	private RepositorioDePOIs repoDePOIs;
 	private IBajaPoi servicioBaja;
+	private Planificador planificador;
 	// TODO para mi en el constructor iria la fecha de la baja.
 	// tmb hay q poner la instancia de mapa que tiene el repo
 
-	public ProcesoDeBajaPOI(RepositorioDePOIs mapa, IBajaPoi servicio, int horaPlanificacion) {
+	public ProcesoDeBajaPOI(RepositorioDePOIs mapa, IBajaPoi servicio, int horaPlanificacion,
+			Planificador unPlanificador) {
 		repoDePOIs = mapa;
 		servicioBaja = servicio;
+		planificador = unPlanificador;
 		this.setHorarioPlanificacion(horaPlanificacion);
 		this.inicializarEstado();
 	}
@@ -27,10 +30,16 @@ public class ProcesoDeBajaPOI extends Proceso {
 	}
 
 	public void ejecutar() {
+		// this.pasarAEnEspera(); //TODO
+		planificador.solicitarEjecucion(this);
+	}
+
+	public void ejecutarPosta() {
 		this.pasarAEjecutando();
 		this.pedirBajas();
 		this.darDeBajaAPOI();
 		this.almacenarResultadoDeEjecucion();
+		planificador.liberarEjecucion();
 	}
 
 	public void pedirBajas() {
