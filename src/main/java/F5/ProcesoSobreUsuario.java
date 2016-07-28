@@ -24,20 +24,7 @@ public class ProcesoSobreUsuario extends Proceso {
 		this.setHorarioPlanificacion(horaPlanificacion);
 		this.inicializarEstado();
 	}
-	
-	public ProcesoSobreUsuario(){
-		usuarios=RepositorioDeUsuarios.getUsuarios();
-		this.inicializarEstado();
-	}
-	
-	public ProcesoSobreUsuario(Comuna comuna){
-		usuarios=				RepositorioDeUsuarios
-								.getUsuarios().stream()
-								.filter(usuario-> usuario.getComuna().getNroComuna() == comuna.getNroComuna())
-								.collect(Collectors.toList());
-		this.inicializarEstado();
-	}
-	
+		
 	public void hacerOperacionesDeCadaProceso(){
 		this.setCantidadDeElementosAfectados(usuarios.size());
 		this.agregarAccionesAUsuario(accionesParaAgregar);
