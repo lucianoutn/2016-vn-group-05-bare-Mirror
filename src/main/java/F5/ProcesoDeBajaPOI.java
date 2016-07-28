@@ -29,17 +29,18 @@ public class ProcesoDeBajaPOI extends Proceso {
 		return repoDePOIs;
 	}
 
-	public void ejecutar() {
+	public void hacerOperacionesDeCadaProceso() { // este era el EX ejecutar()
 		// this.pasarAEnEspera(); //TODO
 		planificador.solicitarEjecucion(this);
 	}
 
 	public void ejecutarPosta() {
-		this.pasarAEjecutando();
+
 		this.pedirBajas();
 		this.darDeBajaAPOI();
-		this.almacenarResultadoDeEjecucion();
+		// this.almacenarResultadoDeEjecucion(); FRANCO: esto es lo q te decia q tendria q seguir haciendolo aca.lucho
 		planificador.liberarEjecucion();
+
 	}
 
 	public void pedirBajas() {

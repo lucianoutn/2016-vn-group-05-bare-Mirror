@@ -107,7 +107,6 @@ public class ManejoDeResultadosyErroresTest {
 
 	@Test
 	public void cantidadDeElementosAfectadosDelProcesoEsIgualADos() {
-
 		procesoDeBajaPOI.ejecutar();
 		Assert.assertEquals(2, procesoDeBajaPOI.getCantidadDeElementosAfectados());
 	}

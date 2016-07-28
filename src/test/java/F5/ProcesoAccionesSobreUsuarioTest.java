@@ -18,14 +18,11 @@ public class ProcesoAccionesSobreUsuarioTest {
 	private Usuario unUsuario;
 	private Usuario otroUsuario;
 	private List<Usuario> usuarios = new ArrayList<Usuario>();
-	
 	private AccionEjemplo unaAccion;
 	private List<AccionPostBusqueda> acciones = new ArrayList<AccionPostBusqueda>();
-	
+	private ObtenerUsuariosAProcesar obtenerUsuarios;
 	private ProcesoSobreUsuario unProcesoSobreUsuario;
-	
 	private Busqueda unaBusqueda;
-	
 	private RepositorioDePOIs unMapa;
 		
 	
@@ -45,6 +42,8 @@ public class ProcesoAccionesSobreUsuarioTest {
 		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
 		
 		unMapa = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
+		
+		obtenerUsuarios = new ObtenerUsuariosAProcesar();
 		
 	}
 	
@@ -68,7 +67,7 @@ public class ProcesoAccionesSobreUsuarioTest {
 		RepositorioDeUsuarios.usuarios = new ArrayList<Usuario>();
 		RepositorioDeUsuarios.addUsuario(unUsuario);
 		RepositorioDeUsuarios.addUsuario(otroUsuario);
-		ProcesoSobreUsuario unProceso = new ProcesoSobreUsuario(new Comuna(1, null));
+		ProcesoSobreUsuario unProceso = new ProcesoSobreUsuario(obtenerUsuarios.usuariosEnComuna(new Comuna(1,null)),null,null,900);
 		Assert.assertTrue(unProceso.getUsuarios().size() == 1);
 	}
 	
@@ -78,7 +77,7 @@ public class ProcesoAccionesSobreUsuarioTest {
 		RepositorioDeUsuarios.usuarios = new ArrayList<Usuario>();
 		RepositorioDeUsuarios.addUsuario(unUsuario);
 		RepositorioDeUsuarios.addUsuario(otroUsuario);
-		ProcesoSobreUsuario unProceso = new ProcesoSobreUsuario();
+		ProcesoSobreUsuario unProceso = new ProcesoSobreUsuario(obtenerUsuarios.usuariosEnSistema(),null,null,900);
 		Assert.assertTrue(unProceso.getUsuarios().size() == 2);
 	}
 	

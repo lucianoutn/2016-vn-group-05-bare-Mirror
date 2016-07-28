@@ -3,12 +3,13 @@ package F5;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class lectorArchivoLocalComercial {
 
-	public void leerArchivo(File archivo, ProcesoSobreLocalComercial unLocal){
+	public void leerArchivo(File archivo, ProcesoSobreLocalComercial unLocal) throws IOException{
 		FileReader lector = null;
 		String linea;
 		lector = new FileReader(archivo);
@@ -46,4 +47,5 @@ public class lectorArchivoLocalComercial {
 		
 	}
 	
+}
 }

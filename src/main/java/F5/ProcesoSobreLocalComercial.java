@@ -21,16 +21,15 @@ public class ProcesoSobreLocalComercial extends ProcesoSobreLocalComercialClaseA
 		this.setRuta(rutaArchivo);
 		setUnMapa(map);
 		this.setFecha(horarioDeEjecucion);
-		horarioDeEjecucion = horarioDeEjecucion;
 		traductor= new lectorArchivoLocalComercial();
 		this.inicializarEstado();
 	}
 	
-	public void ejecutar() {
-		if(LocalDate.now().equals(this.getFecha()))
-		this.actualizarLocalComercial();
+	public void hacerOperacionesDeCadaProceso() {
+		if( LocalDate.now().equals(this.getFecha()))
+			this.actualizarLocalComercial();
 	}
-
+	
 	public void actualizarLocalComercial() {
 		archivo = new File(this.getRuta());
 		this.seActualizaronLosLocalesComerciales();
