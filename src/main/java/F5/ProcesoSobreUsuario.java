@@ -39,6 +39,7 @@ public class ProcesoSobreUsuario extends Proceso {
 	}
 	
 	public void ejecutar(){
+		this.pasarAEjecutando();
 		this.setCantidadDeElementosAfectados(usuarios.size());
 		this.agregarAccionesAUsuario(accionesParaAgregar);
 		this.quitarAccionesAUsuario(accionesParaQuitar);
