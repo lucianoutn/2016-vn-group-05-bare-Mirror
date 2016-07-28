@@ -25,16 +25,11 @@ public class ProcesoSobreLocalComercial extends ProcesoSobreLocalComercialClaseA
 		this.inicializarEstado();
 	}
 	
-	public void ejecutar() {
-		if( LocalDate.now().equals(this.getFecha())){
-			this.pasarAEjecutando();
+	public void hacerOperacionesDeCadaProceso() {
+		if( LocalDate.now().equals(this.getFecha()))
 			this.actualizarLocalComercial();
-			this.almacenarResultadoDeEjecucion();
-		}
 	}
 	
-	
-
 	public void actualizarLocalComercial() {
 		archivo = new File(this.getRuta());
 		this.seActualizaronLosLocalesComerciales();

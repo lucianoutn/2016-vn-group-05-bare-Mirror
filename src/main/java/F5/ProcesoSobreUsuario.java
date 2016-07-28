@@ -38,14 +38,11 @@ public class ProcesoSobreUsuario extends Proceso {
 		this.inicializarEstado();
 	}
 	
-	public void ejecutar(){
-		this.pasarAEjecutando();
+	public void hacerOperacionesDeCadaProceso(){
 		this.setCantidadDeElementosAfectados(usuarios.size());
 		this.agregarAccionesAUsuario(accionesParaAgregar);
 		this.quitarAccionesAUsuario(accionesParaQuitar);
-		this.almacenarResultadoDeEjecucion();
 	}
-	
 	
 	public void agregarAccionesAUsuario(List<AccionPostBusqueda> acciones){
 		usuarios.forEach(usuario->usuario.agregarAcciones(acciones));

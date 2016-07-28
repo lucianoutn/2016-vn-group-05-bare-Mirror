@@ -26,19 +26,14 @@ public class ProcesoDeBajaPOI extends Proceso {
 		return repoDePOIs;
 	}
 
-	public void ejecutar() {
-		this.pasarAEjecutando();
+	
+	public void hacerOperacionesDeCadaProceso(){
 		this.pedirBajas();
 		this.darDeBajaAPOI();
-		this.almacenarResultadoDeEjecucion();
 	}
-
+	
 	public void pedirBajas() {
-		puntosDeInteresParaBajas = servicioBaja.poisADarDeBaja(); // el mock de
-																	// rest esta
-																	// devolviendo
-																	// una lista
-																	// vacia
+		puntosDeInteresParaBajas = servicioBaja.poisADarDeBaja(); // el mock de rest esta devolviendo una lista vacia
 		this.setCantidadDeElementosAfectados(puntosDeInteresParaBajas.size());
 	}
 

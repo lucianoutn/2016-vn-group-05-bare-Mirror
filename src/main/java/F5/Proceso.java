@@ -9,8 +9,14 @@ public abstract class Proceso implements INotificarCambioHorario{
 	private ResultadoDeEjecucion resultadoDeEjecucion = new ResultadoDeEjecucion();
 	private int cantidadDeElementosAfectados, horarioPlanificacion;
 	
-	public abstract void ejecutar();	
+	public void ejecutar(){
+		this.pasarAEjecutando();
+		this.hacerOperacionesDeCadaProceso();
+		this.almacenarResultadoDeEjecucion();
+	}
 	
+	public abstract void hacerOperacionesDeCadaProceso();
+
 	public void pasarAEjecutando(){
 		estado = EstadosDelProceso.Ejecutando;
 	}
