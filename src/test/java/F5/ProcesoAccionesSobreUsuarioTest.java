@@ -14,7 +14,6 @@ import InterfacesExternas.SistemaExternoCGPMock;
 
 public class ProcesoAccionesSobreUsuarioTest {
 
-	
 	private Usuario unUsuario;
 	private Usuario otroUsuario;
 	private List<Usuario> usuarios = new ArrayList<Usuario>();
@@ -24,62 +23,63 @@ public class ProcesoAccionesSobreUsuarioTest {
 	private ProcesoSobreUsuario unProcesoSobreUsuario;
 	private Busqueda unaBusqueda;
 	private RepositorioDePOIs unMapa;
-		
-	
+	private Planificador planificador = new Planificador();
+
 	@Before
-	public void initialize(){
+	public void initialize() {
 		unUsuario = new Usuario("Juan", new Comuna(1, null));
 		otroUsuario = new Usuario("Pedro", new Comuna(2, null));
 		usuarios.add(unUsuario);
 		usuarios.add(otroUsuario);
-		
+
 		unaAccion = new AccionEjemplo();
 		acciones.add(unaAccion);
-		
+
 		unaBusqueda = new Busqueda(unUsuario, "Boedo", "Hola", null);
-		
+
 		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
 		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
-		
+
 		unMapa = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
-		
+
 		obtenerUsuarios = new ObtenerUsuariosAProcesar();
-		
+
 	}
-	
+
 	@Test
-	public void seAgregaUnaAccionQueImprimeCorrectamente(){
-		unProcesoSobreUsuario = new ProcesoSobreUsuario(usuarios, acciones, null, 1);
+	public void seAgregaUnaAccionQueImprimeCorrectamente() {
+		unProcesoSobreUsuario = new ProcesoSobreUsuario(usuarios, acciones, null, 1, planificador);
 		unProcesoSobreUsuario.ejecutar();
-		Assert.assertEquals(1,unUsuario.getAccionesRealizables().size());
+		Assert.assertEquals(1, unUsuario.getAccionesRealizables().size());
 	}
-	
+
 	@Test
-	public void seRealizaUnaBusquedaYSeEjecutanLasAccionesDelUsuario(){
+	public void seRealizaUnaBusquedaYSeEjecutanLasAccionesDelUsuario() {
 		unUsuario.agregarAccion(unaAccion);
 		unaBusqueda.buscoFrase("Junin", unMapa);
 		Assert.assertTrue(unaAccion.isAccionEjecutada());
 	}
-	
+
 	@Test
-	public void filtraUnUsuarioEnLaComunaUno(){
-		
+	public void filtraUnUsuarioEnLaComunaUno() {
+
 		RepositorioDeUsuarios.usuarios = new ArrayList<Usuario>();
 		RepositorioDeUsuarios.addUsuario(unUsuario);
 		RepositorioDeUsuarios.addUsuario(otroUsuario);
-		ProcesoSobreUsuario unProceso = new ProcesoSobreUsuario(obtenerUsuarios.usuariosEnComuna(new Comuna(1,null)),null,null,900);
+		ProcesoSobreUsuario unProceso = new ProcesoSobreUsuario(obtenerUsuarios.usuariosEnComuna(new Comuna(1, null)),
+				null, null, 900, planificador);
 		Assert.assertTrue(unProceso.getUsuarios().size() == 1);
 	}
-	
+
 	@Test
-	public void dosUsuariosEnElProcesoQueSeCreaParaTodosLosUsuariosDelSistema(){
-		
+	public void dosUsuariosEnElProcesoQueSeCreaParaTodosLosUsuariosDelSistema() {
+
 		RepositorioDeUsuarios.usuarios = new ArrayList<Usuario>();
 		RepositorioDeUsuarios.addUsuario(unUsuario);
 		RepositorioDeUsuarios.addUsuario(otroUsuario);
-		ProcesoSobreUsuario unProceso = new ProcesoSobreUsuario(obtenerUsuarios.usuariosEnSistema(),null,null,900);
+		ProcesoSobreUsuario unProceso = new ProcesoSobreUsuario(obtenerUsuarios.usuariosEnSistema(), null, null, 900,
+				planificador);
 		Assert.assertTrue(unProceso.getUsuarios().size() == 2);
 	}
-	
 
 }

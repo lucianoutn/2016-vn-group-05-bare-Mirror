@@ -25,6 +25,7 @@ public class ProcesoBajaDePOIsTest {
 	private LocalComercial otroLocalComercial;
 	private BajaPoisRestMock mockRESTBajaPOIs;
 	private ProcesoDeBajaPOI procesoDeBajaPOI;
+	private Planificador planificador = new Planificador();
 
 	@Before
 	public void initialize() {
@@ -48,7 +49,7 @@ public class ProcesoBajaDePOIsTest {
 
 		mockRESTBajaPOIs = new BajaPoisRestMock(unRepositorioDePOIs);
 
-		procesoDeBajaPOI = new ProcesoDeBajaPOI(otroRepositorioDePOIs, mockRESTBajaPOIs, 1);
+		procesoDeBajaPOI = new ProcesoDeBajaPOI(otroRepositorioDePOIs, mockRESTBajaPOIs, 1, planificador);
 
 	}
 

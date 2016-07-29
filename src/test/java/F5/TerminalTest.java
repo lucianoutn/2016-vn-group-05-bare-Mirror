@@ -28,6 +28,7 @@ public class TerminalTest {
 	private Reloj unReloj;
 	private ProcesoDeBajaPOI unProcesoDeBajaDePOI;
 	private BajaPoisRestMock bajaDePOIsMock;
+	private Planificador planificador = new Planificador();
 
 	@Before
 	public void initialize() {
@@ -114,7 +115,7 @@ public class TerminalTest {
 		unRepositorioDePOIs.anadirPOI(unLocalComercial);
 		unRepositorioDePOIs.anadirPOI(otroLocalComercial);
 
-		unProcesoDeBajaDePOI = new ProcesoDeBajaPOI(unRepositorioDePOIs, bajaDePOIsMock, 1000);
+		unProcesoDeBajaDePOI = new ProcesoDeBajaPOI(unRepositorioDePOIs, bajaDePOIsMock, 1000, planificador);
 
 		unaTerminal.anadirProcesoBatch(unProcesoDeBajaDePOI);
 
@@ -137,7 +138,7 @@ public class TerminalTest {
 		unRepositorioDePOIs.anadirPOI(unLocalComercial);
 		unRepositorioDePOIs.anadirPOI(otroLocalComercial);
 
-		unProcesoDeBajaDePOI = new ProcesoDeBajaPOI(unRepositorioDePOIs, bajaDePOIsMock, 900);
+		unProcesoDeBajaDePOI = new ProcesoDeBajaPOI(unRepositorioDePOIs, bajaDePOIsMock, 900, planificador);
 
 		unaTerminal.anadirProcesoBatch(unProcesoDeBajaDePOI);
 

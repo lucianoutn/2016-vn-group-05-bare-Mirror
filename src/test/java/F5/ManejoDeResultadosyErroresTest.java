@@ -27,6 +27,7 @@ public class ManejoDeResultadosyErroresTest {
 	private MandarMailPorError manejoDeError_EnviarMail;
 	private NotificadorDeAdministrador unNotificadorDeAdmin;
 	private ReintentarProcesoPorError manejoDeError_Reintento;
+	private Planificador planificador = new Planificador();
 
 	@Before
 	public void initialize() {
@@ -50,7 +51,7 @@ public class ManejoDeResultadosyErroresTest {
 
 		mockRESTBajaPOIs = new BajaPoisRestMock(unRepositorioDePOIs);
 
-		procesoDeBajaPOI = new ProcesoDeBajaPOI(otroRepositorioDePOIs, mockRESTBajaPOIs, 1);
+		procesoDeBajaPOI = new ProcesoDeBajaPOI(otroRepositorioDePOIs, mockRESTBajaPOIs, 1, planificador);
 	}
 
 	@Test
