@@ -39,6 +39,11 @@ public class ProcesoDeBajaPOI extends Proceso {
 		this.pedirBajas();
 		this.darDeBajaAPOI();
 		// this.almacenarResultadoDeEjecucion(); FRANCO: esto es lo q te decia q tendria q seguir haciendolo aca.lucho
+		try {   // para poder testearlo
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}    
 		planificador.liberarEjecucion();
 
 	}

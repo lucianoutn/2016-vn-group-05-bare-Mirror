@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Planificador {
 	// atributos
-	private boolean ejecucionDisponible = true;
-	private List<Proceso> procesosPendientesDeEjecucion = new ArrayList<Proceso>();
+	public boolean ejecucionDisponible = true;
+	public List<Proceso> procesosPendientesDeEjecucion = new ArrayList<Proceso>();
 
 	// metodos
 	public void solicitarEjecucion(Proceso unProceso) { //es solicitado por el metodo ejecutar()de cada proceso
