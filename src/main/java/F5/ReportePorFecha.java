@@ -2,11 +2,11 @@ package F5;
 
 import java.time.LocalTime;
 
-public class BusquedaPorFecha {
+public class ReportePorFecha {
 	double cantidadDeBusquedas;
 	LocalTime diaDeLaBusqueda;
 	
-	public BusquedaPorFecha(LocalTime diaBusqueda){
+	public ReportePorFecha(LocalTime diaBusqueda){
 		diaDeLaBusqueda = diaBusqueda;
 	}
 	public double getCantidadDeBusquedas() {

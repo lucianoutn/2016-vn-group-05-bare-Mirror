@@ -68,11 +68,19 @@ public class Busqueda {
 		else
 			cantResultados = (int) unMapa.cantidadDeMatcheosConPois(unaFrase);
 
-		LocalTime tiempoFinBusqueda = LocalTime.now();
-		this.tiempoBusqueda = tiempoFinBusqueda.toSecondOfDay() - this.fecha.toSecondOfDay();
+		actualizarTiempoBusqueda();
+		notificarBusqueda();
+		return unMapa.buscaPuntosDeInteresEnSistemaySistemasExternos(unaFrase, null);
+	}
+
+	private void notificarBusqueda() {
 		this.avisarAObservers();
 		this.usuario.ejecutarAcciones();
-		return unMapa.buscaPuntosDeInteresEnSistemaySistemasExternos(unaFrase, null);
+	}
+
+	private void actualizarTiempoBusqueda() {
+		LocalTime tiempoFinBusqueda = LocalTime.now();
+		this.tiempoBusqueda = tiempoFinBusqueda.toSecondOfDay() - this.fecha.toSecondOfDay();
 	}
 
 	public String getTerminal() {

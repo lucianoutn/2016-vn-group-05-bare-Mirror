@@ -48,8 +48,8 @@ public class Terminal implements INotificarCambioHorario {
 		return unMapa;
 	}
 
-	public List<PuntoDeInteres> buscarEnTerminal(String unaFrase,String user){
-		Busqueda unaBusqueda= new Busqueda(new Usuario(user, null),nombreDeTerminal,unaFrase,listaObservadores);
+	public List<PuntoDeInteres> buscarEnTerminal(String unaFrase, Usuario user){
+		Busqueda unaBusqueda= new Busqueda(user,nombreDeTerminal,unaFrase,listaObservadores);
 		return unaBusqueda.buscoFrase(unaFrase, unMapa);
 	}
 

@@ -1,10 +1,11 @@
 package F5;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ResultadoPorTerminal {
 	private String unaTerminal;
-	private ArrayList<Double> cantResultados;
+	private List<Double> cantResultados;
 	
 	
 	
@@ -20,7 +21,7 @@ public class ResultadoPorTerminal {
 
 
 
-	public ArrayList<Double> getCantResultados() {
+	public List<Double> getCantResultados() {
 		return cantResultados;
 	}
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BusquedasPorFecha implements NotificadorDeBusqueda {
-	public  List<BusquedaPorFecha> reporte = new ArrayList<BusquedaPorFecha>();
+	public  List<ReportePorFecha> reporte = new ArrayList<ReportePorFecha>();
 
 	public void notificarBusqueda(Busqueda unaBusqueda){
 		if(reporte.stream().anyMatch(x-> x.getDiaDeLaBusqueda().equals(unaBusqueda.getFecha()))){
@@ -12,10 +12,10 @@ public class BusquedasPorFecha implements NotificadorDeBusqueda {
 							.forEach(x-> x.setCantidadDeBusquedas(x.getCantidadDeBusquedas()+1));
 		}
 		else
-			reporte.add(new BusquedaPorFecha(unaBusqueda.getFecha()));
+			reporte.add(new ReportePorFecha(unaBusqueda.getFecha()));
 	}
 
-	public List<BusquedaPorFecha> generarReporte(){
+	public List<ReportePorFecha> generarReporte(){
 		return reporte;
 	}
 }

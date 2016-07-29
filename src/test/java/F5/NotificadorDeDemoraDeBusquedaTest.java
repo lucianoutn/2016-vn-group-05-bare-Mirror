@@ -37,7 +37,7 @@ public class NotificadorDeDemoraDeBusquedaTest {
 	@Test
 	public void siUnaBusquedaDemoraMasDelTiempoEstipuladoSeEnviaNoti() {
 		notiDeAdminPorMailMock.setTiempoParaNotificar(-1);
-		miTerminal.buscarEnTerminal("unString", "unUser");
+		miTerminal.buscarEnTerminal("unString", new Usuario("unUser", null));
 		Assert.assertTrue(notiDeAdminPorMailMock.notificado);
 
 	}
@@ -45,7 +45,7 @@ public class NotificadorDeDemoraDeBusquedaTest {
 	@Test
 	public void siUnaBusquedaDemoraMenosDelTiempoEstipuladoNoSeNotifica() {
 		notiDeAdminPorMailMock.setTiempoParaNotificar(10);
-		miTerminal.buscarEnTerminal("unString", "unUser");
+		miTerminal.buscarEnTerminal("unString", new Usuario("unUser", null));
 		Assert.assertFalse(notiDeAdminPorMailMock.notificado);
 	}
 
