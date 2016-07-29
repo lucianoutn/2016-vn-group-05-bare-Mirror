@@ -11,25 +11,36 @@ import java.util.List;
 
 import F5.Proceso;
 
-
 public class ProcesoSobreLocalComercial extends ProcesoSobreLocalComercialClaseAbst {
 
 	private File archivo;
 	private lectorArchivoLocalComercial traductor;
-	
-	public ProcesoSobreLocalComercial(LocalDate horarioDeEjecucion, String rutaArchivo, RepositorioDePOIs map, int horaPlanificacion) {
+	private Planificador planificador;
+
+	public ProcesoSobreLocalComercial(LocalDate horarioDeEjecucion, String rutaArchivo, RepositorioDePOIs map,
+			int horaPlanificacion, Planificador unPlanificador) {
+
 		this.setRuta(rutaArchivo);
 		setUnMapa(map);
 		this.setFecha(horarioDeEjecucion);
-		traductor= new lectorArchivoLocalComercial();
+		traductor = new lectorArchivoLocalComercial();
 		this.inicializarEstado();
+		planificador = unPlanificador;
 	}
-	
-	public void hacerOperacionesDeCadaProceso() {
-		if( LocalDate.now().equals(this.getFecha()))
+
+	public void hacerOperacionesDeCadaProceso() { // este era el EX ejecutar()
+		// this.pasarAEnEspera(); //TODO
+		planificador.solicitarEjecucion(this);
+	}
+
+	public void ejecutarPosta() {
+
+		if (LocalDate.now().equals(this.getFecha()))
 			this.actualizarLocalComercial();
+		planificador.liberarEjecucion();
+
 	}
-	
+
 	public void actualizarLocalComercial() {
 		archivo = new File(this.getRuta());
 		this.seActualizaronLosLocalesComerciales();
@@ -38,7 +49,7 @@ public class ProcesoSobreLocalComercial extends ProcesoSobreLocalComercialClaseA
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }
