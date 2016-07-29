@@ -8,17 +8,18 @@ import org.junit.Test;
 
 public class ProcesoSobreLocalComercialTest {
 
-	private ProcesoSobreLocalComercialClaseAbst ProcesoLocalAhora;
-	private ProcesoSobreLocalComercialClaseAbst ProcesoLocalTarde;
+	private ProcesoSobreLocalComercial ProcesoLocalAhora;
+	private ProcesoSobreLocalComercial ProcesoLocalTarde;
 	private Planificador planificador = new Planificador();
 
 	@Before
 	public void Initialize() {
 
-		ProcesoLocalAhora = new ProcesoSobreLocalComercialMock(LocalDate.now(), "/rutaFalsa.txt",
-				new RepositorioDePOIs(null, null), 1, planificador);
-		ProcesoLocalTarde = new ProcesoSobreLocalComercialMock(LocalDate.of(2000, 04, 30), "/rutaFalsa.txt",
-				new RepositorioDePOIs(null, null), 1, planificador);
+		ILectorArchivoLocalComercial lectorMock = new LectorArchivoLocalComercialMock();
+		ProcesoLocalAhora = new ProcesoSobreLocalComercial(LocalDate.now(), "/rutaFalsa.txt",
+				new RepositorioDePOIs(null, null), 1, planificador, lectorMock);
+		ProcesoLocalTarde = new ProcesoSobreLocalComercial(LocalDate.of(2000, 04, 30), "/rutaFalsa.txt",
+				new RepositorioDePOIs(null, null), 1, planificador, lectorMock);
 	}
 
 	@Test

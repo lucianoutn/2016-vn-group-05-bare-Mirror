@@ -11,19 +11,24 @@ import java.util.List;
 
 import F5.Proceso;
 
-public class ProcesoSobreLocalComercial extends ProcesoSobreLocalComercialClaseAbst {
+public class ProcesoSobreLocalComercial extends Proceso {
 
 	private File archivo;
-	private lectorArchivoLocalComercial traductor;
+	private ILectorArchivoLocalComercial traductor;
 	private Planificador planificador;
+	private LocalDate fecha;
+	private boolean losLocalesComercialesEstanActualizados = false;
+	private String ruta;
+	private RepositorioDePOIs unMapa;
+	
 
 	public ProcesoSobreLocalComercial(LocalDate horarioDeEjecucion, String rutaArchivo, RepositorioDePOIs map,
-			int horaPlanificacion, Planificador unPlanificador) {
+			int horaPlanificacion, Planificador unPlanificador, ILectorArchivoLocalComercial lector) {
 
 		this.setRuta(rutaArchivo);
 		setUnMapa(map);
 		this.setFecha(horarioDeEjecucion);
-		traductor = new lectorArchivoLocalComercial();
+		traductor = lector;
 		this.inicializarEstado();
 		planificador = unPlanificador;
 	}
@@ -50,6 +55,40 @@ public class ProcesoSobreLocalComercial extends ProcesoSobreLocalComercialClaseA
 			e.printStackTrace();
 		}
 
+	}
+	
+	public void seActualizaronLosLocalesComerciales(){
+		losLocalesComercialesEstanActualizados = true;
+	}
+
+	public boolean isLocalesComercialesActualizados() {
+		return losLocalesComercialesEstanActualizados;
+	}
+	
+	
+	
+	public void setUnMapa(RepositorioDePOIs unMapa) {
+		this.unMapa = unMapa;
+	}
+	
+	public void setRuta(String ruta) {
+		this.ruta = ruta;
+	}
+
+	public RepositorioDePOIs getUnMapa() {
+		return unMapa;
+	}
+
+	public String getRuta() {
+		return ruta;
+	}
+
+	public LocalDate getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(LocalDate unaFecha) {
+		fecha = unaFecha;
 	}
 
 }

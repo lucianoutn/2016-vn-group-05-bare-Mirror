@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class lectorArchivoLocalComercial {
+public class LectorArchivoLocalComercial implements ILectorArchivoLocalComercial{
 
 	public void leerArchivo(File archivo, ProcesoSobreLocalComercial unLocal) throws IOException{
 		FileReader lector = null;
