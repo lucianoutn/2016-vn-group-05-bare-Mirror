@@ -1,10 +1,12 @@
-package F5;
+package F5.Procesos;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import F5.Proceso;
+import F5.Pois.PuntoDeInteres;
+import F5.Procesos.Proceso;
+import F5.Terminal.RepositorioDePOIs;
 import InterfacesExternas.IBajaPoi;
 
 public class ProcesoDeBajaPOI extends Proceso {

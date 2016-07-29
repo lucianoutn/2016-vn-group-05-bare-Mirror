@@ -17,8 +17,8 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import F5.DiaAtencion;
-import F5.SucursalDeBanco;
+import F5.Pois.DiaAtencion;
+import F5.Pois.SucursalDeBanco;
 
 public class ConsultorBancos implements IConsultorBancos {
 

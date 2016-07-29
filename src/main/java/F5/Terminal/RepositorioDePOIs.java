@@ -1,4 +1,4 @@
-package F5;
+package F5.Terminal;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import F5.Busqueda;
+import F5.Pois.PuntoDeInteres;
 import InterfacesExternas.ConsultorBancos;
 
 import InterfacesExternas.ConsultorCGP;

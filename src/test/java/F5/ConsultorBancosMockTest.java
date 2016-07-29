@@ -7,6 +7,8 @@ import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import F5.Pois.SucursalDeBanco;
+import F5.Terminal.RepositorioDePOIs;
 import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.SistemaExternoBancoMock;

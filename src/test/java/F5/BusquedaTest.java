@@ -5,6 +5,12 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import F5.Pois.DiaAtencion;
+import F5.Pois.ParadaDeColectivo;
+import F5.Pois.PuntoDeInteres;
+import F5.Pois.SucursalDeBanco;
+import F5.Terminal.RepositorioDePOIs;
+import F5.Terminal.Usuario;
 import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.SistemaExternoBancoMock;

@@ -1,10 +1,16 @@
 package F5;
 
 import org.uqbar.geodds.Polygon;
+
+import F5.Pois.CGP;
+import F5.Pois.Comuna;
+import F5.Pois.DiaAtencion;
+import F5.Pois.Dias;
+import F5.Pois.Servicio;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import F5.DiaAtencion;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

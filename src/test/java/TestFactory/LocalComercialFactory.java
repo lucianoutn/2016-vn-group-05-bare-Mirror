@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import org.uqbar.geodds.Point;
 
-import F5.DiaAtencion;
-import F5.LocalComercial;
+import F5.Pois.DiaAtencion;
+import F5.Pois.LocalComercial;
 
 public final class LocalComercialFactory {
 

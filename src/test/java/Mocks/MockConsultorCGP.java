@@ -5,10 +5,11 @@ import java.util.List;
 import java.util.regex.*;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
-import F5.CGP;
-import F5.Comuna;
-import F5.Servicio;
-import F5.SucursalDeBanco;
+
+import F5.Pois.CGP;
+import F5.Pois.Comuna;
+import F5.Pois.Servicio;
+import F5.Pois.SucursalDeBanco;
 import InterfacesExternas.CentroDTO;
 import InterfacesExternas.IConsultorCGP;
 import InterfacesExternas.ServicioDTO;

@@ -1,4 +1,4 @@
-package F5;
+package F5.Terminal;
 
 public interface INotificarCambioHorario {
 

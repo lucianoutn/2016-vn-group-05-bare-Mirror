@@ -6,11 +6,11 @@ import java.util.List;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-import F5.CGP;
-import F5.Comuna;
-import F5.DiaAtencion;
-import F5.Dias;
-import F5.Servicio;
+import F5.Pois.CGP;
+import F5.Pois.Comuna;
+import F5.Pois.DiaAtencion;
+import F5.Pois.Dias;
+import F5.Pois.Servicio;
 import TestFactory.PointFactory;
 
 public class CentroDTOAdapter  {

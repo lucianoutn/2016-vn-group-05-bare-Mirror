@@ -4,6 +4,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 
+import F5.Pois.Dias;
+import F5.Pois.ParadaDeColectivo;
+
 import static org.junit.Assert.*;
 
 import org.junit.Assert;

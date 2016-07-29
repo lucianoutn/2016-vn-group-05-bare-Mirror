@@ -3,8 +3,8 @@ package InterfacesExternas;
 import java.util.ArrayList;
 import java.util.List;
 
-import F5.PuntoDeInteres;
-import F5.RepositorioDePOIs;
+import F5.Pois.PuntoDeInteres;
+import F5.Terminal.RepositorioDePOIs;
 
 
 public class BajaPoisRestMock implements IBajaPoi {

@@ -1,4 +1,4 @@
-package F5;
+package F5.Pois;
 
 
 import java.util.ArrayList;
@@ -58,7 +58,7 @@ public abstract class  PuntoDeInteres {
 	public abstract boolean encuentra(String textoLibre);
 
 	
-	protected int cuadrasDeDistancia(Point point) {
+	public int cuadrasDeDistancia(Point point) {
 		return (int) Math.abs(posicion.distance(point)/100);
 	}
 	

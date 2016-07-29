@@ -1,11 +1,10 @@
 package TestFactory;
 
-import F5.Dias;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import F5.DiaAtencion;
+import F5.Pois.DiaAtencion;
+import F5.Pois.Dias;
 
 public final class DayFactory {
 

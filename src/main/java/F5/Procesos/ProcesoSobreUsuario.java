@@ -1,10 +1,12 @@
-package F5;
+package F5.Procesos;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import F5.Proceso;
+import F5.AccionPostBusqueda;
+import F5.Procesos.Proceso;
+import F5.Terminal.Usuario;
 
 public class ProcesoSobreUsuario extends Proceso {
 

@@ -1,7 +1,10 @@
-package F5;
+package F5.Terminal;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import F5.AccionPostBusqueda;
+import F5.Pois.Comuna;
 
 public class Usuario {
 	private String nombre;

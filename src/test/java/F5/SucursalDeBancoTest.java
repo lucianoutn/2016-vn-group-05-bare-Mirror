@@ -7,6 +7,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import F5.Pois.Dias;
+import F5.Pois.SucursalDeBanco;
+
 public class SucursalDeBancoTest {
 	@Before
 	public void initialize() {

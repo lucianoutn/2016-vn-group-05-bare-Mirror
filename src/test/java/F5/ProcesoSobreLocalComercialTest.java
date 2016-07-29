@@ -6,6 +6,12 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import F5.Procesos.ILectorArchivoLocalComercial;
+import F5.Procesos.LectorArchivoLocalComercialMock;
+import F5.Procesos.Planificador;
+import F5.Procesos.ProcesoSobreLocalComercial;
+import F5.Terminal.RepositorioDePOIs;
+
 public class ProcesoSobreLocalComercialTest {
 
 	private ProcesoSobreLocalComercial ProcesoLocalAhora;

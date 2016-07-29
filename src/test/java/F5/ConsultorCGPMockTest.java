@@ -8,6 +8,8 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+import F5.Pois.CGP;
+import F5.Pois.Dias;
 import InterfacesExternas.CentroDTO;
 import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.ServicioDTO;

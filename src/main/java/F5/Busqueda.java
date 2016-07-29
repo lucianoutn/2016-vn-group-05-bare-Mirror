@@ -4,6 +4,10 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import F5.Pois.PuntoDeInteres;
+import F5.Terminal.RepositorioDePOIs;
+import F5.Terminal.Usuario;
+
 public class Busqueda {
 
 	// atributos

@@ -7,6 +7,11 @@ import junit.framework.Assert;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 
+import F5.Pois.DiaAtencion;
+import F5.Pois.SucursalDeBanco;
+import F5.Procesos.Planificador;
+import F5.Procesos.ProcesoDeBajaPOI;
+import F5.Terminal.RepositorioDePOIs;
 import InterfacesExternas.BajaPoisRestMock;
 import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;

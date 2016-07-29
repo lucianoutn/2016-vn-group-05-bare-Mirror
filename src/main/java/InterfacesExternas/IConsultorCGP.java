@@ -2,7 +2,7 @@ package InterfacesExternas;
 
 import java.util.List;
 
-import F5.CGP;
+import F5.Pois.CGP;
 
 public interface IConsultorCGP extends OrigenDeDatos{
 

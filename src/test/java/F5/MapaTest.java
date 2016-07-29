@@ -10,6 +10,13 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+import F5.Pois.CGP;
+import F5.Pois.Comuna;
+import F5.Pois.DiaAtencion;
+import F5.Pois.LocalComercial;
+import F5.Pois.Servicio;
+import F5.Pois.SucursalDeBanco;
+import F5.Terminal.RepositorioDePOIs;
 import InterfacesExternas.CentroDTO;
 import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;

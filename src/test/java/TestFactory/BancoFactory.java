@@ -5,9 +5,9 @@ import java.util.List;
 
 import org.uqbar.geodds.Point;
 
-import F5.DiaAtencion;
-import F5.Dias;
-import F5.SucursalDeBanco;
+import F5.Pois.DiaAtencion;
+import F5.Pois.Dias;
+import F5.Pois.SucursalDeBanco;
 
 public final class BancoFactory {
 

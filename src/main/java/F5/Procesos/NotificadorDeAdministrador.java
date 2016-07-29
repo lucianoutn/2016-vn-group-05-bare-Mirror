@@ -1,7 +1,10 @@
-package F5;
+package F5.Procesos;
 
 import java.util.Properties;
 import javax.mail.Session;
+
+import F5.Busqueda;
+import F5.NotificadorDeBusqueda;
 
 public class NotificadorDeAdministrador implements NotificadorDeBusqueda {
 

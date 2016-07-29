@@ -1,6 +1,8 @@
-package F5;
+package F5.Procesos;
 
 import java.time.LocalDateTime;
+
+import F5.Terminal.INotificarCambioHorario;
 
 public abstract class Proceso implements INotificarCambioHorario {
 

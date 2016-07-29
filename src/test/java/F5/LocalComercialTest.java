@@ -1,13 +1,17 @@
 package F5;
 
 import java.util.ArrayList;
-import F5.DiaAtencion;
+
 import TestFactory.LocalComercialFactory;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
+
+import F5.Pois.DiaAtencion;
+import F5.Pois.Dias;
+import F5.Pois.LocalComercial;
 
 public class LocalComercialTest {
 	

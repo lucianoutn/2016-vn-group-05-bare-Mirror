@@ -1,4 +1,4 @@
-package F5;
+package F5.Procesos;
 
 public class ReintentarProcesoPorError implements IManejadorDeError{
 

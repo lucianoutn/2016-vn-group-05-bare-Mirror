@@ -9,6 +9,16 @@ import org.junit.Test;
 import org.junit.Assert;
 import org.uqbar.geodds.Polygon;
 
+import F5.Pois.CGP;
+import F5.Pois.Comuna;
+import F5.Pois.DiaAtencion;
+import F5.Pois.LocalComercial;
+import F5.Pois.SucursalDeBanco;
+import F5.Procesos.Planificador;
+import F5.Procesos.ProcesoDeBajaPOI;
+import F5.Terminal.Reloj;
+import F5.Terminal.RepositorioDePOIs;
+import F5.Terminal.Terminal;
 import InterfacesExternas.BajaPoisRestMock;
 import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;

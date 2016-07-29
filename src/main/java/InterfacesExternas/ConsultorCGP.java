@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import F5.CGP;
-import F5.PuntoDeInteres;
-import F5.SucursalDeBanco;
+import F5.Pois.CGP;
+import F5.Pois.PuntoDeInteres;
+import F5.Pois.SucursalDeBanco;
 
 public class ConsultorCGP implements IConsultorCGP {
 

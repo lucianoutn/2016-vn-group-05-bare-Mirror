@@ -1,3 +1,3 @@
-package F5;
+package F5.Procesos;
 
 public enum EstadosDelProceso {SinIniciar,Ejecutando,FinalizadoConExito,FinalizadoConError}

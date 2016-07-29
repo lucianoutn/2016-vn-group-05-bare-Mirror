@@ -1,4 +1,4 @@
-package F5;
+package F5.Procesos;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,7 +9,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import F5.Proceso;
+import F5.Procesos.Proceso;
+import F5.Terminal.RepositorioDePOIs;
 
 public class ProcesoSobreLocalComercial extends Proceso {
 

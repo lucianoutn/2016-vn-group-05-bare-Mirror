@@ -7,7 +7,7 @@ import org.uqbar.geodds.Point;
 
 
 import F5.Busqueda;
-import F5.Usuario;
+import F5.Terminal.Usuario;
 
 
 public final class GeneradorDeReporteFactory {
