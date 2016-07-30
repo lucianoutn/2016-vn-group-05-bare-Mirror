@@ -35,7 +35,7 @@ public class ProcesoSobreUsuario extends Proceso {
 	}
 
 	public void ejecutarPosta() {
-
+		this.pasarAEjecutando();
 		this.setCantidadDeElementosAfectados(usuarios.size());
 		this.agregarAccionesAUsuario(accionesParaAgregar);
 		this.quitarAccionesAUsuario(accionesParaQuitar);

@@ -62,12 +62,12 @@ public class ProcesoBajaDePOIsTest {
 	@Test
 	public void elMockDelRESTtieneDosPOIsADarDeBaja() {
 		procesoDeBajaPOI.ejecutar();
-		Assert.assertEquals(2, procesoDeBajaPOI.getPuntosDeInteresParaBajas().size());
+		Assert.assertEquals(unRepositorioDePOIs.getPOIs(), procesoDeBajaPOI.getPuntosDeInteresParaBajas());
 	}
 
 	@Test
 	public void doyDeBajaLosPOIsQueMeDevuelveElMockDelRESTyQuedaUnSoloPOI() {
 		procesoDeBajaPOI.ejecutar();
-		Assert.assertEquals(1, procesoDeBajaPOI.getRepoDePOIs().getPOIs().size());
+		Assert.assertTrue(procesoDeBajaPOI.getRepoDePOIs().getPOIs().contains(otroLocalComercial));
 	}
 }

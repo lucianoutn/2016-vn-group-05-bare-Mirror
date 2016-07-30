@@ -37,7 +37,7 @@ public class ProcesoDeBajaPOI extends Proceso {
 	}
 
 	public void ejecutarPosta() {
-
+		this.pasarAEjecutando();
 		this.pedirBajas();
 		this.darDeBajaAPOI();
 		// this.almacenarResultadoDeEjecucion(); FRANCO: esto es lo q te decia q tendria q seguir haciendolo aca.lucho

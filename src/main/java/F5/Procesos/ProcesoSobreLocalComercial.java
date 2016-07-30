@@ -40,7 +40,7 @@ public class ProcesoSobreLocalComercial extends Proceso {
 	}
 
 	public void ejecutarPosta() {
-
+		this.pasarAEjecutando();
 		if (LocalDate.now().equals(this.getFecha()))
 			this.actualizarLocalComercial();
 		planificador.liberarEjecucion();

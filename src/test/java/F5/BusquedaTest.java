@@ -48,8 +48,7 @@ public class BusquedaTest {
 		Busqueda unaBusqueda = new Busqueda(new Usuario("pedro", null),"flores", "101",null);
 		unaBusqueda.buscoFrase("101", unMapa);
 		
-		Assert.assertEquals(1, unaBusqueda.buscoFrase("101",unMapa).size());
-
+		Assert.assertEquals(parada101, unaBusqueda.buscoFrase("101",unMapa).get(0));
 	}
 	
 	@Test

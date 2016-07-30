@@ -16,7 +16,7 @@ public abstract class Proceso implements INotificarCambioHorario {
 
 	
 	public void ejecutar(){
-		this.pasarAEjecutando();
+		this.pasarAEnEspera();
 		this.hacerOperacionesDeCadaProceso();
 		this.almacenarResultadoDeEjecucion();
 	}
@@ -34,6 +34,10 @@ public abstract class Proceso implements INotificarCambioHorario {
 
 	public void pasarAFinalizadoConError() {
 		estado = EstadosDelProceso.FinalizadoConError;
+	}
+	
+	public void pasarAEnEspera(){
+		estado = EstadosDelProceso.EnEspera;
 	}
 
 	public EstadosDelProceso getEstado() {

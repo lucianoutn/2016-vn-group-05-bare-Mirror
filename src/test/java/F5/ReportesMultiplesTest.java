@@ -33,7 +33,7 @@ public class ReportesMultiplesTest {
 	@Test
 	public void reportesVacio() {
 		Assert.assertEquals(0, reporteroDeBusquedas.generarReporte().size());
-		Assert.assertEquals(0, reporteroDeResultadosPorTerminal.generarReporte(null).size());
+		Assert.assertTrue(reporteroDeResultadosPorTerminal.generarReporte(null).isEmpty());
 	}
 		
 	@Test
@@ -43,7 +43,6 @@ public class ReportesMultiplesTest {
 		Assert.assertEquals(1, reporteroDeBusquedas.generarReporte().size());
 		Assert.assertEquals(1, reporteroDeResultadosPorTerminal.generarReporte(null).size());
 	}
-	
 	
 	@Test
 	public void reportesConDosBusquedaEnUnaMismaTerminalParaFlores() {

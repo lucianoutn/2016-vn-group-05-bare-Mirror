@@ -56,6 +56,8 @@ public class JSONparserTest {
 	@Test
 	public void enLaListaTieneQueHaber2ySolo2Bancos() {
 		Assert.assertEquals(2, bancos.size());
+		//@Alan: Aca el size no me parece mal usado. La otra opcion serian 
+		//dos asserts, pero nos dijeron que no es una buena practica
 	}
 
 	@Test

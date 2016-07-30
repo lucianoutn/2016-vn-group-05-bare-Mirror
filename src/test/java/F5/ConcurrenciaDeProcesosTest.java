@@ -9,6 +9,7 @@ import org.uqbar.geodds.Point;
 
 import F5.Pois.DiaAtencion;
 import F5.Pois.SucursalDeBanco;
+import F5.Procesos.EstadosDelProceso;
 import F5.Procesos.Planificador;
 import F5.Procesos.ProcesoDeBajaPOI;
 import F5.Terminal.RepositorioDePOIs;
@@ -40,24 +41,33 @@ public class ConcurrenciaDeProcesosTest {
 		otroRepositorioDePOIs = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
 		otroRepositorioDePOIs.anadirPOI(unaSucursalDeBanco);
 		mockRESTBajaPOIs = new BajaPoisRestMock(unRepositorioDePOIs);
-
-	}
-
-	@Test
-	public void AlHaberDosProcesosConcurrentesSoloDebeEjecutar1() {
-		// dos procesos a la misma hora con el planificador asignado
+		
 		procesoDeBajaPOIA = new ProcesoDeBajaPOI(otroRepositorioDePOIs, mockRESTBajaPOIs, 1, planificador);
 		procesoDeBajaPOIB = new ProcesoDeBajaPOI(otroRepositorioDePOIs, mockRESTBajaPOIs, 1, planificador);
 
-		// orden de ejecutar a ambos
 		procesoDeBajaPOIA.ejecutar();
 		procesoDeBajaPOIB.ejecutar();
-		
-		Assert.assertEquals("Ejecutando", procesoDeBajaPOIA.getEstado().toString());
-		//Assert.assertEquals("EnEspera", procesoDeBajaPOIB.getEstado().toString());
-		//Assert.assertFalse(planificador.ejecucionDisponible); //no esta disponible
-		//Assert.assertEquals(1, planificador.procesosPendientesDeEjecucion.size()); //tiene 1 en lista de pendientes
-		
+	
+	}
+
+	@Test
+	public void ProcesoAyProcesoBSeEjecutanALaMismaHoraYSeEjecutaElProcesoA() {		
+		Assert.assertEquals(EstadosDelProceso.Ejecutando, procesoDeBajaPOIA.getEstado());		
+	}
+
+	
+public void ProcesoAyProcesoBSeEjecutanALaMismaHoraYElProcesoBQuedaEnEspera() {		
+		Assert.assertEquals(EstadosDelProceso.EnEspera, procesoDeBajaPOIB.getEstado());		
+	}
+
+
+public void elPlanificadorNoTieneEjecucionesDisponibles() {
+	Assert.assertFalse(planificador.ejecucionDisponible);
+	}
+
+
+public void elProcesoBEstaPendienteDeEjecucion() {
+	Assert.assertEquals(procesoDeBajaPOIB, planificador.procesosPendientesDeEjecucion.get(0)); //tiene 1 en lista de pendientes
 	}
 
 }

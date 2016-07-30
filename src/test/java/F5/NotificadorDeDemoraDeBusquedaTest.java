@@ -14,6 +14,7 @@ import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.SistemaExternoBancoMock;
 import InterfacesExternas.SistemaExternoCGPMock;
+import Mocks.NotificadorDeAdministradorMock;
 
 public class NotificadorDeDemoraDeBusquedaTest {
 
@@ -51,11 +52,4 @@ public class NotificadorDeDemoraDeBusquedaTest {
 		miTerminal.buscarEnTerminal("unString", new Usuario("unUser", null));
 		Assert.assertFalse(notiDeAdminPorMailMock.notificado);
 	}
-
-	// no hace falta xq no es mas estatico
-	/*
-	 * @After public void volverASetearLaDemoraComoEstaba() {
-	 * notiDeAdminPorMailMock.setTiempoParaNotificar(this.tiempoDeDemoraOriginal
-	 * ); }
-	 */
 }

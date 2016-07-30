@@ -50,8 +50,6 @@ public class CPGTest {
 		unCGP.anadirServicio(unServicio);
 		
 		Assert.assertTrue(unCGP.getServicios().stream().anyMatch(s->s.getNombre().equals("rentas")));
-		//Assert.assertThat("rentas", anyIn(unCGP.getServicios()));
-
 	}
 
 	@Test
@@ -62,7 +60,6 @@ public class CPGTest {
 		unServicio = new Servicio("rentas", diasDeAtencion);
 		unCGP.anadirServicio(unServicio);
 		Assert.assertTrue(unCGP.estaDisponible(Dias.Lunes, 1500, unServicio));
-
 	}
 
 	@Test

@@ -1,4 +1,7 @@
-package F5;
+package Mocks;
+
+import F5.Busqueda;
+import F5.NotificadorDeBusqueda;
 
 public class NotificadorDeAdministradorMock implements NotificadorDeBusqueda {
 

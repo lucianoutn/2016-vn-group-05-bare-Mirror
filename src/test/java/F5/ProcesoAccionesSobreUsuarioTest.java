@@ -56,7 +56,7 @@ public class ProcesoAccionesSobreUsuarioTest {
 	public void seAgregaUnaAccionQueImprimeCorrectamente() {
 		unProcesoSobreUsuario = new ProcesoSobreUsuario(usuarios, acciones, null, 1, planificador);
 		unProcesoSobreUsuario.ejecutar();
-		Assert.assertEquals(1, unUsuario.getAccionesRealizables().size());
+		Assert.assertTrue(unUsuario.getAccionesRealizables().contains(unaAccion));
 	}
 
 	@Test
@@ -74,7 +74,18 @@ public class ProcesoAccionesSobreUsuarioTest {
 		RepositorioDeUsuarios.addUsuario(otroUsuario);
 		ProcesoSobreUsuario unProceso = new ProcesoSobreUsuario(obtenerUsuarios.usuariosEnComuna(new Comuna(1, null)),
 				null, null, 900, planificador);
-		Assert.assertTrue(unProceso.getUsuarios().size() == 1);
+		Assert.assertTrue(unProceso.getUsuarios().contains(unUsuario));
+	}
+	
+	@Test
+	public void otroUsuarioNoEsParteDelProcesoPorEstarEnLaComunaDos() {
+
+		RepositorioDeUsuarios.usuarios = new ArrayList<Usuario>();
+		RepositorioDeUsuarios.addUsuario(unUsuario);
+		RepositorioDeUsuarios.addUsuario(otroUsuario);
+		ProcesoSobreUsuario unProceso = new ProcesoSobreUsuario(obtenerUsuarios.usuariosEnComuna(new Comuna(1, null)),
+				null, null, 900, planificador);
+		Assert.assertFalse(unProceso.getUsuarios().contains(otroUsuario));
 	}
 
 	@Test
@@ -85,7 +96,7 @@ public class ProcesoAccionesSobreUsuarioTest {
 		RepositorioDeUsuarios.addUsuario(otroUsuario);
 		ProcesoSobreUsuario unProceso = new ProcesoSobreUsuario(obtenerUsuarios.usuariosEnSistema(), null, null, 900,
 				planificador);
-		Assert.assertTrue(unProceso.getUsuarios().size() == 2);
+		Assert.assertEquals(RepositorioDeUsuarios.getUsuarios(),unProceso.getUsuarios());
 	}
 
 }

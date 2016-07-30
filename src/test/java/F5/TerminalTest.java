@@ -133,7 +133,7 @@ public class TerminalTest {
 
 		unReloj.aumentarModuloHorario();
 
-		Assert.assertEquals(1, unProcesoDeBajaDePOI.getRepoDePOIs().getPOIs().size());
+		Assert.assertTrue(unProcesoDeBajaDePOI.getRepoDePOIs().getPOIs().contains(otroLocalComercial));
 	}
 
 	@Test
@@ -156,7 +156,7 @@ public class TerminalTest {
 
 		unReloj.aumentarModuloHorario();
 
-		Assert.assertEquals(3, unProcesoDeBajaDePOI.getRepoDePOIs().getPOIs().size());
+		Assert.assertEquals(unRepositorioDePOIs, unProcesoDeBajaDePOI.getRepoDePOIs());
 	}
 
 }

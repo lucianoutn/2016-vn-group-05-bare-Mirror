@@ -24,9 +24,7 @@ public class BusquedasPorFechaTest {
 		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
 		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
 		
-		unMapa = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
-		
-		
+		unMapa = new RepositorioDePOIs(consultorBanco, unConsultorCGP);		
 	}
 
 	@Test
@@ -35,13 +33,13 @@ public class BusquedasPorFechaTest {
 		Busqueda unaBusq = new Busqueda(new Usuario("pedro", null),"flores", "101",listaDeUnReportero);
 		unaBusq.buscoFrase("101", unMapa);
 		
-		Assert.assertEquals(1, reporteroDeBusquedas.generarReporte().size());
+		Assert.assertEquals(1,reporteroDeBusquedas.generarReporte().size());
 		
 	}
 	
 	@Test
 	public void generarReporteVacio(){
-		Assert.assertEquals(0, reporteroDeBusquedas.generarReporte().size());
+		Assert.assertTrue(reporteroDeBusquedas.generarReporte().isEmpty());
 	}
 	
 	@Test
