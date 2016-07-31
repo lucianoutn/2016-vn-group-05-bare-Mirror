@@ -16,6 +16,7 @@ import F5.Pois.LocalComercial;
 import F5.Pois.SucursalDeBanco;
 import F5.Procesos.Planificador;
 import F5.Procesos.ProcesoDeBajaPOI;
+import F5.Reportes.RepositorioDeBusquedas;
 import F5.Terminal.Reloj;
 import F5.Terminal.RepositorioDePOIs;
 import F5.Terminal.Terminal;
@@ -57,7 +58,7 @@ public class TerminalTest {
 
 		unLocalComercial = new LocalComercial("Shopping", "Honduras", "10", "Ropa", new ArrayList<DiaAtencion>(),
 				new Point(22, 10));
-		unaTerminal = new Terminal("Caballito", unMapa);
+		unaTerminal = new Terminal("Caballito", unMapa, new RepositorioDeBusquedas());
 
 		posicionDelCGP = new Point(40, 53);
 		puntoADeLaComuna = new Point(1, 1);

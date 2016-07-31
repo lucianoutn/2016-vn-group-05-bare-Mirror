@@ -1,36 +1,36 @@
 package F5;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import F5.Pois.PuntoDeInteres;
+import F5.Procesos.NotificadorDeBusqueda;
+import F5.Reportes.RepositorioDeBusquedas;
 import F5.Terminal.RepositorioDePOIs;
+import F5.Terminal.Terminal;
 import F5.Terminal.Usuario;
+import Mocks.NotificadorDeAdministradorMock;
 
 public class Busqueda {
 
 	// atributos
 
 	private String fraseBuscada;
-	private String terminal;
+	private Terminal terminal;
 	private Usuario usuario;
 	private int cantResultados;
-	private LocalTime fecha;
-	public int tiempoBusqueda;
-	private List<NotificadorDeBusqueda> listaObservers;
-
-	// metodos
-
-	public void setListaObservers(List<NotificadorDeBusqueda> obs) {
-		listaObservers = obs;
-	}
+	private LocalDateTime fecha;
+	private int tiempoBusqueda;
+	private RepositorioDeBusquedas repositorioDeBusquedas;
+	private NotificadorDeBusqueda notificadorDeBusqueda;
 
 	public String getFraseBuscada() {
 		return fraseBuscada;
 	}
 
-	public LocalTime getFecha() {
+	public LocalDateTime getFecha() {
 		return fecha;
 	}
 
@@ -45,22 +45,18 @@ public class Busqueda {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
-	public void setTerminal(String terminal) {
-		this.terminal = terminal;
+	
+	public void agregarNotificadorDeBusqueda(NotificadorDeBusqueda unNotificador){
+		notificadorDeBusqueda = unNotificador;
 	}
 
-	public Busqueda(Usuario user, String terminal, String frase, List<NotificadorDeBusqueda> listaObservadores) {
-		listaObservers = listaObservadores;
-		fecha = LocalTime.now();
+	public Busqueda(Usuario user, Terminal unaTerminal, String frase, RepositorioDeBusquedas unRepoDeBusquedas, NotificadorDeBusqueda unNotificador) {
+		fecha = LocalDateTime.now();
 		usuario = user;
-		this.terminal = terminal;
+		terminal = unaTerminal;
 		fraseBuscada = frase;
-	}
-
-	private void avisarAObservers() {
-		if (listaObservers != null)
-			this.listaObservers.stream().forEach(x -> x.notificarBusqueda(this));
+		repositorioDeBusquedas = unRepoDeBusquedas;
+		notificadorDeBusqueda = unNotificador;
 	}
 
 	public List<PuntoDeInteres> buscoFrase(String unaFrase, RepositorioDePOIs unMapa) {
@@ -73,21 +69,27 @@ public class Busqueda {
 			cantResultados = (int) unMapa.cantidadDeMatcheosConPois(unaFrase);
 
 		actualizarTiempoBusqueda();
-		notificarBusqueda();
+		this.notificarBusquedaSiCorresponde();
+		repositorioDeBusquedas.agregarBusqueda(this);
+		this.usuario.ejecutarAcciones();
 		return unMapa.buscaPuntosDeInteresEnSistemaySistemasExternos(unaFrase, null);
 	}
 
-	private void notificarBusqueda() {
-		this.avisarAObservers();
-		this.usuario.ejecutarAcciones();
+	private void notificarBusquedaSiCorresponde() {
+		if (notificadorDeBusqueda!=null)
+			notificadorDeBusqueda.notificarBusqueda(this);
 	}
 
 	private void actualizarTiempoBusqueda() {
-		LocalTime tiempoFinBusqueda = LocalTime.now();
-		this.tiempoBusqueda = tiempoFinBusqueda.toSecondOfDay() - this.fecha.toSecondOfDay();
+		LocalDateTime tiempoFinBusqueda = LocalDateTime.now();
+		tiempoBusqueda = this.calculaDiferenciaDeTiempo(tiempoFinBusqueda);
 	}
 
-	public String getTerminal() {
+	private int calculaDiferenciaDeTiempo(LocalDateTime tiempoFinBusqueda) {
+		return fecha.toLocalTime().toSecondOfDay()-tiempoFinBusqueda.toLocalTime().toSecondOfDay();
+	}
+
+	public Terminal getTerminal() {
 		return terminal;
 	}
 

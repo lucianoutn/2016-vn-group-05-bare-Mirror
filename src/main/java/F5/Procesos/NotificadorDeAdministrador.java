@@ -4,7 +4,7 @@ import java.util.Properties;
 import javax.mail.Session;
 
 import F5.Busqueda;
-import F5.NotificadorDeBusqueda;
+import F5.Procesos.NotificadorDeBusqueda;
 
 public class NotificadorDeAdministrador implements NotificadorDeBusqueda {
 
@@ -16,11 +16,8 @@ public class NotificadorDeAdministrador implements NotificadorDeBusqueda {
 	public void notificarBusqueda(Busqueda unaBusqueda) {
 
 		if (this.excedioDemora(unaBusqueda)) {
-
 			this.enviarNotificacion();
-
 		}
-
 	}
 
 	public void enviarNotificacion() {
@@ -44,6 +41,6 @@ public class NotificadorDeAdministrador implements NotificadorDeBusqueda {
 	}
 
 	public boolean excedioDemora(Busqueda unaBusqueda) {
-		return unaBusqueda.tiempoBusqueda >= this.tiempoParaNotificar;
+		return unaBusqueda.getTiempoBusqueda() >= this.tiempoParaNotificar;
 	}
 }

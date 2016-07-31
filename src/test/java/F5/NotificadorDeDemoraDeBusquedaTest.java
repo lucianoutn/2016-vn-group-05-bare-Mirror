@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import F5.Reportes.RepositorioDeBusquedas;
 import F5.Terminal.RepositorioDePOIs;
 import F5.Terminal.Terminal;
 import F5.Terminal.Usuario;
@@ -21,6 +22,7 @@ public class NotificadorDeDemoraDeBusquedaTest {
 	private RepositorioDePOIs map;
 	private Terminal miTerminal;
 	private NotificadorDeAdministradorMock notiDeAdminPorMailMock;
+	private RepositorioDeBusquedas repositorioDeBusquedas;
 	// private int tiempoDeDemoraOriginal = Busqueda.tiempoParaNotificar; //no
 	// hace falta xq no es mas estatico
 
@@ -28,22 +30,18 @@ public class NotificadorDeDemoraDeBusquedaTest {
 	public void Initialize() {
 		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
 		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
-
 		map = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
-
-		String nombre = "terminal1";
-		miTerminal = new Terminal(nombre, map);
 		notiDeAdminPorMailMock = new NotificadorDeAdministradorMock();
-		miTerminal.activarAccion(notiDeAdminPorMailMock);
-
+		repositorioDeBusquedas = new RepositorioDeBusquedas();
+		miTerminal = new Terminal("terminal1", map, repositorioDeBusquedas);
+		miTerminal.setUnNotificadorDeBusqueda(notiDeAdminPorMailMock);
 	}
 
 	@Test
 	public void siUnaBusquedaDemoraMasDelTiempoEstipuladoSeEnviaNoti() {
 		notiDeAdminPorMailMock.setTiempoParaNotificar(-1);
 		miTerminal.buscarEnTerminal("unString", new Usuario("unUser", null));
-		Assert.assertTrue(notiDeAdminPorMailMock.notificado);
-
+		Assert.assertTrue(notiDeAdminPorMailMock.isNotificado());
 	}
 
 	@Test

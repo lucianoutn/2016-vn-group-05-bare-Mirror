@@ -11,7 +11,9 @@ import F5.Pois.Comuna;
 import F5.Procesos.ObtenerUsuariosAProcesar;
 import F5.Procesos.Planificador;
 import F5.Procesos.ProcesoSobreUsuario;
+import F5.Reportes.RepositorioDeBusquedas;
 import F5.Terminal.RepositorioDePOIs;
+import F5.Terminal.Terminal;
 import F5.Terminal.Usuario;
 import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;
@@ -30,23 +32,30 @@ public class ProcesoAccionesSobreUsuarioTest {
 	private Busqueda unaBusqueda;
 	private RepositorioDePOIs unMapa;
 	private Planificador planificador = new Planificador();
+	private Terminal unaTerminal;
+	private RepositorioDeBusquedas repositorioDeBusquedas;
 
 	@Before
 	public void initialize() {
+		
 		unUsuario = new Usuario("Juan", new Comuna(1, null));
 		otroUsuario = new Usuario("Pedro", new Comuna(2, null));
 		usuarios.add(unUsuario);
 		usuarios.add(otroUsuario);
-
-		unaAccion = new AccionEjemplo();
-		acciones.add(unaAccion);
-
-		unaBusqueda = new Busqueda(unUsuario, "Boedo", "Hola", null);
-
+		
 		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
 		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
-
 		unMapa = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
+		
+		repositorioDeBusquedas = new RepositorioDeBusquedas();
+				
+		unaTerminal = new Terminal("Boedo",unMapa, new RepositorioDeBusquedas());
+
+		unaAccion = new AccionEjemplo();
+		
+		acciones.add(unaAccion);
+
+		unaBusqueda = new Busqueda(unUsuario, unaTerminal, "Hola", repositorioDeBusquedas, null);
 
 		obtenerUsuarios = new ObtenerUsuariosAProcesar();
 
