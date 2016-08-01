@@ -31,43 +31,48 @@ public class ConcurrenciaDeProcesosTest {
 
 	@Before
 	public void initialize() {
-		
+
 		unaSucursalDeBanco = new SucursalDeBanco("Rio", new Point(10, 10), new ArrayList<DiaAtencion>());
 		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
 		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
-		
+
 		unRepositorioDePOIs = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
 		unRepositorioDePOIs.anadirPOI(unaSucursalDeBanco);
 		otroRepositorioDePOIs = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
 		otroRepositorioDePOIs.anadirPOI(unaSucursalDeBanco);
 		mockRESTBajaPOIs = new BajaPoisRestMock(unRepositorioDePOIs);
-		
+
 		procesoDeBajaPOIA = new ProcesoDeBajaPOI(otroRepositorioDePOIs, mockRESTBajaPOIs, 1, planificador);
 		procesoDeBajaPOIB = new ProcesoDeBajaPOI(otroRepositorioDePOIs, mockRESTBajaPOIs, 1, planificador);
 
 		procesoDeBajaPOIA.ejecutar();
 		procesoDeBajaPOIB.ejecutar();
-	
+
 	}
 
 	@Test
-	public void ProcesoAyProcesoBSeEjecutanALaMismaHoraYSeEjecutaElProcesoA() {		
-		Assert.assertEquals(EstadosDelProceso.Ejecutando, procesoDeBajaPOIA.getEstado());		
+	public void ProcesoAyProcesoBSeEjecutanALaMismaHoraYSeEjecutaElProcesoA() {
+		Assert.assertEquals(EstadosDelProceso.Ejecutando, procesoDeBajaPOIA.getEstado());
 	}
 
-	
-public void ProcesoAyProcesoBSeEjecutanALaMismaHoraYElProcesoBQuedaEnEspera() {		
-		Assert.assertEquals(EstadosDelProceso.EnEspera, procesoDeBajaPOIB.getEstado());		
+	@Test
+	public void ProcesoAyProcesoBSeEjecutanALaMismaHoraYElProcesoBQuedaEnEspera() {
+		Assert.assertEquals(EstadosDelProceso.EnEspera, procesoDeBajaPOIB.getEstado());
 	}
 
-
-public void elPlanificadorNoTieneEjecucionesDisponibles() {
-	Assert.assertFalse(planificador.ejecucionDisponible);
+	@Test
+	public void elPlanificadorNoTieneEjecucionesDisponibles() {
+		Assert.assertFalse(planificador.ejecucionDisponible);
 	}
 
-
-public void elProcesoBEstaPendienteDeEjecucion() {
-	Assert.assertEquals(procesoDeBajaPOIB, planificador.procesosPendientesDeEjecucion.get(0)); //tiene 1 en lista de pendientes
+	@Test
+	public void elProcesoBEstaPendienteDeEjecucion() {
+		Assert.assertEquals(procesoDeBajaPOIB, planificador.procesosPendientesDeEjecucion.get(0)); // tiene
+																									// 1
+																									// en
+																									// lista
+																									// de
+																									// pendientes
 	}
 
 }
