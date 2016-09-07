@@ -51,5 +51,17 @@
 		<artifactId>javax.mail</artifactId>
 		<version>1.5.5</version>
 	  </dependency>
+	  <!-- JPA Persistence Dependencies -->
+   	  <dependency>
+     	<groupId>org.uqbar-project</groupId>
+	  	<artifactId>jpa-java8-extras</artifactId>
+	  	<version>1.0-alpha-1</version>
+	  </dependency>
+      <!-- driver jdbc -->
+      <dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>5.1.26</version>
+	  </dependency>
   </dependencies>
 </project>

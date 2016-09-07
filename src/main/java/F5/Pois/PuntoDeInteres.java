@@ -4,8 +4,12 @@ package F5.Pois;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
 import org.uqbar.geodds.Point;
+//los import de persistencia:
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 
 public abstract class  PuntoDeInteres {
 
