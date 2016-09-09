@@ -3,11 +3,21 @@ package F5.Terminal;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.*;
+
+import javax.persistence.Id;
+
 import F5.AccionPostBusqueda;
 import F5.Pois.Comuna;
 
+@Entity
 public class Usuario {
+	@Id
+	@GeneratedValue
+	private Integer id;
+	
 	private String nombre;
+	@Transient
 	private Comuna comuna;
 	
 	public Comuna getComuna() {
@@ -24,6 +34,9 @@ public class Usuario {
 		return accionesRealizables;
 	}
 
+	public Usuario(){
+		
+	}
 	public Usuario(String unNombre, Comuna unaComuna){
 		nombre=unNombre;
 		comuna = unaComuna;
