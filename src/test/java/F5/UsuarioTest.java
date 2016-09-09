@@ -10,14 +10,7 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import F5.Pois.Comuna;
-import F5.Pois.DiaAtencion;
-import F5.Pois.SucursalDeBanco;
-import F5.Terminal.RepositorioDePOIs;
 import F5.Terminal.Usuario;
-import InterfacesExternas.ConsultorBancos;
-import InterfacesExternas.ConsultorCGP;
-import InterfacesExternas.SistemaExternoBancoMock;
-import InterfacesExternas.SistemaExternoCGPMock;
 
 
 public class UsuarioTest extends AbstractPersistenceTest implements WithGlobalEntityManager {

@@ -27,7 +27,7 @@ public class Usuario {
 	public String getNombre() {
 		return nombre;
 	}
-	
+	@Transient
 	private List<AccionPostBusqueda> accionesRealizables = new ArrayList<AccionPostBusqueda>();
 	
 	public List<AccionPostBusqueda> getAccionesRealizables() {
