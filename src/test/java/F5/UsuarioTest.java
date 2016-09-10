@@ -20,22 +20,40 @@ public class UsuarioTest extends AbstractPersistenceTest implements WithGlobalEn
 		
 	}
 	
-	@Test
+	@Test 
 	public void almacenoUsuarioEnBaseDeDatos(){
-		Usuario usuario = new Usuario("Ezequiel", new Comuna(0, null));
+		Comuna comuna = new Comuna(1, null);
+		entityManager().persist(comuna);
+		Usuario ezequiel = new Usuario("Ezequiel", comuna);
 		
-		entityManager().persist(usuario);
+		entityManager().persist(ezequiel);
 		
 		List<Usuario> usuariosDb = entityManager()
 									.createQuery("from Usuario", Usuario.class)
 									.getResultList();
-		String nombreDb = usuariosDb.get(0).getNombre(); 
-		Assert.assertEquals(nombreDb, usuario.getNombre());
-				
-				//List<Jugador> jugadores = entityManager().
-			     // createQuery("from Jugador", Jugador.class).
-			     // getResultList();
+		String ezequielDb = usuariosDb.get(0).getNombre(); 
+		Comuna comunaDb = usuariosDb.get(0).getComuna(); 
+		Assert.assertEquals(ezequielDb, ezequiel.getNombre());
+		Assert.assertEquals(comunaDb.getNroComuna(), comuna.getNroComuna());
 		
+		//Comuna comuna2 = new Comuna(2, null);
+		//entityManager().persist(comuna2);
+		
+		Usuario franco = new Usuario("Franco", comuna);
+		entityManager().persist(franco);
+		
+		usuariosDb = entityManager()
+				.createQuery("from Usuario", Usuario.class)
+				.getResultList();
+		
+		String francoDb = usuariosDb.get(1).getNombre();
+		Assert.assertEquals(francoDb, franco.getNombre());
+		
+		 
+		
+		
+				
+			
 	}
 	
 	

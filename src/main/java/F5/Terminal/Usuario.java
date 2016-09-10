@@ -17,7 +17,7 @@ public class Usuario {
 	private Integer id;
 	
 	private String nombre;
-	@Transient
+	@ManyToOne
 	private Comuna comuna;
 	
 	public Comuna getComuna() {

@@ -1,9 +1,13 @@
 package F5.Pois;
 
-import org.uqbar.geodds.Polygon;
+import javax.persistence.*;
 
+import org.uqbar.geodds.Polygon;
+@Entity
 public class Comuna {
+	@Transient
 	private Polygon limites;
+	@Id
 	private int nroComuna;
 
 
@@ -12,6 +16,9 @@ public class Comuna {
 	}
 	public Polygon getComuna() {
 		return limites;
+	}
+	public Comuna(){
+		
 	}
 	public Comuna(int nombreComuna, Polygon limitesComuna){
 		nroComuna = nombreComuna;
