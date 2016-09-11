@@ -12,6 +12,8 @@ public class Busqueda {
 
 	// atributos
 
+	private int cd_Busqueda;	//Busqueda va a tener clave compuesta, siendo sus componentes cd_Terminal y cd_Busqueda
+	private Integer cd_Terminal;
 	private String fraseBuscada;
 	private String terminal;
 	private Usuario usuario;
@@ -19,6 +21,9 @@ public class Busqueda {
 	private LocalTime fecha;
 	public int tiempoBusqueda;
 	private List<NotificadorDeBusqueda> listaObservers;
+	private List<PuntoDeInteres> poisEncontrados = new ArrayList<PuntoDeInteres>();
+	private DatosDeBusquedaParaPersistir datosDeBusquedaParaPersistir = new DatosDeBusquedaParaPersistir();
+	private PersistenciaDeBusquedas repositorioDeBusquedas = new PersistenciaDeBusquedas();
 
 	// metodos
 
@@ -50,13 +55,21 @@ public class Busqueda {
 		this.terminal = terminal;
 	}
 
-	public Busqueda(Usuario user, String terminal, String frase, List<NotificadorDeBusqueda> listaObservadores) {
+	public Busqueda(int id_Busqueda,int id_Terminal,Usuario user,String terminal,String frase,List<NotificadorDeBusqueda> listaObservadores) {
+		cd_Busqueda = id_Busqueda;
+		cd_Terminal = this.asignarCodigoDeTerminal(id_Terminal);
 		listaObservers = listaObservadores;
 		fecha = LocalTime.now();
 		usuario = user;
 		this.terminal = terminal;
 		fraseBuscada = frase;
 	}
+
+	private Integer asignarCodigoDeTerminal(Integer id_Terminal) {
+		if(id_Terminal == null)
+			return -1;
+		return id_Terminal;
+	}	//Con este metodo podemos crear Busquedas sin un cd_Terminal, para testear y usar Busqueda de manera desacoplada de Terminal
 
 	private void avisarAObservers() {
 		if (listaObservers != null)
@@ -74,7 +87,15 @@ public class Busqueda {
 
 		actualizarTiempoBusqueda();
 		notificarBusqueda();
-		return unMapa.buscaPuntosDeInteresEnSistemaySistemasExternos(unaFrase, null);
+		poisEncontrados = unMapa.buscaPuntosDeInteresEnSistemaySistemasExternos(unaFrase, null);
+		this.enviarLosResultadosDeBusquedaAlRepositorioDeBusquedas();
+		
+		return poisEncontrados;
+	}
+
+	private void enviarLosResultadosDeBusquedaAlRepositorioDeBusquedas() {
+		datosDeBusquedaParaPersistir.almacenarDatosDeBusqueda(cd_Busqueda, cd_Terminal,fraseBuscada, tiempoBusqueda,poisEncontrados);
+		repositorioDeBusquedas.almacenarDatosEnAtributosParaPersistir(datosDeBusquedaParaPersistir);
 	}
 
 	private void notificarBusqueda() {

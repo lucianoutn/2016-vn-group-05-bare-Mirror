@@ -30,7 +30,7 @@ public class BusquedaTest {
 	@Test
 	public void buscarEnMapaVacia(){
 		
-		Busqueda unaBusqueda = new Busqueda(new Usuario("pepe", null),"flores", "cgp",null);	
+		Busqueda unaBusqueda = new Busqueda(1,2,new Usuario("pepe", null),"flores", "cgp",null);	
 		SucursalDeBanco unaSucursalDeBanco = new SucursalDeBanco("Servicios Financieros", null, new ArrayList<DiaAtencion>());
 		unMapa.anadirPOI(unaSucursalDeBanco);
 		Assert.assertTrue(unaBusqueda.buscoFrase("Servicios Financieros", unMapa).contains(unaSucursalDeBanco));
@@ -45,7 +45,7 @@ public class BusquedaTest {
 		pois.add(parada101);
 		unMapa.setPuntosDeInteres(pois);
 		
-		Busqueda unaBusqueda = new Busqueda(new Usuario("pedro", null),"flores", "101",null);
+		Busqueda unaBusqueda = new Busqueda(1,3,new Usuario("pedro", null),"flores", "101",null);
 		unaBusqueda.buscoFrase("101", unMapa);
 		
 		Assert.assertEquals(parada101, unaBusqueda.buscoFrase("101",unMapa).get(0));
@@ -60,8 +60,8 @@ public class BusquedaTest {
 		pois.add(parada101);
 		unMapa.setPuntosDeInteres(pois);
 	
-		Busqueda unaBusqueda = new Busqueda(new Usuario("pepe", null),"flores", "cgp", null);
-		Busqueda unaBusq = new Busqueda(new Usuario("pedro", null),"flores", "101",null);
+		Busqueda unaBusqueda = new Busqueda(1,1,new Usuario("pepe", null),"flores", "cgp", null);
+		Busqueda unaBusq = new Busqueda(1,4,new Usuario("pedro", null),"flores", "101",null);
 		Assert.assertTrue(unaBusq.buscoFrase("101",unMapa).contains(parada101));
 	}
 

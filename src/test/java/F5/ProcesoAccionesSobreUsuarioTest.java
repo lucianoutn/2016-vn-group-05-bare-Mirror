@@ -41,7 +41,7 @@ public class ProcesoAccionesSobreUsuarioTest {
 		unaAccion = new AccionEjemplo();
 		acciones.add(unaAccion);
 
-		unaBusqueda = new Busqueda(unUsuario, "Boedo", "Hola", null);
+		unaBusqueda = new Busqueda(2,5,unUsuario, "Boedo", "Hola", null);
 
 		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
 		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());

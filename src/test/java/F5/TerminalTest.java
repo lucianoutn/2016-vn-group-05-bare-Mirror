@@ -57,7 +57,7 @@ public class TerminalTest {
 
 		unLocalComercial = new LocalComercial("Shopping", "Honduras", "10", "Ropa", new ArrayList<DiaAtencion>(),
 				new Point(22, 10));
-		unaTerminal = new Terminal("Caballito", unMapa);
+		unaTerminal = new Terminal(22,"Caballito", unMapa);
 
 		posicionDelCGP = new Point(40, 53);
 		puntoADeLaComuna = new Point(1, 1);

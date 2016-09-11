@@ -9,12 +9,15 @@ import F5.Pois.PuntoDeInteres;
 
 public class Terminal implements INotificarCambioHorario {
 	
+	private int cd_Terminal;
+	private int cd_Busqueda = 1; //Lo iniciamos en 1 para que no haya cd_Busqueda con codigo 0
 	private String nombreDeTerminal;
 	private RepositorioDePOIs unMapa ;
 	private List<NotificadorDeBusqueda> listaObservadores= new ArrayList<NotificadorDeBusqueda>();
 	private List<INotificarCambioHorario> procesosBatch =  new ArrayList<INotificarCambioHorario>();	
 	
-	public Terminal(String nombreTerminal, RepositorioDePOIs map){
+	public Terminal(int id_Terminal,String nombreTerminal,RepositorioDePOIs map){
+		cd_Terminal = id_Terminal;
 		nombreDeTerminal=nombreTerminal;
 		unMapa=map;
 	}
@@ -53,8 +56,13 @@ public class Terminal implements INotificarCambioHorario {
 	}
 
 	public List<PuntoDeInteres> buscarEnTerminal(String unaFrase, Usuario user){
-		Busqueda unaBusqueda= new Busqueda(user,nombreDeTerminal,unaFrase,listaObservadores);
+		Busqueda unaBusqueda= new Busqueda(cd_Busqueda, cd_Terminal, user,nombreDeTerminal,unaFrase,listaObservadores);
+		this.incrementar_cd_Busqueda();	//Cada vez que haga una busqueda, la asigna una clave natural mas alta
 		return unaBusqueda.buscoFrase(unaFrase, unMapa);
+	}
+
+	private void incrementar_cd_Busqueda() {
+		cd_Busqueda++;
 	}
 
 	@Override
