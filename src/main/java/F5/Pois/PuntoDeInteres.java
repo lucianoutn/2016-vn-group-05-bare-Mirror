@@ -9,14 +9,17 @@ import org.uqbar.geodds.Point;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
-
+@Entity
 public abstract class  PuntoDeInteres {
 
 	public PuntoDeInteres(){
 		Id = UUID.randomUUID().toString();
 	}
 	
+	@Id
 	public String Id;
 
 	
@@ -44,6 +47,8 @@ public abstract class  PuntoDeInteres {
 	}
 
 	protected Point posicion;
+	@OneToMany
+	@JoinColumn(name="id_diaAtencion")
 	protected List<DiaAtencion> atencionAlPublico;
 	
 	public void setToleranciaEnCuadras(int toleranciaEnCuadras) {
