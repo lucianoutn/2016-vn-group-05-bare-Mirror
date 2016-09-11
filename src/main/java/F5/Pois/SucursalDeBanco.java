@@ -3,11 +3,14 @@ package F5.Pois;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+
 //import F5.PuntoDeInteres;
 //import F5.Sucursal;
 
 import org.uqbar.geodds.Point;
 
+@Entity
 public class SucursalDeBanco extends PuntoDeInteres {
 
 
