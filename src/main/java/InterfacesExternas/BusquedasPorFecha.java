@@ -1,7 +1,11 @@
-package F5;
+package InterfacesExternas;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import F5.Busqueda;
+import Reportes.NotificadorDeBusqueda;
+import Reportes.ReportePorFecha;
 
 public class BusquedasPorFecha implements NotificadorDeBusqueda {
 	public  List<ReportePorFecha> reporte = new ArrayList<ReportePorFecha>();

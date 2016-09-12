@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import F5.Busqueda;
-import F5.NotificadorDeBusqueda;
 import F5.Pois.PuntoDeInteres;
+import Reportes.NotificadorDeBusqueda;
 
 public class Terminal implements INotificarCambioHorario {
 	

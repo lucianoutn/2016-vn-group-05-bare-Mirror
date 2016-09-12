@@ -12,6 +12,8 @@ import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.SistemaExternoBancoMock;
 import InterfacesExternas.SistemaExternoCGPMock;
+import Reportes.BusquedasPorFecha;
+import Reportes.NotificadorDeBusqueda;
 
 
 public class BusquedasPorFechaTest {

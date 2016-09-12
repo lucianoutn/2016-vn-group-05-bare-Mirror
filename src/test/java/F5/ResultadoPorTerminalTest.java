@@ -12,6 +12,8 @@ import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.SistemaExternoBancoMock;
 import InterfacesExternas.SistemaExternoCGPMock;
+import Reportes.NotificadorDeBusqueda;
+import Reportes.ResultadosPorTerminal;
 
 public class ResultadoPorTerminalTest {
 	public ResultadosPorTerminal reporteroDeResultadosPorTerminal= new ResultadosPorTerminal();

@@ -13,6 +13,9 @@ import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.SistemaExternoBancoMock;
 import InterfacesExternas.SistemaExternoCGPMock;
+import Reportes.BusquedasPorFecha;
+import Reportes.NotificadorDeBusqueda;
+import Reportes.ResultadosPorTerminal;
 
 public class ReportesMultiplesTest {
 	public BusquedasPorFecha reporteroDeBusquedas = new BusquedasPorFecha();

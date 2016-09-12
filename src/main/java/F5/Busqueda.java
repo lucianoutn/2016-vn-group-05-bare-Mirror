@@ -7,6 +7,7 @@ import java.util.List;
 import F5.Pois.PuntoDeInteres;
 import F5.Terminal.RepositorioDePOIs;
 import F5.Terminal.Usuario;
+import Reportes.NotificadorDeBusqueda;
 
 public class Busqueda {
 
@@ -23,11 +24,11 @@ public class Busqueda {
 	private List<NotificadorDeBusqueda> listaObservers;
 	private List<PuntoDeInteres> poisEncontrados = new ArrayList<PuntoDeInteres>();
 	private DatosDeBusquedaParaPersistir datosDeBusquedaParaPersistir = new DatosDeBusquedaParaPersistir();
-	private PersistenciaDeBusquedas repositorioDeBusquedas;
+	private ResultadoDeBusqueda repositorioDeBusquedas;
 
 	// metodos
 
-	public void setRepositorioDeBusquedas(PersistenciaDeBusquedas repositorioDeBusquedas) {
+	public void setRepositorioDeBusquedas(ResultadoDeBusqueda repositorioDeBusquedas) {
 		this.repositorioDeBusquedas = repositorioDeBusquedas;
 	}
 
@@ -99,7 +100,7 @@ public class Busqueda {
 
 	private void enviarLosResultadosDeBusquedaAlRepositorioDeBusquedas() {
 		datosDeBusquedaParaPersistir.almacenarDatosDeBusqueda(cd_Busqueda, cd_Terminal,fraseBuscada, tiempoBusqueda,poisEncontrados);
-		repositorioDeBusquedas.almacenarDatosEnAtributosParaPersistir(datosDeBusquedaParaPersistir);
+		//repositorioDeBusquedas.almacenarDatosEnAtributosParaPersistir(datosDeBusquedaParaPersistir);
 	}
 
 	private void notificarBusqueda() {

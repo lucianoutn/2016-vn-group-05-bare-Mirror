@@ -21,6 +21,7 @@ import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.SistemaExternoBancoMock;
 import InterfacesExternas.SistemaExternoCGPMock;
+import Reportes.NotificadorDeBusqueda;
 
 
 public class PersistenciaDeBusquedaTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
@@ -32,8 +33,8 @@ public class PersistenciaDeBusquedaTest extends AbstractPersistenceTest implemen
 	private SucursalDeBanco unaSucursalDeBanco;
 	private LocalComercial unLocalComercial;
 	private RepositorioDePOIs unRepositorioDePOIs;
-	private PersistenciaDeBusquedas unaPersistenciaDeBusqueda;
-	private List<PersistenciaDeBusquedas> busquedas;
+	private ResultadoDeBusqueda unaPersistenciaDeBusqueda;
+	private List<ResultadoDeBusqueda> busquedas;
 	
 	@Before
 	public void Initialize(){
@@ -49,7 +50,7 @@ public class PersistenciaDeBusquedaTest extends AbstractPersistenceTest implemen
 
 		unaTerminal = new Terminal(2, "Terminal Dos", unRepositorioDePOIs);		
 		unaBusqueda = new Busqueda(1, 2, unUsuario, "Terminal Dos", "Macowi", new ArrayList<NotificadorDeBusqueda>());	
-		unaPersistenciaDeBusqueda = new PersistenciaDeBusquedas();
+		unaPersistenciaDeBusqueda = new ResultadoDeBusqueda();
 		busquedas = new ArrayList<>();
 	}
 	

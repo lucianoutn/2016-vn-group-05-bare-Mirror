@@ -1,4 +1,6 @@
-package F5;
+package Reportes;
+
+import F5.Busqueda;
 
 public interface NotificadorDeBusqueda {
 
