@@ -5,11 +5,12 @@ import javax.persistence.*;
 import org.uqbar.geodds.Polygon;
 @Entity
 public class Comuna {
+	
 	@Transient
 	private Polygon limites;
+	
 	@Id
 	private int nroComuna;
-
 
 	public int getNroComuna() {
 		return nroComuna;

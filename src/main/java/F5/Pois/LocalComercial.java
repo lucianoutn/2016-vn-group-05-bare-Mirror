@@ -21,6 +21,7 @@ public class LocalComercial extends PuntoDeInteres {
 		calle = unaCalle;
 		altura = unaAltura;
 		posicion = unaPosicion;
+		this.cargarCoordenadasDePosicion(unaPosicion);
 		rubro = unRubro;
 		atencionAlPublico = diasDeAtencion;
 	}

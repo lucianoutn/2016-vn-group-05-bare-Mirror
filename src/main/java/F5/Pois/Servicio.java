@@ -3,9 +3,12 @@ package F5.Pois;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Id;
+
 
 public class Servicio { 
 	
+	@Id
 	private double id_Servicio;
 	
 	private String nombre;
@@ -14,7 +17,6 @@ public class Servicio {
 	}
 	
 	private List<DiaAtencion> atencionAlPublico;
-	
 	
 	public Servicio(String unNombre, List<DiaAtencion> diasDeAtencion){
 		nombre = unNombre;

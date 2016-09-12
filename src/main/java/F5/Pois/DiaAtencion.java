@@ -11,6 +11,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class DiaAtencion {
 	
+	@Id
 	private double id_diaAtencion;
 
     @Enumerated(EnumType.STRING)

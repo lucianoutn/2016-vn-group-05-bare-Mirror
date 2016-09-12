@@ -23,19 +23,36 @@ public abstract class  PuntoDeInteres {
 
 	@Transient
 	protected Point posicion;
-	@Column(name="CoordenadaX")
-	private double coordenadaX = posicion.latitude();
-	@Column(name = "coordenadaY")
-	private double coordenadaY = posicion.longitude();
 	
+	@Column(name="CoordenadaX")
+	private double coordenadaX;
+	
+	@Column(name = "coordenadaY")
+	private double coordenadaY;
+	
+	public void setCoordenadaX(double coordenadaX) {
+		this.coordenadaX = coordenadaX;
+	}
+
+	public void setCoordenadaY(double coordenadaY) {
+		this.coordenadaY = coordenadaY;
+	}
+
 	public String Id;
+	
+	public void cargarCoordenadasDePosicion(Point unaPosicion){
+		if (unaPosicion != null){
+			coordenadaX = unaPosicion.latitude();
+			coordenadaY = unaPosicion.longitude();
+		}
+	}
 	
 	public void agregarPalabrasClaves(List<String> palabras){
 		
 	}
 
-
 	protected String calle;
+	
 	public String getCalle() {
 		return calle;
 	}
