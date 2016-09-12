@@ -3,27 +3,16 @@ package F5.Pois;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Id;
 
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-@Entity
 public class CGP extends PuntoDeInteres {
 	
 	
-	@OneToOne
 	private Comuna comuna;
 	
-	@OneToMany
-	@JoinColumn(name="nroComuna")
 	private List<Servicio> servicios = new ArrayList<>();
-	
 	
 	public void setServicios(List<Servicio> servicios) {
 		this.servicios = servicios;

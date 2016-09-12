@@ -34,12 +34,13 @@ public class Usuario {
 		return accionesRealizables;
 	}
 
-	public Usuario(){
-		
-	}
 	public Usuario(String unNombre, Comuna unaComuna){
 		nombre=unNombre;
 		comuna = unaComuna;
+	}
+	
+	public Usuario(){
+		
 	}
 
 	public void ejecutarAcciones() {

@@ -1,11 +1,7 @@
 package F5.Pois;
 
-
-import javax.persistence.Entity;
-
 import org.uqbar.geodds.Point;
 
-@Entity
 public class ParadaDeColectivo extends PuntoDeInteres {
 
 	

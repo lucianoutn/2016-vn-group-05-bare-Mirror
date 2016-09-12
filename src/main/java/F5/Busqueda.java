@@ -23,9 +23,13 @@ public class Busqueda {
 	private List<NotificadorDeBusqueda> listaObservers;
 	private List<PuntoDeInteres> poisEncontrados = new ArrayList<PuntoDeInteres>();
 	private DatosDeBusquedaParaPersistir datosDeBusquedaParaPersistir = new DatosDeBusquedaParaPersistir();
-	private PersistenciaDeBusquedas repositorioDeBusquedas = new PersistenciaDeBusquedas();
+	private PersistenciaDeBusquedas repositorioDeBusquedas;
 
 	// metodos
+
+	public void setRepositorioDeBusquedas(PersistenciaDeBusquedas repositorioDeBusquedas) {
+		this.repositorioDeBusquedas = repositorioDeBusquedas;
+	}
 
 	public void setListaObservers(List<NotificadorDeBusqueda> obs) {
 		listaObservers = obs;
