@@ -6,14 +6,29 @@ import java.util.List;
 import java.util.UUID;
 import org.uqbar.geodds.Point;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+
+
 public abstract class  PuntoDeInteres {
 
 	public PuntoDeInteres(){
 		Id = UUID.randomUUID().toString();
 	}
+
+	@Transient
+	protected Point posicion;
+	@Column(name="CoordenadaX")
+	private double coordenadaX = posicion.latitude();
+	@Column(name = "coordenadaY")
+	private double coordenadaY = posicion.longitude();
 	
 	public String Id;
-
 	
 	public void agregarPalabrasClaves(List<String> palabras){
 		
@@ -38,8 +53,9 @@ public abstract class  PuntoDeInteres {
 		this.calle = calle;
 	}
 
-	protected Point posicion;
 	
+	@OneToMany
+	@JoinColumn(name="id_diaAtencion")
 	protected List<DiaAtencion> atencionAlPublico;
 	
 	public void setToleranciaEnCuadras(int toleranciaEnCuadras) {
