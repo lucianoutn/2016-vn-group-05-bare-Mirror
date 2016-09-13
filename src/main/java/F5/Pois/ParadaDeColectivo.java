@@ -1,6 +1,5 @@
 package F5.Pois;
 
-
 import javax.persistence.Entity;
 
 import org.uqbar.geodds.Point;
@@ -8,7 +7,6 @@ import org.uqbar.geodds.Point;
 @Entity
 public class ParadaDeColectivo extends PuntoDeInteres {
 
-	
 	private String numeroDeLinea;
 
 	public String getNumeroDeLinea() {
@@ -19,12 +17,13 @@ public class ParadaDeColectivo extends PuntoDeInteres {
 		calle = calleDeParada;
 		altura = alturaDeParada;
 		posicion = unaPosicion;
+		this.cargarCoordenadasDePosicion(unaPosicion);
 		numeroDeLinea = lineaDeColectivo;
 		toleranciaEnCuadras = 1;
 	}
 
 	@Override
-	public boolean estaDisponible(Dias unDia, int hora , Servicio valorX) {
+	public boolean estaDisponible(Dias unDia, int hora, Servicio valorX) {
 		return true;
 	}
 

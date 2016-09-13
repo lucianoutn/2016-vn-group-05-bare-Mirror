@@ -13,13 +13,12 @@ import org.uqbar.geodds.Point;
 @Entity
 public class SucursalDeBanco extends PuntoDeInteres {
 
-
 	private String nombre;
-	
 
 	public SucursalDeBanco(String unNombre, Point unaPosicion, List<DiaAtencion> diasDeAtencion) {
 		nombre = unNombre;
 		posicion = unaPosicion;
+		this.cargarCoordenadasDePosicion(unaPosicion);
 		toleranciaEnCuadras = 5;
 		atencionAlPublico = diasDeAtencion;
 	}
@@ -32,7 +31,5 @@ public class SucursalDeBanco extends PuntoDeInteres {
 	public boolean encuentra(String textoLibre) {
 		return nombre.equals(textoLibre);
 	}
-
-	
 
 }

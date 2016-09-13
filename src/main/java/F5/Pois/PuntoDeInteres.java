@@ -1,6 +1,5 @@
 package F5.Pois;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -16,35 +15,49 @@ import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 @Entity
-public abstract class  PuntoDeInteres {
+public abstract class PuntoDeInteres {
 
-	public PuntoDeInteres(){
+	public PuntoDeInteres() {
 		Id = UUID.randomUUID().toString();
 	}
 
 	@Transient
 	protected Point posicion;
-	@Column(name="CoordenadaX")
-	private double coordenadaX = posicion.latitude();
+	@Column(name = "CoordenadaX")
+	private double coordenadaX;
 	@Column(name = "coordenadaY")
-	private double coordenadaY = posicion.longitude();
-	
-	
+	private double coordenadaY;
+
 	@Id
 	public String Id;
 
-	
-	public void agregarPalabrasClaves(List<String> palabras){
-		
+	public void setCoordenadaX(double coordenadaX) {
+		this.coordenadaX = coordenadaX;
 	}
 
+	public void setCoordenadaY(double coordenadaY) {
+		this.coordenadaY = coordenadaY;
+	}
+
+	public void cargarCoordenadasDePosicion(Point unaPosicion) {
+		if (unaPosicion != null) {
+			coordenadaX = unaPosicion.latitude();
+			coordenadaY = unaPosicion.longitude();
+		}
+	}
+
+	public void agregarPalabrasClaves(List<String> palabras) {
+
+	}
 
 	protected String calle;
+
 	public String getCalle() {
 		return calle;
 	}
 
 	protected String altura;
+
 	public String getAltura() {
 		return altura;
 	}
@@ -58,33 +71,33 @@ public abstract class  PuntoDeInteres {
 	}
 
 	@OneToMany
-	@JoinColumn(name="id_diaAtencion")
+	@JoinColumn(name = "id_diaAtencion")
 	protected List<DiaAtencion> atencionAlPublico;
-	
+
 	public void setToleranciaEnCuadras(int toleranciaEnCuadras) {
 		this.toleranciaEnCuadras = toleranciaEnCuadras;
 	}
 
 	protected int toleranciaEnCuadras;
-	public boolean estaDisponible(Dias unDia, int hora , Servicio unServicio){
+
+	public boolean estaDisponible(Dias unDia, int hora, Servicio unServicio) {
 		return atencionAlPublico.stream().anyMatch(d -> d.getDia().equals(unDia) && d.estaAbierto(hora));
 	}
 
-	public boolean estaCerca(Point point){
+	public boolean estaCerca(Point point) {
 		return cuadrasDeDistancia(point) <= toleranciaEnCuadras;
 	}
 
 	public abstract boolean encuentra(String textoLibre);
 
-	
 	public int cuadrasDeDistancia(Point point) {
-		return (int) Math.abs(posicion.distance(point)/100);
+		return (int) Math.abs(posicion.distance(point) / 100);
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
-		
-		return this.Id.equals(((PuntoDeInteres)obj).Id);
+
+		return this.Id.equals(((PuntoDeInteres) obj).Id);
 	}
-	
+
 }
