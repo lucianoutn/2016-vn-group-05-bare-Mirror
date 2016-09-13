@@ -32,20 +32,16 @@ public class ProcesoDeBajaPOI extends Proceso {
 	}
 
 	public void hacerOperacionesDeCadaProceso() { // este era el EX ejecutar()
-		// this.pasarAEnEspera(); //TODO
 		planificador.solicitarEjecucion(this);
 	}
 
 	public void ejecutar() {
 		this.pasarAEjecutando();
+
 		this.pedirBajas();
 		this.darDeBajaAPOI();
-		// this.almacenarResultadoDeEjecucion(); FRANCO: esto es lo q te decia q tendria q seguir haciendolo aca.lucho
-		try {   // para poder testearlo
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}    
+		// this.almacenarResultadoDeEjecucion(); FRANCO: esto es lo q te decia q
+		// tendria q seguir haciendolo aca.lucho
 		planificador.liberarEjecucion();
 
 	}

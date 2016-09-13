@@ -51,28 +51,10 @@ public class ConcurrenciaDeProcesosTest {
 	}
 
 	@Test
-	public void ProcesoAyProcesoBSeEjecutanALaMismaHoraYSeEjecutaElProcesoA() {
+	public void ProcesoAyProcesoBSeEjecutanALaMismaHoraYSeEjecutaElProcesoAyElBTieneUnaEspera() {
 		Assert.assertEquals(EstadosDelProceso.Ejecutando, procesoDeBajaPOIA.getEstado());
-	}
+		Assert.assertTrue(procesoDeBajaPOIB.gettuvoEspera());
 
-	@Test
-	public void ProcesoAyProcesoBSeEjecutanALaMismaHoraYElProcesoBQuedaEnEspera() {
-		Assert.assertEquals(EstadosDelProceso.EnEspera, procesoDeBajaPOIB.getEstado());
-	}
-
-	@Test
-	public void elPlanificadorNoTieneEjecucionesDisponibles() {
-		Assert.assertFalse(planificador.ejecucionDisponible);
-	}
-
-	@Test
-	public void elProcesoBEstaPendienteDeEjecucion() {
-		Assert.assertEquals(procesoDeBajaPOIB, planificador.procesosPendientesDeEjecucion.get(0)); // tiene
-																									// 1
-																									// en
-																									// lista
-																									// de
-																									// pendientes
 	}
 
 }

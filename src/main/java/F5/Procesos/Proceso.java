@@ -10,22 +10,27 @@ public abstract class Proceso implements INotificarCambioHorario {
 	private IManejadorDeError manejadorDeError;
 	private ResultadoDeEjecucion resultadoDeEjecucion = new ResultadoDeEjecucion();
 	private int cantidadDeElementosAfectados, horarioPlanificacion;
+	private boolean tuvoEspera = false; // para testear si fue puesto en cola de
+										// espera
 
+	public boolean gettuvoEspera() {
+		return tuvoEspera;
+	}
 
 	public abstract void ejecutar();
 
-	
-	public void preEjecutar(){
+	public void preEjecutar() {
 		this.pasarAEnEspera();
 		this.hacerOperacionesDeCadaProceso();
 		this.almacenarResultadoDeEjecucion();
 	}
-	
+
 	public abstract void hacerOperacionesDeCadaProceso();
 
-	public void pasarAEjecutando(){
+	public void pasarAEjecutando() {
 
-		estado = EstadosDelProceso.Ejecutando; //puede tambien quedar en espera en realidad.lucho
+		estado = EstadosDelProceso.Ejecutando; // puede tambien quedar en espera
+												// en realidad.lucho
 	}
 
 	public void pasarAFinalizadoConExito() {
@@ -35,9 +40,10 @@ public abstract class Proceso implements INotificarCambioHorario {
 	public void pasarAFinalizadoConError() {
 		estado = EstadosDelProceso.FinalizadoConError;
 	}
-	
-	public void pasarAEnEspera(){
+
+	public void pasarAEnEspera() {
 		estado = EstadosDelProceso.EnEspera;
+		tuvoEspera = true;
 	}
 
 	public EstadosDelProceso getEstado() {
