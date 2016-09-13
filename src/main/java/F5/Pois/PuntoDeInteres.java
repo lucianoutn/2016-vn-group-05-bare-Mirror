@@ -10,17 +10,17 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import static javax.persistence.InheritanceType.JOINED;
 
 @Entity
+@Inheritance(strategy=JOINED)
 public abstract class PuntoDeInteres {
 
-	public PuntoDeInteres() {
-		Id = UUID.randomUUID().toString();
-	}
-
+	
 	@Transient
 	protected Point posicion;
 	@Column(name = "CoordenadaX")
@@ -28,8 +28,12 @@ public abstract class PuntoDeInteres {
 	@Column(name = "coordenadaY")
 	private double coordenadaY;
 
-	@Id
-	public String Id;
+	@Id @GeneratedValue
+	private Long Id;
+
+	public Long getId() {
+		return Id;
+	}
 
 	public void setCoordenadaX(double coordenadaX) {
 		this.coordenadaX = coordenadaX;
@@ -94,10 +98,5 @@ public abstract class PuntoDeInteres {
 		return (int) Math.abs(posicion.distance(point) / 100);
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-
-		return this.Id.equals(((PuntoDeInteres) obj).Id);
-	}
-
+	
 }

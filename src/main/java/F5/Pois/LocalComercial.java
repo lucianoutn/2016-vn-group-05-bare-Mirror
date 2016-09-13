@@ -2,9 +2,10 @@ package F5.Pois;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import javax.persistence.Entity;
 import org.uqbar.geodds.Point;
 
+@Entity
 public class LocalComercial extends PuntoDeInteres {
 
 	private String rubro;
