@@ -1,6 +1,8 @@
 package F5.Pois;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 import org.uqbar.geodds.Point;
 
@@ -11,6 +13,18 @@ public class ParadaDeColectivo extends PuntoDeInteres {
 
 	public String getNumeroDeLinea() {
 		return numeroDeLinea;
+	}
+
+	@Id
+	@GeneratedValue
+	private Long id_Parada;
+
+	public Long getId() {
+		return id_Parada;
+	}
+
+	public ParadaDeColectivo() {// constructor vacio para persistencia
+
 	}
 
 	public ParadaDeColectivo(String calleDeParada, String alturaDeParada, Point unaPosicion, String lineaDeColectivo) {

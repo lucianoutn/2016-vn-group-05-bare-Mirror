@@ -3,17 +3,27 @@ package F5.Pois;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import org.uqbar.geodds.Point;
 
 @Entity
 public class LocalComercial extends PuntoDeInteres {
 
+	@Id
+	@GeneratedValue
+	private Long id_Local;
 	private String rubro;
 	private String nombre;
 	private List<String> palabrasClaves = new ArrayList<>();
 
 	public void agregarPalabrasClaves(List<String> palabras) {
 		palabrasClaves = palabras;
+	}
+
+	public LocalComercial() {// constructor vacio para persistencia
+
 	}
 
 	public LocalComercial(String unNombre, String unaCalle, String unaAltura, String unRubro,
@@ -25,6 +35,10 @@ public class LocalComercial extends PuntoDeInteres {
 		this.cargarCoordenadasDePosicion(unaPosicion);
 		rubro = unRubro;
 		atencionAlPublico = diasDeAtencion;
+	}
+
+	public Long getId() {
+		return id_Local;
 	}
 
 	public boolean encuentra(String textoLibre) {

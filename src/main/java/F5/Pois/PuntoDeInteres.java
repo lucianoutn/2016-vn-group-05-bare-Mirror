@@ -29,10 +29,10 @@ public abstract class PuntoDeInteres {
 	private double coordenadaY;
 
 	@Id @GeneratedValue
-	private Long Id;
+	private Long id_Poi;
 
 	public Long getId() {
-		return Id;
+		return id_Poi;
 	}
 
 	public void setCoordenadaX(double coordenadaX) {

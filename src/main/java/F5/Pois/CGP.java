@@ -15,16 +15,20 @@ import org.uqbar.geodds.Polygon;
 
 @Entity
 public class CGP extends PuntoDeInteres {
-	
-	
+
+	@Id
+	@GeneratedValue
+	private Long id_CGP;
 	@OneToOne
 	private Comuna comuna;
-	
 	@OneToMany
-	@JoinColumn(name="nroComuna")
+	@JoinColumn(name = "nroComuna")
 	private List<Servicio> servicios = new ArrayList<>();
-	
-	
+
+	public Long getId() {
+		return id_CGP;
+	}
+
 	public void setServicios(List<Servicio> servicios) {
 		this.servicios = servicios;
 	}
@@ -33,13 +37,17 @@ public class CGP extends PuntoDeInteres {
 		return servicios;
 	}
 
+	public CGP() {// constructor vacio para persistencia
+
+	}
+
 	public CGP(Point point, Comuna unaComuna) {
 		comuna = unaComuna;
 		posicion = point;
 	}
 
 	public void anadirServicio(Servicio servic) {
-		if(servicios==null)
+		if (servicios == null)
 			servicios = new ArrayList<Servicio>();
 		servicios.add(servic);
 
@@ -49,7 +57,8 @@ public class CGP extends PuntoDeInteres {
 	public boolean estaDisponible(Dias dia, int hora, Servicio unServicio) {
 		if (unServicio == null)
 			return servicios.stream().anyMatch(s -> s.estaAbierto(dia, hora));
-		return servicios.stream().anyMatch(s -> s.getNombre().equals(unServicio.getNombre()) && unServicio.estaAbierto(dia, hora));
+		return servicios.stream()
+				.anyMatch(s -> s.getNombre().equals(unServicio.getNombre()) && unServicio.estaAbierto(dia, hora));
 	}
 
 	public boolean estaDisponible(Dias date, int hora) {
@@ -69,7 +78,7 @@ public class CGP extends PuntoDeInteres {
 	private boolean encuentraCalle(String textoLibre) {
 		return calle.equals(textoLibre);
 	}
-	
+
 	public void setComuna(Comuna comuna) {
 		this.comuna = comuna;
 	}
