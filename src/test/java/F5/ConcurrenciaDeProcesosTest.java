@@ -45,8 +45,8 @@ public class ConcurrenciaDeProcesosTest {
 		procesoDeBajaPOIA = new ProcesoDeBajaPOI(otroRepositorioDePOIs, mockRESTBajaPOIs, 1, planificador);
 		procesoDeBajaPOIB = new ProcesoDeBajaPOI(otroRepositorioDePOIs, mockRESTBajaPOIs, 1, planificador);
 
-		procesoDeBajaPOIA.ejecutar();
-		procesoDeBajaPOIB.ejecutar();
+		procesoDeBajaPOIA.preEjecutar();
+		procesoDeBajaPOIB.preEjecutar();
 
 	}
 

@@ -71,7 +71,7 @@ public class ManejoDeResultadosyErroresTest {
 
 	@Test
 	public void elEstadoDelProcesoAlEjecutarEsEjecutando() {
-		procesoDeBajaPOI.ejecutar();
+		procesoDeBajaPOI.preEjecutar();
 		Assert.assertEquals(EstadosDelProceso.Ejecutando, procesoDeBajaPOI.getEstado());
 	}
 
@@ -118,13 +118,13 @@ public class ManejoDeResultadosyErroresTest {
 
 	@Test
 	public void cantidadDeElementosAfectadosDelProcesoEsIgualADos() {
-		procesoDeBajaPOI.ejecutar();
+		procesoDeBajaPOI.preEjecutar();
 		Assert.assertEquals(2, procesoDeBajaPOI.getCantidadDeElementosAfectados());
 	}
 
 	@Test
 	public void laHoraDelProcesoEsLaActual() {
-		procesoDeBajaPOI.ejecutar();
+		procesoDeBajaPOI.preEjecutar();
 		Assert.assertEquals(LocalDateTime.now(), procesoDeBajaPOI.getHoraDeEjecucion());
 	}
 

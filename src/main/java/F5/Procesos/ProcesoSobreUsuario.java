@@ -34,7 +34,7 @@ public class ProcesoSobreUsuario extends Proceso {
 		planificador.solicitarEjecucion(this);
 	}
 
-	public void ejecutarPosta() {
+	public void ejecutar() {
 		this.pasarAEjecutando();
 		this.setCantidadDeElementosAfectados(usuarios.size());
 		this.agregarAccionesAUsuario(accionesParaAgregar);

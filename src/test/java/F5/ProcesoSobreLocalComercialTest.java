@@ -30,13 +30,13 @@ public class ProcesoSobreLocalComercialTest {
 
 	@Test
 	public void ProcesoQueSeEjecutaAhora() {
-		ProcesoLocalAhora.ejecutar();
+		ProcesoLocalAhora.preEjecutar();
 		Assert.assertTrue(ProcesoLocalAhora.isLocalesComercialesActualizados());
 	}
 
 	@Test
 	public void ProcesoQueSeEjecutaTarde() {
-		ProcesoLocalTarde.ejecutar();
+		ProcesoLocalTarde.preEjecutar();
 		Assert.assertFalse(ProcesoLocalTarde.isLocalesComercialesActualizados());
 	}
 

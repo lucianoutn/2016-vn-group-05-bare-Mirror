@@ -61,13 +61,13 @@ public class ProcesoBajaDePOIsTest {
 
 	@Test
 	public void elMockDelRESTtieneDosPOIsADarDeBaja() {
-		procesoDeBajaPOI.ejecutar();
+		procesoDeBajaPOI.preEjecutar();
 		Assert.assertEquals(unRepositorioDePOIs.getPOIs(), procesoDeBajaPOI.getPuntosDeInteresParaBajas());
 	}
 
 	@Test
 	public void doyDeBajaLosPOIsQueMeDevuelveElMockDelRESTyQuedaUnSoloPOI() {
-		procesoDeBajaPOI.ejecutar();
+		procesoDeBajaPOI.preEjecutar();
 		Assert.assertTrue(procesoDeBajaPOI.getRepoDePOIs().getPOIs().contains(otroLocalComercial));
 	}
 }

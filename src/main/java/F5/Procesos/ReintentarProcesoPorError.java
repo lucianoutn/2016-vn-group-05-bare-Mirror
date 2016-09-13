@@ -28,7 +28,7 @@ public class ReintentarProcesoPorError implements IManejadorDeError{
 	private void iterarProceso(Proceso unProceso) {
 		
 		while(unProceso.getEstado()!=EstadosDelProceso.FinalizadoConExito && contadorDeIntentos<cantidadDeReintentos){
-			unProceso.ejecutar();
+			unProceso.preEjecutar();
 			contadorDeIntentos++;
 		}
 	}//Fin de iterarProceso

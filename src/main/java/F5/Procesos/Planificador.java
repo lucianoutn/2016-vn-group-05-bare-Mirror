@@ -12,7 +12,7 @@ public class Planificador {
 	public void solicitarEjecucion(Proceso unProceso) { //es solicitado por el metodo ejecutar()de cada proceso
 		if (ejecucionDisponible) {
 			ejecucionDisponible = false;
-			unProceso.ejecutarPosta(); //este hace la ejecucion verdadera del proceso en si
+			unProceso.ejecutar(); //este hace la ejecucion verdadera del proceso en si
 		} else {
 			procesosPendientesDeEjecucion.add(unProceso);
 		}

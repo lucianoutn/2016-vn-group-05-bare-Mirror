@@ -12,10 +12,10 @@ public abstract class Proceso implements INotificarCambioHorario {
 	private int cantidadDeElementosAfectados, horarioPlanificacion;
 
 
-	public abstract void ejecutarPosta();
+	public abstract void ejecutar();
 
 	
-	public void ejecutar(){
+	public void preEjecutar(){
 		this.pasarAEnEspera();
 		this.hacerOperacionesDeCadaProceso();
 		this.almacenarResultadoDeEjecucion();
@@ -84,7 +84,7 @@ public abstract class Proceso implements INotificarCambioHorario {
 
 	public void anteCambioDeHorario(int horario) {
 		if (horario == this.getHorarioPlanificacion())
-			ejecutar();
+			preEjecutar();
 	}
 
 }

@@ -55,7 +55,7 @@ public class ProcesoAccionesSobreUsuarioTest {
 	@Test
 	public void seAgregaUnaAccionQueImprimeCorrectamente() {
 		unProcesoSobreUsuario = new ProcesoSobreUsuario(usuarios, acciones, null, 1, planificador);
-		unProcesoSobreUsuario.ejecutar();
+		unProcesoSobreUsuario.preEjecutar();
 		Assert.assertTrue(unUsuario.getAccionesRealizables().contains(unaAccion));
 	}
 

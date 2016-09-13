@@ -36,7 +36,7 @@ public class ProcesoDeBajaPOI extends Proceso {
 		planificador.solicitarEjecucion(this);
 	}
 
-	public void ejecutarPosta() {
+	public void ejecutar() {
 		this.pasarAEjecutando();
 		this.pedirBajas();
 		this.darDeBajaAPOI();
