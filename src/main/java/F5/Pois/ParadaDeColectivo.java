@@ -1,7 +1,11 @@
 package F5.Pois;
 
+
+import javax.persistence.Entity;
+
 import org.uqbar.geodds.Point;
 
+@Entity
 public class ParadaDeColectivo extends PuntoDeInteres {
 
 	
@@ -15,7 +19,6 @@ public class ParadaDeColectivo extends PuntoDeInteres {
 		calle = calleDeParada;
 		altura = alturaDeParada;
 		posicion = unaPosicion;
-		this.cargarCoordenadasDePosicion(unaPosicion);
 		numeroDeLinea = lineaDeColectivo;
 		toleranciaEnCuadras = 1;
 	}

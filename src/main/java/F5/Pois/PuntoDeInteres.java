@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.uqbar.geodds.Point;
 
 import javax.persistence.Column;
+//los import de persistencia:
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,7 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
-
+@Entity
 public abstract class  PuntoDeInteres {
 
 	public PuntoDeInteres(){
@@ -23,36 +24,22 @@ public abstract class  PuntoDeInteres {
 
 	@Transient
 	protected Point posicion;
-	
 	@Column(name="CoordenadaX")
-	private double coordenadaX;
-	
+	private double coordenadaX = posicion.latitude();
 	@Column(name = "coordenadaY")
-	private double coordenadaY;
+	private double coordenadaY = posicion.longitude();
 	
-	public void setCoordenadaX(double coordenadaX) {
-		this.coordenadaX = coordenadaX;
-	}
-
-	public void setCoordenadaY(double coordenadaY) {
-		this.coordenadaY = coordenadaY;
-	}
-
+	
+	@Id
 	public String Id;
-	
-	public void cargarCoordenadasDePosicion(Point unaPosicion){
-		if (unaPosicion != null){
-			coordenadaX = unaPosicion.latitude();
-			coordenadaY = unaPosicion.longitude();
-		}
-	}
+
 	
 	public void agregarPalabrasClaves(List<String> palabras){
 		
 	}
 
+
 	protected String calle;
-	
 	public String getCalle() {
 		return calle;
 	}
@@ -70,7 +57,6 @@ public abstract class  PuntoDeInteres {
 		this.calle = calle;
 	}
 
-	
 	@OneToMany
 	@JoinColumn(name="id_diaAtencion")
 	protected List<DiaAtencion> atencionAlPublico;

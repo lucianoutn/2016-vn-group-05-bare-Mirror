@@ -1,6 +1,5 @@
 package F5.Pois;
 
-
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -12,8 +11,9 @@ import javax.persistence.OneToOne;
 public class DiaAtencion {
 	
 	@Id
+	@GeneratedValue
 	private double id_diaAtencion;
-
+	
     @Enumerated(EnumType.STRING)
 	private Dias dia;
 	
