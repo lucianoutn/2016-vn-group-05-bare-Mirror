@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 //import F5.PuntoDeInteres;
 //import F5.Sucursal;
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 import org.uqbar.geodds.Point;
 
 @Entity
+@Table(name = "Bancos")
 public class SucursalDeBanco extends PuntoDeInteres {
 
 	@Id

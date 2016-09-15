@@ -3,10 +3,12 @@ package F5.Pois;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.*;
 
 import org.uqbar.geodds.Point;
 
 @Entity
+@Table(name = "Paradas")
 public class ParadaDeColectivo extends PuntoDeInteres {
 
 	private String numeroDeLinea;

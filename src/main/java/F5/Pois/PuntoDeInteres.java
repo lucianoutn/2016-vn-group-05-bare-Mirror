@@ -4,35 +4,40 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import org.uqbar.geodds.Point;
-
-import javax.persistence.Column;
 //los import de persistencia:
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 import static javax.persistence.InheritanceType.JOINED;
+import javax.persistence.InheritanceType;
 
-@Entity
-@Inheritance(strategy=JOINED)
+//@Entity
+@Table(name = "Pois")
+@Inheritance(strategy = JOINED)
 public abstract class PuntoDeInteres {
 
-	
-	@Transient
 	protected Point posicion;
-	@Column(name = "CoordenadaX")
+	// @Column(name="coordenadaX")
 	private double coordenadaX;
-	@Column(name = "coordenadaY")
+	// @Column(name="coordenadaY")
 	private double coordenadaY;
 
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	private Long id_Poi;
 
 	public Long getId() {
 		return id_Poi;
+	}
+
+	public PuntoDeInteres() {
+
 	}
 
 	public void setCoordenadaX(double coordenadaX) {
@@ -98,5 +103,4 @@ public abstract class PuntoDeInteres {
 		return (int) Math.abs(posicion.distance(point) / 100);
 	}
 
-	
 }

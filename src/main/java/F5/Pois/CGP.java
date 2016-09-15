@@ -8,12 +8,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Id;
 
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
 @Entity
+@Table(name = "CGPES")
 public class CGP extends PuntoDeInteres {
 
 	@Id

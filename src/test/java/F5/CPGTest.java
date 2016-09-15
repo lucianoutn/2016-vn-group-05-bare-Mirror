@@ -1,21 +1,22 @@
 package F5;
 
 import org.uqbar.geodds.Polygon;
-
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 import F5.Pois.CGP;
 import F5.Pois.Comuna;
 import F5.Pois.DiaAtencion;
 import F5.Pois.Dias;
+import F5.Pois.LocalComercial;
 import F5.Pois.Servicio;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
-public class CPGTest {
+
+public class CPGTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
 	private CGP unCGP;
 	private Point unaPosicion, puntoA, puntoB, puntoC, puntoD;
@@ -37,7 +38,7 @@ public class CPGTest {
 		unaComuna.add(puntoB);
 		unaComuna.add(puntoC);
 		unaComuna.add(puntoD);
-		unCGP = new CGP(unaPosicion, new Comuna(1,unaComuna));
+		unCGP = new CGP(unaPosicion, new Comuna(1, unaComuna));
 
 	}
 
@@ -48,8 +49,8 @@ public class CPGTest {
 		diasDeAtencion.add(unDia);
 		unServicio = new Servicio("rentas", diasDeAtencion);
 		unCGP.anadirServicio(unServicio);
-		
-		Assert.assertTrue(unCGP.getServicios().stream().anyMatch(s->s.getNombre().equals("rentas")));
+
+		Assert.assertTrue(unCGP.getServicios().stream().anyMatch(s -> s.getNombre().equals("rentas")));
 	}
 
 	@Test
@@ -69,6 +70,12 @@ public class CPGTest {
 		unCGP.anadirServicio(unServicio);
 		Assert.assertTrue(unCGP.encuentra("rentas"));
 	}
-	
-	
+
+	@Test
+	public void persisteLocalComercial() {
+		entityManager().persist(unCGP);
+		Assert.assertEquals(unCGP, entityManager().find(CGP.class, unCGP.getId()));
+
+	}
+
 }

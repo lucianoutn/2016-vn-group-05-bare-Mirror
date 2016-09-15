@@ -5,10 +5,12 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.*;
 
 import org.uqbar.geodds.Point;
 
 @Entity
+@Table(name = "Locales")
 public class LocalComercial extends PuntoDeInteres {
 
 	@Id
@@ -16,6 +18,7 @@ public class LocalComercial extends PuntoDeInteres {
 	private Long id_Local;
 	private String rubro;
 	private String nombre;
+	@Transient
 	private List<String> palabrasClaves = new ArrayList<>();
 
 	public void agregarPalabrasClaves(List<String> palabras) {
