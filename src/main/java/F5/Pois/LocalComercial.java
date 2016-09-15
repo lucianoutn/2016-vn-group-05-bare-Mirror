@@ -18,7 +18,8 @@ public class LocalComercial extends PuntoDeInteres {
 	private Long id_Local;
 	private String rubro;
 	private String nombre;
-	@Transient
+	@ElementCollection
+	@CollectionTable(name="PalabrasClaves", joinColumns=@JoinColumn(name="palabra_id"))
 	private List<String> palabrasClaves = new ArrayList<>();
 
 	public void agregarPalabrasClaves(List<String> palabras) {
