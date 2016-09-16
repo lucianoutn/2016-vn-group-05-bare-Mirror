@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
+import org.uqbar.geodds.Polygon;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
@@ -38,7 +39,7 @@ public class PersistenciaDeBusquedaTest extends AbstractPersistenceTest implemen
 	
 	@Before
 	public void Initialize(){
-		comuna3 = new Comuna(3,null);
+		comuna3 = new Comuna(3,(Polygon)null);
 		unUsuario = new Usuario("Juan",comuna3);
 		unaSucursalDeBanco = new SucursalDeBanco("Rio", new Point(10, 10), new ArrayList<DiaAtencion>());
 		unLocalComercial = new LocalComercial("Macowins", "Pedernera", "10", "Ropa", new ArrayList<DiaAtencion>(),new Point(10, 10));

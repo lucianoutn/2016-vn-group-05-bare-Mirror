@@ -6,6 +6,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.uqbar.geodds.Polygon;
 
 import F5.Pois.Comuna;
 import F5.Procesos.ObtenerUsuariosAProcesar;
@@ -33,8 +34,8 @@ public class ProcesoAccionesSobreUsuarioTest {
 
 	@Before
 	public void initialize() {
-		unUsuario = new Usuario("Juan", new Comuna(1, null));
-		otroUsuario = new Usuario("Pedro", new Comuna(2, null));
+		unUsuario = new Usuario("Juan", new Comuna(1, (Polygon)null));
+		otroUsuario = new Usuario("Pedro", new Comuna(2, (Polygon)null));
 		usuarios.add(unUsuario);
 		usuarios.add(otroUsuario);
 
@@ -72,7 +73,7 @@ public class ProcesoAccionesSobreUsuarioTest {
 		RepositorioDeUsuarios.usuarios = new ArrayList<Usuario>();
 		RepositorioDeUsuarios.addUsuario(unUsuario);
 		RepositorioDeUsuarios.addUsuario(otroUsuario);
-		ProcesoSobreUsuario unProceso = new ProcesoSobreUsuario(obtenerUsuarios.usuariosEnComuna(new Comuna(1, null)),
+		ProcesoSobreUsuario unProceso = new ProcesoSobreUsuario(obtenerUsuarios.usuariosEnComuna(new Comuna(1,(Polygon) null)),
 				null, null, 900, planificador);
 		Assert.assertTrue(unProceso.getUsuarios().contains(unUsuario));
 	}
@@ -83,7 +84,7 @@ public class ProcesoAccionesSobreUsuarioTest {
 		RepositorioDeUsuarios.usuarios = new ArrayList<Usuario>();
 		RepositorioDeUsuarios.addUsuario(unUsuario);
 		RepositorioDeUsuarios.addUsuario(otroUsuario);
-		ProcesoSobreUsuario unProceso = new ProcesoSobreUsuario(obtenerUsuarios.usuariosEnComuna(new Comuna(1, null)),
+		ProcesoSobreUsuario unProceso = new ProcesoSobreUsuario(obtenerUsuarios.usuariosEnComuna(new Comuna(1,(Polygon) null)),
 				null, null, 900, planificador);
 		Assert.assertFalse(unProceso.getUsuarios().contains(otroUsuario));
 	}
