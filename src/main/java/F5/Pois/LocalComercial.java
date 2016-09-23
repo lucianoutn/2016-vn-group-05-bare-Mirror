@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.*;
 
+import org.hibernate.annotations.IndexColumn;
 import org.uqbar.geodds.Point;
 
 @Entity
@@ -20,7 +21,12 @@ public class LocalComercial extends PuntoDeInteres {
 	private String nombre;
 	@ElementCollection
 	@CollectionTable(name="PalabrasClaves", joinColumns=@JoinColumn(name="palabra_id"))
+	@IndexColumn(name = "nro_palabra")
 	private List<String> palabrasClaves = new ArrayList<>();
+
+	public List<String> getPalabrasClaves() {
+		return palabrasClaves;
+	}
 
 	public void agregarPalabrasClaves(List<String> palabras) {
 		palabrasClaves = palabras;

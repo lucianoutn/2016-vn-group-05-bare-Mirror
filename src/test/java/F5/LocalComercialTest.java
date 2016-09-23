@@ -63,7 +63,15 @@ public class LocalComercialTest extends AbstractPersistenceTest implements WithG
 	@Test
 	public void persisteLocalComercial() {
 		entityManager().persist(mimo);
-		Assert.assertEquals(mimo, entityManager().find(LocalComercial.class, mimo.getId()));
+		
+		LocalComercial mimoPersistido = entityManager().find(LocalComercial.class, mimo.getId());
+		
+		Assert.assertEquals(mimo.getAltura(), mimoPersistido.getAltura());
+		Assert.assertEquals(mimo.getCalle(), mimoPersistido.getCalle());
+		Assert.assertEquals(mimo.getId(), mimoPersistido.getId());
+		Assert.assertEquals(mimo.getPalabrasClaves().size(), mimoPersistido.getPalabrasClaves().size());
+		
+		
 
 	}
 
