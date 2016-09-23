@@ -6,11 +6,15 @@ import org.uqbar.geodds.Point;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
+import F5.Pois.DiaAtencion;
 import F5.Pois.Dias;
 import F5.Pois.ParadaDeColectivo;
 import F5.Terminal.Usuario;
+import TestFactory.DayFactory;
 
 import static org.junit.Assert.*;
+
+import java.util.List;
 
 import org.junit.Assert;
 import static org.hamcrest.CoreMatchers.*;
@@ -28,6 +32,8 @@ public class ParadaDeColectivoTest extends AbstractPersistenceTest implements Wi
 		posicionParada = new Point(0, 0);
 		paradaDeBondi = new ParadaDeColectivo("Mozart", "2600", new Point(100, 100), "114");
 		paradaDeBondi.setToleranciaEnCuadras(100);
+		List<DiaAtencion> dias = DayFactory.miercoles(900, 1800);
+		paradaDeBondi.setAtencionAlPublico(dias);
 	}
 
 	@Test
@@ -79,7 +85,12 @@ public class ParadaDeColectivoTest extends AbstractPersistenceTest implements Wi
 		 * ParadaDeColectivo.class).getResultList().get(0) .getNumeroDeLinea();
 		 * Assert.assertEquals(paradaDeBondi.getNumeroDeLinea(), paradaLinea);
 		 */
-		Assert.assertEquals(paradaDeBondi, entityManager().find(ParadaDeColectivo.class, paradaDeBondi.getId()));
+		
+		ParadaDeColectivo paradaColectivoPersistido = entityManager().find(ParadaDeColectivo.class, paradaDeBondi.getId());
+		Assert.assertEquals(paradaDeBondi.getAltura(), paradaColectivoPersistido.getAltura());
+		Assert.assertEquals(paradaDeBondi.getCalle(), paradaColectivoPersistido.getCalle());
+		Assert.assertEquals(paradaDeBondi.getNumeroDeLinea(), paradaColectivoPersistido.getNumeroDeLinea());
+		Assert.assertEquals(paradaDeBondi.getAtencionAlPublico().size(), paradaColectivoPersistido.getAtencionAlPublico().size());
 
 	}
 }

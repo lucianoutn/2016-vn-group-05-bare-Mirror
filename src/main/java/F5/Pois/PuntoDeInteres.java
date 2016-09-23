@@ -3,6 +3,8 @@ package F5.Pois;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import org.hibernate.annotations.IndexColumn;
 import org.uqbar.geodds.Point;
 //los import de persistencia:
 import javax.persistence.Column;
@@ -81,7 +83,16 @@ public abstract class PuntoDeInteres {
 
 	@OneToMany
 	@JoinColumn(name = "id_diaAtencion")
+	@IndexColumn(name = "num_dia")
 	protected List<DiaAtencion> atencionAlPublico;
+
+	public void setAtencionAlPublico(List<DiaAtencion> atencionAlPublico) {
+		this.atencionAlPublico = atencionAlPublico;
+	}
+
+	public List<DiaAtencion> getAtencionAlPublico() {
+		return atencionAlPublico;
+	}
 
 	public void setToleranciaEnCuadras(int toleranciaEnCuadras) {
 		this.toleranciaEnCuadras = toleranciaEnCuadras;

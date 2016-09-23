@@ -37,6 +37,7 @@ public class ParadaDeColectivo extends PuntoDeInteres {
 		numeroDeLinea = lineaDeColectivo;
 		toleranciaEnCuadras = 1;
 	}
+	
 
 	@Override
 	public boolean estaDisponible(Dias unDia, int hora, Servicio valorX) {
