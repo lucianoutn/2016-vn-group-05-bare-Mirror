@@ -62,12 +62,12 @@ public class PersistenciaDeBusquedaTest extends AbstractPersistenceTest implemen
 		unaBusqueda.buscoFrase("Macow", unRepositorioDePOIs);
 		entityManager().persist(unaPersistenciaDeBusqueda);
 		
-		busquedas = entityManager().createQuery("from PersistenciaDeBusquedas").getResultList();
+		busquedas = entityManager().createQuery("from ResultadoDeBusqueda", ResultadoDeBusqueda.class).getResultList();
 		
-		Assert.assertEquals(1,busquedas.get(0).getCd_Busqueda());
-		Assert.assertEquals(2,busquedas.get(0).getCd_Terminal());
-		Assert.assertEquals("Macow",busquedas.get(0).getFraseBuscada());
-		Assert.assertEquals(0,busquedas.get(0).getCantidadDeResultados());
+		Assert.assertEquals(unaPersistenciaDeBusqueda.getCd_Busqueda(), busquedas.get(0).getCd_Busqueda());
+		Assert.assertEquals(unaPersistenciaDeBusqueda.getCd_Terminal(), busquedas.get(0).getCd_Terminal());
+		Assert.assertEquals(unaPersistenciaDeBusqueda.getFraseBuscada(), busquedas.get(0).getFraseBuscada());
+		Assert.assertEquals(unaPersistenciaDeBusqueda.getCantidadDeResultados(), busquedas.get(0).getCantidadDeResultados());
 		
 	}
 	
