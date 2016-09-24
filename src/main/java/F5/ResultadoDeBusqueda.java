@@ -6,8 +6,12 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import org.hibernate.annotations.IndexColumn;
 
 import F5.Pois.PuntoDeInteres;
 
@@ -34,10 +38,21 @@ public class ResultadoDeBusqueda {
 	//Si hago una Busqueda y no encuentro ningun POI, voy a tener un registro con QT_RESULTADOS=0
 	//Si hago una Busqueda y encuentra (por lo menos) un POI, voy a tener cada registro con QT_RESULTADOS=1 y los podre sumarizar
 	
-	@Transient
+	//@OneToMany
+	//@JoinColumn(name = "id_Poi")
+	//@IndexColumn(name = "nro_poi")
+	@Transient	
 	private List<PuntoDeInteres> poisEncontrados = new ArrayList<>();
 
 	
+	public List<PuntoDeInteres> getPoisEncontrados() {
+		return poisEncontrados;
+	}
+
+	public void setPoisEncontrados(List<PuntoDeInteres> poisEncontrados) {
+		this.poisEncontrados = poisEncontrados;
+	}
+
 	public void almacenarDatosEnAtributosParaPersistir(DatosDeBusquedaParaPersistir datosDeBusquedaParaPersistir) {
 		cd_Busqueda = datosDeBusquedaParaPersistir.getCd_Busqueda();
 		cd_Terminal = datosDeBusquedaParaPersistir.getCd_Terminal();

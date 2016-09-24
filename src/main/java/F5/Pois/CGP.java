@@ -11,6 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.IndexColumn;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 

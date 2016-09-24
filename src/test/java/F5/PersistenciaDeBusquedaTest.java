@@ -14,6 +14,7 @@ import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 import F5.Pois.Comuna;
 import F5.Pois.DiaAtencion;
 import F5.Pois.LocalComercial;
+import F5.Pois.PuntoDeInteres;
 import F5.Pois.SucursalDeBanco;
 import F5.Terminal.RepositorioDePOIs;
 import F5.Terminal.Terminal;
@@ -23,6 +24,8 @@ import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.SistemaExternoBancoMock;
 import InterfacesExternas.SistemaExternoCGPMock;
 import Reportes.NotificadorDeBusqueda;
+import Reportes.ReportePorBusqueda;
+import TestFactory.BancoFactory;
 
 
 public class PersistenciaDeBusquedaTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
@@ -53,13 +56,19 @@ public class PersistenciaDeBusquedaTest extends AbstractPersistenceTest implemen
 		unaBusqueda = new Busqueda(1, 2, unUsuario, "Terminal Dos", "Macowi", new ArrayList<NotificadorDeBusqueda>());	
 		unaPersistenciaDeBusqueda = new ResultadoDeBusqueda();
 		busquedas = new ArrayList<>();
+		
+		
 	}
 	
 	@Test 
 	public void almacenoBusquedaEnBaseDeDatos(){
+		SucursalDeBanco banco =BancoFactory.BancoHSBC();
+		List<PuntoDeInteres> pois = new ArrayList<PuntoDeInteres>();
+		pois.add(banco);
 		unaBusqueda.setRepositorioDeBusquedas(unaPersistenciaDeBusqueda);
 		
 		unaBusqueda.buscoFrase("Macow", unRepositorioDePOIs);
+		unaPersistenciaDeBusqueda.setPoisEncontrados(pois);
 		entityManager().persist(unaPersistenciaDeBusqueda);
 		
 		busquedas = entityManager().createQuery("from ResultadoDeBusqueda", ResultadoDeBusqueda.class).getResultList();
@@ -68,6 +77,7 @@ public class PersistenciaDeBusquedaTest extends AbstractPersistenceTest implemen
 		Assert.assertEquals(unaPersistenciaDeBusqueda.getCd_Terminal(), busquedas.get(0).getCd_Terminal());
 		Assert.assertEquals(unaPersistenciaDeBusqueda.getFraseBuscada(), busquedas.get(0).getFraseBuscada());
 		Assert.assertEquals(unaPersistenciaDeBusqueda.getCantidadDeResultados(), busquedas.get(0).getCantidadDeResultados());
+		Assert.assertEquals(unaPersistenciaDeBusqueda.getPoisEncontrados().size(), busquedas.get(0).getPoisEncontrados().size());
 		
 	}
 	
