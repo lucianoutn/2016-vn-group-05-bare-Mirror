@@ -6,7 +6,7 @@ import javax.mail.Session;
 import F5.Busqueda;
 import Reportes.NotificadorDeBusqueda;
 
-public class NotificadorDeAdministrador implements NotificadorDeBusqueda {
+public class NotificadorDeAdministrador extends NotificadorDeBusqueda {
 
 	// atributos
 	public int tiempoParaNotificar = 10; // debe ser parametrizable

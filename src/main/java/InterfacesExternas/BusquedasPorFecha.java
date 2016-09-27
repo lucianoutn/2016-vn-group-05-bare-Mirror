@@ -7,7 +7,7 @@ import F5.Busqueda;
 import Reportes.NotificadorDeBusqueda;
 import Reportes.ReportePorFecha;
 
-public class BusquedasPorFecha implements NotificadorDeBusqueda {
+public class BusquedasPorFecha extends NotificadorDeBusqueda {
 	public  List<ReportePorFecha> reporte = new ArrayList<ReportePorFecha>();
 
 	public void notificarBusqueda(Busqueda unaBusqueda){
