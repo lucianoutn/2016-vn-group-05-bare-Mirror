@@ -8,15 +8,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Transient;
 
 import F5.Busqueda;
 
 @Entity
 public class BusquedasPorFecha extends NotificadorDeBusqueda {
-	@Id
-	@GeneratedValue
-	private long NumeroDeReporteDeBusquedaPorFecha;
+
 
 	@OneToMany
 	@JoinColumn(name="numDeRenglon")

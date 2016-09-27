@@ -2,12 +2,18 @@ package F5.Procesos;
 
 import java.util.Properties;
 import javax.mail.Session;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 import F5.Busqueda;
 import Reportes.NotificadorDeBusqueda;
 
+@Entity
 public class NotificadorDeAdministrador extends NotificadorDeBusqueda {
 
+	
 	// atributos
 	public int tiempoParaNotificar = 10; // debe ser parametrizable
 
