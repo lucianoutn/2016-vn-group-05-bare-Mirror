@@ -53,13 +53,12 @@ public class ResultadoDeBusqueda {
 		this.poisEncontrados = poisEncontrados;
 	}
 
-	public void almacenarDatosEnAtributosParaPersistir(DatosDeBusquedaParaPersistir datosDeBusquedaParaPersistir) {
-		cd_Busqueda = datosDeBusquedaParaPersistir.getCd_Busqueda();
-		cd_Terminal = datosDeBusquedaParaPersistir.getCd_Terminal();
+	public void almacenarDatosEnAtributosParaPersistir(Busqueda datosDeBusquedaParaPersistir) {
+		
 		tiempoBusqueda = datosDeBusquedaParaPersistir.getTiempoBusqueda();
-		cantidadDeResultados = datosDeBusquedaParaPersistir.getCantidadDeResultados();
+		cantidadDeResultados = datosDeBusquedaParaPersistir.getCantResultados();
 		fraseBuscada = datosDeBusquedaParaPersistir.getFraseBuscada();
-		poisEncontrados = datosDeBusquedaParaPersistir.getPoisEncontrados();
+		
 	}
 		
 	public int getCd_Busqueda() {

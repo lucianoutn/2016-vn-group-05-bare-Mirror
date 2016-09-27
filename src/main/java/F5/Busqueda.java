@@ -4,26 +4,49 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
 import F5.Pois.PuntoDeInteres;
 import F5.Terminal.RepositorioDePOIs;
 import F5.Terminal.Usuario;
 import Reportes.NotificadorDeBusqueda;
-
+import javax.persistence.Transient;
+@Entity
 public class Busqueda {
 
 	// atributos
 
-	private int cd_Busqueda;	//Busqueda va a tener clave compuesta, siendo sus componentes cd_Terminal y cd_Busqueda
-	private Integer cd_Terminal;
+	@Id
+	private int id_Busqueda;	
+	
 	private String fraseBuscada;
 	private String terminal;
+	//@ManyToOne
+	@Transient
 	private Usuario usuario;
 	private int cantResultados;
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setCantResultados(int cantResultados) {
+		this.cantResultados = cantResultados;
+	}
+
+	public void setFecha(LocalTime fecha) {
+		this.fecha = fecha;
+	}
+
 	private LocalTime fecha;
 	public int tiempoBusqueda;
+	@Transient
 	private List<NotificadorDeBusqueda> listaObservers;
+	@Transient
 	private List<PuntoDeInteres> poisEncontrados = new ArrayList<PuntoDeInteres>();
-	private DatosDeBusquedaParaPersistir datosDeBusquedaParaPersistir = new DatosDeBusquedaParaPersistir();
+	@Transient //sacar esto y persistirlo
 	private ResultadoDeBusqueda repositorioDeBusquedas;
 
 	// metodos
@@ -61,13 +84,16 @@ public class Busqueda {
 	}
 
 	public Busqueda(int id_Busqueda,int id_Terminal,Usuario user,String terminal,String frase,List<NotificadorDeBusqueda> listaObservadores) {
-		cd_Busqueda = id_Busqueda;
-		cd_Terminal = this.asignarCodigoDeTerminal(id_Terminal);
+		id_Busqueda = id_Busqueda;
 		listaObservers = listaObservadores;
 		fecha = LocalTime.now();
 		usuario = user;
 		this.terminal = terminal;
 		fraseBuscada = frase;
+	}
+	
+	public Busqueda(){
+		
 	}
 
 	private Integer asignarCodigoDeTerminal(Integer id_Terminal) {
@@ -93,16 +119,11 @@ public class Busqueda {
 		actualizarTiempoBusqueda();
 		notificarBusqueda();
 		poisEncontrados = unMapa.buscaPuntosDeInteresEnSistemaySistemasExternos(unaFrase, null);
-		this.enviarLosResultadosDeBusquedaAlRepositorioDeBusquedas();
 		
 		return poisEncontrados;
 	}
 
-	private void enviarLosResultadosDeBusquedaAlRepositorioDeBusquedas() {
-		datosDeBusquedaParaPersistir.almacenarDatosDeBusqueda(cd_Busqueda, cd_Terminal,fraseBuscada, tiempoBusqueda,poisEncontrados);
-		//repositorioDeBusquedas.almacenarDatosEnAtributosParaPersistir(datosDeBusquedaParaPersistir);
-	}
-
+	
 	private void notificarBusqueda() {
 		this.avisarAObservers();
 		this.usuario.ejecutarAcciones();
