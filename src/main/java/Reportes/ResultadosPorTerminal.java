@@ -2,16 +2,35 @@ package Reportes;
 
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+
 import F5.Busqueda;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Entity
+public class ResultadosPorTerminal extends NotificadorDeBusqueda {
 
-public class ResultadosPorTerminal implements NotificadorDeBusqueda {
-
-	private ArrayList<ReportePorTerminal> reportesPorTerminal = new ArrayList<ReportePorTerminal>();
+	@Id
+	@GeneratedValue
+	private long numeroDeReporteDeResultadosPorTerminal;
+	
+	
+	
+	public long getNumeroDeReporteDeResultadosPorTerminal() {
+		return numeroDeReporteDeResultadosPorTerminal;
+	}
+	@OneToMany
+	@JoinColumn(name="numeroDeRenglon")
+	List<ReportePorTerminal> reportesPorTerminal = new ArrayList<ReportePorTerminal>();
 
 	public void notificarBusqueda(Busqueda unaBusqueda) {
 		if (reportesPorTerminal.stream().anyMatch(x -> x.getUnaTerminal().equals(unaBusqueda.getTerminal())))
