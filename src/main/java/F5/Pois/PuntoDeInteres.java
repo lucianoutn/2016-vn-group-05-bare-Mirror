@@ -3,35 +3,39 @@ package F5.Pois;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-import org.hibernate.annotations.IndexColumn;
 import org.uqbar.geodds.Point;
 //los import de persistencia:
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import static javax.persistence.InheritanceType.JOINED;
 import javax.persistence.InheritanceType;
 
-//@Entity
+@Entity
 @Table(name = "Pois")
-@Inheritance(strategy = JOINED)
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class PuntoDeInteres {
-
-	protected Point posicion;
+	
+	@OneToOne
+	protected Punto posicion;
 	// @Column(name="coordenadaX")
+
 	private double coordenadaX;
 	// @Column(name="coordenadaY")
+
 	private double coordenadaY;
 
 	@Id
 	@GeneratedValue
+	@Column(name = "id_Poi", unique = true, nullable = false)
 	private Long id_Poi;
 
 	public Long getId() {
@@ -50,7 +54,7 @@ public abstract class PuntoDeInteres {
 		this.coordenadaY = coordenadaY;
 	}
 
-	public void cargarCoordenadasDePosicion(Point unaPosicion) {
+	public void cargarCoordenadasDePosicion(Punto unaPosicion) {
 		if (unaPosicion != null) {
 			coordenadaX = unaPosicion.latitude();
 			coordenadaY = unaPosicion.longitude();
@@ -83,16 +87,7 @@ public abstract class PuntoDeInteres {
 
 	@OneToMany
 	@JoinColumn(name = "id_diaAtencion")
-	@IndexColumn(name = "num_dia")
 	protected List<DiaAtencion> atencionAlPublico;
-
-	public void setAtencionAlPublico(List<DiaAtencion> atencionAlPublico) {
-		this.atencionAlPublico = atencionAlPublico;
-	}
-
-	public List<DiaAtencion> getAtencionAlPublico() {
-		return atencionAlPublico;
-	}
 
 	public void setToleranciaEnCuadras(int toleranciaEnCuadras) {
 		this.toleranciaEnCuadras = toleranciaEnCuadras;
@@ -104,14 +99,14 @@ public abstract class PuntoDeInteres {
 		return atencionAlPublico.stream().anyMatch(d -> d.getDia().equals(unDia) && d.estaAbierto(hora));
 	}
 
-	public boolean estaCerca(Point point) {
-		return cuadrasDeDistancia(point) <= toleranciaEnCuadras;
+	public boolean estaCerca(Punto Punto) {
+		return cuadrasDeDistancia(Punto) <= toleranciaEnCuadras;
 	}
 
 	public abstract boolean encuentra(String textoLibre);
 
-	public int cuadrasDeDistancia(Point point) {
-		return (int) Math.abs(posicion.distance(point) / 100);
+	public int cuadrasDeDistancia(Punto Punto) {
+		return (int) Math.abs(posicion.distance(Punto) / 100);
 	}
 
 }

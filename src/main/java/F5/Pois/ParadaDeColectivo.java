@@ -1,8 +1,5 @@
 package F5.Pois;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.*;
 
 import org.uqbar.geodds.Point;
@@ -17,19 +14,19 @@ public class ParadaDeColectivo extends PuntoDeInteres {
 		return numeroDeLinea;
 	}
 
-	@Id
-	@GeneratedValue
-	private Long id_Parada;
+	//@Id
+	//@GeneratedValue
+	//private Long id_Parada;
 
-	public Long getId() {
-		return id_Parada;
-	}
+	// public Long getId() {
+	// return id_Parada;
+	// }
 
 	public ParadaDeColectivo() {// constructor vacio para persistencia
 
 	}
 
-	public ParadaDeColectivo(String calleDeParada, String alturaDeParada, Point unaPosicion, String lineaDeColectivo) {
+	public ParadaDeColectivo(String calleDeParada, String alturaDeParada, Punto unaPosicion, String lineaDeColectivo) {
 		calle = calleDeParada;
 		altura = alturaDeParada;
 		posicion = unaPosicion;
@@ -37,7 +34,6 @@ public class ParadaDeColectivo extends PuntoDeInteres {
 		numeroDeLinea = lineaDeColectivo;
 		toleranciaEnCuadras = 1;
 	}
-	
 
 	@Override
 	public boolean estaDisponible(Dias unDia, int hora, Servicio valorX) {

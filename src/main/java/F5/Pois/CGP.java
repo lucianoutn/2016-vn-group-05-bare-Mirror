@@ -8,10 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Id;
 
-import org.hibernate.annotations.IndexColumn;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
@@ -19,18 +19,18 @@ import org.uqbar.geodds.Polygon;
 @Table(name = "CGPES")
 public class CGP extends PuntoDeInteres {
 
-	@Id
-	@GeneratedValue
-	private Long id_CGP;
+	// @Id
+	// @GeneratedValue
+	// private Long id_CGP;
 	@OneToOne
 	private Comuna comuna;
 	@OneToMany
 	@JoinColumn(name = "nroComuna")
 	private List<Servicio> servicios = new ArrayList<>();
 
-	public Long getId() {
-		return id_CGP;
-	}
+	// public Long getId() {
+	// return id_CGP;
+	// }
 
 	public void setServicios(List<Servicio> servicios) {
 		this.servicios = servicios;
@@ -44,7 +44,7 @@ public class CGP extends PuntoDeInteres {
 
 	}
 
-	public CGP(Point point, Comuna unaComuna) {
+	public CGP(Punto point, Comuna unaComuna) {
 		comuna = unaComuna;
 		posicion = point;
 	}
@@ -69,8 +69,8 @@ public class CGP extends PuntoDeInteres {
 	}
 
 	@Override
-	public boolean estaCerca(Point point) {
-		return comuna.getComuna().isInside(point);
+	public boolean estaCerca(Punto point) {
+		return comuna.getComuna().isInside(point.getPoint());
 	}
 
 	@Override

@@ -7,13 +7,14 @@ import org.uqbar.geodds.Point;
 
 import F5.Pois.DiaAtencion;
 import F5.Pois.Dias;
+import F5.Pois.Punto;
 import F5.Pois.SucursalDeBanco;
 
 public final class BancoFactory {
 
 	public static SucursalDeBanco BancoSantanderEnOrigenYMiercolesDe9A18() {
 
-		Point origen = PointFactory.PuntoOrigen();
+		Punto origen = PointFactory.PuntoOrigen();
 		List<DiaAtencion> dias = DayFactory.miercoles(900, 1800);
 		SucursalDeBanco unaSucursal = new SucursalDeBanco("Santander", origen, dias);
 		return unaSucursal;

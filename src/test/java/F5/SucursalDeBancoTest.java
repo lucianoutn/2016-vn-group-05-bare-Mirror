@@ -89,12 +89,13 @@ public class SucursalDeBancoTest extends AbstractPersistenceTest implements With
 	public void persisteLocalComercial() {
 		SucursalDeBanco santander = BancoFactory.BancoSantanderEnOrigenYMiercolesDe9A18();
 		entityManager().persist(santander);
+		Long idPersistido = santander.getId();
 		
-		SucursalDeBanco santanderPersistido = entityManager().find(SucursalDeBanco.class, santander.getId());
-		Assert.assertEquals(santander.getAltura(), santanderPersistido.getAltura());
-		Assert.assertEquals(santander.getCalle(), santanderPersistido.getCalle());
-		Assert.assertEquals(santander.getNombre(), santanderPersistido.getNombre());
-		Assert.assertEquals(santander.getAtencionAlPublico().size(), santanderPersistido.getAtencionAlPublico().size());
+		//comparando la identidad del objeto:
+		//Assert.assertEquals(santander, entityManager().find(SucursalDeBanco.class, santander.getId()));
 		
+		//comparando un atributo:		
+		Assert.assertEquals(idPersistido, entityManager().find(SucursalDeBanco.class, santander.getId()).getId());
+
 	}
 }

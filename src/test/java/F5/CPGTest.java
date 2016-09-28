@@ -8,18 +8,19 @@ import F5.Pois.Comuna;
 import F5.Pois.DiaAtencion;
 import F5.Pois.Dias;
 import F5.Pois.LocalComercial;
+import F5.Pois.Punto;
 import F5.Pois.Servicio;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.uqbar.geodds.Point;
+//import org.uqbar.geodds.Punto;
 
 public class CPGTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
 	private CGP unCGP;
-	private Point unaPosicion, puntoA, puntoB, puntoC, puntoD;
+	private Punto unaPosicion, puntoA, puntoB, puntoC, puntoD;
 	private DiaAtencion unDia;
 	private Polygon unaComuna;
 	private Servicio unServicio;
@@ -27,17 +28,17 @@ public class CPGTest extends AbstractPersistenceTest implements WithGlobalEntity
 
 	@Before
 	public void Initialize() {
-		unaPosicion = new Point(100, 0);
+		unaPosicion = new Punto(100, 0);
 		// creo un poligono de 4 lados simulando la comuna
-		puntoA = new Point(0, 0);
-		puntoB = new Point(10, 0);
-		puntoC = new Point(10, 10);
-		puntoD = new Point(0, 10);
+		puntoA = new Punto(0, 0);
+		puntoB = new Punto(10, 0);
+		puntoC = new Punto(10, 10);
+		puntoD = new Punto(0, 10);
 		unaComuna = new Polygon();
-		unaComuna.add(puntoA);
-		unaComuna.add(puntoB);
-		unaComuna.add(puntoC);
-		unaComuna.add(puntoD);
+		unaComuna.add(puntoA.getPoint());
+		unaComuna.add(puntoB.getPoint());
+		unaComuna.add(puntoC.getPoint());
+		unaComuna.add(puntoD.getPoint());
 		unCGP = new CGP(unaPosicion, new Comuna(1, unaComuna));
 
 	}
@@ -74,7 +75,8 @@ public class CPGTest extends AbstractPersistenceTest implements WithGlobalEntity
 	@Test
 	public void persisteLocalComercial() {
 		entityManager().persist(unCGP);
-		Assert.assertEquals(unCGP, entityManager().find(CGP.class, unCGP.getId()));
+		Long idPersistido = unCGP.getId();
+		Assert.assertEquals(idPersistido, entityManager().find(CGP.class, unCGP.getId()).getId());
 
 	}
 

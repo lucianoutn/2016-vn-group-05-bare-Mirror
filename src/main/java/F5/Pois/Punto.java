@@ -1,5 +1,6 @@
 package F5.Pois;
 
+import org.uqbar.geodds.Point;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,8 +10,9 @@ public class Punto {
 	@Id
 	@GeneratedValue
 	private int id;
-	
+
 	private double x;
+
 	public double getX() {
 		return x;
 	}
@@ -28,11 +30,33 @@ public class Punto {
 	}
 
 	private double y;
-	
-	public Punto(){
-		
+
+	public Punto() {
+
 	}
-	
-	
-	
+
+	public Punto(double x, double y) {
+		this.x = x;
+		this.y = y;
+
+	}
+
+	public double latitude() {
+		return x;
+	}
+
+	public double longitude() {
+		return y;
+	}
+
+	public double distance(Punto otroPunto) {
+		Point unPoint = new Point(this.x, this.y);
+		Point otroPoint = new Point(otroPunto.latitude(), otroPunto.longitude());
+		return unPoint.distance(otroPoint);
+	}
+
+	public Point getPoint() {
+		return new Point(this.x, this.y);
+	}
+
 }

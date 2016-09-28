@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
-import org.uqbar.geodds.Point;
+//import org.uqbar.geodds.Punto;
 import org.junit.Test;
 import org.junit.Assert;
 import org.uqbar.geodds.Polygon;
@@ -13,6 +13,7 @@ import F5.Pois.CGP;
 import F5.Pois.Comuna;
 import F5.Pois.DiaAtencion;
 import F5.Pois.LocalComercial;
+import F5.Pois.Punto;
 import F5.Pois.SucursalDeBanco;
 import F5.Procesos.Planificador;
 import F5.Procesos.ProcesoDeBajaPOI;
@@ -31,10 +32,10 @@ public class TerminalTest {
 	private LocalComercial unLocalComercial, otroLocalComercial;
 	private Terminal unaTerminal;
 	private RepositorioDePOIs unMapa, unRepositorioDePOIs;
-	private Point posicionDelBanco, posicionDelLocalComercial, posicionDelCGP;
+	private Punto posicionDelBanco, posicionDelLocalComercial, posicionDelCGP;
 	private Polygon comunaDelCGP;
 	private CGP unCGP;
-	private Point puntoADeLaComuna, puntoBDeLaComuna;
+	private Punto puntoADeLaComuna, puntoBDeLaComuna;
 	private Reloj unReloj;
 	private ProcesoDeBajaPOI unProcesoDeBajaDePOI;
 	private BajaPoisRestMock bajaDePOIsMock;
@@ -48,20 +49,20 @@ public class TerminalTest {
 
 		unMapa = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
 
-		posicionDelBanco = new Point(10, 22);
+		posicionDelBanco = new Punto(10, 22);
 		unBanco = new SucursalDeBanco("Santander", posicionDelBanco, new ArrayList<DiaAtencion>());
 
-		posicionDelLocalComercial = new Point(20, 10);
+		posicionDelLocalComercial = new Punto(20, 10);
 		otroLocalComercial = new LocalComercial("Naic", "Rivadavia", "10", "Ropa Deportiva",
 				new ArrayList<DiaAtencion>(), posicionDelLocalComercial);
 
 		unLocalComercial = new LocalComercial("Shopping", "Honduras", "10", "Ropa", new ArrayList<DiaAtencion>(),
-				new Point(22, 10));
+				new Punto(22, 10));
 		unaTerminal = new Terminal(22,"Caballito", unMapa);
 
-		posicionDelCGP = new Point(40, 53);
-		puntoADeLaComuna = new Point(1, 1);
-		puntoBDeLaComuna = new Point(2, 2);
+		posicionDelCGP = new Punto(40, 53);
+		puntoADeLaComuna = new Punto(1, 1);
+		puntoBDeLaComuna = new Punto(2, 2);
 		unCGP = new CGP(posicionDelCGP, new Comuna(1, comunaDelCGP));
 
 		unRepositorioDePOIs = new RepositorioDePOIs(consultorBanco, unConsultorCGP);

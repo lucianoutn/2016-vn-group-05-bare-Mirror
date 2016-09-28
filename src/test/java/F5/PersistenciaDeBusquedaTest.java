@@ -6,7 +6,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.uqbar.geodds.Point;
+//import org.uqbar.geodds.Punto;
 import org.uqbar.geodds.Polygon;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
@@ -14,6 +14,7 @@ import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 import F5.Pois.Comuna;
 import F5.Pois.DiaAtencion;
 import F5.Pois.LocalComercial;
+import F5.Pois.Punto;
 import F5.Pois.PuntoDeInteres;
 import F5.Pois.SucursalDeBanco;
 import F5.Terminal.RepositorioDePOIs;
@@ -44,8 +45,8 @@ public class PersistenciaDeBusquedaTest extends AbstractPersistenceTest implemen
 	public void Initialize(){
 		comuna3 = new Comuna(3,(Polygon)null);
 		unUsuario = new Usuario("Juan",comuna3);
-		unaSucursalDeBanco = new SucursalDeBanco("Rio", new Point(10, 10), new ArrayList<DiaAtencion>());
-		unLocalComercial = new LocalComercial("Macowins", "Pedernera", "10", "Ropa", new ArrayList<DiaAtencion>(),new Point(10, 10));
+		unaSucursalDeBanco = new SucursalDeBanco("Rio", new Punto(10, 10), new ArrayList<DiaAtencion>());
+		unLocalComercial = new LocalComercial("Macowins", "Pedernera", "10", "Ropa", new ArrayList<DiaAtencion>(),new Punto(10, 10));
 		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
 		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
 		unRepositorioDePOIs = new RepositorioDePOIs(consultorBanco, unConsultorCGP);

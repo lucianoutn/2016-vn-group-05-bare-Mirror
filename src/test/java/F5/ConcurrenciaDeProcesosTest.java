@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 
 import F5.Pois.DiaAtencion;
+import F5.Pois.Punto;
 import F5.Pois.SucursalDeBanco;
 import F5.Procesos.EstadosDelProceso;
 import F5.Procesos.Planificador;
@@ -32,7 +33,7 @@ public class ConcurrenciaDeProcesosTest {
 	@Before
 	public void initialize() {
 
-		unaSucursalDeBanco = new SucursalDeBanco("Rio", new Point(10, 10), new ArrayList<DiaAtencion>());
+		unaSucursalDeBanco = new SucursalDeBanco("Rio", new Punto(10, 10), new ArrayList<DiaAtencion>());
 		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
 		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
 

@@ -7,13 +7,14 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.uqbar.geodds.Point;
+//import org.uqbar.geodds.Punto;
 import org.uqbar.geodds.Polygon;
 
 import F5.Pois.CGP;
 import F5.Pois.Comuna;
 import F5.Pois.DiaAtencion;
 import F5.Pois.LocalComercial;
+import F5.Pois.Punto;
 import F5.Pois.Servicio;
 import F5.Pois.SucursalDeBanco;
 import F5.Terminal.RepositorioDePOIs;
@@ -27,10 +28,10 @@ import TestFactory.LocalComercialFactory;
 public class MapaTest {
 	
 	private RepositorioDePOIs map;
-	private Point laPosicionDelBanco;
+	private Punto laPosicionDelBanco;
 	private SucursalDeBanco banco, otroBanco;
 	private CGP unCGP,otroCGP,anotherCGP;
-	private Point unaPosicion, puntoA, puntoB, puntoC, puntoD;
+	private Punto unaPosicion, puntoA, puntoB, puntoC, puntoD;
 	private Polygon unaComuna;
 	private Servicio unServicio,otroServicio;
 	private LocalComercial unLocalComercial;
@@ -59,7 +60,7 @@ public class MapaTest {
 	
 	@Test
 	public void unBancoEstaEnElMapa(){
-	laPosicionDelBanco = new Point(0, 0);
+	laPosicionDelBanco = new Punto(0, 0);
 	SucursalDeBanco banco = new SucursalDeBanco("Santander", laPosicionDelBanco, new ArrayList<DiaAtencion>());
 	map.anadirPOI(banco);
 	Assert.assertTrue(map.contiene(banco));
@@ -75,20 +76,20 @@ public class MapaTest {
 
 	@Test
 	public void unBancoEstaEnElMapaConUnCGPyUnBanco(){
-	unaPosicion = new Point(100, 0);
+	unaPosicion = new Punto(100, 0);
 	// creo un poligono de 4 lados simulando la comuna
-	puntoA = new Point(0, 0);
-	puntoB = new Point(10, 0);
-	puntoC = new Point(10, 10);
-	puntoD = new Point(0, 10);
+	puntoA = new Punto(0, 0);
+	puntoB = new Punto(10, 0);
+	puntoC = new Punto(10, 10);
+	puntoD = new Punto(0, 10);
 	unaComuna = new Polygon();
-	unaComuna.add(puntoA);
-	unaComuna.add(puntoB);
-	unaComuna.add(puntoC);
-	unaComuna.add(puntoD);
+	unaComuna.add(puntoA.getPoint());
+	unaComuna.add(puntoB.getPoint());
+	unaComuna.add(puntoC.getPoint());
+	unaComuna.add(puntoD.getPoint());
 	otroCGP = new CGP(unaPosicion, new Comuna(1,unaComuna));
 	
-	laPosicionDelBanco = new Point(0, 0);
+	laPosicionDelBanco = new Punto(0, 0);
 	SucursalDeBanco otroBanco = new SucursalDeBanco("Santander", laPosicionDelBanco, new ArrayList<DiaAtencion>());
 	
 	map.anadirPOI(otroBanco);
@@ -99,20 +100,20 @@ public class MapaTest {
 	
 	@Test
 	public void unCGPEstaEnElMapaConUnCGPyUnBanco(){
-	unaPosicion = new Point(100, 0);
+	unaPosicion = new Punto(100, 0);
 	// creo un poligono de 4 lados simulando la comuna
-	puntoA = new Point(0, 0);
-	puntoB = new Point(10, 0);
-	puntoC = new Point(10, 10);
-	puntoD = new Point(0, 10);
+	puntoA = new Punto(0, 0);
+	puntoB = new Punto(10, 0);
+	puntoC = new Punto(10, 10);
+	puntoD = new Punto(0, 10);
 	unaComuna = new Polygon();
-	unaComuna.add(puntoA);
-	unaComuna.add(puntoB);
-	unaComuna.add(puntoC);
-	unaComuna.add(puntoD);
+	unaComuna.add(puntoA.getPoint());
+	unaComuna.add(puntoB.getPoint());
+	unaComuna.add(puntoC.getPoint());
+	unaComuna.add(puntoD.getPoint());
 	otroCGP = new CGP(unaPosicion, new Comuna(1,unaComuna));
 	
-	laPosicionDelBanco = new Point(0, 0);
+	laPosicionDelBanco = new Punto(0, 0);
 	SucursalDeBanco otroBanco = new SucursalDeBanco("Santander", laPosicionDelBanco, new ArrayList<DiaAtencion>());
 	
 	map.anadirPOI(otroBanco);
@@ -123,7 +124,7 @@ public class MapaTest {
 
 	@Test
 	public void noEstaUnBancoEnUnMapaVacio(){
-	laPosicionDelBanco = new Point(0, 0);
+	laPosicionDelBanco = new Punto(0, 0);
 	SucursalDeBanco banco = new SucursalDeBanco("Santander", laPosicionDelBanco, new ArrayList<DiaAtencion>());
 	
 	Assert.assertFalse(map.contiene(banco));
@@ -131,7 +132,7 @@ public class MapaTest {
 	
 	@Test
 	public void noEstaUnBancoEnUnMapa(){
-	laPosicionDelBanco = new Point(0, 0);
+	laPosicionDelBanco = new Punto(0, 0);
 	SucursalDeBanco banco = new SucursalDeBanco("Santander", laPosicionDelBanco, new ArrayList<DiaAtencion>());
 	map.anadirPOI(LocalComercialFactory.mimoEsLibreriaPunto100_0DisponibleMiercoles10a20());
 	
@@ -146,22 +147,22 @@ public class MapaTest {
 	@Test
 	public void buscoUnCGPDentroDelSistemaEnMapaYLoEncuentro(){
 		
-		laPosicionDelBanco = new Point(10,22);
+		laPosicionDelBanco = new Punto(10,22);
 		banco = new SucursalDeBanco("Santander", laPosicionDelBanco, new ArrayList<DiaAtencion>());
 		banco.setToleranciaEnCuadras(10);
 		map.limpiarPuntosDeInteres();
 		map.anadirPOI(banco);
 	
-		unaPosicion = new Point(100, 0);
-		puntoA = new Point(0, 0);
-		puntoB = new Point(10, 0);
-		puntoC = new Point(10, 10);
-		puntoD = new Point(0, 10);
+		unaPosicion = new Punto(100, 0);
+		puntoA = new Punto(0, 0);
+		puntoB = new Punto(10, 0);
+		puntoC = new Punto(10, 10);
+		puntoD = new Punto(0, 10);
 		unaComuna = new Polygon();
-		unaComuna.add(puntoA);
-		unaComuna.add(puntoB);
-		unaComuna.add(puntoC);
-		unaComuna.add(puntoD);
+		unaComuna.add(puntoA.getPoint());
+		unaComuna.add(puntoB.getPoint());
+		unaComuna.add(puntoC.getPoint());
+		unaComuna.add(puntoD.getPoint());
 		otroCGP = new CGP(unaPosicion, new Comuna(1,unaComuna));
 		unServicio = new Servicio("Inscripcion", new ArrayList<DiaAtencion>());
 		otroCGP.anadirServicio(unServicio);
@@ -172,16 +173,16 @@ public class MapaTest {
 		unLocalComercial = new LocalComercial("Macowins", "Gaona", "3031", "Ropa", new ArrayList<DiaAtencion>(), unaPosicion);
 		map.anadirPOI(unLocalComercial);
 		
-		unaPosicion = new Point(10, 22);
-		puntoA = new Point(0, 0);
-		puntoB = new Point(10, 0);
-		puntoC = new Point(10, 10);
-		puntoD = new Point(0, 10);
+		unaPosicion = new Punto(10, 22);
+		puntoA = new Punto(0, 0);
+		puntoB = new Punto(10, 0);
+		puntoC = new Punto(10, 10);
+		puntoD = new Punto(0, 10);
 		unaComuna = new Polygon();
-		unaComuna.add(puntoA);
-		unaComuna.add(puntoB);
-		unaComuna.add(puntoC);
-		unaComuna.add(puntoD);
+		unaComuna.add(puntoA.getPoint());
+		unaComuna.add(puntoB.getPoint());
+		unaComuna.add(puntoC.getPoint());
+		unaComuna.add(puntoD.getPoint());
 
 		Assert.assertTrue(map.buscaPuntosDeInteresEnSistemaySistemasExternos("Comuna 11","Inscripcion").contains(otroCGP));
 		
@@ -190,22 +191,22 @@ public class MapaTest {
 	@Test
 	public void buscoUnBancoDentroDelSistemaEnMapaYLoEncuentro(){
 		
-		laPosicionDelBanco = new Point(10,22);
+		laPosicionDelBanco = new Punto(10,22);
 		banco = new SucursalDeBanco("Santander", laPosicionDelBanco, new ArrayList<DiaAtencion>());
 		banco.setToleranciaEnCuadras(10);
 		map.limpiarPuntosDeInteres();
 		map.anadirPOI(banco);
 		
-		unaPosicion = new Point(100, 0);
-		puntoA = new Point(0, 0);
-		puntoB = new Point(10, 0);
-		puntoC = new Point(10, 10);
-		puntoD = new Point(0, 10);
+		unaPosicion = new Punto(100, 0);
+		puntoA = new Punto(0, 0);
+		puntoB = new Punto(10, 0);
+		puntoC = new Punto(10, 10);
+		puntoD = new Punto(0, 10);
 		unaComuna = new Polygon();
-		unaComuna.add(puntoA);
-		unaComuna.add(puntoB);
-		unaComuna.add(puntoC);
-		unaComuna.add(puntoD);
+		unaComuna.add(puntoA.getPoint());
+		unaComuna.add(puntoB.getPoint());
+		unaComuna.add(puntoC.getPoint());
+		unaComuna.add(puntoD.getPoint());
 		otroCGP = new CGP(unaPosicion, new Comuna(1,unaComuna));
 		unServicio = new Servicio("Inscripcion", new ArrayList<DiaAtencion>());
 		otroCGP.anadirServicio(unServicio);
@@ -236,16 +237,16 @@ public class MapaTest {
 		
 		map.limpiarPuntosDeInteres();
 			
-		unaPosicion = new Point(100, 0);
-		puntoA = new Point(0, 0);
-		puntoB = new Point(10, 0);
-		puntoC = new Point(10, 10);
-		puntoD = new Point(0, 10);
+		unaPosicion = new Punto(100, 0);
+		puntoA = new Punto(0, 0);
+		puntoB = new Punto(10, 0);
+		puntoC = new Punto(10, 10);
+		puntoD = new Punto(0, 10);
 		unaComuna = new Polygon();
-		unaComuna.add(puntoA);
-		unaComuna.add(puntoB);
-		unaComuna.add(puntoC);
-		unaComuna.add(puntoD);
+		unaComuna.add(puntoA.getPoint());
+		unaComuna.add(puntoB.getPoint());
+		unaComuna.add(puntoC.getPoint());
+		unaComuna.add(puntoD.getPoint());
 		otroCGP = new CGP(unaPosicion, new Comuna(1,unaComuna));
 		unServicio = new Servicio("Inscripcion", new ArrayList<DiaAtencion>());
 		otroCGP.anadirServicio(unServicio);

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 //import F5.PuntoDeInteres;
@@ -17,16 +18,16 @@ import org.uqbar.geodds.Point;
 @Table(name = "Bancos")
 public class SucursalDeBanco extends PuntoDeInteres {
 
-	@Id
-	@GeneratedValue
-	private Long id_Banco;
+	//@Id
+	//@GeneratedValue
+	//private Long id_Banco;
 	private String nombre;
 
 	public SucursalDeBanco() {// constructor vacio para persistencia
 
 	}
 
-	public SucursalDeBanco(String unNombre, Point unaPosicion, List<DiaAtencion> diasDeAtencion) {
+	public SucursalDeBanco(String unNombre, Punto unaPosicion, List<DiaAtencion> diasDeAtencion) {
 		nombre = unNombre;
 		posicion = unaPosicion;
 		this.cargarCoordenadasDePosicion(unaPosicion);
@@ -34,9 +35,9 @@ public class SucursalDeBanco extends PuntoDeInteres {
 		atencionAlPublico = diasDeAtencion;
 	}
 
-	public Long getId() {
-		return id_Banco;
-	}
+	// public Long getId() {
+	// return id_Banco;
+	// }
 
 	public String getNombre() {
 		return nombre;

@@ -10,6 +10,7 @@ import F5.Pois.CGP;
 import F5.Pois.Comuna;
 import F5.Pois.DiaAtencion;
 import F5.Pois.Dias;
+import F5.Pois.Punto;
 import F5.Pois.Servicio;
 import TestFactory.PointFactory;
 
@@ -26,7 +27,7 @@ public List<CGP> adaptarCGPs(List<CentroDTO> centrosDTO){
 CGP adaptarCentro(CentroDTO unCentro){
 	
 	
-	Point posicionCGP = adaptarPosicion(unCentro.getDomicilioCGP());
+	Punto posicionCGP = adaptarPosicion(unCentro.getDomicilioCGP());
 	Polygon unaComuna = adaptarComuna(unCentro.getNroComuna());
 	String unaCalle = adaptarCalle(unCentro.getDomicilioCGP());
 	String unaAltura = adaptarAltura(unCentro.getDomicilioCGP());
@@ -68,13 +69,13 @@ private DiaAtencion adaptarRangoDTO(RangoServicioDTO rango) {
 	
 }
 
-private Point adaptarPosicion(String domicilioCGP) {
+private Punto adaptarPosicion(String domicilioCGP) {
 
-	Point ubicacionGeografica = buscarUbicacionGeografica(domicilioCGP);
+	Punto ubicacionGeografica = buscarUbicacionGeografica(domicilioCGP);
 	return ubicacionGeografica;
 }
 
-private Point buscarUbicacionGeografica(String domicilioCGP) {
+private Punto buscarUbicacionGeografica(String domicilioCGP) {
 	//TODO implementar el metodo que busque dado un domicilio la ubicacion en el mapa que tiene. 
 	return PointFactory.PuntoOrigen();
 }

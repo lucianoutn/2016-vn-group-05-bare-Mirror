@@ -6,10 +6,11 @@ import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.uqbar.geodds.Point;
+//import org.uqbar.geodds.Punto;
 
 import F5.Pois.DiaAtencion;
 import F5.Pois.LocalComercial;
+import F5.Pois.Punto;
 import F5.Pois.SucursalDeBanco;
 import F5.Procesos.EstadosDelProceso;
 import F5.Procesos.MandarMailPorError;
@@ -42,11 +43,11 @@ public class ManejoDeResultadosyErroresTest {
 	@Before
 	public void initialize() {
 
-		unaSucursalDeBanco = new SucursalDeBanco("Rio", new Point(10, 10), new ArrayList<DiaAtencion>());
+		unaSucursalDeBanco = new SucursalDeBanco("Rio", new Punto(10, 10), new ArrayList<DiaAtencion>());
 		unLocalComercial = new LocalComercial("Macowins", "Pedernera", "10", "Ropa", new ArrayList<DiaAtencion>(),
-				new Point(10, 10));
+				new Punto(10, 10));
 		otroLocalComercial = new LocalComercial("Naic", "Rivadavia", "10", "Ropa Deportiva",
-				new ArrayList<DiaAtencion>(), new Point(20, 10));
+				new ArrayList<DiaAtencion>(), new Punto(20, 10));
 
 		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
 		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());

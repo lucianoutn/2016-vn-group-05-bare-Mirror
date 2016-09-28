@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import F5.Pois.DiaAtencion;
+import F5.Pois.Punto;
 import F5.Pois.SucursalDeBanco;
 
 public class ConsultorBancos implements IConsultorBancos {
@@ -62,7 +63,7 @@ public class ConsultorBancos implements IConsultorBancos {
 			String nombre = banco.getNombre();
 			double x = banco.getX();
 			double y = banco.getY();
-			Point pos = new Point(x, y);
+			Punto pos = new Punto(x, y);
 			List<DiaAtencion> diaDeAtencion = new ArrayList<DiaAtencion>();
 			SucursalDeBanco sucursal = new SucursalDeBanco(nombre, pos, diaDeAtencion);
 			sucursales.add(sucursal);
