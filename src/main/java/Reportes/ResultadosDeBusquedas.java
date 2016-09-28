@@ -1,12 +1,25 @@
 package Reportes;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Transient;
 
 import F5.Busqueda;
 
-public class ResultadosDeBusquedas implements NotificadorDeBusqueda {
-
-	private ArrayList<ReportePorBusqueda> reporte=new ArrayList<>();
+@Entity
+public class ResultadosDeBusquedas extends NotificadorDeBusqueda {
+	
+	
+	@OneToMany
+	@JoinColumn(name="numeroDeRenglon")
+	private List<ReportePorBusqueda> reporte=new ArrayList<ReportePorBusqueda>();
 	
 	@Override
 	public void notificarBusqueda(Busqueda unaBusqueda) {
@@ -14,7 +27,7 @@ public class ResultadosDeBusquedas implements NotificadorDeBusqueda {
 		reporte.add(nuevoResultado);
 		
 	}
-	public ArrayList<ReportePorBusqueda> generarReporte(){
+	public List<ReportePorBusqueda> generarReporte(){
 		return reporte;
 	}
 }
