@@ -1,11 +1,18 @@
 package Reportes;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.persistence.Convert;
+import javax.persistence.Converter;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+
+import org.uqbarproject.jpa.java8.extras.convert.LocalDateConverter;
+import org.uqbarproject.jpa.java8.extras.convert.LocalDateTimeConverter;
 
 
 @Entity
@@ -15,7 +22,7 @@ public class ReportePorFecha {
 	@GeneratedValue
 	private long numeroDeRenglonReportePorFecha;
 	double cantidadDeBusquedas;
-	@Transient//TODO luchito salvame
+	@Convert(converter = LocalDateTimeConverter.class)
 	LocalTime diaDeLaBusqueda;
 	
 	public ReportePorFecha(){
