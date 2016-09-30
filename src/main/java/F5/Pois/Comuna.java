@@ -41,8 +41,8 @@ public class Comuna {
 	public Comuna(){
 		
 	}
-	public Comuna(int nombreComuna, List<Point> limitesComuna){
-		nroComuna = nombreComuna;
+	public Comuna(int numeroComuna, List<Point> limitesComuna){
+		nroComuna = numeroComuna;
 		limites = new Polygon();
 		limitesComuna.forEach(p-> procesarPunto(p));
 		//limites = limitesComuna;

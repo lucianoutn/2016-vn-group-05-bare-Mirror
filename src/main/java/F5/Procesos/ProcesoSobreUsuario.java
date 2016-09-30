@@ -30,7 +30,7 @@ public class ProcesoSobreUsuario extends Proceso {
 	}
 
 	public void hacerOperacionesDeCadaProceso() { // este era el EX ejecutar()
-		// this.pasarAEnEspera(); //TODO
+		this.pasarAEnEspera();
 		planificador.solicitarEjecucion(this);
 	}
 
