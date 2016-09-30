@@ -7,8 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
 public class Servicio {
@@ -23,8 +25,9 @@ public class Servicio {
 		return nombre;
 	}
 
-	@OneToMany
-	@JoinColumn(name = "id_diaAtencion")
+	@ManyToMany
+	//TODO agregale nombre lucho a esto
+	//@JoinColumn(name = "id_diaAtencion")
 	private List<DiaAtencion> atencionAlPublico;
 
 	public Servicio() {
