@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -26,8 +27,8 @@ public class Servicio {
 	}
 
 	@ManyToMany
-	//TODO agregale nombre lucho a esto
-	//@JoinColumn(name = "id_diaAtencion")
+	@JoinTable(name = "servicio_diaAtencion")
+	// @JoinColumn(name = "id_diaAtencion")
 	private List<DiaAtencion> atencionAlPublico;
 
 	public Servicio() {

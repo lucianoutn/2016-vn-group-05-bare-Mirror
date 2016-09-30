@@ -19,18 +19,11 @@ import org.uqbar.geodds.Polygon;
 @Table(name = "CGPES")
 public class CGP extends PuntoDeInteres {
 
-	// @Id
-	// @GeneratedValue
-	// private Long id_CGP;
 	@OneToOne
 	private Comuna comuna;
 	@OneToMany
 	@JoinColumn(name = "nroServicio")
 	private List<Servicio> servicios = new ArrayList<>();
-
-	// public Long getId() {
-	// return id_CGP;
-	// }
 
 	public void setServicios(List<Servicio> servicios) {
 		this.servicios = servicios;

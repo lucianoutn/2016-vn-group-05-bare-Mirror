@@ -14,14 +14,6 @@ public class ParadaDeColectivo extends PuntoDeInteres {
 		return numeroDeLinea;
 	}
 
-	//@Id
-	//@GeneratedValue
-	//private Long id_Parada;
-
-	// public Long getId() {
-	// return id_Parada;
-	// }
-
 	public ParadaDeColectivo() {// constructor vacio para persistencia
 
 	}
