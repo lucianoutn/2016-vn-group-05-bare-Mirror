@@ -23,8 +23,7 @@ public class Busqueda {
 	
 	private String fraseBuscada;
 	private String terminal;
-	//@ManyToOne
-	@Transient
+	@ManyToOne
 	private Usuario usuario;
 	private int cantResultados;
 	
@@ -84,7 +83,7 @@ public class Busqueda {
 	}
 
 	public Busqueda(int id_Busqueda,int id_Terminal,Usuario user,String terminal,String frase,List<NotificadorDeBusqueda> listaObservadores) {
-		id_Busqueda = id_Busqueda;
+		this.id_Busqueda = id_Busqueda;
 		listaObservers = listaObservadores;
 		fecha = LocalTime.now();
 		usuario = user;
@@ -96,7 +95,7 @@ public class Busqueda {
 		
 	}
 
-	private Integer asignarCodigoDeTerminal(Integer id_Terminal) {
+	public Integer asignarCodigoDeTerminal(Integer id_Terminal) {
 		if(id_Terminal == null)
 			return -1;
 		return id_Terminal;

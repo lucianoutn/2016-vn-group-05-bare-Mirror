@@ -1,5 +1,7 @@
 package F5.Procesos;
 
+import Reportes.NotificadorDeAdministrador;
+
 public class MandarMailPorError implements IManejadorDeError{
 	
 	private NotificadorDeAdministrador notificadorDeAdministrador;

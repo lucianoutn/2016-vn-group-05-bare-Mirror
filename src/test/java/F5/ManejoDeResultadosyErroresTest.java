@@ -14,7 +14,6 @@ import F5.Pois.Punto;
 import F5.Pois.SucursalDeBanco;
 import F5.Procesos.EstadosDelProceso;
 import F5.Procesos.MandarMailPorError;
-import F5.Procesos.NotificadorDeAdministrador;
 import F5.Procesos.Planificador;
 import F5.Procesos.ProcesoDeBajaPOI;
 import F5.Procesos.ReintentarProcesoPorError;
@@ -24,6 +23,7 @@ import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.SistemaExternoBancoMock;
 import InterfacesExternas.SistemaExternoCGPMock;
+import Reportes.NotificadorDeAdministrador;
 import junit.framework.Assert;
 
 public class ManejoDeResultadosyErroresTest {

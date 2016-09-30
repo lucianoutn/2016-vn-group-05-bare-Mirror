@@ -1,5 +1,7 @@
 package F5.Procesos;
 
+import Reportes.NotificadorDeAdministrador;
+
 public class ReintentarProcesoPorError implements IManejadorDeError{
 
 	private int cantidadDeReintentos;

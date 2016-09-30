@@ -1,4 +1,4 @@
-package F5.Procesos;
+package Reportes;
 
 import java.util.Properties;
 import javax.mail.Session;
@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 import F5.Busqueda;
-import Reportes.NotificadorDeBusqueda;
+import F5.Procesos.EmailUtil;
 
 @Entity
 public class NotificadorDeAdministrador extends NotificadorDeBusqueda {
@@ -20,13 +20,9 @@ public class NotificadorDeAdministrador extends NotificadorDeBusqueda {
 	// métodos
 
 	public void notificarBusqueda(Busqueda unaBusqueda) {
-
 		if (this.excedioDemora(unaBusqueda)) {
-
 			this.enviarNotificacion();
-
 		}
-
 	}
 
 	public void enviarNotificacion() {
@@ -41,7 +37,6 @@ public class NotificadorDeAdministrador extends NotificadorDeBusqueda {
 		Session session = Session.getInstance(props, null);
 
 		EmailUtil.sendEmail(session, emailID, "SimpleEmail Testing Subject", "SimpleEmail Testing Body");
-
 	}
 
 	public void setTiempoParaNotificar(int tiempoParaNotificar) {

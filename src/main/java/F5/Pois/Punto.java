@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Punto {
 	@Id
 	@GeneratedValue
-	private int id;
+	private int id_Punto;
 
 	private double x;
 
