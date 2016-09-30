@@ -11,9 +11,6 @@ import org.uqbar.geodds.Point;
 @Table(name = "Locales")
 public class LocalComercial extends PuntoDeInteres {
 
-	//@Id
-	//@GeneratedValue
-	//private Long id_Local;
 	private String rubro;
 	private String nombre;
 
@@ -39,10 +36,6 @@ public class LocalComercial extends PuntoDeInteres {
 		rubro = unRubro;
 		atencionAlPublico = diasDeAtencion;
 	}
-
-	// public Long getId() {
-	// return id_Local;
-	// }
 
 	public boolean encuentra(String textoLibre) {
 		return encuentraCalle(textoLibre) || encuentraPalabraClave(textoLibre) || encuentraNombre(textoLibre)

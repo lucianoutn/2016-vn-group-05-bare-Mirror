@@ -17,6 +17,7 @@ import F5.Pois.ParadaDeColectivo;
 import F5.Pois.PuntoDeInteres;
 import F5.Pois.SucursalDeBanco;
 import F5.Terminal.RepositorioDePOIs;
+import F5.Terminal.Terminal;
 import F5.Terminal.Usuario;
 import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;
@@ -24,7 +25,9 @@ import InterfacesExternas.SistemaExternoBancoMock;
 import InterfacesExternas.SistemaExternoCGPMock;
 
 public class BusquedaTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
+	
 	RepositorioDePOIs unMapa;
+	private Terminal unaTerminal, otraTerminal;
 	
 	@Before
 	public void Initialize(){
@@ -32,12 +35,15 @@ public class BusquedaTest extends AbstractPersistenceTest implements WithGlobalE
 		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
 		
 		unMapa = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
+		
+		unaTerminal = new Terminal("flores",unMapa);
+		otraTerminal = new Terminal("recoleta",unMapa);
 	}
 	
 	@Test
 	public void buscarEnMapaVacia(){
 		
-		Busqueda unaBusqueda = new Busqueda(2,new Usuario("pepe", null),"flores", "cgp",null);	
+		Busqueda unaBusqueda = new Busqueda(unaTerminal,new Usuario("pepe", null),"cgp");	
 		SucursalDeBanco unaSucursalDeBanco = new SucursalDeBanco("Servicios Financieros", null, new ArrayList<DiaAtencion>());
 		unMapa.anadirPOI(unaSucursalDeBanco);
 		Assert.assertTrue(unaBusqueda.buscoFrase("Servicios Financieros", unMapa).contains(unaSucursalDeBanco));
@@ -52,7 +58,7 @@ public class BusquedaTest extends AbstractPersistenceTest implements WithGlobalE
 		pois.add(parada101);
 		unMapa.setPuntosDeInteres(pois);
 		
-		Busqueda unaBusqueda = new Busqueda(3,new Usuario("pedro", null),"flores", "101",null);
+		Busqueda unaBusqueda = new Busqueda(unaTerminal,new Usuario("pedro", null),"101");
 		unaBusqueda.buscoFrase("101", unMapa);
 		
 		Assert.assertEquals(parada101, unaBusqueda.buscoFrase("101",unMapa).get(0));
@@ -67,32 +73,16 @@ public class BusquedaTest extends AbstractPersistenceTest implements WithGlobalE
 		pois.add(parada101);
 		unMapa.setPuntosDeInteres(pois);
 	
-		Busqueda unaBusqueda = new Busqueda(1,new Usuario("pepe", null),"flores", "cgp", null);
-		Busqueda unaBusq = new Busqueda(4,new Usuario("pedro", null),"flores", "101",null);
+		Busqueda unaBusqueda = new Busqueda(unaTerminal,new Usuario("pepe", null),"cgp");
+		Busqueda unaBusq = new Busqueda(otraTerminal,new Usuario("pedro", null),"101");
 		Assert.assertTrue(unaBusq.buscoFrase("101",unMapa).contains(parada101));
 	}
 
 	
 	@Test
 	public void persistenciaDeBusqueda(){
-		/*Point puntoA = new Point(0, 0);
-		Point puntoB = new Point(10, 0);
-		Point puntoC = new Point(10, 10);
-		Point puntoD = new Point(0, 10);
-		List<Point> points = new ArrayList<Point>();
-		points.add(puntoA);
-		points.add(puntoB);
-		points.add(puntoC);
-		points.add(puntoD);
-		Comuna comuna = new Comuna(1, points);
 	
-		entityManager().persist(comuna);
-		Usuario ezequiel = new Usuario("Ezequiel", comuna);
-		
-		entityManager().persist(ezequiel);*/
-		
-		
-		Busqueda busqueda = new Busqueda(0,new Usuario("pedro", null),"flores", "101",null);
+		Busqueda busqueda = new Busqueda(unaTerminal,new Usuario("pedro", null),"101");
 		entityManager().persist(busqueda);		
 		
 		List<Busqueda> busquedasDb = entityManager()

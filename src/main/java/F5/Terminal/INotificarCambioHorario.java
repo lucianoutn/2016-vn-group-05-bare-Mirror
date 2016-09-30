@@ -1,7 +1,7 @@
 package F5.Terminal;
 
-public interface INotificarCambioHorario {
+public abstract class INotificarCambioHorario {
 
-	public void anteCambioDeHorario(int horario);
+	public abstract void anteCambioDeHorario(int horario);
 
 }

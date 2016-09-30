@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import F5.Terminal.RepositorioDePOIs;
+import F5.Terminal.Terminal;
 import F5.Terminal.Usuario;
 import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;
@@ -18,10 +19,15 @@ import Reportes.NotificadorDeBusqueda;
 import Reportes.ResultadosPorTerminal;
 
 public class ReportesMultiplesTest {
-	public BusquedasPorFecha reporteroDeBusquedas = new BusquedasPorFecha();
-	public ArrayList<NotificadorDeBusqueda> listaDeDosReporteros = new ArrayList<>();
-	public ResultadosPorTerminal reporteroDeResultadosPorTerminal = new ResultadosPorTerminal();
-	public RepositorioDePOIs unMapa;
+	
+	private BusquedasPorFecha reporteroDeBusquedas = new BusquedasPorFecha();
+	private ArrayList<NotificadorDeBusqueda> listaDeDosReporteros = new ArrayList<>();
+	private ResultadosPorTerminal reporteroDeResultadosPorTerminal = new ResultadosPorTerminal();
+	private RepositorioDePOIs unMapa;
+	private Terminal unaTerminal, otraTerminal;
+	
+	
+	
 	@Before
 	public void initialize() {
 		listaDeDosReporteros.add(reporteroDeBusquedas);
@@ -29,6 +35,10 @@ public class ReportesMultiplesTest {
 		ConsultorBancos consultorBancos = new ConsultorBancos(new SistemaExternoBancoMock());
 		ConsultorCGP consultorCgp = new ConsultorCGP(new SistemaExternoCGPMock());
 		unMapa=new RepositorioDePOIs(consultorBancos, consultorCgp);
+		unaTerminal = new Terminal("flores",unMapa);
+		unaTerminal.setListaObservadores(listaDeDosReporteros);
+		otraTerminal = new Terminal("lugano",unMapa);
+		otraTerminal.setListaObservadores(listaDeDosReporteros);
 	}
 	
 	
@@ -41,7 +51,7 @@ public class ReportesMultiplesTest {
 		
 	@Test
 	public void reportesConUnaBusqueda() {
-		Busqueda unaBusq = new Busqueda(1,new Usuario("pedro", null), "flores", "101", listaDeDosReporteros);
+		Busqueda unaBusq = new Busqueda(unaTerminal,new Usuario("pedro", null),"101");
 		unaBusq.buscoFrase("101", unMapa);
 		Assert.assertEquals(1, reporteroDeBusquedas.generarReporte().size());
 		Assert.assertEquals(1, reporteroDeResultadosPorTerminal.generarReporte(null).size());
@@ -49,19 +59,18 @@ public class ReportesMultiplesTest {
 	
 	@Test
 	public void reportesConDosBusquedaEnUnaMismaTerminalParaFlores() {
-		
-		Busqueda unaBusq = new Busqueda(2,new Usuario("pedro", null),"flores", "101", listaDeDosReporteros);
-		Busqueda unaBusq2 = new Busqueda(3,new Usuario("pedro", null), "flores", "cgp", listaDeDosReporteros);
+		Busqueda unaBusq = new Busqueda(unaTerminal,new Usuario("pedro", null),"101");
+		Busqueda unaBusq2 = new Busqueda(unaTerminal,new Usuario("pedro", null),"cgp");
 		unaBusq.buscoFrase("101", unMapa);
 		unaBusq2.buscoFrase("cgp", unMapa); 
-		Assert.assertEquals(1, reporteroDeResultadosPorTerminal.generarReporte("flores").size());
+		Assert.assertEquals(1, reporteroDeResultadosPorTerminal.generarReporte(unaTerminal).size());
 	}
 	
 	@Test
 	public void reportesConDosBusquedaEnUnaMismaTerminal() {
 		unMapa.limpiarPuntosDeInteres();
-		Busqueda unaBusq = new Busqueda(4,new Usuario("pedro", null),"flores", "101", listaDeDosReporteros);
-		Busqueda unaBusq2 = new Busqueda(5,new Usuario("pedro", null), "flores", "cgp", listaDeDosReporteros);
+		Busqueda unaBusq = new Busqueda(unaTerminal,new Usuario("pedro", null),"101");
+		Busqueda unaBusq2 = new Busqueda(unaTerminal,new Usuario("pedro", null),"cgp");
 		unaBusq.buscoFrase("101", unMapa);
 		unaBusq2.buscoFrase("cgp", unMapa); 
 		Assert.assertEquals(1, reporteroDeBusquedas.generarReporte().size()); 
@@ -69,8 +78,8 @@ public class ReportesMultiplesTest {
 	@Test
 	public void reportesConDosBusquedaEnDosTerminalesDistintas() {
 		unMapa.limpiarPuntosDeInteres();
-		Busqueda unaBusq = new Busqueda(6,new Usuario("pedro", null), "flores", "101", listaDeDosReporteros);
-		Busqueda unaBusq2 = new Busqueda(7,new Usuario("alexis", null), "lugano", "cgp", listaDeDosReporteros);
+		Busqueda unaBusq = new Busqueda(unaTerminal,new Usuario("pedro", null),"101");
+		Busqueda unaBusq2 = new Busqueda(otraTerminal,new Usuario("alexis", null),"cgp");
 		unaBusq.buscoFrase("101", unMapa);
 		unaBusq2.buscoFrase("cgp", unMapa);
 		Assert.assertEquals(1, reporteroDeBusquedas.generarReporte().size());

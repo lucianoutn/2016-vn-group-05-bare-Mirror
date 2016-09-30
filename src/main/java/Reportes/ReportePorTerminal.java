@@ -13,26 +13,31 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import F5.Terminal.Terminal;
+
 @Entity
-@Table(name="ReportePorTerminal")
 public class ReportePorTerminal {
+	
 	@Id
 	@GeneratedValue
-	private long numeroDeRenglonDeReportePorTerminal;
+	private long id_reporte_por_terminal;
+	
 	public long getNumeroDeRenglonDeReportePorTerminal() {
-		return numeroDeRenglonDeReportePorTerminal;
+		return id_reporte_por_terminal;
 	}
-
-	private String unaTerminal;
+	
+	@Transient
+	private Terminal unaTerminal;
+	
 	@ElementCollection
 	@CollectionTable(name="cantidadDeResultados", joinColumns=@JoinColumn(name="resultado_id"))
 	private List<Double> cantResultados;
 		
-	public String getUnaTerminal() {
+	public Terminal getUnaTerminal() {
 		return unaTerminal;
 	}
 
-	public void setUnaTerminal(String unaTerminal) {
+	public void setUnaTerminal(Terminal unaTerminal) {
 		this.unaTerminal = unaTerminal;
 	}
 
@@ -46,16 +51,11 @@ public class ReportePorTerminal {
 	
 	public ReportePorTerminal(){
 		cantResultados= new ArrayList<Double>();
-		//para que no me rompa hibernate X3
 	}
 
-	public ReportePorTerminal(String terminal,double i){
+	public ReportePorTerminal(Terminal terminal,double i){
 		unaTerminal= terminal;
 		cantResultados= new ArrayList<Double>();
 		cantResultados.add(i);
-	}
-	
-	
-	
-
+	}	
 }

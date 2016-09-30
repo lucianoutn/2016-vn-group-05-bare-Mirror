@@ -12,9 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import F5.Pois.PuntoDeInteres;
 import F5.Terminal.RepositorioDePOIs;
+import F5.Terminal.Terminal;
 import F5.Terminal.Usuario;
 import Reportes.NotificadorDeBusqueda;
 import javax.persistence.Transient;
@@ -29,7 +31,10 @@ public class Busqueda {
 	private int id_Busqueda;	
 	
 	private String fraseBuscada;
-	private String terminal;
+	
+	@ManyToOne(cascade={CascadeType.ALL})
+	@JoinColumn(name="id_Terminal")
+	private Terminal terminal;
 	
 	@ManyToOne(cascade={CascadeType.ALL})
 	private Usuario usuario;
@@ -51,6 +56,7 @@ public class Busqueda {
 
 	private LocalTime fecha;
 	public int tiempoBusqueda;
+	
 	@Transient
 	private List<NotificadorDeBusqueda> listaObservers;
 	
@@ -83,27 +89,21 @@ public class Busqueda {
 		this.usuario = usuario;
 	}
 
-	public void setTerminal(String terminal) {
-		this.terminal = terminal;
+	public void setTerminal(Terminal unaTerminal) {
+		terminal = unaTerminal;
 	}
 
-	public Busqueda(int id_Terminal,Usuario user,String terminal,String frase,List<NotificadorDeBusqueda> listaObservadores) {
-		listaObservers = listaObservadores;
+	public Busqueda(Terminal unaTerminal,Usuario user,String frase) {
+		listaObservers = unaTerminal.getListaObservadores();
 		fecha = LocalTime.now();
 		usuario = user;
-		this.terminal = terminal;
+		terminal = unaTerminal;
 		fraseBuscada = frase;
 	}
 	
 	public Busqueda(){
 		
 	}
-
-	public Integer asignarCodigoDeTerminal(Integer id_Terminal) {
-		if(id_Terminal == null)
-			return -1;
-		return id_Terminal;
-	}	//Con este metodo podemos crear Busquedas sin un cd_Terminal, para testear y usar Busqueda de manera desacoplada de Terminal
 
 	private void avisarAObservers() {
 		if (listaObservers != null)
@@ -126,7 +126,6 @@ public class Busqueda {
 		return poisEncontrados;
 	}
 
-	
 	private void notificarBusqueda() {
 		this.avisarAObservers();
 		this.usuario.ejecutarAcciones();
@@ -137,7 +136,7 @@ public class Busqueda {
 		this.tiempoBusqueda = tiempoFinBusqueda.toSecondOfDay() - this.fecha.toSecondOfDay();
 	}
 
-	public String getTerminal() {
+	public Terminal getTerminal() {
 		return terminal;
 	}
 

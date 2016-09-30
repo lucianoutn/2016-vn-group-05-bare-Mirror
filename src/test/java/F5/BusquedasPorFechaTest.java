@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import F5.Terminal.RepositorioDePOIs;
+import F5.Terminal.Terminal;
 import F5.Terminal.Usuario;
 import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;
@@ -17,9 +18,13 @@ import Reportes.NotificadorDeBusqueda;
 
 
 public class BusquedasPorFechaTest {
-	public BusquedasPorFecha reporteroDeBusquedas= new BusquedasPorFecha();
-	public List<NotificadorDeBusqueda> listaDeUnReportero = new ArrayList<NotificadorDeBusqueda>();
-	public RepositorioDePOIs unMapa;
+	
+	private BusquedasPorFecha reporteroDeBusquedas= new BusquedasPorFecha();
+	private List<NotificadorDeBusqueda> listaDeUnReportero = new ArrayList<NotificadorDeBusqueda>();
+	private RepositorioDePOIs unMapa;
+	private Terminal unaTerminal;
+	private Terminal otraTerminal;
+	
 	
 	@Before
 	public void Initialize(){
@@ -27,12 +32,16 @@ public class BusquedasPorFechaTest {
 		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
 		
 		unMapa = new RepositorioDePOIs(consultorBanco, unConsultorCGP);		
+		
+		unaTerminal = new Terminal("flores",unMapa);
+		otraTerminal = new Terminal("recoleta",unMapa);
 	}
 
 	@Test
 	public void generarReporteDeUnaBusqueda(){
 		listaDeUnReportero.add(reporteroDeBusquedas);
-		Busqueda unaBusq = new Busqueda(1,new Usuario("pedro", null),"flores", "101",listaDeUnReportero);
+		unaTerminal.setListaObservadores(listaDeUnReportero);
+		Busqueda unaBusq = new Busqueda(unaTerminal,new Usuario("pedro", null), "101");
 		unaBusq.buscoFrase("101", unMapa);
 		
 		Assert.assertEquals(1,reporteroDeBusquedas.generarReporte().size());
@@ -47,9 +56,11 @@ public class BusquedasPorFechaTest {
 	@Test
 	public void generarReporteDeDosBusquedas(){
 		listaDeUnReportero.add(reporteroDeBusquedas);
-		Busqueda unaBusq = new Busqueda(2,new Usuario("pedro", null),"flores", "101",listaDeUnReportero);
+		unaTerminal.setListaObservadores(listaDeUnReportero);
+		otraTerminal.setListaObservadores(listaDeUnReportero);
+		Busqueda unaBusq = new Busqueda(unaTerminal,new Usuario("pedro", null),"101");
 		unaBusq.buscoFrase("101", unMapa);
-		Busqueda segundaBusqueda= new Busqueda(2,new Usuario("carlos", null), "recoleta", "101", listaDeUnReportero);
+		Busqueda segundaBusqueda= new Busqueda(otraTerminal,new Usuario("carlos", null),"101");
 		segundaBusqueda.buscoFrase("101", unMapa);
 		
 		Assert.assertEquals(2, reporteroDeBusquedas.generarReporte().size());

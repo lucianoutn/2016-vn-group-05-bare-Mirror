@@ -2,7 +2,7 @@ package Reportes;
 
 import static javax.persistence.InheritanceType.JOINED;
 
-import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,13 +17,13 @@ public abstract class NotificadorDeBusqueda {
 
 	@Id
 	@GeneratedValue
-	private long id_PadreDeLosReportes;
+	private long id_reporte_general;
 	
 	public long getId(){
-		return id_PadreDeLosReportes;
+		return id_reporte_general;
 	}
 	
-	public  void notificarBusqueda(Busqueda unaBusqueda){
+	public void notificarBusqueda(Busqueda unaBusqueda){
 		
 	}
 

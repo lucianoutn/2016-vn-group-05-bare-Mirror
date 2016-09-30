@@ -3,32 +3,50 @@ package F5.Terminal;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import F5.Busqueda;
 import F5.Pois.PuntoDeInteres;
 import Reportes.NotificadorDeBusqueda;
 
-public class Terminal implements INotificarCambioHorario {
+@Entity
+public class Terminal extends INotificarCambioHorario {
 	
 	@Id
 	@GeneratedValue
-	@Column(name = "id_Terminal", unique = true, nullable = false)
 	private int id_Terminal;
 	
 	private String nombreDeTerminal;
-	private RepositorioDePOIs unMapa ;
+	
+	@Transient
+	private RepositorioDePOIs unMapa;
+	
+	@Transient
 	private List<NotificadorDeBusqueda> listaObservadores= new ArrayList<NotificadorDeBusqueda>();
+	
+	public void setListaObservadores(List<NotificadorDeBusqueda> listaObservadores) {
+		this.listaObservadores = listaObservadores;
+	}
+
+	public List<NotificadorDeBusqueda> getListaObservadores() {
+		return listaObservadores;
+	}
+
+	@Transient
 	private List<INotificarCambioHorario> procesosBatch =  new ArrayList<INotificarCambioHorario>();	
 	
-	public Terminal(int id_Terminal,String nombreTerminal,RepositorioDePOIs map){
-		this.id_Terminal = id_Terminal;
+	public Terminal(String nombreTerminal,RepositorioDePOIs map){
 		nombreDeTerminal=nombreTerminal;
 		unMapa=map;
 	}
-	
+		
 	public List<INotificarCambioHorario> getProcesosBatch() {
 		return procesosBatch;
 	}
@@ -63,7 +81,7 @@ public class Terminal implements INotificarCambioHorario {
 	}
 
 	public List<PuntoDeInteres> buscarEnTerminal(String unaFrase, Usuario user){
-		Busqueda unaBusqueda= new Busqueda(id_Terminal, user,nombreDeTerminal,unaFrase,listaObservadores);
+		Busqueda unaBusqueda= new Busqueda(this,user,unaFrase);
 		return unaBusqueda.buscoFrase(unaFrase, unMapa);
 	}
 

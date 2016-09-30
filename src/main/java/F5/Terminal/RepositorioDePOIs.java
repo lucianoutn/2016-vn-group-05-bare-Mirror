@@ -17,12 +17,13 @@ import InterfacesExternas.OrigenDeDatos;
 import InterfacesExternas.SistemaExternoBancoMock;
 import InterfacesExternas.SistemaExternoCGPMock;
 
+
 public class RepositorioDePOIs {
 
-	// atributos
 	private List<PuntoDeInteres> puntosDeInteres = new ArrayList<>();
 	
 	private static List<Busqueda> busquedas = new ArrayList<Busqueda>();
+	
 	private ConsultorBancos consultorDeBancos; 
 	public ConsultorBancos getConsultorDeBancos() {
 		return consultorDeBancos;
@@ -34,12 +35,10 @@ public class RepositorioDePOIs {
 
 	private ConsultorCGP consultorCGP; 
 	
-	
 	public RepositorioDePOIs(ConsultorBancos c_bancos, ConsultorCGP c_cgp){
 		consultorCGP= c_cgp;
 		consultorDeBancos = c_bancos;
 	}
-	
 	
 	public void anadirPOI(PuntoDeInteres poi) {
 		puntosDeInteres.add(poi);

@@ -19,10 +19,10 @@ import Mocks.NotificadorDeAdministradorMock;
 public class NotificadorDeDemoraDeBusquedaTest {
 
 	private RepositorioDePOIs map;
-	private Terminal miTerminal;
+	private Terminal miTerminal, unaTerminal, otraTerminal;
 	private NotificadorDeAdministradorMock notiDeAdminPorMailMock;
-	// private int tiempoDeDemoraOriginal = Busqueda.tiempoParaNotificar; //no
-	// hace falta xq no es mas estatico
+	
+	
 
 	@Before
 	public void Initialize() {
@@ -31,11 +31,12 @@ public class NotificadorDeDemoraDeBusquedaTest {
 
 		map = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
 
-		String nombre = "terminal1";
-		miTerminal = new Terminal(1,nombre, map);
+		miTerminal = new Terminal("terminal1",map);
 		notiDeAdminPorMailMock = new NotificadorDeAdministradorMock();
 		miTerminal.activarAccion(notiDeAdminPorMailMock);
 
+		unaTerminal = new Terminal("flores",map);
+		otraTerminal = new Terminal("recoleta",map);
 	}
 
 	@Test

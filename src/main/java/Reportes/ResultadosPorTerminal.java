@@ -4,6 +4,7 @@ import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -12,6 +13,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Transient;
 
 import F5.Busqueda;
+import F5.Terminal.Terminal;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,9 +22,8 @@ import java.util.List;
 @Entity
 public class ResultadosPorTerminal extends NotificadorDeBusqueda {
 
-
 	@OneToMany
-	@JoinColumn(name="numeroDeRenglon")
+	@JoinColumn(name="id_reporte_por_terminal")
 	List<ReportePorTerminal> reportesPorTerminal = new ArrayList<ReportePorTerminal>();
 
 	public void notificarBusqueda(Busqueda unaBusqueda) {
@@ -33,7 +34,7 @@ public class ResultadosPorTerminal extends NotificadorDeBusqueda {
 		else
 			reportesPorTerminal.add(new ReportePorTerminal(unaBusqueda.getTerminal(), unaBusqueda.getCantResultados()));
 	}
-	public List<ReportePorTerminal> generarReporte(String unaTerminal){ 
+	public List<ReportePorTerminal> generarReporte(Terminal unaTerminal){ 
 		if(unaTerminal==null)
 			return reportesPorTerminal;
 		else

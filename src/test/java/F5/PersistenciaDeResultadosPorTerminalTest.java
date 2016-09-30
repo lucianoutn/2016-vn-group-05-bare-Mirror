@@ -14,6 +14,7 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import F5.Pois.Comuna;
+import F5.Terminal.Terminal;
 import F5.Terminal.Usuario;
 import Reportes.NotificadorDeBusqueda;
 import Reportes.ReportePorTerminal;
@@ -23,17 +24,24 @@ public class PersistenciaDeResultadosPorTerminalTest extends AbstractPersistence
 	
 	private ResultadosPorTerminal unReporte;
 	private ArrayList<NotificadorDeBusqueda> observadores;
+	private Terminal unaTerminal;
+	private Busqueda unaBusqueda;
 	
 	@Before
 	public void initialize(){
 		unReporte = new ResultadosPorTerminal();
 		observadores = new ArrayList<>();
 		observadores.add(unReporte);
+		
+		unaTerminal = new Terminal("flores",null);
+		unaTerminal.setListaObservadores(observadores);
+		
+		unaBusqueda = new Busqueda(unaTerminal, new Usuario("pepe", new Comuna()),"");
 	}
 	
 	@Test
 	public void almacenoUnRenglonDelReporte(){
-		ReportePorTerminal unRenglon = new ReportePorTerminal("Flores",20);
+		ReportePorTerminal unRenglon = new ReportePorTerminal(unaTerminal,20);
 		entityManager().persist(unRenglon);
 		List<ReportePorTerminal> copiaDelRenglon = entityManager()
 				.createQuery("from ReportePorTerminal", ReportePorTerminal.class)
@@ -52,16 +60,6 @@ public class PersistenciaDeResultadosPorTerminalTest extends AbstractPersistence
 		
 	}
 	
-	@Test
-	public void hagoUnaBusquedaYGuardoSuReporte() {
-		Busqueda unaBusqueda = new Busqueda(2, new Usuario("pepe", new Comuna()),"flores" , "", observadores );
-		entityManager().persist(unReporte);
-		List<ResultadosPorTerminal> copiaDelReporte = entityManager()
-				.createQuery("from ResultadosPorTerminal", ResultadosPorTerminal.class)
-				.getResultList();
-		Assert.assertTrue(copiaDelReporte.stream().anyMatch(repo->repo.getId() == unReporte.getId()));
-		
-		
-	}
+	
 
 }

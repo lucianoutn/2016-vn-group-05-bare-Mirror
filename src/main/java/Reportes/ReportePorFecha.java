@@ -20,30 +20,32 @@ public class ReportePorFecha {
 	
 	@Id
 	@GeneratedValue
-	private long numeroDeRenglonReportePorFecha;
+	private long id_reporte_por_fecha;
 	double cantidadDeBusquedas;
 	@Convert(converter = LocalDateTimeConverter.class)
 	LocalTime diaDeLaBusqueda;
 	
 	public ReportePorFecha(){
-		//para que no me rompa hibernate X2
+
 	}
+	
 	public ReportePorFecha(LocalTime diaBusqueda){
 		diaDeLaBusqueda = diaBusqueda;
 	}
+	
 	public double getCantidadDeBusquedas() {
 		return cantidadDeBusquedas;
 	}
+	
 	public void setCantidadDeBusquedas(double cantidadDeBusquedas) {
 		this.cantidadDeBusquedas = cantidadDeBusquedas;
 	}
+	
 	public LocalTime getDiaDeLaBusqueda() {
 		return diaDeLaBusqueda;
 	}
+	
 	public void setDiaDeLaBusqueda(LocalTime diaDeLaBusqueda) {
 		this.diaDeLaBusqueda = diaDeLaBusqueda;
 	}
-	
-	
-
 }

@@ -13,11 +13,7 @@ import F5.Procesos.EmailUtil;
 @Entity
 public class NotificadorDeAdministrador extends NotificadorDeBusqueda {
 
-	
-	// atributos
 	public int tiempoParaNotificar = 10; // debe ser parametrizable
-
-	// métodos
 
 	public void notificarBusqueda(Busqueda unaBusqueda) {
 		if (this.excedioDemora(unaBusqueda)) {
@@ -40,7 +36,6 @@ public class NotificadorDeAdministrador extends NotificadorDeBusqueda {
 	}
 
 	public void setTiempoParaNotificar(int tiempoParaNotificar) {
-		// debe ser parametrizable
 		this.tiempoParaNotificar = tiempoParaNotificar; // en segundos
 	}
 

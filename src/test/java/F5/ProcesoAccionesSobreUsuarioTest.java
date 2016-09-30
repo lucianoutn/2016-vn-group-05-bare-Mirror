@@ -13,6 +13,7 @@ import F5.Procesos.ObtenerUsuariosAProcesar;
 import F5.Procesos.Planificador;
 import F5.Procesos.ProcesoSobreUsuario;
 import F5.Terminal.RepositorioDePOIs;
+import F5.Terminal.Terminal;
 import F5.Terminal.Usuario;
 import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;
@@ -31,6 +32,7 @@ public class ProcesoAccionesSobreUsuarioTest {
 	private Busqueda unaBusqueda;
 	private RepositorioDePOIs unMapa;
 	private Planificador planificador = new Planificador();
+	private Terminal unaTerminal;
 
 	@Before
 	public void initialize() {
@@ -41,13 +43,16 @@ public class ProcesoAccionesSobreUsuarioTest {
 
 		unaAccion = new AccionEjemplo();
 		acciones.add(unaAccion);
-
-		unaBusqueda = new Busqueda(5,unUsuario, "Boedo", "Hola", null);
-
+		
 		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
 		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
 
 		unMapa = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
+		
+		unaTerminal = new Terminal("Boedo",unMapa);
+
+		unaBusqueda = new Busqueda(unaTerminal,unUsuario,"Hola");
+
 
 		obtenerUsuarios = new ObtenerUsuariosAProcesar();
 
