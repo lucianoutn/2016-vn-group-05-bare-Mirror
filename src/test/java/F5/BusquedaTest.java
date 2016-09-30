@@ -92,10 +92,8 @@ public class BusquedaTest extends AbstractPersistenceTest implements WithGlobalE
 		entityManager().persist(ezequiel);*/
 		
 		
-		Busqueda busqueda = new Busqueda(1,2,null,"flores", "101",null);
-		entityManager().persist(busqueda);
-		
-		
+		Busqueda busqueda = new Busqueda(0,0,new Usuario("pedro", null),"flores", "101",null);
+		entityManager().persist(busqueda);		
 		
 		List<Busqueda> busquedasDb = entityManager()
 									.createQuery("from Busqueda", Busqueda.class)

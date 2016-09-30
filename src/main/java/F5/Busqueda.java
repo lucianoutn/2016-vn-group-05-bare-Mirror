@@ -30,7 +30,7 @@ public class Busqueda {
 	
 	private String fraseBuscada;
 	private String terminal;
-	@ManyToOne
+	@ManyToOne(cascade={CascadeType.ALL})
 	private Usuario usuario;
 	private int cantResultados;
 	
@@ -46,12 +46,15 @@ public class Busqueda {
 		this.fecha = fecha;
 	}
 
+
 	private LocalTime fecha;
 	public int tiempoBusqueda;
 	@Transient
 	private List<NotificadorDeBusqueda> listaObservers;
+	
+	
 	@ManyToMany(cascade=CascadeType.ALL)
-	@JoinTable(name="Busqueda_POIs",joinColumns=@JoinColumn(name="id_Busqueda"),inverseJoinColumns=@JoinColumn(name="id_Poi"))
+	@JoinTable(name="Busqueda_POIs",joinColumns=@JoinColumn(name="id_Busqueda"),inverseJoinColumns=@JoinColumn(name="id_Poi"))	
 	private List<PuntoDeInteres> poisEncontrados = new ArrayList<PuntoDeInteres>();
 
 	public void setListaObservers(List<NotificadorDeBusqueda> obs) {
