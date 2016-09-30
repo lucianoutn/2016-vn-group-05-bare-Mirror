@@ -38,7 +38,7 @@ public class PersistenciaDeBusquedasPorFechaTest extends AbstractPersistenceTest
 	
 	@Test
 	public void hagoUnaBusquedaYGuardoSuReporte() {
-		Busqueda unaBusqueda = new Busqueda(1, 2, new Usuario("pepe", new Comuna()),"flores" , "", observadores );
+		Busqueda unaBusqueda = new Busqueda(2, new Usuario("pepe", new Comuna()),"flores" , "", observadores );
 		entityManager().persist(unReporte);
 		List<BusquedasPorFecha> copiaDelReporte = entityManager()
 				.createQuery("from BusquedasPorFecha", BusquedasPorFecha.class)

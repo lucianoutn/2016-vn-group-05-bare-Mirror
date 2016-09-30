@@ -18,9 +18,6 @@ import org.uqbar.geodds.Point;
 @Table(name = "Bancos")
 public class SucursalDeBanco extends PuntoDeInteres {
 
-	//@Id
-	//@GeneratedValue
-	//private Long id_Banco;
 	private String nombre;
 
 	public SucursalDeBanco() {// constructor vacio para persistencia
@@ -34,10 +31,6 @@ public class SucursalDeBanco extends PuntoDeInteres {
 		toleranciaEnCuadras = 5;
 		atencionAlPublico = diasDeAtencion;
 	}
-
-	// public Long getId() {
-	// return id_Banco;
-	// }
 
 	public String getNombre() {
 		return nombre;

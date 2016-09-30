@@ -26,10 +26,8 @@ public abstract class PuntoDeInteres {
 	
 	@OneToOne
 	protected Punto posicion;
-	// @Column(name="coordenadaX")
 
 	private double coordenadaX;
-	// @Column(name="coordenadaY")
 
 	private double coordenadaY;
 

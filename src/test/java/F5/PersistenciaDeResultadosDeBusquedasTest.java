@@ -39,7 +39,7 @@ public class PersistenciaDeResultadosDeBusquedasTest extends AbstractPersistence
 	
 	@Test
 	public void hagoUnaBusquedaYGuardoSuReporte() {
-		Busqueda unaBusqueda = new Busqueda(1, 2, new Usuario("pepe", new Comuna()),"flores" , "", observadores );
+		Busqueda unaBusqueda = new Busqueda(2, new Usuario("pepe", new Comuna()),"flores" , "", observadores );
 		entityManager().persist(unReporte);
 		List<ResultadosDeBusquedas> copiaDelReporte = entityManager()
 				.createQuery("from ResultadosDeBusquedas", ResultadosDeBusquedas.class)

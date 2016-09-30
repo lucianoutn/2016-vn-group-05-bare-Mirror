@@ -3,10 +3,12 @@ package F5.Pois;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -25,9 +27,8 @@ public class Servicio {
 		return nombre;
 	}
 
-	@ManyToMany
-	//TODO agregale nombre lucho a esto
-	//@JoinColumn(name = "id_diaAtencion")
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="Servicio_DiaAtencion",joinColumns=@JoinColumn(name="id_Servicio"),inverseJoinColumns=@JoinColumn(name="id_diaAtencion"))
 	private List<DiaAtencion> atencionAlPublico;
 
 	public Servicio() {

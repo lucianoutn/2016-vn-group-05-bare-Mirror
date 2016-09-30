@@ -32,7 +32,7 @@ public class BusquedasPorFechaTest {
 	@Test
 	public void generarReporteDeUnaBusqueda(){
 		listaDeUnReportero.add(reporteroDeBusquedas);
-		Busqueda unaBusq = new Busqueda(1,1,new Usuario("pedro", null),"flores", "101",listaDeUnReportero);
+		Busqueda unaBusq = new Busqueda(1,new Usuario("pedro", null),"flores", "101",listaDeUnReportero);
 		unaBusq.buscoFrase("101", unMapa);
 		
 		Assert.assertEquals(1,reporteroDeBusquedas.generarReporte().size());
@@ -47,9 +47,9 @@ public class BusquedasPorFechaTest {
 	@Test
 	public void generarReporteDeDosBusquedas(){
 		listaDeUnReportero.add(reporteroDeBusquedas);
-		Busqueda unaBusq = new Busqueda(1,2,new Usuario("pedro", null),"flores", "101",listaDeUnReportero);
+		Busqueda unaBusq = new Busqueda(2,new Usuario("pedro", null),"flores", "101",listaDeUnReportero);
 		unaBusq.buscoFrase("101", unMapa);
-		Busqueda segundaBusqueda= new Busqueda(1,2,new Usuario("carlos", null), "recoleta", "101", listaDeUnReportero);
+		Busqueda segundaBusqueda= new Busqueda(2,new Usuario("carlos", null), "recoleta", "101", listaDeUnReportero);
 		segundaBusqueda.buscoFrase("101", unMapa);
 		
 		Assert.assertEquals(2, reporteroDeBusquedas.generarReporte().size());

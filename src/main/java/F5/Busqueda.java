@@ -30,8 +30,10 @@ public class Busqueda {
 	
 	private String fraseBuscada;
 	private String terminal;
+	
 	@ManyToOne(cascade={CascadeType.ALL})
 	private Usuario usuario;
+	
 	private int cantResultados;
 	
 	public Usuario getUsuario() {
@@ -85,8 +87,7 @@ public class Busqueda {
 		this.terminal = terminal;
 	}
 
-	public Busqueda(int id_Busqueda,int id_Terminal,Usuario user,String terminal,String frase,List<NotificadorDeBusqueda> listaObservadores) {
-		this.id_Busqueda = id_Busqueda;
+	public Busqueda(int id_Terminal,Usuario user,String terminal,String frase,List<NotificadorDeBusqueda> listaObservadores) {
 		listaObservers = listaObservadores;
 		fecha = LocalTime.now();
 		usuario = user;
