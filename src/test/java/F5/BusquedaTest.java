@@ -101,9 +101,6 @@ public class BusquedaTest extends AbstractPersistenceTest implements WithGlobalE
 									.createQuery("from Busqueda", Busqueda.class)
 									.getResultList();
 		
-		
-		 
-		 
 		Assert.assertEquals(busqueda.getTerminal(), busquedasDb.get(0).getTerminal());
 		Assert.assertEquals(busqueda.getFraseBuscada(), busquedasDb.get(0).getFraseBuscada());
 	}

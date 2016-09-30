@@ -4,9 +4,13 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import F5.Pois.PuntoDeInteres;
@@ -14,6 +18,9 @@ import F5.Terminal.RepositorioDePOIs;
 import F5.Terminal.Usuario;
 import Reportes.NotificadorDeBusqueda;
 import javax.persistence.Transient;
+
+import org.hibernate.annotations.Cascade;
+
 @Entity
 public class Busqueda {
 
@@ -43,16 +50,9 @@ public class Busqueda {
 	public int tiempoBusqueda;
 	@Transient
 	private List<NotificadorDeBusqueda> listaObservers;
-	@Transient
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="Busqueda_POIs",joinColumns=@JoinColumn(name="id_Busqueda"),inverseJoinColumns=@JoinColumn(name="id_Poi"))
 	private List<PuntoDeInteres> poisEncontrados = new ArrayList<PuntoDeInteres>();
-	@Transient //sacar esto y persistirlo
-	private ResultadoDeBusqueda repositorioDeBusquedas;
-
-	// metodos
-
-	public void setRepositorioDeBusquedas(ResultadoDeBusqueda repositorioDeBusquedas) {
-		this.repositorioDeBusquedas = repositorioDeBusquedas;
-	}
 
 	public void setListaObservers(List<NotificadorDeBusqueda> obs) {
 		listaObservers = obs;
