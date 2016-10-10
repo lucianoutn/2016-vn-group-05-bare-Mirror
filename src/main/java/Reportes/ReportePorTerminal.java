@@ -18,9 +18,9 @@ import javax.persistence.Transient;
 public class ReportePorTerminal {
 	@Id
 	@GeneratedValue
-	private long numeroDeRenglonDeReportePorTerminal;
+	private long id;
 	public long getNumeroDeRenglonDeReportePorTerminal() {
-		return numeroDeRenglonDeReportePorTerminal;
+		return id;
 	}
 
 	private String unaTerminal;

@@ -9,14 +9,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import F5.Busqueda;
 
 @Entity
+
 public class ResultadosDeBusquedas extends NotificadorDeBusqueda {
 	
-	
+
 	@OneToMany
 	@JoinColumn(name="numeroDeRenglon")
 	private List<ReportePorBusqueda> reporte=new ArrayList<ReportePorBusqueda>();

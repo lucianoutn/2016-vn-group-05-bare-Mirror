@@ -11,7 +11,7 @@ public class ReportePorBusqueda {
 	
 	@Id
 	@GeneratedValue
-	private long numeroDeRenglonDeReporteDeBusqueda;
+	private long id;
 	private String fraseBuscada;
 	private double cantidadDeResultados;
 	private double demoraDeBusqueda;
