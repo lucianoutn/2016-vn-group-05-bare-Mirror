@@ -15,6 +15,8 @@ import javax.persistence.Id;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+import F5.Persistidor;
+
 @Entity
 @Table(name = "CGPES")
 public class CGP extends PuntoDeInteres {
