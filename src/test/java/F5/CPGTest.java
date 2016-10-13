@@ -73,8 +73,8 @@ public class CPGTest extends AbstractPersistenceTest implements WithGlobalEntity
 	}
 
 	@Test
-	public void persisteLocalComercial() {
-		entityManager().persist(unCGP);
+	public void persisteCGP() {
+		//entityManager().persist(unCGP);
 		Long idPersistido = unCGP.getId();
 		Assert.assertEquals(idPersistido, entityManager().find(CGP.class, unCGP.getId()).getId());
 

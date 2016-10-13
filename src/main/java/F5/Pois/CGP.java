@@ -42,6 +42,7 @@ public class CGP extends PuntoDeInteres {
 	public CGP(Punto point, Comuna unaComuna) {
 		comuna = unaComuna;
 		posicion = point;
+		Persistidor.getInstancia().persistirUnElemento(this);
 	}
 
 	public void anadirServicio(Servicio servic) {
