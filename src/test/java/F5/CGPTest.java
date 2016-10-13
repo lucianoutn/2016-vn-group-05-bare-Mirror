@@ -1,5 +1,5 @@
 package F5;
-
+import F5.Persistidor;
 import org.uqbar.geodds.Polygon;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
@@ -17,7 +17,7 @@ import org.junit.Before;
 import org.junit.Test;
 //import org.uqbar.geodds.Punto;
 
-public class CPGTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
+public class CGPTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
 	private CGP unCGP;
 	private Punto unaPosicion, puntoA, puntoB, puntoC, puntoD;
@@ -77,7 +77,7 @@ public class CPGTest extends AbstractPersistenceTest implements WithGlobalEntity
 		//entityManager().persist(unCGP);
 		Long idPersistido = unCGP.getId();
 		Assert.assertEquals(idPersistido, entityManager().find(CGP.class, unCGP.getId()).getId());
-
+		entityManager().remove(unCGP);
 	}
 
 }
