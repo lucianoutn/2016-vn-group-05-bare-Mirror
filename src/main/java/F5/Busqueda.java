@@ -15,11 +15,10 @@ import javax.persistence.ManyToOne;
 
 import F5.Pois.PuntoDeInteres;
 import F5.Terminal.RepositorioDePOIs;
+import F5.Terminal.Terminal;
 import F5.Terminal.Usuario;
 import Reportes.NotificadorDeBusqueda;
 import javax.persistence.Transient;
-
-import org.hibernate.annotations.Cascade;
 
 @Entity
 public class Busqueda {
@@ -29,9 +28,13 @@ public class Busqueda {
 	private int id_Busqueda;	
 	
 	private String fraseBuscada;
-	private String terminal;
+	
+	@Transient
+	private Terminal terminal;
+	
 	@ManyToOne(cascade={CascadeType.ALL})
 	private Usuario usuario;
+	
 	private int cantResultados;
 	
 	public Usuario getUsuario() {
@@ -49,9 +52,9 @@ public class Busqueda {
 
 	private LocalTime fecha;
 	public int tiempoBusqueda;
+	
 	@Transient
 	private List<NotificadorDeBusqueda> listaObservers;
-	
 	
 	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="Busqueda_POIs",joinColumns=@JoinColumn(name="id_Busqueda"),inverseJoinColumns=@JoinColumn(name="id_Poi"))	
@@ -81,16 +84,15 @@ public class Busqueda {
 		this.usuario = usuario;
 	}
 
-	public void setTerminal(String terminal) {
-		this.terminal = terminal;
+	public void setTerminal(Terminal unaTerminal) {
+		terminal = unaTerminal;
 	}
 
-	public Busqueda(int id_Busqueda,int id_Terminal,Usuario user,String terminal,String frase,List<NotificadorDeBusqueda> listaObservadores) {
-		this.id_Busqueda = id_Busqueda;
-		listaObservers = listaObservadores;
+	public Busqueda(Terminal unaTerminal, Usuario user,String frase) {
+		listaObservers = unaTerminal.getListaObservadores();
 		fecha = LocalTime.now();
 		usuario = user;
-		this.terminal = terminal;
+		terminal = unaTerminal;
 		fraseBuscada = frase;
 	}
 	
@@ -137,7 +139,7 @@ public class Busqueda {
 	}
 
 	public String getTerminal() {
-		return terminal;
+		return terminal.getNombreDeTerminal();
 	}
 
 	public int getCantResultados() {

@@ -3,21 +3,46 @@ package F5.Terminal;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.*;
+
 import F5.Busqueda;
 import F5.Pois.PuntoDeInteres;
 import Reportes.NotificadorDeBusqueda;
 
+@Entity
 public class Terminal implements INotificarCambioHorario {
 	
-	private int cd_Terminal;
-	private int cd_Busqueda = 1; //Lo iniciamos en 1 para que no haya cd_Busqueda con codigo 0
+	@Id
+	@GeneratedValue
+	@Column(name="CD_TERMINAL",nullable=false)
+	private int id_Terminal;
+	
+	@Column(name="NOM_TERMINAL",nullable=true)
 	private String nombreDeTerminal;
-	private RepositorioDePOIs unMapa ;
+	
+	public String getNombreDeTerminal() {
+		return nombreDeTerminal;
+	}
+
+	@Transient
+	private RepositorioDePOIs unMapa;
+	
+	@ManyToMany
+	@JoinTable(name="Terminal_Notificadores",joinColumns=@JoinColumn(name="id_Terminal"),inverseJoinColumns=@JoinColumn(name="id"))
 	private List<NotificadorDeBusqueda> listaObservadores= new ArrayList<NotificadorDeBusqueda>();
+	
+	public void setListaObservadores(List<NotificadorDeBusqueda> listaObservadores) {
+		this.listaObservadores = listaObservadores;
+	}
+
+	public List<NotificadorDeBusqueda> getListaObservadores() {
+		return listaObservadores;
+	}
+
+	@Transient
 	private List<INotificarCambioHorario> procesosBatch =  new ArrayList<INotificarCambioHorario>();	
 	
-	public Terminal(int id_Terminal,String nombreTerminal,RepositorioDePOIs map){
-		cd_Terminal = id_Terminal;
+	public Terminal(String nombreTerminal,RepositorioDePOIs map){
 		nombreDeTerminal=nombreTerminal;
 		unMapa=map;
 	}
@@ -56,13 +81,8 @@ public class Terminal implements INotificarCambioHorario {
 	}
 
 	public List<PuntoDeInteres> buscarEnTerminal(String unaFrase, Usuario user){
-		Busqueda unaBusqueda= new Busqueda(cd_Busqueda, cd_Terminal, user,nombreDeTerminal,unaFrase,listaObservadores);
-		this.incrementar_cd_Busqueda();	//Cada vez que haga una busqueda, la asigna una clave natural mas alta
+		Busqueda unaBusqueda= new Busqueda(this,user,unaFrase);
 		return unaBusqueda.buscoFrase(unaFrase, unMapa);
-	}
-
-	private void incrementar_cd_Busqueda() {
-		cd_Busqueda++;
 	}
 
 	@Override

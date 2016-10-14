@@ -32,7 +32,7 @@ public class NotificadorDeDemoraDeBusquedaTest {
 		map = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
 
 		String nombre = "terminal1";
-		miTerminal = new Terminal(1,nombre, map);
+		miTerminal = new Terminal(nombre,map);
 		notiDeAdminPorMailMock = new NotificadorDeAdministradorMock();
 		miTerminal.activarAccion(notiDeAdminPorMailMock);
 
