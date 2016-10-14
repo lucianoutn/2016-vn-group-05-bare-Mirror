@@ -20,7 +20,9 @@ public class ReportePorFecha {
 	
 	@Id
 	@GeneratedValue
-	private long id_reporte_por_fecha;
+	private long id;
+
+	
 	double cantidadDeBusquedas;
 	@Convert(converter = LocalDateTimeConverter.class)
 	LocalTime diaDeLaBusqueda;

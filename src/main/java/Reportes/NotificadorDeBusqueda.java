@@ -1,28 +1,30 @@
 package Reportes;
 
-import static javax.persistence.InheritanceType.JOINED;
+import static javax.persistence.InheritanceType.TABLE_PER_CLASS;
+
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 
 import F5.Busqueda;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = TABLE_PER_CLASS)
 public abstract class NotificadorDeBusqueda {
-
+	
 	@Id
-	@GeneratedValue
-	private long id_reporte_general;
+	@GeneratedValue(strategy= GenerationType.TABLE)
+	private long id;
 	
-	public long getId(){
-		return id_reporte_general;
+	public long getId() {
+		return id;
 	}
-	
+
 	public void notificarBusqueda(Busqueda unaBusqueda){
 		
 	}

@@ -20,10 +20,10 @@ public class ReportePorTerminal {
 	
 	@Id
 	@GeneratedValue
-	private long id_reporte_por_terminal;
+	private long id;
 	
 	public long getNumeroDeRenglonDeReportePorTerminal() {
-		return id_reporte_por_terminal;
+		return id;
 	}
 	
 	@Transient

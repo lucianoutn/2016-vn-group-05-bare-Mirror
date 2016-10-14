@@ -16,8 +16,10 @@ import javax.persistence.Transient;
 
 import F5.Busqueda;
 
+
 @Entity	
 public class BusquedasPorFecha extends NotificadorDeBusqueda {
+
 
 	@OneToMany
 	@JoinColumn(name="id_reporte_por_fecha")

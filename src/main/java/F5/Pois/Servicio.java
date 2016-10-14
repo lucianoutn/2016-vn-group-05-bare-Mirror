@@ -15,6 +15,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import F5.Persistidor;
+
+
 @Entity
 public class Servicio {
 

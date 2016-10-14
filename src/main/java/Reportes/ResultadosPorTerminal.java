@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import F5.Busqueda;
@@ -20,10 +21,11 @@ import java.util.Arrays;
 import java.util.List;
 
 @Entity
+
 public class ResultadosPorTerminal extends NotificadorDeBusqueda {
 
 	@OneToMany
-	@JoinColumn(name="id_reporte_por_terminal")
+	@JoinColumn(name="numeroDeRenglon")
 	List<ReportePorTerminal> reportesPorTerminal = new ArrayList<ReportePorTerminal>();
 
 	public void notificarBusqueda(Busqueda unaBusqueda) {
