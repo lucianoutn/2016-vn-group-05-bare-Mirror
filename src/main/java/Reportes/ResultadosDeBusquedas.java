@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import F5.Busqueda;
+import F5.Persistencia.PersistidorDeReportes;
 
 @Entity
 
@@ -27,7 +28,8 @@ public class ResultadosDeBusquedas extends NotificadorDeBusqueda {
 	public void notificarBusqueda(Busqueda unaBusqueda) {
 		ReportePorBusqueda nuevoResultado= new ReportePorBusqueda(unaBusqueda.getFraseBuscada(),unaBusqueda.getCantResultados(), unaBusqueda.getTiempoBusqueda());
 		reporte.add(nuevoResultado);
-		
+		//PersistidorDeReportes.getInstancia().guardaParaPersistir(this);
+		//una opción es que vaya acá
 	}
 	public List<ReportePorBusqueda> generarReporte(){
 		return reporte;

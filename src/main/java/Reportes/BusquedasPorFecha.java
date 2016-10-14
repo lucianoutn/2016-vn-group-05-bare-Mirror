@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import F5.Busqueda;
+import F5.Persistencia.PersistidorDeReportes;
 
 @Entity
 
@@ -20,9 +21,10 @@ public class BusquedasPorFecha extends NotificadorDeBusqueda {
 
 
 	
+	
 	@OneToMany
 	@JoinColumn(name="numDeRenglon")
-	public  List<ReportePorFecha> reportesPorFecha = new ArrayList<ReportePorFecha>();
+	public List<ReportePorFecha> reportesPorFecha = new ArrayList<ReportePorFecha>();
 
 	public void notificarBusqueda(Busqueda unaBusqueda){
 		if(reportesPorFecha.stream().anyMatch(x-> x.getDiaDeLaBusqueda().equals(unaBusqueda.getFecha()))){
@@ -31,6 +33,8 @@ public class BusquedasPorFecha extends NotificadorDeBusqueda {
 		}
 		else
 			reportesPorFecha.add(new ReportePorFecha(unaBusqueda.getFecha()));
+		//PersistidorDeReportes.getInstancia().guardaParaPersistir(this);
+		//puede llegar a ir acá
 	}
 
 	public List<ReportePorFecha> generarReporte(){
