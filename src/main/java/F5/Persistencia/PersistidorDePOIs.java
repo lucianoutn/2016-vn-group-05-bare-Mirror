@@ -36,7 +36,7 @@ public class PersistidorDePOIs extends AbstractPersistenceTest implements WithGl
 
 	public List<PuntoDeInteres> traerPOIS() {
 		// traés los pois cuando es necesario
-		return entityManager().createQuery("from PuntoDeInteres", PuntoDeInteres.class).getResultList();
+		return entityManager().createQuery("from Pois", PuntoDeInteres.class).getResultList();
 	}
 
 	public void persistir() {// le pegás aca todas las horas y cuando es el
