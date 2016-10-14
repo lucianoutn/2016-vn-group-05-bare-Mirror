@@ -14,7 +14,9 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import F5.Busqueda;
+
 import F5.Terminal.Terminal;
+import F5.Persistencia.PersistidorDeReportes;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,8 +27,12 @@ import java.util.List;
 public class ResultadosPorTerminal extends NotificadorDeBusqueda {
 
 	@OneToMany
-	@JoinColumn(name="numeroDeRenglon")
+	@JoinColumn(name = "numeroDeRenglon")
 	List<ReportePorTerminal> reportesPorTerminal = new ArrayList<ReportePorTerminal>();
+
+	public ResultadosPorTerminal() {
+		PersistidorDeReportes.getInstancia().guardaParaPersistir(this);
+	}
 
 	public void notificarBusqueda(Busqueda unaBusqueda) {
 		if (reportesPorTerminal.stream().anyMatch(x -> x.getUnaTerminal().equals(unaBusqueda.getTerminal())))
@@ -36,10 +42,12 @@ public class ResultadosPorTerminal extends NotificadorDeBusqueda {
 		else
 			reportesPorTerminal.add(new ReportePorTerminal(unaBusqueda.getTerminal(), unaBusqueda.getCantResultados()));
 	}
+
 	public List<ReportePorTerminal> generarReporte(Terminal unaTerminal){ 
 		if(unaTerminal==null)
 			return reportesPorTerminal;
 		else
-			return reportesPorTerminal.stream().filter( (x -> x.getUnaTerminal().equals(unaTerminal))).collect(Collectors.toList());
+			return reportesPorTerminal.stream().filter((x -> x.getUnaTerminal().equals(unaTerminal)))
+					.collect(Collectors.toList());
 	}
 }

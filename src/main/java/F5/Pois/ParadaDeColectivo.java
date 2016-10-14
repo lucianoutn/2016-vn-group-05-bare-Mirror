@@ -4,6 +4,8 @@ import javax.persistence.*;
 
 import org.uqbar.geodds.Point;
 
+import F5.Persistencia.PersistidorDePOIs;
+
 @Entity
 @Table(name = "Paradas")
 public class ParadaDeColectivo extends PuntoDeInteres {
@@ -25,6 +27,7 @@ public class ParadaDeColectivo extends PuntoDeInteres {
 		this.cargarCoordenadasDePosicion(unaPosicion);
 		numeroDeLinea = lineaDeColectivo;
 		toleranciaEnCuadras = 1;
+		PersistidorDePOIs.getInstancia().guardaParaPersistir(this);
 	}
 
 	@Override

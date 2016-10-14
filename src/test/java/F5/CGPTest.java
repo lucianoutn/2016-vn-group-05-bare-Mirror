@@ -3,6 +3,7 @@ package F5;
 import org.uqbar.geodds.Polygon;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
+
 import F5.Pois.CGP;
 import F5.Pois.Comuna;
 import F5.Pois.DiaAtencion;
@@ -17,7 +18,7 @@ import org.junit.Before;
 import org.junit.Test;
 //import org.uqbar.geodds.Punto;
 
-public class CPGTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
+public class CGPTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
 	private CGP unCGP;
 	private Punto unaPosicion, puntoA, puntoB, puntoC, puntoD;
@@ -73,11 +74,11 @@ public class CPGTest extends AbstractPersistenceTest implements WithGlobalEntity
 	}
 
 	@Test
-	public void persisteLocalComercial() {
+	public void persisteCGP() {
 		entityManager().persist(unCGP);
 		Long idPersistido = unCGP.getId();
 		Assert.assertEquals(idPersistido, entityManager().find(CGP.class, unCGP.getId()).getId());
-
+		entityManager().remove(unCGP);
 	}
 
 }

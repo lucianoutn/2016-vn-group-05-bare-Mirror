@@ -9,6 +9,8 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import F5.Busqueda;
+import F5.Persistencia.PersistidorDePOIs;
+import F5.Persistencia.PersistidorDeReportes;
 import F5.Procesos.EmailUtil;
 
 @Entity
@@ -18,6 +20,11 @@ public class NotificadorDeAdministrador extends NotificadorDeBusqueda {
 	public int tiempoParaNotificar = 10; // debe ser parametrizable
 	
 	//metodos
+
+	public NotificadorDeAdministrador() {
+		PersistidorDeReportes.getInstancia().guardaParaPersistir(this);
+
+	}
 
 	public void notificarBusqueda(Busqueda unaBusqueda) {
 		if (this.excedioDemora(unaBusqueda)) {

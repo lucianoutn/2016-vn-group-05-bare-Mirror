@@ -8,7 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import F5.Persistidor;
+import F5.Persistencia.PersistidorDePOIs;
 
 @Entity
 @Table(name = "CGPES")
@@ -35,6 +35,8 @@ public class CGP extends PuntoDeInteres {
 	public CGP(Punto point, Comuna unaComuna) {
 		comuna = unaComuna;
 		posicion = point;
+		// Persistidor.getInstancia().persistirUnElemento(this);
+		PersistidorDePOIs.getInstancia().guardaParaPersistir(this);
 	}
 
 	public void anadirServicio(Servicio servic) {
