@@ -2,14 +2,12 @@ package F5.Terminal;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
 
 import F5.Busqueda;
@@ -28,7 +26,8 @@ public class Terminal extends INotificarCambioHorario {
 	@Transient
 	private RepositorioDePOIs unMapa;
 	
-	@Transient
+	@ManyToMany
+	@JoinTable(name="Terminal_Notificadores",joinColumns=@JoinColumn(name="id_Terminal"),inverseJoinColumns=@JoinColumn(name="id"))
 	private List<NotificadorDeBusqueda> listaObservadores= new ArrayList<NotificadorDeBusqueda>();
 	
 	public void setListaObservadores(List<NotificadorDeBusqueda> listaObservadores) {

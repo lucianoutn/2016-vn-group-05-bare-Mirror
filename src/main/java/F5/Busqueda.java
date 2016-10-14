@@ -12,16 +12,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
 import F5.Pois.PuntoDeInteres;
 import F5.Terminal.RepositorioDePOIs;
 import F5.Terminal.Terminal;
 import F5.Terminal.Usuario;
 import Reportes.NotificadorDeBusqueda;
-import javax.persistence.Transient;
 
-import org.hibernate.annotations.Cascade;
 
 @Entity
 public class Busqueda {
@@ -53,11 +49,11 @@ public class Busqueda {
 		this.fecha = fecha;
 	}
 
-
 	private LocalTime fecha;
 	public int tiempoBusqueda;
 	
-	@Transient
+	@ManyToMany
+	@JoinTable(name="Busqueda_Notificadores",joinColumns=@JoinColumn(name="id_Busqueda"),inverseJoinColumns=@JoinColumn(name="id"))
 	private List<NotificadorDeBusqueda> listaObservers;
 	
 	

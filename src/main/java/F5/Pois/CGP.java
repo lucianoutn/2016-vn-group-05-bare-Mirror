@@ -4,17 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import javax.persistence.Id;
-
-import org.uqbar.geodds.Point;
-import org.uqbar.geodds.Polygon;
-
 import F5.Persistidor;
 
 @Entity

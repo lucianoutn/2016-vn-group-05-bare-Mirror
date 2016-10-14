@@ -1,10 +1,6 @@
 package Reportes;
 
 import static javax.persistence.InheritanceType.TABLE_PER_CLASS;
-
-
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

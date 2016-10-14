@@ -7,6 +7,7 @@ import javax.persistence.*;
 import org.hibernate.annotations.IndexColumn;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
+
 @Entity
 public class Comuna {
 	
