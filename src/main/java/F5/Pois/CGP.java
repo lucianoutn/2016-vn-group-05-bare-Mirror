@@ -15,7 +15,7 @@ import javax.persistence.Id;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-import F5.Persistidor;
+import F5.Persistencia.PersistidorDePOIs;
 
 @Entity
 @Table(name = "CGPES")
@@ -42,7 +42,8 @@ public class CGP extends PuntoDeInteres {
 	public CGP(Punto point, Comuna unaComuna) {
 		comuna = unaComuna;
 		posicion = point;
-		Persistidor.getInstancia().persistirUnElemento(this);
+		// Persistidor.getInstancia().persistirUnElemento(this);
+		PersistidorDePOIs.getInstancia().guardaParaPersistir(this);
 	}
 
 	public void anadirServicio(Servicio servic) {

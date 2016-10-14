@@ -1,8 +1,10 @@
 package F5;
-import F5.Persistidor;
+
 import org.uqbar.geodds.Polygon;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
+
+import F5.Persistencia.Persistidor;
 import F5.Pois.CGP;
 import F5.Pois.Comuna;
 import F5.Pois.DiaAtencion;
@@ -74,7 +76,7 @@ public class CGPTest extends AbstractPersistenceTest implements WithGlobalEntity
 
 	@Test
 	public void persisteCGP() {
-		//entityManager().persist(unCGP);
+		entityManager().persist(unCGP);
 		Long idPersistido = unCGP.getId();
 		Assert.assertEquals(idPersistido, entityManager().find(CGP.class, unCGP.getId()).getId());
 		entityManager().remove(unCGP);

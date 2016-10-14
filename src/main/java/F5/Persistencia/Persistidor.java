@@ -1,4 +1,4 @@
-package F5;
+package F5.Persistencia;
 
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
