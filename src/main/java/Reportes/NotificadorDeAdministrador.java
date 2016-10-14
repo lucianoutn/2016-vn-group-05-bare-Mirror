@@ -17,15 +17,13 @@ import F5.Procesos.EmailUtil;
 
 public class NotificadorDeAdministrador extends NotificadorDeBusqueda {
 
-	
-	
 	// atributos
 	public int tiempoParaNotificar = 10; // debe ser parametrizable
 
 	// métodos
-	
-	public NotificadorDeAdministrador(){
-		//PersistidorDeReportes.getInstancia().guardaParaPersistir(this);
+
+	public NotificadorDeAdministrador() {
+		PersistidorDeReportes.getInstancia().guardaParaPersistir(this);
 
 	}
 

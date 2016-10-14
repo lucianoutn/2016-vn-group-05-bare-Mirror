@@ -19,25 +19,21 @@ import F5.Persistencia.PersistidorDeReportes;
 
 public class BusquedasPorFecha extends NotificadorDeBusqueda {
 
-
-	
-	
 	@OneToMany
-	@JoinColumn(name="numDeRenglon")
+	@JoinColumn(name = "numDeRenglon")
 	public List<ReportePorFecha> reportesPorFecha = new ArrayList<ReportePorFecha>();
 
-	public void notificarBusqueda(Busqueda unaBusqueda){
-		if(reportesPorFecha.stream().anyMatch(x-> x.getDiaDeLaBusqueda().equals(unaBusqueda.getFecha()))){
-			reportesPorFecha.stream().filter(x->x.getDiaDeLaBusqueda().equals(unaBusqueda.getFecha()))
-							.forEach(x-> x.setCantidadDeBusquedas(x.getCantidadDeBusquedas()+1));
-		}
-		else
+	public void notificarBusqueda(Busqueda unaBusqueda) {
+		if (reportesPorFecha.stream().anyMatch(x -> x.getDiaDeLaBusqueda().equals(unaBusqueda.getFecha()))) {
+			reportesPorFecha.stream().filter(x -> x.getDiaDeLaBusqueda().equals(unaBusqueda.getFecha()))
+					.forEach(x -> x.setCantidadDeBusquedas(x.getCantidadDeBusquedas() + 1));
+		} else
 			reportesPorFecha.add(new ReportePorFecha(unaBusqueda.getFecha()));
-		//PersistidorDeReportes.getInstancia().guardaParaPersistir(this);
-		//puede llegar a ir acá
+		PersistidorDeReportes.getInstancia().guardaParaPersistir(this);
+		// puede llegar a ir acá
 	}
 
-	public List<ReportePorFecha> generarReporte(){
+	public List<ReportePorFecha> generarReporte() {
 		return reportesPorFecha;
 	}
 }

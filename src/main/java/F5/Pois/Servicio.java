@@ -13,9 +13,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import F5.Persistencia.Persistidor;
-
-
 @Entity
 public class Servicio {
 

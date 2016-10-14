@@ -4,7 +4,6 @@ import org.uqbar.geodds.Polygon;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
-import F5.Persistencia.Persistidor;
 import F5.Pois.CGP;
 import F5.Pois.Comuna;
 import F5.Pois.DiaAtencion;

@@ -18,20 +18,21 @@ import F5.Persistencia.PersistidorDeReportes;
 @Entity
 
 public class ResultadosDeBusquedas extends NotificadorDeBusqueda {
-	
 
 	@OneToMany
-	@JoinColumn(name="numeroDeRenglon")
-	private List<ReportePorBusqueda> reporte=new ArrayList<ReportePorBusqueda>();
-	
+	@JoinColumn(name = "numeroDeRenglon")
+	private List<ReportePorBusqueda> reporte = new ArrayList<ReportePorBusqueda>();
+
 	@Override
 	public void notificarBusqueda(Busqueda unaBusqueda) {
-		ReportePorBusqueda nuevoResultado= new ReportePorBusqueda(unaBusqueda.getFraseBuscada(),unaBusqueda.getCantResultados(), unaBusqueda.getTiempoBusqueda());
+		ReportePorBusqueda nuevoResultado = new ReportePorBusqueda(unaBusqueda.getFraseBuscada(),
+				unaBusqueda.getCantResultados(), unaBusqueda.getTiempoBusqueda());
 		reporte.add(nuevoResultado);
-		//PersistidorDeReportes.getInstancia().guardaParaPersistir(this);
-		//una opción es que vaya acá
+		PersistidorDeReportes.getInstancia().guardaParaPersistir(this);
+		// una opción es que vaya acá
 	}
-	public List<ReportePorBusqueda> generarReporte(){
+
+	public List<ReportePorBusqueda> generarReporte() {
 		return reporte;
 	}
 }
