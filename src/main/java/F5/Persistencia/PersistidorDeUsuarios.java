@@ -16,13 +16,18 @@ public class PersistidorDeUsuarios extends AbstractPersistenceTest implements Wi
 	private final static PersistidorDeUsuarios instancia = new PersistidorDeUsuarios();
 
 	private LocalDate time;
-	private List<Usuario> Usuarios = new ArrayList<Usuario>();// la
+	private  List<Usuario> Usuarios = new ArrayList<Usuario>();// la
 																// lista
 																// de
 																// usuarios
 																// a
 																// persistir
 
+	public  void clear(){
+		Usuarios.clear();
+	}
+	
+	
 	public static PersistidorDeUsuarios getInstancia() {
 
 		return instancia;

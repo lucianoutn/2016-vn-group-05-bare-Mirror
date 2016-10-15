@@ -17,6 +17,10 @@ import Reportes.NotificadorDeBusqueda;
 @Entity
 public class Terminal extends INotificarCambioHorario {
 	
+	public Terminal(){
+		//constructor vacio
+	}
+	
 	@Id
 	@GeneratedValue
 	private int id_Terminal;

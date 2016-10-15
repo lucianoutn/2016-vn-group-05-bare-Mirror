@@ -14,15 +14,20 @@ public class PersistidorDeTerminal  extends AbstractPersistenceTest implements W
 
 	private final static PersistidorDeTerminal instancia = new PersistidorDeTerminal();
 
-	private LocalDate time;
-	private List<Terminal> terminales = new ArrayList<Terminal>();
+	private static LocalDate time;
+	private  List<Terminal> terminales = new ArrayList<Terminal>();
 
 	public static PersistidorDeTerminal getInstancia() {
 
 		return instancia;
 	}
+	
 
-	public void setHora(LocalDate hora) {
+	public  void clear(){
+		terminales.clear();
+	}
+
+	public static void setHora(LocalDate hora) {
 		time = hora;// seteas la hora a la que querés que ocurra la acción
 
 	}

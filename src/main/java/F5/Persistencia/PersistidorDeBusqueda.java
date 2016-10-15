@@ -17,6 +17,12 @@ public class PersistidorDeBusqueda extends AbstractPersistenceTest implements Wi
 	private LocalDate time;
 	private List<Busqueda> busquedas = new ArrayList<Busqueda>();
 	
+	
+	public void clear(){
+		busquedas.clear();
+	}
+	
+	
 	public void setHora(LocalDate hora) {
 		time = hora;// seteas la hora a la que querés que ocurra la acción
 

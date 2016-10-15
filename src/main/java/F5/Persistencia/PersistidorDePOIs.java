@@ -16,7 +16,7 @@ public class PersistidorDePOIs extends AbstractPersistenceTest implements WithGl
 
 	private final static PersistidorDePOIs instancia = new PersistidorDePOIs();
 
-	private LocalDate time;
+	private static LocalDate time;
 	private List<PuntoDeInteres> POIS = new ArrayList<PuntoDeInteres>();// la
 																		// lista
 																		// de
@@ -24,12 +24,17 @@ public class PersistidorDePOIs extends AbstractPersistenceTest implements WithGl
 																		// a
 																		// persistir
 
+
+	public  void clear(){
+		POIS.clear();
+	}
+	
 	public static PersistidorDePOIs getInstancia() {
 
 		return instancia;
 	}
 
-	public void setHora(LocalDate hora) {
+	public static void setHora(LocalDate hora) {
 		time = hora;// seteas la hora a la que querés que ocurra la acción
 
 	}
