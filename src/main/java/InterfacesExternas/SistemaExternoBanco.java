@@ -10,7 +10,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class SistemaExternoBanco implements ISistemaExternoBanco {
+public class SistemaExternoBanco extends ISistemaExternoBanco {
 
 	private URL url;
 	private ObjectMapper objectMapper;

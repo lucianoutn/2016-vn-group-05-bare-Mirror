@@ -39,7 +39,7 @@ public class ConsultorBancos implements IConsultorBancos {
 
 		List<BancosJson> bancosJson = new ArrayList<BancosJson>();
 
-		bancosJson = sistemaExterno.consultarBancos(nombreBanco, unServicio);
+		bancosJson = sistemaExterno.consultar(nombreBanco, unServicio);
 
 		List<SucursalDeBanco> bancosAdaptados = adaptarBancos(bancosJson);
 		List<SucursalDeBanco> bancos = filtrarBancosQueCumplenCon(bancosAdaptados, nombreBanco);

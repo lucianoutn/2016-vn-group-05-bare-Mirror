@@ -13,7 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import Kvs.KvsCache;
 
-public class SistemaExternoBancoMock implements ISistemaExternoBanco {
+public class SistemaExternoBancoMock extends ISistemaExternoBanco {
 
 	
 	private ObjectMapper objectMapper;
@@ -21,13 +21,9 @@ public class SistemaExternoBancoMock implements ISistemaExternoBanco {
 	
 	@Override
 	public List<BancosJson> consultarBancos(String nombreBanco, String unServicio) {
-				String key = "bancos-nombreBanco-unServicio";
+				
 		 				
- 				String valueBancos = KvsCache.get(key);
  				
- 				if (valueBancos != null || valueBancos != ""){
- 					return new ArrayList<BancosJson>();
- 				}
  					 
 				objectMapper = new ObjectMapper();
 				// el posta:
@@ -37,11 +33,8 @@ public class SistemaExternoBancoMock implements ISistemaExternoBanco {
 				File file = new File("src/test/java/F5/ejRespuestaJSON");
 
 				try {
-					List<BancosJson> bancos = Arrays.asList(objectMapper.readValue(file, BancosJson[].class));
- 					String value = "";
- 					bancos.stream().forEach(b -> value.concat(b.getNombre()));				
- 					KvsCache.save(key, value);
-					return bancos;
+					return Arrays.asList(objectMapper.readValue(file, BancosJson[].class));
+ 					
 				} catch (JsonParseException e) {
 					// Auto-generated catch block
 					e.printStackTrace();

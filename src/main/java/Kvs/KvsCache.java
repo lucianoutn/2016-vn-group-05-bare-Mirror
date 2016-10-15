@@ -21,7 +21,7 @@
  	public static String get(String key){
  	
  		String value = getJedis().get(key);
- 		System.out.println("el valor es : ".concat(value));
+ 	
  		return value;
  	}
  	
