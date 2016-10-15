@@ -37,14 +37,10 @@ public class ConsultorCGP implements IConsultorCGP {
 	}
 
 	private List<CentroDTO> consultarCgps(String lugar) {
-		return sistemaExterno.consultarCgpsDTO(lugar); 
+		return sistemaExterno.consultar(lugar); 
 	}
 
-	@Override
-	public List<SucursalDeBanco> bancosQueCumplenCon(String nombreBanco, String unServicio) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 
 }

@@ -6,5 +6,5 @@ import F5.Pois.SucursalDeBanco;
 
 public interface OrigenDeDatos {
 
-	List<SucursalDeBanco> bancosQueCumplenCon(String nombreBanco, String unServicio);
+	
 }

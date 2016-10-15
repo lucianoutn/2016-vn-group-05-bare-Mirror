@@ -6,12 +6,11 @@ import java.util.List;
 
 import F5.Pois.PuntoDeInteres;
 
-public class SistemaExternoCGPMock implements ISistemaExternoCGP{
+public class SistemaExternoCGPMock extends ISistemaExternoCGP{
 
 	
 	private List<CentroDTO> listaDeCentrosDTO = new ArrayList<>();
 	@Override
-	
 	public List<CentroDTO> consultarCgpsDTO(String lugar) {
 		
 		List<CentroDTO> listaDeCentrosDTO = new ArrayList<CentroDTO>();

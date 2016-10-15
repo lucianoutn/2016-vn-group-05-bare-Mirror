@@ -116,10 +116,6 @@ public class MockConsultorCGP implements IConsultorCGP {
 		return unDomicilio[1];	
 	}
 
-	@Override
-	public List<SucursalDeBanco> bancosQueCumplenCon(String nombreBanco, String unServicio) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }
