@@ -41,6 +41,8 @@ public class ResultadosPorTerminal extends NotificadorDeBusqueda {
 
 		else
 			reportesPorTerminal.add(new ReportePorTerminal(unaBusqueda.getTerminal(), unaBusqueda.getCantResultados()));
+	
+		//PersistidorDeReportes.getInstancia().guardaParaPersistir(this);
 	}
 
 	public List<ReportePorTerminal> generarReporte(Terminal unaTerminal){ 

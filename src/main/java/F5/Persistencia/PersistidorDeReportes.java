@@ -3,6 +3,7 @@ package F5.Persistencia;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
@@ -15,11 +16,16 @@ public class PersistidorDeReportes extends AbstractPersistenceTest implements Wi
 	private final static PersistidorDeReportes instancia = new PersistidorDeReportes();
 
 	private LocalDate time;
-	private List<NotificadorDeBusqueda> notificadores = new ArrayList<NotificadorDeBusqueda>();
+	private  List<NotificadorDeBusqueda> notificadores = new ArrayList<NotificadorDeBusqueda>();
 	
 	public void setHora(LocalDate hora) {
 		time = hora;// seteas la hora a la que querés que ocurra la acción
 
+	}
+	
+
+	public void clear(){
+		notificadores.clear();
 	}
 	
 	public static PersistidorDeReportes getInstancia() {
@@ -32,7 +38,9 @@ public class PersistidorDeReportes extends AbstractPersistenceTest implements Wi
 		// traés los notificadores cuando es necesario
 		return entityManager().createQuery("from NotificadorDeBusqueda", NotificadorDeBusqueda.class).getResultList();
 	}
+	
 
+	
 	public void persistir() {
 		if (LocalDate.now() == time)
 			notificadores.stream().forEach(notificador -> entityManager().persist(notificador));
