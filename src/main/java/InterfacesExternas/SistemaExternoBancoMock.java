@@ -10,6 +10,8 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import F5.KvsCache;
+
 public class SistemaExternoBancoMock implements ISistemaExternoBanco {
 
 	
@@ -18,19 +20,31 @@ public class SistemaExternoBancoMock implements ISistemaExternoBanco {
 	
 	@Override
 	public List<BancosJson> consultarBancos(String nombreBanco, String unServicio) {
-		// aca me comunico con el sistema externo y adapto el Json a
-				// bancosJson
-
-			
+				
+				
+		
+		
+				String key = "bancos-nombreBanco-unServicio";
+				
+				String valueBancos = KvsCache.get(key);
+				if (valueBancos != null)
+					return null; //TODO VER SI HAY QUE DEVOLVER NULL O UNA LISTA VACIA DE BANCOS JSON
+				
+		
 				objectMapper = new ObjectMapper();
-				// el posta:
-				// BancosJson banco= objectMapper.readValue(url, BancosJson.class);
 
 				// el mock:
 				File file = new File("src/test/java/F5/ejRespuestaJSON");
 
 				try {
-					return  Arrays.asList(objectMapper.readValue(file, BancosJson[].class));
+					
+					
+					List<BancosJson> bancos = Arrays.asList(objectMapper.readValue(file, BancosJson[].class));
+					String value = "";
+					bancos.stream().forEach(b -> value.concat(b.getNombre()));				
+					KvsCache.save(key, value);
+					return bancos;
+					
 				} catch (JsonParseException e) {
 					// Auto-generated catch block
 					e.printStackTrace();
@@ -47,5 +61,6 @@ public class SistemaExternoBancoMock implements ISistemaExternoBanco {
 
 		
 	}
+
 
 }

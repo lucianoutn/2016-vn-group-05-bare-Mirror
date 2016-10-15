@@ -46,8 +46,6 @@ public class ConsultorBancosMockTest {
 	public void enLaListaTieneQueHaber2ySolo2Bancos() {
 		sucursales = unMapa.getConsultorDeBancos().bancosQueCumplenCon(nombreBanco, servicioBanco);
 		Assert.assertEquals(2, sucursales.size());
-		//@Alan: Aca el size no me parece mal usado. La otra opcion serian 
-		//dos asserts, pero nos dijeron que no es una buena practica
 	
 	}
 
