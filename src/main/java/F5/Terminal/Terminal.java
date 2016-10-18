@@ -27,6 +27,10 @@ public class Terminal extends INotificarCambioHorario {
 	
 	private String nombreDeTerminal;
 	
+	public String getNombreDeTerminal() {
+		return nombreDeTerminal;
+	}
+
 	@Transient
 	private RepositorioDePOIs unMapa;
 	
