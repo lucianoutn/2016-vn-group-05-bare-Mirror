@@ -18,25 +18,24 @@ import F5.Terminal.Terminal;
 import F5.Terminal.Usuario;
 import Reportes.NotificadorDeBusqueda;
 
-
 @Entity
 public class Busqueda {
 
 	@Id
 	@GeneratedValue
-	private int id_Busqueda;	
-	
+	private int id_Busqueda;
+
 	private String fraseBuscada;
-	
-	@ManyToOne(cascade={CascadeType.ALL})
-	@JoinColumn(name="id_Terminal")
+
+	@ManyToOne(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "id_Terminal")
 	private Terminal terminal;
-	
-	@ManyToOne(cascade={CascadeType.ALL})
+
+	@ManyToOne(cascade = { CascadeType.ALL })
 	private Usuario usuario;
-	
+
 	private int cantResultados;
-	
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -51,14 +50,13 @@ public class Busqueda {
 
 	private LocalTime fecha;
 	public int tiempoBusqueda;
-	
+
 	@ManyToMany
-	@JoinTable(name="Busqueda_Notificadores",joinColumns=@JoinColumn(name="id_Busqueda"),inverseJoinColumns=@JoinColumn(name="id"))
+	@JoinTable(name = "Busqueda_Notificadores", joinColumns = @JoinColumn(name = "id_Busqueda"), inverseJoinColumns = @JoinColumn(name = "id"))
 	private List<NotificadorDeBusqueda> listaObservers;
-	
-	
-	@ManyToMany(cascade=CascadeType.ALL)
-	@JoinTable(name="Busqueda_POIs",joinColumns=@JoinColumn(name="id_Busqueda"),inverseJoinColumns=@JoinColumn(name="id_Poi"))	
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "Busqueda_POIs", joinColumns = @JoinColumn(name = "id_Busqueda"), inverseJoinColumns = @JoinColumn(name = "id_Poi"))
 	private List<PuntoDeInteres> poisEncontrados = new ArrayList<PuntoDeInteres>();
 
 	public void setListaObservers(List<NotificadorDeBusqueda> obs) {
@@ -89,16 +87,16 @@ public class Busqueda {
 		terminal = unaTerminal;
 	}
 
-	public Busqueda(Terminal unaTerminal,Usuario user,String frase) {
+	public Busqueda(Terminal unaTerminal, Usuario user, String frase) {
 		listaObservers = unaTerminal.getListaObservadores();
 		fecha = LocalTime.now();
 		usuario = user;
 		terminal = unaTerminal;
 		fraseBuscada = frase;
 	}
-	
-	public Busqueda(){
-		
+
+	public Busqueda() {
+
 	}
 
 	private void avisarAObservers() {
@@ -118,7 +116,7 @@ public class Busqueda {
 		actualizarTiempoBusqueda();
 		notificarBusqueda();
 		poisEncontrados = unMapa.buscaPuntosDeInteresEnSistemaySistemasExternos(unaFrase, null);
-		
+
 		return poisEncontrados;
 	}
 
@@ -138,5 +136,9 @@ public class Busqueda {
 
 	public int getCantResultados() {
 		return cantResultados;
+	}
+
+	public List<PuntoDeInteres> getPoisEncontrados() {
+		return this.poisEncontrados;
 	}
 }
