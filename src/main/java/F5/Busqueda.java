@@ -138,7 +138,10 @@ public class Busqueda {
 		return cantResultados;
 	}
 
-	public List<PuntoDeInteres> getPoisEncontrados() {
-		return this.poisEncontrados;
+	public String getNombresPoisEncontrados() {
+		String nombresPoisEncontrados = null;
+		this.poisEncontrados.stream().forEach(e -> nombresPoisEncontrados.concat(e.getNombrePoi()));
+
+		return nombresPoisEncontrados;
 	}
 }

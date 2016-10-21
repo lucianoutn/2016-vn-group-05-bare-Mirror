@@ -23,18 +23,17 @@ import javax.persistence.InheritanceType;
 @Table(name = "Pois")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class PuntoDeInteres {
-	
+
 	@OneToOne
 	protected Punto posicion;
-
 	private double coordenadaX;
-
 	private double coordenadaY;
 
 	@Id
 	@GeneratedValue
 	@Column(name = "id_Poi", unique = true, nullable = false)
 	private Long id_Poi;
+	private String nombrePoi;
 
 	public Long getId() {
 		return id_Poi;
@@ -105,6 +104,14 @@ public abstract class PuntoDeInteres {
 
 	public int cuadrasDeDistancia(Punto Punto) {
 		return (int) Math.abs(posicion.distance(Punto) / 100);
+	}
+
+	public String getNombrePoi() {
+		return nombrePoi;
+	}
+
+	public void setNombrePoi(String nombrePoi) {
+		this.nombrePoi = nombrePoi;
 	}
 
 }

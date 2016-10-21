@@ -29,7 +29,7 @@ public class RepositorioDeHistorialDeBusquedas {
 				.with("que demoro", unaBusqueda.getTiempoBusqueda())
 				.with("realizada por", unaBusqueda.getUsuario().getNombre())
 				.with("realizada en", unaBusqueda.getTerminal().getNombreDeTerminal())
-				.with("con pois encontrados", unaBusqueda.getPoisEncontrados()).build();
+				.with("con pois encontrados", unaBusqueda.getNombresPoisEncontrados()).build();
 
 	}
 }
