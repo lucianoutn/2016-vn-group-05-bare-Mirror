@@ -16,16 +16,16 @@ public abstract class ISistemaExternoCGP {
 		List<CentroDTO> cgps = new ArrayList<CentroDTO>();
 
 		String key = "cgps" + lugar;
-		String valueCgps = KvsCache.get(key);
+		boolean valueCgps = KvsCache.get(key);
 
-		if (valueCgps != null) {
+		if (valueCgps) {
 			return cgps;
 		}
 
 		cgps.addAll(consultarCgpsDTO(lugar));
 
-		String value = "";
-		cgps.stream().forEach(c -> value.concat(c.getDomicilioCGP()));
+		String value = "true";
+		//cgps.stream().forEach(c -> value.concat(c.getDomicilioCGP()));
 		KvsCache.save(key, value);
 
 		return cgps;

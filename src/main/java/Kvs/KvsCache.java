@@ -18,11 +18,16 @@
  		getJedis().set(key, value);
  	}
  	
- 	public static String get(String key){
+ 	public static boolean get(String key){
  	
  		String value = getJedis().get(key);
  	
- 		return value;
+ 		if (value == "true"){
+ 			return true;
+ 		}
+ 		return false;
+ 					
+ 		
  	}
  	
  }

@@ -13,16 +13,16 @@ public abstract class ISistemaExternoBanco {
 		List<BancosJson> bancos = new ArrayList<BancosJson>();
 
 		String key = "bancos" + nombreBanco + unServicio;
-		String valueBancos = KvsCache.get(key);
+		boolean valueBancos = KvsCache.get(key);
 
-		if (valueBancos != null) {
+		if (valueBancos) {
 			return bancos;
 		}
 
 		bancos.addAll(consultarBancos(nombreBanco, unServicio));
 
-		String value = "";
-		bancos.stream().forEach(b -> value.concat(b.getNombre()));
+		String value = "true";
+		//bancos.stream().forEach(b -> value.concat(b.getNombre()));
 		KvsCache.save(key, value);
 
 		return bancos;
