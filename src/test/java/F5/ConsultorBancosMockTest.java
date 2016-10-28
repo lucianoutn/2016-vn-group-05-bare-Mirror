@@ -55,10 +55,15 @@ public class ConsultorBancosMockTest {
 	public void enLaListaTieneQueHaber2ySolo2Bancos() {
 		sucursales = unMapa.getConsultorDeBancos().bancosQueCumplenCon(nombreBanco, servicioBanco);
 		Assert.assertEquals(2, sucursales.size());
-		//@Alan: Aca el size no me parece mal usado. La otra opcion serian 
-		//dos asserts, pero nos dijeron que no es una buena practica
-	
 	}
+	
+	
+	@Test
+	public void elNombreDelPrimerBancoDeLaListaEsCorrecto() {
+		sucursales = unMapa.getConsultorDeBancos().bancosQueCumplenCon(nombreBanco, servicioBanco);
+		Assert.assertArrayEquals(("Banco de la Plaza").toCharArray(), sucursales.get(0).getNombre().toCharArray());
+	}
+	
 	
 	@Test
 	public void TresVecesNoBuscoEnElSistemaExterno() {
@@ -76,9 +81,4 @@ public class ConsultorBancosMockTest {
 
 	}
 
-	@Test
-	public void elNombreDelPrimerBancoDeLaListaEsCorrecto() {
-		sucursales = unMapa.getConsultorDeBancos().bancosQueCumplenCon(nombreBanco, servicioBanco);
-		Assert.assertArrayEquals(("Banco de la Plaza").toCharArray(), sucursales.get(0).getNombre().toCharArray());
-	}
 }

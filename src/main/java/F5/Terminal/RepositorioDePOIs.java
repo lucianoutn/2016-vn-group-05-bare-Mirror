@@ -29,6 +29,10 @@ public class RepositorioDePOIs {
 
 	private ConsultorCGP consultorCGP; 
 	
+	public void setConsultorCGP(ConsultorCGP consultorCGP) {
+		this.consultorCGP = consultorCGP;
+	}
+
 	public RepositorioDePOIs(ConsultorBancos c_bancos, ConsultorCGP c_cgp){
 		consultorCGP= c_cgp;
 		consultorDeBancos = c_bancos;
@@ -104,8 +108,10 @@ public class RepositorioDePOIs {
 	public List<PuntoDeInteres> buscoEnSistemasExternos(String nombre, String servicio) {
 		List<PuntoDeInteres> poisExternos = new ArrayList<PuntoDeInteres>();
 		
-		addAllIfNotNull(poisExternos,consultorCGP.buscaPuntosDeInteresENCGP(nombre));
- 		addAllIfNotNull(poisExternos,consultorDeBancos.bancosQueCumplenCon(nombre, servicio));
+		if(consultorCGP != null)
+			addAllIfNotNull(poisExternos,consultorCGP.buscaPuntosDeInteresENCGP(nombre));
+		if(consultorDeBancos != null)
+			addAllIfNotNull(poisExternos,consultorDeBancos.bancosQueCumplenCon(nombre, servicio));
 
 		return poisExternos;
 	}

@@ -33,10 +33,7 @@ public class ConsultorBancos implements IConsultorBancos {
 	@Override
 	public List<SucursalDeBanco> bancosQueCumplenCon(String nombreBanco, String unServicio) {
 
-		// TODO EZE DICE: ACA HAY UN CODE SMELL, EL CONSULTOR DE BANCO TIENE QUE
-		// SABER MANEJAR LOS NULLS
-		// NO ES RESPONSABILIDAD DEL CONSULTOR VALIDAR LOS NULLS
-
+	
 		List<BancosJson> bancosJson = new ArrayList<BancosJson>();
 
 		bancosJson = sistemaExterno.consultar(nombreBanco, unServicio);

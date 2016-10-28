@@ -3,6 +3,7 @@ package F5;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,6 +24,7 @@ import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.SistemaExternoBancoMock;
 import InterfacesExternas.SistemaExternoCGPMock;
+import Kvs.KvsCache;
 
 public class BusquedaTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 	
@@ -34,10 +36,15 @@ public class BusquedaTest extends AbstractPersistenceTest implements WithGlobalE
 		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock("001"));
 		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock("002"));
 		
-		unMapa = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
+		unMapa = new RepositorioDePOIs(consultorBanco, null);
 		
 		unaTerminal = new Terminal("flores",unMapa);
 		otraTerminal = new Terminal("recoleta",unMapa);
+	}
+	
+	@After
+	public void limpiarKvs(){
+		KvsCache.clear();
 	}
 	
 	@Test
@@ -93,4 +100,41 @@ public class BusquedaTest extends AbstractPersistenceTest implements WithGlobalE
 		Assert.assertEquals(busqueda.getFraseBuscada(), busquedasDb.get(0).getFraseBuscada());
 	}
 	
+	
+	@Test 
+	public void testKvsDespuesDeVariasBusquedas(){
+		unMapa.limpiarPuntosDeInteres();
+		ParadaDeColectivo parada101 = new ParadaDeColectivo("Mozart", "2500", null, "101");
+		ArrayList<PuntoDeInteres> pois = new ArrayList<PuntoDeInteres>();
+		pois.add(parada101);
+		unMapa.setPuntosDeInteres(pois);
+	
+		
+		Busqueda unaBusq = new Busqueda(otraTerminal,new Usuario("pedro", null),"101");
+		Busqueda unaBusqueda = new Busqueda(unaTerminal,new Usuario("pepe", null),"cgp");
+		
+		unaBusq.buscoFrase("101",unMapa);
+		Assert.assertTrue(KvsCache.trues == 0);
+		
+		unaBusq.buscoFrase("101",unMapa);
+		Assert.assertTrue(KvsCache.trues == 1);
+		
+		unaBusqueda.buscoFrase("Hola", unMapa);
+		Assert.assertTrue(KvsCache.trues == 1);
+		
+		unaBusqueda.buscoFrase("pepe", unMapa);
+		Assert.assertTrue(KvsCache.trues == 1);
+		
+		unaBusqueda.buscoFrase("Hola", unMapa);
+		Assert.assertTrue(KvsCache.trues == 2);
+		
+		
+		unaBusqueda.buscoFrase("newton", unMapa);
+		Assert.assertTrue(KvsCache.trues == 2);
+		
+		
+		
+		
+		
+	}
 }
