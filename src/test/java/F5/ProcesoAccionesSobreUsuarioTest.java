@@ -3,6 +3,7 @@ package F5;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,6 +20,7 @@ import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.SistemaExternoBancoMock;
 import InterfacesExternas.SistemaExternoCGPMock;
+import Kvs.KvsCache;
 
 public class ProcesoAccionesSobreUsuarioTest {
 
@@ -58,6 +60,12 @@ public class ProcesoAccionesSobreUsuarioTest {
 
 	}
 
+	@After
+	public void limpiarKvs(){
+		KvsCache.clear();
+	}
+	
+	
 	@Test
 	public void seAgregaUnaAccionQueImprimeCorrectamente() {
 		unProcesoSobreUsuario = new ProcesoSobreUsuario(usuarios, acciones, null, 1, planificador);

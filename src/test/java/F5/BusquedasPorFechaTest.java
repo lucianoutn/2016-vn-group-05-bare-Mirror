@@ -2,6 +2,8 @@ package F5;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,6 +15,7 @@ import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.SistemaExternoBancoMock;
 import InterfacesExternas.SistemaExternoCGPMock;
+import Kvs.KvsCache;
 import Reportes.BusquedasPorFecha;
 import Reportes.NotificadorDeBusqueda;
 
@@ -37,6 +40,11 @@ public class BusquedasPorFechaTest {
 		otraTerminal = new Terminal("recoleta",unMapa);
 	}
 
+	@After
+	public void limpiarKvs(){
+		KvsCache.clear();
+	}
+	
 	@Test
 	public void generarReporteDeUnaBusqueda(){
 		listaDeUnReportero.add(reporteroDeBusquedas);

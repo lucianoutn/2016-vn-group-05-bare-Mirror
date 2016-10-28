@@ -4,6 +4,7 @@ package F5;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,6 +24,7 @@ import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.SistemaExternoBancoMock;
 import InterfacesExternas.SistemaExternoCGPMock;
+import Kvs.KvsCache;
 import TestFactory.LocalComercialFactory;
 
 public class MapaTest {
@@ -56,6 +58,11 @@ public class MapaTest {
 	centrosDTO = new ArrayList<CentroDTO>();
 	centrosDTO.add(unCentroDTO);
 
+	}
+	
+	@After
+	public void limpiarKvs(){
+		KvsCache.clear();
 	}
 	
 	@Test

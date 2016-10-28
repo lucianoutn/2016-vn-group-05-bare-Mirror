@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +17,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import InterfacesExternas.BancosJson;
+import Kvs.KvsCache;
 
 public class JSONparserTest {
 
@@ -46,6 +48,11 @@ public class JSONparserTest {
 			e.printStackTrace();
 		}
 
+	}
+	
+	@After
+	public void limpiarKvs(){
+		KvsCache.clear();
 	}
 
 	@Test

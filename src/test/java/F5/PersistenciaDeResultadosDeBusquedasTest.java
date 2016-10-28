@@ -3,6 +3,7 @@ package F5;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,6 +12,7 @@ import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 import F5.Pois.Comuna;
 import F5.Terminal.Terminal;
 import F5.Terminal.Usuario;
+import Kvs.KvsCache;
 import Reportes.NotificadorDeBusqueda;
 import Reportes.ResultadosDeBusquedas;
 
@@ -31,6 +33,11 @@ public class PersistenciaDeResultadosDeBusquedasTest extends AbstractPersistence
 		unaTerminal = new Terminal("flores",null);
 		
 		unaTerminal.setListaObservadores(observadores);
+	}
+	
+	@After
+	public void limpiarKvs(){
+		KvsCache.clear();
 	}
 	
 	@Test

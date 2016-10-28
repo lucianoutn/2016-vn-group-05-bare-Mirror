@@ -11,8 +11,12 @@ import F5.Pois.Dias;
 import F5.Pois.LocalComercial;
 import F5.Pois.Punto;
 import F5.Pois.Servicio;
+import Kvs.KvsCache;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,6 +48,11 @@ public class CGPTest extends AbstractPersistenceTest implements WithGlobalEntity
 
 	}
 
+	
+	@After
+	public void limpiarKvs(){
+		KvsCache.clear();
+	}
 	@Test
 	public void elCGPEstaDisponibleUnLunesALaManiana() {
 

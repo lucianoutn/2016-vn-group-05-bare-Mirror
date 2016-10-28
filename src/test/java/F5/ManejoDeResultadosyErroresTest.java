@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 //import org.uqbar.geodds.Punto;
@@ -23,6 +24,7 @@ import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.SistemaExternoBancoMock;
 import InterfacesExternas.SistemaExternoCGPMock;
+import Kvs.KvsCache;
 import Reportes.NotificadorDeAdministrador;
 import junit.framework.Assert;
 
@@ -65,6 +67,11 @@ public class ManejoDeResultadosyErroresTest {
 		procesoDeBajaPOI = new ProcesoDeBajaPOI(otroRepositorioDePOIs, mockRESTBajaPOIs, 1, planificador);
 	}
 
+	@After
+	public void limpiarKvs(){
+		KvsCache.clear();
+	}
+	
 	@Test
 	public void elEstadoInicialDelProcesoDeBajaEsSinIniciar() {
 		Assert.assertEquals(EstadosDelProceso.SinIniciar, procesoDeBajaPOI.getEstado());

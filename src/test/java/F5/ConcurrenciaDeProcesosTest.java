@@ -2,6 +2,7 @@ package F5;
 
 import java.util.ArrayList;
 
+import org.junit.After;
 import org.junit.Before;
 import junit.framework.Assert;
 import org.junit.Test;
@@ -19,6 +20,7 @@ import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.SistemaExternoBancoMock;
 import InterfacesExternas.SistemaExternoCGPMock;
+import Kvs.KvsCache;
 
 public class ConcurrenciaDeProcesosTest {
 
@@ -49,6 +51,11 @@ public class ConcurrenciaDeProcesosTest {
 		procesoDeBajaPOIA.preEjecutar();
 		procesoDeBajaPOIB.preEjecutar();
 
+	}
+	
+	@After
+	public void limpiarKvs(){
+		KvsCache.clear();
 	}
 
 	@Test

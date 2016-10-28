@@ -10,9 +10,11 @@ import F5.Pois.Dias;
 import F5.Pois.ParadaDeColectivo;
 import F5.Pois.Punto;
 import F5.Terminal.Usuario;
+import Kvs.KvsCache;
 
 import static org.junit.Assert.*;
 
+import org.junit.After;
 import org.junit.Assert;
 import static org.hamcrest.CoreMatchers.*;
 
@@ -29,6 +31,11 @@ public class ParadaDeColectivoTest extends AbstractPersistenceTest implements Wi
 		posicionParada = new Punto(0, 0);
 		paradaDeBondi = new ParadaDeColectivo("Mozart", "2600", new Punto(100, 100), "114");
 		paradaDeBondi.setToleranciaEnCuadras(100);
+	}
+	
+	@After
+	public void limpiarKvs(){
+		KvsCache.clear();
 	}
 
 	@Test

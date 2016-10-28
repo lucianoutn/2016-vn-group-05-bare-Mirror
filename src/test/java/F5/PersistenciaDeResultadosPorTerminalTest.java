@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +17,7 @@ import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 import F5.Pois.Comuna;
 import F5.Terminal.Terminal;
 import F5.Terminal.Usuario;
+import Kvs.KvsCache;
 import Reportes.NotificadorDeBusqueda;
 import Reportes.ReportePorTerminal;
 import Reportes.ResultadosPorTerminal;
@@ -37,6 +39,11 @@ public class PersistenciaDeResultadosPorTerminalTest extends AbstractPersistence
 		unaTerminal.setListaObservadores(observadores);
 		
 		unaBusqueda = new Busqueda(unaTerminal, new Usuario("pepe", new Comuna()),"");
+	}
+	
+	@After
+	public void limpiarKvs(){
+		KvsCache.clear();
 	}
 	
 	@Test

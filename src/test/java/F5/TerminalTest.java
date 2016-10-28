@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.After;
 import org.junit.Assert;
 import org.uqbar.geodds.Polygon;
 
@@ -24,6 +25,7 @@ import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.SistemaExternoBancoMock;
 import InterfacesExternas.SistemaExternoCGPMock;
+import Kvs.KvsCache;
 
 public class TerminalTest {
 
@@ -68,6 +70,11 @@ public class TerminalTest {
 
 		unReloj = new Reloj(100);
 		unReloj.setHora(900);
+	}
+	
+	@After
+	public void limpiarKvs(){
+		KvsCache.clear();
 	}
 
 	@Test

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import TestFactory.LocalComercialFactory;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +17,7 @@ import F5.Pois.Dias;
 import F5.Pois.LocalComercial;
 import F5.Pois.ParadaDeColectivo;
 import F5.Pois.Punto;
+import Kvs.KvsCache;
 
 public class LocalComercialTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
@@ -26,7 +28,12 @@ public class LocalComercialTest extends AbstractPersistenceTest implements WithG
 		mimo = LocalComercialFactory.mimoEsLibreriaPunto100_0DisponibleMiercoles10a20();
 
 	}
-
+	
+	@After
+	public void limpiarKvs(){
+		KvsCache.clear();
+	}
+	
 	@Test
 	public void mimoEstaCercaDeUnPunto() {
 

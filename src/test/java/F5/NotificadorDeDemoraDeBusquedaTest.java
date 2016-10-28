@@ -14,6 +14,7 @@ import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.SistemaExternoBancoMock;
 import InterfacesExternas.SistemaExternoCGPMock;
+import Kvs.KvsCache;
 import Mocks.NotificadorDeAdministradorMock;
 
 public class NotificadorDeDemoraDeBusquedaTest {
@@ -37,6 +38,11 @@ public class NotificadorDeDemoraDeBusquedaTest {
 
 		unaTerminal = new Terminal("flores",map);
 		otraTerminal = new Terminal("recoleta",map);
+	}
+	
+	@After
+	public void limpiarKvs(){
+		KvsCache.clear();
 	}
 
 	@Test

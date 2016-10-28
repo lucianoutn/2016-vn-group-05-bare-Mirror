@@ -14,6 +14,7 @@ import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.SistemaExternoBancoMock;
 import InterfacesExternas.SistemaExternoCGPMock;
+import Kvs.KvsCache;
 import Reportes.BusquedasPorFecha;
 import Reportes.NotificadorDeBusqueda;
 import Reportes.ResultadosPorTerminal;
@@ -41,6 +42,10 @@ public class ReportesMultiplesTest {
 		otraTerminal.setListaObservadores(listaDeDosReporteros);
 	}
 	
+	@After
+	public void limpiarKvs(){
+		KvsCache.clear();
+	}
 	
 
 	@Test
