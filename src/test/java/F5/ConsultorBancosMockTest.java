@@ -1,6 +1,8 @@
 package F5;
 
 import java.util.List;
+
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,6 +15,7 @@ import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.SistemaExternoBancoMock;
 import InterfacesExternas.SistemaExternoCGPMock;
+import Kvs.KvsCache;
 
 public class ConsultorBancosMockTest {
 
@@ -34,6 +37,11 @@ public class ConsultorBancosMockTest {
 		unMapa = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
 		
 	}
+	
+	@After
+	public void cleanKvs(){
+		KvsCache.clear();
+	}
 
 	@Test
 	public void laListaDeBancosNoEstaVaciaLuegoDeParsearElEjempo(){
@@ -49,6 +57,22 @@ public class ConsultorBancosMockTest {
 		//@Alan: Aca el size no me parece mal usado. La otra opcion serian 
 		//dos asserts, pero nos dijeron que no es una buena practica
 	
+	}
+	
+	@Test
+	public void TresVecesNoBuscoEnElSistemaExterno() {
+		sucursales = unMapa.getConsultorDeBancos().bancosQueCumplenCon(nombreBanco, servicioBanco);
+		Assert.assertEquals(2, sucursales.size());
+		
+		sucursales = unMapa.getConsultorDeBancos().bancosQueCumplenCon(nombreBanco, servicioBanco);
+		Assert.assertEquals(1, KvsCache.trues);
+		
+		sucursales = unMapa.getConsultorDeBancos().bancosQueCumplenCon(nombreBanco, servicioBanco);
+		Assert.assertEquals(2, KvsCache.trues);
+		
+		sucursales = unMapa.getConsultorDeBancos().bancosQueCumplenCon(nombreBanco, servicioBanco);
+		Assert.assertEquals(3, KvsCache.trues);
+
 	}
 
 	@Test

@@ -3,6 +3,7 @@ package F5;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
@@ -14,6 +15,7 @@ import InterfacesExternas.CentroDTO;
 import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.ServicioDTO;
 import InterfacesExternas.SistemaExternoCGPMock;
+import Kvs.KvsCache;
 import junit.framework.Assert;
 
 public class ConsultorCGPMockTest {
@@ -39,6 +41,11 @@ public class ConsultorCGPMockTest {
 			
 		unPunto = new Point(1,1);
 		
+	}
+	
+	@After
+	public void cleanKvs(){
+		KvsCache.clear();
 	}
 		
 	@Test

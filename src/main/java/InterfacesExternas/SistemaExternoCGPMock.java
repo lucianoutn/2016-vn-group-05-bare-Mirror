@@ -18,8 +18,10 @@ public class SistemaExternoCGPMock extends ISistemaExternoCGP{
 	public List<CentroDTO> consultarCgpsDTO(String lugar) {
 		
 		List<CentroDTO> listaDeCentrosDTO = new ArrayList<CentroDTO>();
-		if(lugar ==null)
+		if(lugar ==null){
 			return listaDeCentrosDTO;
+		}
+			
 		
 		
 		

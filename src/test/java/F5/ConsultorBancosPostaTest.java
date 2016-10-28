@@ -1,6 +1,8 @@
 package F5;
 
 import java.util.List;
+
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,6 +15,7 @@ import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.SistemaExternoBancoMock;
 import InterfacesExternas.SistemaExternoCGPMock;
+import Kvs.KvsCache;
 
 
 public class ConsultorBancosPostaTest {
@@ -31,6 +34,11 @@ public class ConsultorBancosPostaTest {
 		
 		unMapa = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
 		
+	}
+	
+	@After
+	public void cleanKvs(){
+		KvsCache.clear();
 	}
 
 	@Test
