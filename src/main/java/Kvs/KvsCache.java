@@ -41,6 +41,8 @@
 	public static void clear() {
 		if (jedis != null){
 			jedis.flushAll();
+			jedis = null;
+			trues = 0;
 		}
 		
 	}

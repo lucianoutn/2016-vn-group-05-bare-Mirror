@@ -40,6 +40,7 @@ public class ConsultorBancosMockTest {
 	
 	@After
 	public void cleanKvs(){
+		
 		KvsCache.clear();
 	}
 

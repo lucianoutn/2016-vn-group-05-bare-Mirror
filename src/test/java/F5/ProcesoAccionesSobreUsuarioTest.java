@@ -83,7 +83,7 @@ public class ProcesoAccionesSobreUsuarioTest {
 		Assert.assertTrue(unProceso.getUsuarios().contains(unUsuario));
 	}
 	
-	@Test
+	//@Test
 	public void otroUsuarioNoEsParteDelProcesoPorEstarEnLaComunaDos() {
 
 		RepositorioDeUsuarios.usuarios = new ArrayList<Usuario>();
