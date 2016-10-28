@@ -12,8 +12,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class SistemaExternoBanco extends ISistemaExternoBanco {
 
+	public SistemaExternoBanco(String id) {
+		super(id);
+		// TODO Auto-generated constructor stub
+	}
+
+
+
 	private URL url;
 	private ObjectMapper objectMapper;
+	
 	
 	
 	@Override

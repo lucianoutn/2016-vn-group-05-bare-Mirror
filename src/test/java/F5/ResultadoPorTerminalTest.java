@@ -25,8 +25,8 @@ public class ResultadoPorTerminalTest {
 	
 	@Before
 	public void Initialize(){
-		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
-		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
+		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock("017"));
+		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock("018"));
 				
 		unMapa = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
 		

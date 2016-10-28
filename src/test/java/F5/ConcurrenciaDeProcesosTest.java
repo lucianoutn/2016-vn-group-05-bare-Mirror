@@ -34,8 +34,8 @@ public class ConcurrenciaDeProcesosTest {
 	public void initialize() {
 
 		unaSucursalDeBanco = new SucursalDeBanco("Rio", new Punto(10, 10), new ArrayList<DiaAtencion>());
-		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
-		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
+		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock("024"));
+		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock("025"));
 
 		unRepositorioDePOIs = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
 		unRepositorioDePOIs.anadirPOI(unaSucursalDeBanco);

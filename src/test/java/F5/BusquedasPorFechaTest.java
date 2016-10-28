@@ -28,8 +28,8 @@ public class BusquedasPorFechaTest {
 	
 	@Before
 	public void Initialize(){
-		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
-		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
+		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock("027"));
+		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock("028"));
 		
 		unMapa = new RepositorioDePOIs(consultorBanco, unConsultorCGP);		
 		

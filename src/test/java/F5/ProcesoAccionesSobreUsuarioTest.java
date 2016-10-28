@@ -44,8 +44,8 @@ public class ProcesoAccionesSobreUsuarioTest {
 		unaAccion = new AccionEjemplo();
 		acciones.add(unaAccion);
 		
-		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
-		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
+		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock("007"));
+		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock("008"));
 
 		unMapa = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
 		

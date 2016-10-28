@@ -49,8 +49,8 @@ public class ManejoDeResultadosyErroresTest {
 		otroLocalComercial = new LocalComercial("Naic", "Rivadavia", "10", "Ropa Deportiva",
 				new ArrayList<DiaAtencion>(), new Punto(20, 10));
 
-		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
-		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
+		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock("015"));
+		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock("016"));
 		unRepositorioDePOIs = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
 		unRepositorioDePOIs.anadirPOI(unaSucursalDeBanco);
 		unRepositorioDePOIs.anadirPOI(unLocalComercial);

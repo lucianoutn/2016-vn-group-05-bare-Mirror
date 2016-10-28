@@ -32,8 +32,8 @@ public class ReportesMultiplesTest {
 	public void initialize() {
 		listaDeDosReporteros.add(reporteroDeBusquedas);
 		listaDeDosReporteros.add(reporteroDeResultadosPorTerminal);
-		ConsultorBancos consultorBancos = new ConsultorBancos(new SistemaExternoBancoMock());
-		ConsultorCGP consultorCgp = new ConsultorCGP(new SistemaExternoCGPMock());
+		ConsultorBancos consultorBancos = new ConsultorBancos(new SistemaExternoBancoMock("011"));
+		ConsultorCGP consultorCgp = new ConsultorCGP(new SistemaExternoCGPMock("012"));
 		unMapa=new RepositorioDePOIs(consultorBancos, consultorCgp);
 		unaTerminal = new Terminal("flores",unMapa);
 		unaTerminal.setListaObservadores(listaDeDosReporteros);

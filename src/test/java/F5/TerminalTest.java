@@ -43,8 +43,8 @@ public class TerminalTest {
 	@Before
 	public void initialize() {
 
-		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
-		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
+		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock("009"));
+		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock("010"));
 
 		unMapa = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
 

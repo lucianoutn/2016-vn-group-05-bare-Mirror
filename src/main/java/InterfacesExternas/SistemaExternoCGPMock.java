@@ -9,6 +9,10 @@ import F5.Pois.PuntoDeInteres;
 public class SistemaExternoCGPMock extends ISistemaExternoCGP{
 
 	
+	public SistemaExternoCGPMock(String id) {
+		super(id);
+		// TODO Auto-generated constructor stub
+	}
 	private List<CentroDTO> listaDeCentrosDTO = new ArrayList<>();
 	@Override
 	public List<CentroDTO> consultarCgpsDTO(String lugar) {

@@ -26,8 +26,8 @@ public class NotificadorDeDemoraDeBusquedaTest {
 
 	@Before
 	public void Initialize() {
-		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
-		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
+		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock("013"));
+		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock("014"));
 
 		map = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
 

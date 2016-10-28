@@ -26,8 +26,8 @@ public class ConsultorBancosPostaTest {
 	public void Initialize() {
 		nombreBanco = new String("Banco de la Plaza");
 		servicioBanco = new String("depositos");
-		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
-		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
+		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock("003"));
+		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock("004"));
 		
 		unMapa = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
 		

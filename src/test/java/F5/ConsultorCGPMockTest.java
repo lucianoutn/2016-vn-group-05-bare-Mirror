@@ -28,7 +28,7 @@ public class ConsultorCGPMockTest {
 	
 	@Before
 	public void initialize(){
-		unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
+		unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock("019"));
 		
 		unCentroDTO = new CentroDTO();
 		unCentroDTO.setNroComuna(1);

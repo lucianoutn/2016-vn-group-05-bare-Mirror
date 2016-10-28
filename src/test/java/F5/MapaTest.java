@@ -44,8 +44,8 @@ public class MapaTest {
 	@Before
 	//private PuntoDeInteres poi;
 	public void Initialize(){
-	ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
-	ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
+	ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock("005"));
+	ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock("006"));
 	
 	map = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
 		

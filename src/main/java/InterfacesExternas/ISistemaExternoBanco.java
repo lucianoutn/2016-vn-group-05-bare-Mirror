@@ -7,12 +7,18 @@ import Kvs.KvsCache;
 
 public abstract class ISistemaExternoBanco {
 
+	public String id = "";
+	
+	public ISistemaExternoBanco(String id){
+		this.id = id;
+	}
+	
 	public abstract List<BancosJson> consultarBancos(String nombreBanco, String unServicio);
 
 	public List<BancosJson> consultar(String nombreBanco, String unServicio) {
 		List<BancosJson> bancos = new ArrayList<BancosJson>();
 
-		String key = "bancos" + nombreBanco + unServicio;
+		String key = id + "bancos" + nombreBanco + unServicio;
 		boolean valueBancos = KvsCache.get(key);
 
 		if (valueBancos) {

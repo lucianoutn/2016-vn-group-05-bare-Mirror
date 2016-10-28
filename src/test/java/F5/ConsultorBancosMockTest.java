@@ -28,8 +28,8 @@ public class ConsultorBancosMockTest {
 		servicioBanco = new String("depósitos");
 		
 		
-		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock());
-		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock());
+		ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock("022"));
+		ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock("023"));
 		
 		unMapa = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
 		

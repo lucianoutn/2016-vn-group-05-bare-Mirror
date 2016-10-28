@@ -7,7 +7,11 @@ import Kvs.KvsCache;
 
 public abstract class ISistemaExternoCGP {
 
+	public String id = "";
 	
+	public ISistemaExternoCGP(String id){
+		this.id = id;
+	}
 	
 	public abstract List<CentroDTO> consultarCgpsDTO(String lugar);
 	
@@ -15,7 +19,7 @@ public abstract class ISistemaExternoCGP {
 	
 		List<CentroDTO> cgps = new ArrayList<CentroDTO>();
 
-		String key = "cgps" + lugar;
+		String key = id + "cgps" + lugar;
 		boolean valueCgps = KvsCache.get(key);
 
 		if (valueCgps) {

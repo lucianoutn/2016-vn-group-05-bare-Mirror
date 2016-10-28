@@ -16,6 +16,12 @@ import Kvs.KvsCache;
 public class SistemaExternoBancoMock extends ISistemaExternoBanco {
 
 	
+	public SistemaExternoBancoMock(String id) {
+		super(id);
+		// TODO Auto-generated constructor stub
+	}
+
+
 	private ObjectMapper objectMapper;
 	
 	
