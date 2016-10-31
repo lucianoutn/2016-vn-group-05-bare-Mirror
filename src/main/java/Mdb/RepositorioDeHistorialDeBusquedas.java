@@ -24,12 +24,15 @@ public class RepositorioDeHistorialDeBusquedas {
 	}
 
 	private Document conversorBusqueda(Busqueda unaBusqueda) {
-		return new DocumentBuilder().with("Frase buscada", unaBusqueda.getFraseBuscada())
-				.with("cantidad resultados", unaBusqueda.getCantResultados()).with("el día", unaBusqueda.getFecha())
+		return new DocumentBuilder()
+				.with("Frase buscada", unaBusqueda.getFraseBuscada())
+				.with("cantidad resultados", unaBusqueda.getCantResultados())
+				.with("el día", unaBusqueda.getFecha())
 				.with("que demoro", unaBusqueda.getTiempoBusqueda())
 				.with("realizada por", unaBusqueda.getUsuario().getNombre())
 				.with("realizada en", unaBusqueda.getTerminal().getNombreDeTerminal())
-				.with("con pois encontrados", unaBusqueda.getNombresPoisEncontrados()).build();
+				.with("con pois encontrados", unaBusqueda.getNombresPoisEncontrados())
+				.build();
 
 	}
 }

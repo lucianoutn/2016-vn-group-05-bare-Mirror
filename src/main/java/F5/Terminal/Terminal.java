@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import F5.Busqueda;
@@ -15,6 +16,7 @@ import F5.Pois.PuntoDeInteres;
 import Reportes.NotificadorDeBusqueda;
 
 @Entity
+@Table(name="terminales")
 public class Terminal extends INotificarCambioHorario {
 	
 	public Terminal(){

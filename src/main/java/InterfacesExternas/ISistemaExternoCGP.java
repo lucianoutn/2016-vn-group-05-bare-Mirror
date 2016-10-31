@@ -28,8 +28,8 @@ public abstract class ISistemaExternoCGP {
 
 		cgps.addAll(consultarCgpsDTO(lugar));
 
-		String value = "true";
-		//cgps.stream().forEach(c -> value.concat(c.getDomicilioCGP()));
+		String value = "true"; 
+		
 		KvsCache.save(key, value);
 
 		return cgps;

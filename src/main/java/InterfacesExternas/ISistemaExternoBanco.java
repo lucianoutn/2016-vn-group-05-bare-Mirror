@@ -18,14 +18,10 @@ public abstract class ISistemaExternoBanco {
 	public List<BancosJson> consultar(String nombreBanco, String unServicio) {
 		List<BancosJson> bancos = new ArrayList<BancosJson>();
 
-		String key = id + "bancos" + nombreBanco + unServicio;
-		boolean valueBancos = KvsCache.get(key);
-
-		if (valueBancos) {
-			return bancos;
-		}
-
-		bancos.addAll(consultarBancos(nombreBanco, unServicio));
+		String key = id + '-' +  "bancos" + '-' + nombreBanco + '-' + unServicio;
+		
+		if(tengoQueIrABancoExterno(bancos, key));
+			bancos.addAll(consultarBancos(nombreBanco, unServicio));
 
 		String value = "true";
 		//bancos.stream().forEach(b -> value.concat(b.getNombre()));
@@ -33,6 +29,14 @@ public abstract class ISistemaExternoBanco {
 
 		return bancos;
 
+	}
+
+	private void tengoQueIrABancoExterno(List<BancosJson> bancos, String key) {
+		boolean valueBancos = KvsCache.get(key);
+
+		if (valueBancos) {
+			return bancos;
+		}
 	}
 
 }

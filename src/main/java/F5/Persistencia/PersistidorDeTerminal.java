@@ -34,7 +34,7 @@ public class PersistidorDeTerminal  extends AbstractPersistenceTest implements W
 
 	public List<Terminal> traerUsuarios() {
 		// traés los usuarios cuando es necesario
-		return entityManager().createQuery("from Terminal", Terminal.class).getResultList();
+		return entityManager().createQuery("", Terminal.class).getResultList();
 	}
 
 	public void persistir() {// le pegás aca todas las horas y cuando es el
