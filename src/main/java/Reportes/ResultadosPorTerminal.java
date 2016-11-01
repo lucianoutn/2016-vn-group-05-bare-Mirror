@@ -31,7 +31,6 @@ public class ResultadosPorTerminal extends NotificadorDeBusqueda {
 	List<ReportePorTerminal> reportesPorTerminal = new ArrayList<ReportePorTerminal>();
 
 	public ResultadosPorTerminal() {
-		PersistidorDeReportes.getInstancia().guardaParaPersistir(this);
 	}
 
 	public void notificarBusqueda(Busqueda unaBusqueda) {

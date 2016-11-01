@@ -15,27 +15,10 @@ public class PersistidorDeUsuarios extends AbstractPersistenceTest implements Wi
 
 	private final static PersistidorDeUsuarios instancia = new PersistidorDeUsuarios();
 
-	private LocalDate time;
-	private  List<Usuario> Usuarios = new ArrayList<Usuario>();// la
-																// lista
-																// de
-																// usuarios
-																// a
-																// persistir
 
-	public  void clear(){
-		Usuarios.clear();
-	}
-	
-	
 	public static PersistidorDeUsuarios getInstancia() {
 
 		return instancia;
-	}
-
-	public void setHora(LocalDate hora) {
-		time = hora;// seteas la hora a la que querés que ocurra la acción
-
 	}
 
 	public List<Usuario> traerUsuarios() {
@@ -43,17 +26,10 @@ public class PersistidorDeUsuarios extends AbstractPersistenceTest implements Wi
 		return entityManager().createQuery("from Usuarios", Usuario.class).getResultList();
 	}
 
-	public void persistir() {// le pegás aca todas las horas y cuando es el
+	public void persistir(Usuario usuario) {// le pegás aca todas las horas y cuando es el
 								// horario se persiste.
-		if (LocalDate.now() == time)
-			Usuarios.stream().forEach(usuario -> entityManager().persist(usuario));
+	entityManager().persist(usuario);
 	}
 
-	public void guardaParaPersistir(Usuario usuario) {// guarda los objetos
-														// en la lista para
-														// persitirlos segun
-														// evento
 
-		this.Usuarios.add(usuario);
-	}
 }

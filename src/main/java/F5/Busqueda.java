@@ -25,6 +25,10 @@ public class Busqueda {
 	@GeneratedValue
 	private int id_Busqueda;
 
+	public int getId_Busqueda() {
+		return id_Busqueda;
+	}
+
 	private String fraseBuscada;
 
 	@ManyToOne(cascade = { CascadeType.ALL })

@@ -31,7 +31,6 @@ public class ResultadosDeBusquedas extends NotificadorDeBusqueda {
 		ReportePorBusqueda nuevoResultado = new ReportePorBusqueda(unaBusqueda.getFraseBuscada(),
 				unaBusqueda.getCantResultados(), unaBusqueda.getTiempoBusqueda());
 		reporte.add(nuevoResultado);
-		PersistidorDeReportes.getInstancia().guardaParaPersistir(this);
 		// una opción es que vaya acá
 	}
 

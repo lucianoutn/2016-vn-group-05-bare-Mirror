@@ -15,19 +15,7 @@ public class PersistidorDeReportes extends AbstractPersistenceTest implements Wi
 
 	private final static PersistidorDeReportes instancia = new PersistidorDeReportes();
 
-	private LocalDate time;
-	private  List<NotificadorDeBusqueda> notificadores = new ArrayList<NotificadorDeBusqueda>();
-	
-	public void setHora(LocalDate hora) {
-		time = hora;// seteas la hora a la que querés que ocurra la acción
 
-	}
-	
-
-	public void clear(){
-		notificadores.clear();
-	}
-	
 	public static PersistidorDeReportes getInstancia() {
 
 		return instancia;
@@ -41,18 +29,12 @@ public class PersistidorDeReportes extends AbstractPersistenceTest implements Wi
 	
 
 	
-	public void persistir() {
-		if (LocalDate.now() == time)
-			notificadores.stream().forEach(notificador -> entityManager().persist(notificador));
+	public void persistir(NotificadorDeBusqueda notificador) {
+		entityManager().persist(notificador);
 		
 	//persistis los notificadores uno por uno
 	}
 
-	public void guardaParaPersistir(NotificadorDeBusqueda notificador) {
-
-		this.notificadores.add(notificador);
-	}
-	
 	
 	
 }

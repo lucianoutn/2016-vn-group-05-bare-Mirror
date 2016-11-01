@@ -14,19 +14,6 @@ public class PersistidorDeBusqueda extends AbstractPersistenceTest implements Wi
 	
 	private final static PersistidorDeBusqueda instancia = new PersistidorDeBusqueda();
 
-	private LocalDate time;
-	private List<Busqueda> busquedas = new ArrayList<Busqueda>();
-	
-	
-	public void clear(){
-		busquedas.clear();
-	}
-	
-	
-	public void setHora(LocalDate hora) {
-		time = hora;// seteas la hora a la que querés que ocurra la acción
-
-	}
 	
 	public static PersistidorDeBusqueda getInstancia() {
 
@@ -39,17 +26,13 @@ public class PersistidorDeBusqueda extends AbstractPersistenceTest implements Wi
 		return entityManager().createQuery("from Busqueda", Busqueda.class).getResultList();
 	}
 
-	public void persistir() {
-		if (LocalDate.now() == time)
-			busquedas.stream().forEach(poi -> entityManager().persist(poi));
+	public void persistir(Busqueda unaBusqueda) {
+		entityManager().persist(unaBusqueda);
 		
 	//persistis las busquedas una por una
 	}
 
-	public void guardaParaPersistir(Busqueda unaBusqueda) {
 
-		this.busquedas.add(unaBusqueda);
-	}
 	
 
 }

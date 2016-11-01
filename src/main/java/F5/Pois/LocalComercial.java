@@ -37,7 +37,6 @@ public class LocalComercial extends PuntoDeInteres {
 		this.cargarCoordenadasDePosicion(unaPosicion);
 		rubro = unRubro;
 		atencionAlPublico = diasDeAtencion;
-		PersistidorDePOIs.getInstancia().guardaParaPersistir(this);
 	}
 
 	public boolean encuentra(String textoLibre) {
