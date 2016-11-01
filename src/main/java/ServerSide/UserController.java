@@ -18,6 +18,6 @@ public class UserController implements WithGlobalEntityManager, TransactionalOps
 		Map<String, String> model = new HashMap<>();
 		model.put("nombre", "Ezequiel");
 		
-		return new ModelAndView(model, "user/login.hbs");
+		return new ModelAndView(model, "user-login.hbs");
 	}
 }
