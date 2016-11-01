@@ -12,12 +12,11 @@ public class UserController implements WithGlobalEntityManager, TransactionalOps
 	
 	//● Una vez autenticado mostrará la pantalla correspondiente para su perfil.
 	
-	public ModelAndView login(Request req, Response res){
+	public ModelAndView login(Request req, Response res) throws Exception{
 		
 		
 		Map<String, String> model = new HashMap<>();
 		model.put("nombre", "Ezequiel");
-		
 		
 		return new ModelAndView(model, "user/login.hbs");
 	}
