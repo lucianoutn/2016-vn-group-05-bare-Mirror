@@ -7,33 +7,5 @@
 		<h2>Nombre:</h2><input type="text" value=""  name="userName"/>
 	  	<h2>contraseña:</h2><input type="password" value="" name="userPassword"/>
 	    <a href="/user/checkLogin?name=Ezequiel&pass=unaPass"><button>Login</button></a>
-		<H1>
-		POIS
-		</H1>
-  		<div class="row">
-			<div class="col-md-12">	
-			<table class="table table-striped" >
-			{{#bancos}}
-				<tr>
-					<td>{{nombre}}</td>
-				</tr>
-			{{/bancos}}				
-			</table>
-			</div>
-		</div>
-		<H1>
-		TERMINALES
-		</H1>
-		<div class="row">
-			<div class="col-md-12">	
-			<table class="table table-striped" >
-			{{#terminal}}
-				<tr>
-					<td>{{nombreDeTerminal}}</td>
-				</tr>
-			{{/terminal}}				
-			</table>
-			</div>
-		</div>
 	</body>
 </html>

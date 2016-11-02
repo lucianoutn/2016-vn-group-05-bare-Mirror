@@ -15,7 +15,7 @@ import F5.Terminal.Usuario;
 import TestFactory.BancoFactory;
 import spark.*;
 
-public class ConsultaDePoisController implements WithGlobalEntityManager, TransactionalOps{
+public class LoginController implements WithGlobalEntityManager, TransactionalOps{
 	
 	//● Una vez autenticado mostrará la pantalla correspondiente para su perfil.
 	
@@ -50,40 +50,7 @@ public class ConsultaDePoisController implements WithGlobalEntityManager, Transa
 	}
 
 	
-	public ModelAndView administradorPoisShow(Request req, Response res) {
-		List<SucursalDeBanco> bancos = getBancos();
-		
-		
-		Map<String, List<SucursalDeBanco>> model = new HashMap<>();
-		
-		model.put("bancos", bancos);
-		
-
-		return new ModelAndView(model, "administrador-pois-show.hbs");
-	}
-
-	public ModelAndView terminalShow(Request req, Response res) throws Exception{ 
-		
-		List<SucursalDeBanco> bancos = getBancos();
-		
-	
-		Map<String, List<SucursalDeBanco>> model = new HashMap<>();
-		
-		model.put("bancos", bancos);
-		
-
-		return new ModelAndView(model, "terminal-show.hbs");
-	}
-	
 	
 
-	private List<SucursalDeBanco> getBancos() {
-		//LUCHO-EMI  ESTO TENDRIA QUE SALIR DE LA BASE DE DATOS
-		
-		List<SucursalDeBanco> bancos = new ArrayList<SucursalDeBanco>();
-		bancos.add( new SucursalDeBanco("HSBC", null, null));
-		bancos.add(new SucursalDeBanco("galicia", null, null));
-		bancos.add(new SucursalDeBanco("frances", null, null));
-		return bancos;
-	}
+
 }
