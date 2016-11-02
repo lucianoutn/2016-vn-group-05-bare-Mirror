@@ -8,7 +8,7 @@
 		<h1>Bienvenidos a la Terminal</h1>
 		
 		<h2>Criterio:</h2><input type="text" value="" name="criterio"/>
-	    <a href="/terminal/show?criterio=hsbc"><button>Buscar</button></a>
+	    <a href="/terminal/show?criterio=galicia"><button>Buscar</button></a>
 		
 		<h1>Puntos de Interes</h1>
 		
@@ -24,7 +24,17 @@
 			</div>
 		</div>
 		
-	
-		
+		<h1>Historial de Busquedas</h1>
+		<div class="row">
+			<div class="col-md-12">	
+			<table class="table table-striped" >
+			{{#busquedas}}
+				<tr>
+					<td>{{cantidadDeBusquedas}}</td>
+				</tr>
+			{{/busquedas}}				
+			</table>
+			</div>
+		</div>
 	</body>
 </html>

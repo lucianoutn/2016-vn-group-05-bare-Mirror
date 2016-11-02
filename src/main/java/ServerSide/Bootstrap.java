@@ -33,9 +33,9 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			
 			Comuna comuna = new Comuna(1, (Polygon)null);
 			persist(comuna);
-			Usuario ezequiel = new Usuario("Ezequiel", comuna);
+			Usuario ezequiel = new Usuario("Ezequiel", comuna, "unaPass");
 			persist(ezequiel);
-			Usuario franco = new Usuario("Franco", comuna);
+			Usuario franco = new Usuario("Franco", comuna, "passfranco");
 			persist(franco);
 			
 			ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock("009"));

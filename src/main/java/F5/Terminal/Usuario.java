@@ -18,7 +18,16 @@ public class Usuario {
 	private Integer id;
 
 	private String nombre;
+	private String password;
 	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	@ManyToOne
 	private Comuna comuna;
 
@@ -40,6 +49,12 @@ public class Usuario {
 	public Usuario(String unNombre, Comuna unaComuna) {
 		nombre = unNombre;
 		comuna = unaComuna;
+	}
+	
+	public Usuario(String unNombre, Comuna unaComuna, String password) {
+		nombre = unNombre;
+		comuna = unaComuna;
+		this.password = password;
 	}
 
 	public Usuario() {
