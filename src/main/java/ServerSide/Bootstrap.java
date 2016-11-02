@@ -24,10 +24,12 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 	public void init(){
 		withTransaction(() ->{
 			SucursalDeBanco hsbc = new SucursalDeBanco("HSBC", null, null);
+			SucursalDeBanco galicia = new SucursalDeBanco("galicia", null, null);
+			SucursalDeBanco frances = new SucursalDeBanco("frances", null, null);
 			persist(hsbc);
-			persist(new SucursalDeBanco("galicia", null, null));
-			persist(new SucursalDeBanco("frances", null, null));
-			//persist(new ParadaDeColectivo("Mozart", "2500", null, "101"));
+			persist(galicia);
+			persist(frances);
+			
 			
 			Comuna comuna = new Comuna(1, (Polygon)null);
 			persist(comuna);

@@ -17,9 +17,13 @@ public class Router {
 	
 		Spark.staticFiles.location("/public");
 		
-		UserController userController = new UserController();
+		ConsultaDePoisController consultorasDePoisController = new ConsultaDePoisController();
 		
-		Spark.get("/user/login", userController::login, engine);
+		Spark.get("/user/login", consultorasDePoisController::login, engine);
+		Spark.get("/user/checkLogin", consultorasDePoisController::checkLogin, engine);
+		Spark.get("/terminal/show", consultorasDePoisController::terminalShow, engine);
+		Spark.get("/administrador/pois/show", consultorasDePoisController::administradorPoisShow, engine);
+		
 		
 		
 	}
