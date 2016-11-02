@@ -33,7 +33,6 @@ public class BusquedasPorFecha extends NotificadorDeBusqueda {
 		} else
 
 			reportesPorFecha.add(new ReportePorFecha(unaBusqueda.getFecha()));
-		PersistidorDeReportes.getInstancia().guardaParaPersistir(this);
 		// puede llegar a ir acá
 	}
 

@@ -22,7 +22,7 @@ public class NotificadorDeAdministrador extends NotificadorDeBusqueda {
 	//metodos
 
 	public NotificadorDeAdministrador() {
-		PersistidorDeReportes.getInstancia().guardaParaPersistir(this);
+
 
 	}
 

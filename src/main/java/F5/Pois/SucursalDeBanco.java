@@ -32,7 +32,6 @@ public class SucursalDeBanco extends PuntoDeInteres {
 		this.cargarCoordenadasDePosicion(unaPosicion);
 		toleranciaEnCuadras = 5;
 		atencionAlPublico = diasDeAtencion;
-		PersistidorDePOIs.getInstancia().guardaParaPersistir(this);
 	}
 
 	public String getNombre() {

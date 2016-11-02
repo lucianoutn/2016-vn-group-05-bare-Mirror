@@ -40,7 +40,6 @@ public class Usuario {
 	public Usuario(String unNombre, Comuna unaComuna) {
 		nombre = unNombre;
 		comuna = unaComuna;
-		PersistidorDeUsuarios.getInstancia().guardaParaPersistir(this);
 	}
 
 	public Usuario() {

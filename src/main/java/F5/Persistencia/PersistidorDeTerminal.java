@@ -14,41 +14,20 @@ public class PersistidorDeTerminal  extends AbstractPersistenceTest implements W
 
 	private final static PersistidorDeTerminal instancia = new PersistidorDeTerminal();
 
-	private static LocalDate time;
-	private  List<Terminal> terminales = new ArrayList<Terminal>();
-
 	public static PersistidorDeTerminal getInstancia() {
 
 		return instancia;
 	}
 	
 
-	public  void clear(){
-		terminales.clear();
-	}
-
-	public static void setHora(LocalDate hora) {
-		time = hora;// seteas la hora a la que querés que ocurra la acción
-
-	}
-
 	public List<Terminal> traerUsuarios() {
 		// traés los usuarios cuando es necesario
 		return entityManager().createQuery("from Terminal", Terminal.class).getResultList();
 	}
 
-	public void persistir() {// le pegás aca todas las horas y cuando es el
+	public void persistir(Terminal terminal) {// le pegás aca todas las horas y cuando es el
 								// horario se persiste.
-		if (LocalDate.now() == time)
-			terminales.stream().forEach(terminal -> entityManager().persist(terminal));
+		entityManager().persist(terminal);
 	}
 
-	public void guardaParaPersistir(Terminal term) {// guarda los objetos
-														// en la lista para
-														// persitirlos segun
-														// evento
-
-		this.terminales.add(term);
-	}
-	
 }

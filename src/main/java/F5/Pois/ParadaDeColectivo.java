@@ -27,7 +27,6 @@ public class ParadaDeColectivo extends PuntoDeInteres {
 		this.cargarCoordenadasDePosicion(unaPosicion);
 		numeroDeLinea = lineaDeColectivo;
 		toleranciaEnCuadras = 1;
-		PersistidorDePOIs.getInstancia().guardaParaPersistir(this);
 	}
 
 	@Override
