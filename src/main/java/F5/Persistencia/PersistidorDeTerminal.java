@@ -12,10 +12,11 @@ import F5.Terminal.Usuario;
 
 public class PersistidorDeTerminal  extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
-	private final static PersistidorDeTerminal instancia = new PersistidorDeTerminal();
+	private static PersistidorDeTerminal instancia;
 
 	public static PersistidorDeTerminal getInstancia() {
-
+		if (instancia == null)
+			instancia = new PersistidorDeTerminal();
 		return instancia;
 	}
 	

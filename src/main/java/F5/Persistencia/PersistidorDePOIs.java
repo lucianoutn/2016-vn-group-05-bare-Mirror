@@ -14,10 +14,12 @@ import Reportes.BusquedasPorFecha;
 
 public class PersistidorDePOIs extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
-	private final static PersistidorDePOIs instancia = new PersistidorDePOIs();
+	private static PersistidorDePOIs instancia;
 	
 	public static PersistidorDePOIs getInstancia() {
-
+		if (instancia == null)
+			instancia = new PersistidorDePOIs();
+		
 		return instancia;
 	}
 

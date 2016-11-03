@@ -13,11 +13,12 @@ import Reportes.NotificadorDeBusqueda;
 
 public class PersistidorDeReportes extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
-	private final static PersistidorDeReportes instancia = new PersistidorDeReportes();
+	private static PersistidorDeReportes instancia;
 
 
 	public static PersistidorDeReportes getInstancia() {
-
+		if (instancia == null)
+			instancia = new PersistidorDeReportes();
 		return instancia;
 	}
 
