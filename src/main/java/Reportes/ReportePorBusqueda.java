@@ -13,9 +13,21 @@ public class ReportePorBusqueda {
 	@GeneratedValue
 	private long id;
 	
-	private String fraseBuscada;
-	private double cantidadDeResultados;
-	private double demoraDeBusqueda;
+	public String fraseBuscada;
+	public String getFraseBuscada() {
+		return fraseBuscada;
+	}
+
+	public double cantidadDeResultados;
+	public double getCantidadDeResultados() {
+		return cantidadDeResultados;
+	}
+
+	public void setDemoraDeBusqueda(double demoraDeBusqueda) {
+		this.demoraDeBusqueda = demoraDeBusqueda;
+	}
+
+	public double demoraDeBusqueda;
 	
 	public ReportePorBusqueda(){
 		//para que no me rompa hibernate

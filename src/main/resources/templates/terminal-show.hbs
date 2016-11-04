@@ -25,16 +25,50 @@
 		</div>
 		
 		<h1>Historial de Busquedas</h1>
+		<td>Por Fecha</td>
 		<div class="row">
 			<div class="col-md-12">	
 			<table class="table table-striped" >
-			{{#busquedas}}
+			{{#busquedasPorFecha}} 
 				<tr>
 					<td>{{cantidadDeBusquedas}}</td>
+					<td>{{diaDeLaBusqueda}}</td>
+					
 				</tr>
-			{{/busquedas}}				
+			{{/busquedasPorFecha}}				
 			</table>
 			</div>
+		 
+		<td>Por Terminal</td>
+		<div class="row">
+			<div class="col-md-12">	
+			<table class="table table-striped" >
+			{{#busquedasPorTerminal}} 
+				<tr>
+					<td>{{unaTerminal.nombreDeTerminal}}</td>
+					<td>{{cantResultados}}</td>
+					
+				</tr>
+			{{/busquedasPorTerminal}}				
+			</table>
 		</div>
+		
+		<td>Por Busqueda</td>
+		<div class="row">
+			<div class="col-md-12">	
+			<table class="table table-striped" >
+			{{#busquedasPorBusqueda}} 
+				<tr>
+					<td>{{fraseBuscada}}</td>
+					<td>{{demoraDeBusqueda}}</td>
+					<td>{{cantidadDeResultados}}</td>
+					
+					
+					
+				</tr>
+			{{/busquedasPorBusqueda}}				
+			</table>
+		</div>
+		
 	</body>
 </html>

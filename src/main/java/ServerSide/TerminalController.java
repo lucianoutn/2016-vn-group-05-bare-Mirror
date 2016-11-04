@@ -1,12 +1,17 @@
 package ServerSide;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JSpinner.DateEditor;
+
 import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.convert.LocalDateTimeConverter;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
 import F5.Pois.PuntoDeInteres;
@@ -20,14 +25,20 @@ import InterfacesExternas.SistemaExternoBancoMock;
 import InterfacesExternas.SistemaExternoCGPMock;
 import Reportes.BusquedasPorFecha;
 import Reportes.NotificadorDeBusqueda;
+import Reportes.ReportePorBusqueda;
 import Reportes.ReportePorFecha;
+import Reportes.ReportePorTerminal;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
 public class TerminalController implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps{
 
-	public List<ReportePorFecha> busquedas;
+	public List<ReportePorFecha> busquedasPorFecha;
+	public List<ReportePorTerminal> busquedasPorTerminal;
+	public List<ReportePorBusqueda> reportesPorBusqueda;
+	
+	
 
 
 
@@ -45,16 +56,48 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 		Map<String, Object> model = new HashMap<>();
 		
 		model.put("bancos", bancos);
-		model.put("busquedas", getBusquedas());
+		model.put("busquedasPorFecha", getBusquedasPorFecha());
+		model.put("busquedasPorTerminal", getBusquedasPorTerminal());
+		model.put("busquedasPorBusqueda", getBusquedasPorBusqueda());
 		
 
 		return new ModelAndView(model, "terminal-show.hbs");
 	}
 	
 	
-	public List<ReportePorFecha> getBusquedas() {
-		busquedas.get(0).setCantidadDeBusquedas(5);
-		return busquedas; //ESTO TIENE QUE SALIR de la base de datos segun las busquedas
+	private List<ReportePorBusqueda> getBusquedasPorBusqueda() {
+		List<ReportePorBusqueda> reportes = new ArrayList<ReportePorBusqueda>();
+		double demora = 41;
+		double demora2 = 1;
+		double demora3 = 11;
+		ReportePorBusqueda reporte = new ReportePorBusqueda("colectivo 5", 2, demora);
+		ReportePorBusqueda reporte2= new ReportePorBusqueda("CGP Saavedra", 0, demora2);
+		ReportePorBusqueda reporte3 = new ReportePorBusqueda("Banco Galicia", 1, demora3);
+		reportes.add(reporte);
+		reportes.add(reporte2);
+		reportes.add(reporte3);
+		return reportes;
+	}
+
+
+	private List<ReportePorTerminal>  getBusquedasPorTerminal() {
+		List<ReportePorTerminal> reportes = new ArrayList<ReportePorTerminal>();
+		ReportePorTerminal reporte = new ReportePorTerminal();
+		double cant =2;
+		reporte.setCantResultados(cant);
+		reporte.setUnaTerminal(new Terminal("Abasto", null));
+		reportes.add(reporte);
+		return reportes;
+	}
+
+
+	public List<ReportePorFecha> getBusquedasPorFecha() {
+		if (busquedasPorFecha != null ){
+			busquedasPorFecha.get(0).setCantidadDeBusquedas(5);
+			busquedasPorFecha.get(0).setDiaDeLaBusqueda(LocalTime.now());
+		}
+				
+		return busquedasPorFecha; //ESTO TIENE QUE SALIR de la base de datos segun las busquedas
 	}
 
 
@@ -78,7 +121,7 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 		List<PuntoDeInteres> poisEncontrados =  unaTerminal.buscarEnTerminal(criterio, new Usuario("Eze", null));
 		reporteroDeBusquedas.reportesPorFecha.forEach(r -> persist(r));
 		
-		busquedas = reporteroDeBusquedas.reportesPorFecha;
+		busquedasPorFecha = reporteroDeBusquedas.reportesPorFecha;
 		return ((List<PuntoDeInteres>) poisEncontrados);
 		
 		
@@ -88,13 +131,19 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 
 
 	private List<PuntoDeInteres> getBancos() {
-		//LUCHO-EMI  ESTO TENDRIA QUE SALIR DE LA BASE DE DATOS
 		
-		List<PuntoDeInteres> bancos = new ArrayList<PuntoDeInteres>();
-		bancos.add( new SucursalDeBanco("HSBC", null, null));
-		bancos.add(new SucursalDeBanco("galicia", null, null));
-		bancos.add(new SucursalDeBanco("frances", null, null));
-		return bancos;
+		
+		//List<PuntoDeInteres> bancos = new ArrayList<PuntoDeInteres>();
+		//bancos.add( new SucursalDeBanco("HSBC", null, null));
+		//bancos.add(new SucursalDeBanco("galicia", null, null));
+		//bancos.add(new SucursalDeBanco("frances", null, null));
+		//return bancos;
+		
+		
+		List<Terminal> terminales = entityManager().createQuery("from Terminal", Terminal.class).getResultList();
+		List<PuntoDeInteres> pois = terminales.get(0).getUnMapa().getPuntosDeInteres();
+		return pois;
+		
 	}
 	
 }

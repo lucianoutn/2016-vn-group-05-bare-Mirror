@@ -43,6 +43,7 @@ public class ResultadosPorTerminal extends NotificadorDeBusqueda {
 	
 		//PersistidorDeReportes.getInstancia().guardaParaPersistir(this);
 	}
+	
 
 	public List<ReportePorTerminal> generarReporte(Terminal unaTerminal){ 
 		if(unaTerminal==null)

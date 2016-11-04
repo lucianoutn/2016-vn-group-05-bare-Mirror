@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import F5.Busqueda;
@@ -31,7 +32,7 @@ public class Terminal extends INotificarCambioHorario {
 		return nombreDeTerminal;
 	}
 
-	@Transient
+	@OneToOne
 	private RepositorioDePOIs unMapa;
 	
 	@ManyToMany

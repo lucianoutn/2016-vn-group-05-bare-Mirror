@@ -43,8 +43,11 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 
 			RepositorioDePOIs unMapa = new RepositorioDePOIs(consultorBanco, unConsultorCGP);
 			unMapa.anadirPOI(hsbc);
-			Terminal unaTerminal = new Terminal("Caballito", unMapa);
+			unMapa.anadirPOI(galicia);
+			unMapa.anadirPOI(frances);
+			persist(unMapa);
 			
+			Terminal unaTerminal = new Terminal("Caballito", unMapa);
 			persist(unaTerminal);
 			
 		});
