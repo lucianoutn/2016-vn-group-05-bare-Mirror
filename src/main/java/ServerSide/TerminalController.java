@@ -52,6 +52,10 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 			bancos = buscar(criterio);
 		}
 		
+		String usuarioLogueado = "";
+		if (UsuarioLogueado.usuario != null)
+			usuarioLogueado = UsuarioLogueado.usuario.getNombre();
+		
 		
 		Map<String, Object> model = new HashMap<>();
 		
@@ -59,7 +63,7 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 		model.put("busquedasPorFecha", getBusquedasPorFecha());
 		model.put("busquedasPorTerminal", getBusquedasPorTerminal());
 		model.put("busquedasPorBusqueda", getBusquedasPorBusqueda());
-		
+		model.put("usuario", usuarioLogueado);
 
 		return new ModelAndView(model, "terminal-show.hbs");
 	}
