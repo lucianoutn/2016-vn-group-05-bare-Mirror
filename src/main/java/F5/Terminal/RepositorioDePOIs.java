@@ -5,19 +5,40 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+
 import F5.Busqueda;
 import F5.Pois.PuntoDeInteres;
 
 import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;
 
-
+@Entity
 public class RepositorioDePOIs {
 
+	@Id
+	@GeneratedValue
+	private long id;
+	
+	public RepositorioDePOIs(){
+		//para que no rompa el Hibernate
+	}
+	
+	
+	@OneToMany
+	@JoinColumn(name = "nroDePoi")
 	private List<PuntoDeInteres> puntosDeInteres = new ArrayList<>();
 	
+	@OneToMany
+	@JoinColumn(name="nroDeBusq")
 	private static List<Busqueda> busquedas = new ArrayList<Busqueda>();
 	
+	@Transient
 	private ConsultorBancos consultorDeBancos; 
 	public ConsultorBancos getConsultorDeBancos() {
 		return consultorDeBancos;
@@ -26,7 +47,8 @@ public class RepositorioDePOIs {
 	public ConsultorCGP getConsultorCGP() {
 		return consultorCGP;
 	}
-
+	
+	@Transient
 	private ConsultorCGP consultorCGP; 
 	
 	public void setConsultorCGP(ConsultorCGP consultorCGP) {
