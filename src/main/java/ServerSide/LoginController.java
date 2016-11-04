@@ -26,7 +26,7 @@ public class LoginController implements WithGlobalEntityManager, EntityManagerOp
 	//● Una vez autenticado mostrará la pantalla correspondiente para su perfil.
 	
 	public  Usuario usuario;
-	
+	public boolean encontro = false;
 	public ModelAndView login(Request req, Response res) throws Exception{
 		
 		String mensajeError = "";
@@ -45,11 +45,13 @@ public class LoginController implements WithGlobalEntityManager, EntityManagerOp
 	
 	public ModelAndView checkLogin(Request req, Response res) throws Exception{
 		
+		String error = req.queryParams("error");
+		String nombreUsuario = req.params("name");
+		String password = req.params("pass");
 		
-
 		List<Usuario> usuarios = getUsuarios(); //esto deberia ser un find pero no esta funcionando
 		
-		if (estaLogueadoCorrectamente(usuarios, req)){
+		if (estaLogueadoCorrectamente(usuarios, nombreUsuario, password)){
 			UsuarioLogueado.usuario = usuarios.get(0);
 			
 		   // if(1==1){ //aca valida si el usuario va a la terminal
@@ -66,16 +68,20 @@ public class LoginController implements WithGlobalEntityManager, EntityManagerOp
 		
 	}
 
-	public boolean estaLogueadoCorrectamente(List<Usuario> usuarios, Request req) {
+	public boolean estaLogueadoCorrectamente(List<Usuario> usuarios, String usuario, String password) {
 		
-		return true;
+		//return true;
 		//NO ESTA LLEGANDO LOS QUERYPARAMS
-		/*usuarios.forEach(u-> {
+		
+		usuarios.forEach(u-> {
 		 
-			if (u.getNombre() == req.params("name"))
-				usuario = u;
+			if (u.getNombre() == usuario && u.getPassword() == password);{
+				encontro = true;
+			}
+				
 		});
-		return usuario != null &&  usuario.getPassword() == req.params("pass"); */ 
+		return encontro;
+	
 		
 	}
 
