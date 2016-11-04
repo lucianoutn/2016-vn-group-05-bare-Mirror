@@ -29,15 +29,14 @@ public class LoginController implements WithGlobalEntityManager, EntityManagerOp
 	
 	public ModelAndView login(Request req, Response res) throws Exception{
 		
+		String mensajeError = "";
+		String error = req.queryParams("error");
+		if(error != null && error.equals("validation")){
+			mensajeError = "Ingreso mal el usuario o la contraseña";
+		}
 		
-		List<Terminal> terminales = entityManager()
-									.createQuery("from Terminal", Terminal.class)
-									.getResultList();
-			 	
-		
-		
-		Map<String, List<Terminal>> model = new HashMap<>();
-		model.put("terminal", terminales);
+		Map<String, Object> model = new HashMap<>();
+		model.put("mensajeError", mensajeError);
 		
 		
 		
@@ -45,23 +44,26 @@ public class LoginController implements WithGlobalEntityManager, EntityManagerOp
 	}
 	
 	public ModelAndView checkLogin(Request req, Response res) throws Exception{
-			
-	
+		
+		
+
 		List<Usuario> usuarios = getUsuarios(); //esto deberia ser un find pero no esta funcionando
+		
 		if (estaLogueadoCorrectamente(usuarios, req)){
 			UsuarioLogueado.usuario = usuarios.get(0);
-			res.redirect("http://localhost:9000/terminal/show");
-		    return null;
+			
+		   // if(1==1){ //aca valida si el usuario va a la terminal
+			//	res.redirect("http://localhost:9000/administrador/pois/show");
+			 //   return null;
+			//}
+			if(1==1){ //aca valida si el usuario va a la terminal
+				res.redirect("http://localhost:9000/terminal/show");
+			    return null;
+			}
 		}
-		if(1==1){ //aca valida si el usuario va a la terminal
-			res.redirect("http://localhost:9000/administrador/pois/show");
-		    return null;
-		}
-		if(1==1){ //aca valida si el usuario va a la terminal
-			res.redirect("http://localhost:9000/terminal/show");
-		    return null;
-		}
-		return null;
+		res.redirect("http://localhost:9000/user/login?error=validation");
+	    return null;
+		
 	}
 
 	public boolean estaLogueadoCorrectamente(List<Usuario> usuarios, Request req) {

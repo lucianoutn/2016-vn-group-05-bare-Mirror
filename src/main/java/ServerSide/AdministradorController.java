@@ -15,11 +15,15 @@ public class AdministradorController {
 	public ModelAndView administradorPoisShow(Request req, Response res) {
 		List<SucursalDeBanco> bancos = getBancos();
 		
+		String usuarioLogueado = "";
+		if (UsuarioLogueado.usuario != null)
+			usuarioLogueado = UsuarioLogueado.usuario.getNombre().concat(" ");
 		
-		Map<String, List<SucursalDeBanco>> model = new HashMap<>();
+		
+		Map<String, Object> model = new HashMap<>();
 		
 		model.put("bancos", bancos);
-		
+		model.put("usuario", usuarioLogueado);
 
 		return new ModelAndView(model, "administrador-pois-show.hbs");
 	}
