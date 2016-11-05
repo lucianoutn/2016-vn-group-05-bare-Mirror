@@ -32,16 +32,34 @@
 		  </div>
 		</form>
 
+		<h1>Puntos de Interes</h1>
+		
+		
+		
 		<div class="row">
 			<div class="col-md-12">	
 			<table class="table table-striped" >
-					<td>Nombre</td>
+				<td>Id</td>
+				<td>Nombre</td>
+				<td>Calle</td>
+				<td>Altura</td>
+				<td>Comuna</td>
+				<td>Rubro </td>
+				<td>Nombre</td>
+				<td>Linea</td>
 				</hr>
-			{{#bancos}}
+			{{#todosLosPois}}
 				<tr>
+					<td>{{id_Poi}}</td>
+					<td>{{nombrePoi}}</td>
+					<td>{{calle}}</td>
+					<td>{{altura}}</td>
+					<td>{{comuna.nroComuna}}</td>
+					<td>{{rubro}}</td>
 					<td>{{nombre}}</td>
+					<td>{{numeroDeLinea}}</td>
 				</tr>
-			{{/bancos}}				
+			{{/todosLosPois}}				
 			</table>
 			</div>
 		</div>

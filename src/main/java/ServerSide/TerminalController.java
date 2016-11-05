@@ -44,22 +44,22 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 
 	public ModelAndView terminalShow(Request req, Response res) throws Exception{ 
 		
-		List<PuntoDeInteres> bancos = getBancos();
+		List<PuntoDeInteres> pois = getBancos();
 		
 		String user = req.queryParams("user");
 		String criterio = req.queryParams("criterio");
 		if(criterio != null && !criterio.isEmpty()){
-			bancos = buscar(criterio);
+			pois = buscar(criterio);
 		}
 		
 		String usuarioLogueado = "";
-		if (UsuarioLogueado.usuario != null)
-			usuarioLogueado = UsuarioLogueado.usuario.getNombre();
+		if (Logueado.usuario != null)
+			usuarioLogueado = Logueado.usuario.getNombre();
 		
 		
 		Map<String, Object> model = new HashMap<>();
 		
-		model.put("bancos", bancos);
+		model.put("todosLosPois", pois);
 		model.put("busquedasPorFecha", getBusquedasPorFecha());
 		model.put("busquedasPorTerminal", getBusquedasPorTerminal());
 		model.put("busquedasPorBusqueda", getBusquedasPorBusqueda());
@@ -150,19 +150,7 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 
 
 	private List<PuntoDeInteres> getBancos() {
-		
-		
-		//List<PuntoDeInteres> bancos = new ArrayList<PuntoDeInteres>();
-		//bancos.add( new SucursalDeBanco("HSBC", null, null));
-		//bancos.add(new SucursalDeBanco("galicia", null, null));
-		//bancos.add(new SucursalDeBanco("frances", null, null));
-		//return bancos;
-		
-		
-		List<Terminal> terminales = entityManager().createQuery("from Terminal", Terminal.class).getResultList();
-		List<PuntoDeInteres> pois = terminales.get(0).getUnMapa().getPuntosDeInteres();
-		return pois;
-		
+		return Logueado.terminal.getUnMapa().getPOIs();
 	}
 	
 }

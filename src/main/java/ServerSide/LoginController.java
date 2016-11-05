@@ -45,6 +45,9 @@ public class LoginController implements WithGlobalEntityManager, EntityManagerOp
 	
 	public ModelAndView checkLogin(Request req, Response res) throws Exception{
 		
+		Logueado.terminal = entityManager().createQuery("from Terminal", Terminal.class).getResultList().get(0);
+		
+		
 		String error = req.queryParams("error");
 		String nombreUsuario = req.params("name");
 		String password = req.params("password");
@@ -61,7 +64,7 @@ public class LoginController implements WithGlobalEntityManager, EntityManagerOp
 		List<Usuario> usuarios = getUsuarios(); //esto deberia ser un find pero no esta funcionando
 		
 		if (estaLogueadoCorrectamente(usuarios, nombreUsuario, password)){
-			UsuarioLogueado.usuario = usuarios.get(0);
+			Logueado.usuario = usuarios.get(0);
 			
 		   // if(1==1){ //aca valida si el usuario va a la terminal
 			//	res.redirect("http://localhost:9000/administrador/pois/show");
