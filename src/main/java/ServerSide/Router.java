@@ -14,7 +14,8 @@ public class Router {
 		HandlebarsTemplateEngine engine = HandlebarsTemplateEngineBuilder.create().withDefaultHelpers()
 				.withHelper("isTrue", BooleanHelper.isTrue).build();
 
-		Spark.staticFiles.location("/public");
+		
+		Spark.staticFileLocation("/public");
 
 		LoginController loginController = new LoginController();
 		AdministradorController administradorController = new AdministradorController();
