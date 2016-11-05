@@ -19,11 +19,13 @@ import spark.Response;
 public class AdministradorController {
 
 	public ModelAndView administradorPoisShow(Request req, Response res) {
+		if(Logueado.usuario == null){
+			res.redirect("http://localhost:9000/user/login");
+		    return null;
+		}
 		List<PuntoDeInteres> pois = getPois();
 		
-		String usuarioLogueado = "";
-		if (Logueado.usuario != null)
-			usuarioLogueado = Logueado.usuario.getNombre().concat(" ");
+		String usuarioLogueado = Logueado.usuario.getNombre();
 		
 		
 		Map<String, Object> model = new HashMap<>();

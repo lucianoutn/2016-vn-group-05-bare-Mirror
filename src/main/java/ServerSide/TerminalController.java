@@ -38,11 +38,13 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 	public List<ReportePorTerminal> busquedasPorTerminal;
 	public List<ReportePorBusqueda> reportesPorBusqueda;
 	
-	
-
-
 
 	public ModelAndView terminalShow(Request req, Response res) throws Exception{ 
+		if(Logueado.usuario == null){
+			res.redirect("http://localhost:9000/user/login");
+		    return null;
+		}
+		
 		
 		List<PuntoDeInteres> pois = getBancos();
 		
