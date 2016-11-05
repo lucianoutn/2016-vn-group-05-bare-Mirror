@@ -139,7 +139,7 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 		listaDeUnReportero.add(reporteroDeBusquedas);
 		unaTerminal.setListaObservadores(listaDeUnReportero);
 		
-		List<PuntoDeInteres> poisEncontrados =  unaTerminal.buscarEnTerminal(criterio, new Usuario("Eze", null));
+		List<PuntoDeInteres> poisEncontrados =  unaTerminal.buscarEnTerminal(criterio, Logueado.usuario);
 		reporteroDeBusquedas.reportesPorFecha.forEach(r -> persist(r));
 		
 		busquedasPorFecha = reporteroDeBusquedas.reportesPorFecha;
