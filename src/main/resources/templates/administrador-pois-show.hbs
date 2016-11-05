@@ -1,25 +1,62 @@
-<html>
- 	<head>
-  		<title>Tutorial: HelloWorld</title>
+<html lang="es">
+	<head>
+	  	<!-- Metadatos convencionales -->
+	 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="Content-Script-Type" content="text/javascript">
+		<meta name="Copyright" content="&copy; 2016-vn-group-05. Todos los Derechos Reservados." lang="es">
+	 	<link rel="shortcut icon" href="/favicon.ico">
+		<link href="/principal.css" rel="stylesheet" type="text/css" media="screen">
+	 	<!-- Fin Metadatos convencionales -->
  	</head>
- 	
 	<body>
+		<!-- Contenidos -->
+		<div class="contenido">
+		<p class="banner"><marquee><strong>Bienvenido {{usuario}} al Administrador de POIS Ciudad de Buenos Aires</strong></marquee></p>
+	  	
+   		<ul class="redessociales">
+ 		 <li><g:plusone href="http://ddsutn.com.ar/"></g:plusone></li>
+ 		 <li id="face"><div id="fb-root"></div><script src="http://connect.facebook.net/es_ES/all.js#appId=128897243865016&amp;xfbml=1"></script><fb:like href="http://ddsutn.com.ar" send="false" layout="box_count" width="20px" show_faces="false" action="recommend" font="verdana"></fb:like></li>
+  		</ul> 
 		
-		<h1>Bienvenido {{usuario}}al Administrador de Pois</h1>
 		
-		<h1>POIS</h1>
+		<h1>Puntos de Interes</h1>
 		
-  		<div class="row">
+		
+		
+		<div class="row">
 			<div class="col-md-12">	
 			<table class="table table-striped" >
-			{{#bancos}}
+				<td>Id</td>
+				<td>Nombre</td>
+				<td>Calle</td>
+				<td>Altura</td>
+				<td>Comuna</td>
+				<td>Rubro </td>
+				<td>Nombre</td>
+				<td>Linea</td>
+				</hr>
+			{{#todosLosPois}}
 				<tr>
+					<td>{{id_Poi}}</td>
+					<td>{{nombrePoi}}</td>
+					<td>{{calle}}</td>
+					<td>{{altura}}</td>
+					<td>{{comuna.nroComuna}}</td>
+					<td>{{rubro}}</td>
 					<td>{{nombre}}</td>
+					<td>{{numeroDeLinea}}</td>
 				</tr>
-			{{/bancos}}				
+			{{/todosLosPois}}				
 			</table>
 			</div>
 		</div>
-		<H1>
+		
+		<!-- Firma -->
+		<address>&copy; 2016-vn-group-05. Todos los Derechos Reservados.
+			<div id="codqr">
+			<a href="http://qr.afip.gob.ar/?qr=LVhAnAwNKfDhoLX3JVGn6A,," target="_F960AFIPInfo"><img id="codqrimg" src="http://www.afip.gob.ar/images/f960/DATAWEB.jpg" border="0"></a>
+			</div>
+			
+		</address>	
 	</body>
 </html>

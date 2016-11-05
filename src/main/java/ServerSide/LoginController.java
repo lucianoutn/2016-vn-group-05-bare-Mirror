@@ -47,7 +47,16 @@ public class LoginController implements WithGlobalEntityManager, EntityManagerOp
 		
 		String error = req.queryParams("error");
 		String nombreUsuario = req.params("name");
-		String password = req.params("pass");
+		String password = req.params("password");
+		if(nombreUsuario == null){
+			nombreUsuario = "";
+		}
+			
+		if(password == null){
+			password = "";
+		}
+			
+		
 		
 		List<Usuario> usuarios = getUsuarios(); //esto deberia ser un find pero no esta funcionando
 		
@@ -59,7 +68,8 @@ public class LoginController implements WithGlobalEntityManager, EntityManagerOp
 			 //   return null;
 			//}
 			if(1==1){ //aca valida si el usuario va a la terminal
-				res.redirect("http://localhost:9000/terminal/show");
+				res.redirect("http://localhost:9000/administrador/pois/show");
+				//res.redirect("http://localhost:9000/terminal/show");
 			    return null;
 			}
 		}
@@ -70,12 +80,14 @@ public class LoginController implements WithGlobalEntityManager, EntityManagerOp
 
 	public boolean estaLogueadoCorrectamente(List<Usuario> usuarios, String usuario, String password) {
 		
+			
+			
 		//return true;
 		//NO ESTA LLEGANDO LOS QUERYPARAMS
 		
 		usuarios.forEach(u-> {
 		 
-			if (u.getNombre() == usuario && u.getPassword() == password);{
+			if (u.getNombre().equals(usuario) && u.getPassword().equals(password));{
 				encontro = true;
 			}
 				

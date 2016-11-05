@@ -12,6 +12,10 @@ public class ParadaDeColectivo extends PuntoDeInteres {
 
 	private String numeroDeLinea;
 
+	public void setNumeroDeLinea(String numeroDeLinea) {
+		this.numeroDeLinea = numeroDeLinea;
+	}
+
 	public String getNumeroDeLinea() {
 		return numeroDeLinea;
 	}

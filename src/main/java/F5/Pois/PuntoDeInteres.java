@@ -33,6 +33,14 @@ public abstract class PuntoDeInteres {
 	@GeneratedValue
 	@Column(name = "id_Poi", unique = true, nullable = false)
 	private Long id_Poi;
+	public Long getId_Poi() {
+		return id_Poi;
+	}
+
+	public void setId_Poi(Long id_Poi) {
+		this.id_Poi = id_Poi;
+	}
+
 	private String nombrePoi;
 
 	public Long getId() {

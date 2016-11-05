@@ -16,6 +16,10 @@ public class CGP extends PuntoDeInteres {
 
 	@OneToOne
 	private Comuna comuna;
+	public Comuna getComuna() {
+		return comuna;
+	}
+
 	@OneToMany
 	@JoinColumn(name = "nroServicio")
 	private List<Servicio> servicios = new ArrayList<>();

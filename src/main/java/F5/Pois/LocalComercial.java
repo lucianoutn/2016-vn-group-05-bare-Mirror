@@ -16,6 +16,14 @@ public class LocalComercial extends PuntoDeInteres {
 	private String rubro;
 	private String nombre;
 
+	public String getRubro() {
+		return rubro;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
 	@ElementCollection
 	@CollectionTable(name = "PalabrasClaves", joinColumns = @JoinColumn(name = "palabra_id"))
 	private List<String> palabrasClaves = new ArrayList<>();
