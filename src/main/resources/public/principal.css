@@ -1,0 +1,562 @@
+/* Hoja de estilo principal de TECNOLUB */
+
+* {
+	font-family: Verdana, Geneva, sans-serif;
+	}
+/*	
+a:link {
+	color:blue; 
+	}
+
+a:visited {
+	color: purple 
+  }*/
+
+
+a:hoover {
+  cursor:pointer}
+	
+html {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	text-shadow:2px 2px 3px #666;
+	}
+	
+body {
+	color: black;
+	background-color: #FFF;
+	margin: 0;
+	/*margin-left: 16.5em;
+	margin-top: 121px;*/
+	margin-bottom: 0;
+  }
+	
+	
+h1.titulo {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	background-color: white;
+	height: 119px;
+	width: 100%;
+	margin: 0;
+	padding: 0px;
+	border-width: 0 0 2px 0;
+	border-style: solid;
+	border-color: black;
+	background-image: url(/mol.png);
+	background-repeat: no-repeat;
+	background-position: top right;
+	}
+	 
+h1.titulo img {
+  display: block;
+	width: 442px;		
+  height: 89px/**119px**/;
+  margin: 15px;
+	border:0
+  }
+
+ul.menu {
+	position: absolute;
+	/*top: 121px;*/
+	left: 0;
+	/*bottom: 0;*/
+	width: 12em;
+	height:600px;
+	/*padding-bottom:inherit;*/
+	/*padding-bottom:auto;*/
+	list-style-type: none;
+	/*padding-bottom: 22em;*/
+	padding-left: 2em;
+	padding-right: 2em;
+	margin: 0;
+	background-color: #CCC;
+	background-image:url(/steel.jpg);
+	border:0.25em;
+	color:silver;
+	border-style:outset;
+	}
+	
+ul.submenu {
+	/*display:inline-block;*/
+  list-style-type:none;
+	margin-top: 0.5em;
+	
+	}
+	
+ul.item li {
+	list-style-image:url(/item.gif);
+	margin: 2em;
+	margin-bottom:3em;
+	font: bold 1.5em sans-serif;
+	color:#333;	
+	}
+
+ul.item li img {
+	float:left;
+	width:160px	;
+	height:80px;
+	
+}
+
+.menu li {
+	background: white;
+	margin: 2em 0;
+	padding: 0.3em;
+	border-right: 0.5em solid black;
+	border-style:ridge;
+	color:black; 
+	}
+
+.submenu li {
+	display:inline-block;
+	background: white;
+	padding: 0.3em;
+	border-right: 0.5em solid black;
+	border-style:ridge;
+	color:black; 
+	margin-top:0em;
+	margin-right: 4em;
+	}
+	
+ul a {
+	text-decoration: none;
+	}
+
+div.contenido {
+	height:400px;
+	padding: 0;
+	background-color:silver;
+	/*padding-bottom: 27.5em;*/
+	background-image:url(/graybackground.gif);
+	margin: 0;
+	border: 0.25em;
+	/*color:#FFCC00;*/
+	color:silver;
+	border-style:outset;	
+	overflow:auto;
+	}
+
+div.login {
+	position:relative;
+	text-align:left;
+	}
+
+div.login h2{
+	position: absolute;
+	/*margin-left: 20px;*/
+	text-align: left;
+	}
+
+/*input login {
+	position: left;
+	/*text-align:left;
+	
+	}*/
+
+div.contenido h2 {
+	margin-top:1em;
+	margin-left:1em;
+	color:green;
+	text-shadow:#000;
+	}
+	
+div.contenido p {
+	margin-left: 2em;
+	margin-right: 2em;
+  }
+	
+div.trescolumnasmadre {
+	position:relative;
+	min-width:820px;
+	height:inherit;
+	}
+	
+div.trescolumnasizq {
+	position:absolute;
+	width:200px;
+	margin-right:50px;
+	}
+	
+div.trescolumnascen {
+  position:absolute;
+	width:200px;
+	margin-left:33%;
+}
+
+div.trescolumnasder {
+	position:absolute;
+	width:200px;
+	right:100px;
+	}
+	
+div.doscolumnasizq {
+	position:absolute;
+	top:170px;
+	margin-left:320px;
+	width:300px;
+	height:inherit;
+}
+
+div.doscolumnasder {
+	margin-left:650px;
+	min-width:400px;
+}
+
+p.portada{
+	color:#660000;
+	font: bold 1.5em sans-serif;
+	text-align:center;
+	margin:0;
+	}	
+	
+#servicios li {
+	margin-left: 0em;
+	margin-right: 0em;
+	margin-bottom:0em;
+	margin-top:0em;
+	display:inline-block;
+	}
+
+	
+p {
+	color:black;
+	text-shadow:0.5px 0.5px 0px #666 !important;
+	}
+
+li {
+	color:black;
+	}
+	
+.nuevo {			/*img "nuevo" para los botones*/
+	background:#fff url(/nuevo.gif) no-repeat right bottom !important;
+	}
+ 	
+.advertencia {			/*img "destacadi" para los botones*/
+	background:#fff url(/advertencia.gif) no-repeat right top !important;
+	}
+
+p.banner {
+	text-shadow:2px 2px 3px #000 !important;
+	margin:0;
+	font-size:larger;
+	}
+	
+marquee {
+	color: #FFCC00;
+	}
+	
+/*ul.redessociales {
+	position:absolute;
+	list-style-type:none;
+	margin-bottom:20px;
+	right:0px;
+	background-image:url(../imagenes/chapa.png);
+	background-repeat:no-repeat;
+	padding-top:25px;
+	padding-bottom:40px;
+	padding-right:50px;
+}*/
+
+ul.redessociales li {
+	margin:0;
+	padding:0;
+	top:20px;
+	display:inline-block;
+	/*float:left;*/
+	position:fixed;
+	right:84px;
+	}
+
+#face {
+	position:fixed;
+	right:12px;
+	top:20px;
+	}
+	
+.contactos {
+	text-align:center;
+	
+}
+	
+.contacto {
+	display:inline-block;
+	margin:2em;
+	text-align:center;
+}
+
+div.hitcounter {
+	position:fixed;
+	bottom:-50px;
+}
+
+address {
+	position: absolute;
+	/*width: 100%;*/
+	left: 0;
+	right:0;
+	/*bottom: 0;*/
+	padding-top: 2em;
+	padding: 1em;
+	border-top: 2px solid black;
+	padding-bottom: 4em;
+	background-color:#FFF;
+	text-align:center;
+	}
+	
+#codqr {
+	margin-top:1em;
+	text-align:center;
+	margin-bottom:0;
+	
+}
+
+#codqrimg {
+	height:68px;
+	width:50px;
+}
+
+#design {
+	text-align:right;
+	margin-right:40px;
+	margin-bottom:0px;
+	margin-top:-50px;
+}
+
+	
+/*            IMAGENES         */
+.floatleft {
+	float:left;
+	margin-right: 1em;
+	margin-bottom: 1em;
+	border:2px;
+	border-style:outset;
+	}
+	
+.floatright {
+	float:right;
+	margin-right: 2em;
+	margin-left:1em;
+	margin-bottom: 1em;
+	border:2px;
+	border-style:outset;
+	}
+	
+#cuadroC {
+	margin:auto;
+	margin-top:1em;
+	display:block;
+	width:500px;
+	height:331px;
+  }
+
+div.imgportada {
+	position:relative;
+	text-align:center;
+	
+	
+}
+
+#imgportada {
+	width:310px;
+	height:281px;
+	margin:auto;
+	padding:1em;
+}
+
+#nuestraempresa {
+	background:fixed;
+	background-position:bottom right;
+	background-repeat:no-repeat;
+	background-image:url(../imagenes/nuestraempresaimg.png);
+}
+
+#servmonlub {
+	width:800px;
+	height:533px;
+	margin:auto;
+	display:block;
+
+}
+
+#analisis {
+	width:275px;
+	height:183px;
+	}
+
+#lubenplanta {
+	width:463px;
+	height:400px;
+	}
+
+#lubricantes1 {
+	width:399px;
+	height:299px;
+	}
+#lubricantes2 {
+	width:400px;
+	height:189px;
+	}
+#lubricantes3 {
+	width:468px;
+	height:130px;
+	}
+	
+#combustibles1 {
+	width:399px;
+	height:300px;
+	}
+#combustibles2 {
+	width:645px;
+	height:131px;
+	}
+#combustibles3 {
+	width:399px;
+	height:131px;
+	}
+
+
+#termografia1 {
+	width:204px;
+	height:152px;
+	}
+
+#termografia2 {
+	width:373px;
+	height:230px;
+	margin-top:1em;
+	}
+
+#ultrasonido {
+	width:300px;
+	height:225px;
+	}
+	
+#microfiltrado {
+	width:131px;
+	height:190px;
+	}
+	
+#vibraciones {
+	width:367px;
+	height:155px;
+  }
+	
+#descargas {
+	width:120px;
+	height:30px;
+	margin-left: 1em;
+	}
+	
+/*           EMPRESAS            */
+
+.botonpps {
+	padding: 0; 
+	margin:auto; 
+	margin-top:1em;
+	margin-bottom:1em;
+	width: 20em; 
+	background-color: silver;
+	color:silver; 
+	border:4px; 
+	border-style:outset;
+	text-align:center;
+	}
+	
+.botonppsimg {
+	padding: 0; 
+	margin:auto; 
+	margin-top:1em;
+	margin-bottom:1em;
+	width: 672px;
+	height: 244px;
+	background-color: silver;
+	background-repeat:no-repeat;
+	background-position:center;
+	color:silver; 
+	border:4px; 
+	border-style:outset;
+	text-align:center;
+	}
+	
+.botonppsimg p{
+	color:white;
+	text-align:center;
+	font: bold 1em sans-serif;
+}
+
+.cuadro-bienvenida {
+	border-style:groove;
+	border-color:silver;
+	color:white;
+	background-color:#7F7A7A;
+	width:60%;
+	text-align:center;
+	margin: 1em auto;
+	
+	}
+
+#flash-ferrosider {
+	width:853px;
+	height:243px;
+	display:block;
+	margin:auto;
+	margin-top:1em;
+	margin-bottom:1em;
+	}
+		
+#logo-ferrosider {
+	margin:auto;
+	margin-top:1em;
+	margin-bottom:1em;
+	text-align:center;
+	}
+
+#logo-ferrosider p{
+	margin:0;
+	}	
+
+#logo-resolver {
+	margin:auto;
+	margin-top:1em;
+	margin-bottom:1em;
+	text-align:center;
+	}
+
+#logo-transona {
+	margin:auto;
+	margin-top:1em;
+	margin-bottom:1em;
+	text-align:center;
+ 	}
+	
+#logo-tridente {
+	margin:auto;
+	margin-top:1em;
+	margin-bottom:1em;
+	text-align:center;
+ 	}
+
+#logo-fonseca {
+	margin:auto;
+	margin-top:1em;
+	margin-bottom:1em;
+	text-align:center;
+	}
+
+#logo-empresa {
+	margin:auto;
+	margin-top:1em;
+	margin-bottom:1em;
+	text-align:center;
+  }
+
+#destacadas {
+  width:300px;
+	height:500px;
+	margin-right:2em;
+	}
+

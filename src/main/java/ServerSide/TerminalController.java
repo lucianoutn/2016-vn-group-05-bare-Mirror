@@ -63,12 +63,27 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 		model.put("busquedasPorFecha", getBusquedasPorFecha());
 		model.put("busquedasPorTerminal", getBusquedasPorTerminal());
 		model.put("busquedasPorBusqueda", getBusquedasPorBusqueda());
+		model.put("todasLasBusquedas", getBusquedas());
 		model.put("usuario", usuarioLogueado);
 
 		return new ModelAndView(model, "terminal-show.hbs");
 	}
 	
 	
+	private Object getBusquedas() {
+		List<Object> busquedas = new ArrayList<Object>();
+		Object porFecha = getBusquedasPorFecha();
+		if(porFecha != null){
+			busquedas.addAll((List<Object>)(porFecha));
+		}
+			
+		busquedas.addAll(getBusquedasPorTerminal());
+		busquedas.addAll(getBusquedasPorBusqueda());
+		
+		return busquedas;
+	}
+
+
 	private List<ReportePorBusqueda> getBusquedasPorBusqueda() {
 		List<ReportePorBusqueda> reportes = new ArrayList<ReportePorBusqueda>();
 		double demora = 41;

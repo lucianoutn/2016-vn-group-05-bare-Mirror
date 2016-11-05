@@ -1,13 +1,47 @@
-<html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="es">
  	<head>
-  		<title>Tutorial: HelloWorld</title>
+	 	<title>==Sistema POIS Ciudad de Buenos Aires==</title>
+	 	<!-- Metadatos convencionales -->
+	 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="Content-Script-Type" content="text/javascript">
+		<meta name="Copyright" content="&copy; 2016-vn-group-05. Todos los Derechos Reservados." lang="es">
+	 	<link rel="shortcut icon" href="/favicon.ico">
+		<link href="/principal.css" rel="stylesheet" type="text/css" media="screen">
+	 	<!-- Fin Metadatos convencionales -->
  	</head>
  	
 	<body>
-		<h2>Nombre:</h2><input type="text" value=""  name="userName"/>
-	  	<h2>contraseña:</h2><input type="password" value="" name="userPassword"/>
+	<!-- Contenidos -->
+	<div class="contenido">
+	<p class="banner"><marquee><strong>Bienvenidos al Sistema POIS Ciudad de Buenos Aires</strong></marquee></p>
+  	
+   		<ul class="redessociales">
+ 		 <li><g:plusone href="http://ddsutn.com.ar/"></g:plusone></li>
+ 		 <li id="face"><div id="fb-root"></div><script src="http://connect.facebook.net/es_ES/all.js#appId=128897243865016&amp;xfbml=1"></script><fb:like href="http://ddsutn.com.ar" send="false" layout="box_count" width="20px" show_faces="false" action="recommend" font="verdana"></fb:like></li>
+  		</ul> 
+		
+		<div class="login">
+		<h2>Nombre:</h2><input name="login" type="text" value=""  name="userName"/>
+	  	<h2>Contraseña:</h2><input name="login" type="password" value="" name="userPassword"/>
 	    <a href="/user/checkLogin?name=Ezequiel&pass=unaPass"><button>Login</button></a>
 	    
-	    <h2>{{mensajeError}}</h2>
+	   
+	    </div>
+	    <div>
+		 <h2>{{mensajeError}}</h2>
+		</div>
+		
+	</div>
+	<!-- Fin de Contenidos -->
+
+	<!-- Firma -->
+	<address>&copy; 2016-vn-group-05. Todos los Derechos Reservados.
+		<div id="codqr">
+		<a href="http://qr.afip.gob.ar/?qr=LVhAnAwNKfDhoLX3JVGn6A,," target="_F960AFIPInfo"><img id="codqrimg" src="http://www.afip.gob.ar/images/f960/DATAWEB.jpg" border="0"></a>
+		</div>
+		
+	</address>	
+
 	</body>
 </html>
