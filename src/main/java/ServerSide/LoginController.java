@@ -105,6 +105,7 @@ public class LoginController implements WithGlobalEntityManager, EntityManagerOp
 		 List<Usuario> usuarios = new ArrayList<Usuario>();
 		 Usuario ezequiel = new Usuario("Ezequiel", null, "unaPass");
 		 Usuario franco = new Usuario("Franco", null, "passfranco");
+		 Usuario emiliano = new Usuario("Emiliano", null, "1234");
 		 usuarios.add(ezequiel);
 		 usuarios.add(franco);
 		 return usuarios;

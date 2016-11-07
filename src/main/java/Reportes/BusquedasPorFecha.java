@@ -36,7 +36,7 @@ public class BusquedasPorFecha extends NotificadorDeBusqueda {
 		// puede llegar a ir acá
 	}
 
-	public List<ReportePorFecha> generarReporte() {
+	public  List<ReportePorFecha> generarReporte() {
 		return reportesPorFecha;
 	}
 }

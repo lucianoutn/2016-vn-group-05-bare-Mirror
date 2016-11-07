@@ -10,6 +10,9 @@ import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import F5.Pois.PuntoDeInteres;
 import Reportes.NotificadorDeBusqueda;
+import Reportes.ReportePorBusqueda;
+import Reportes.ResultadosDeBusquedas;
+import Reportes.ResultadosPorTerminal;
 
 public class PersistidorDeReportes extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
@@ -28,7 +31,17 @@ public class PersistidorDeReportes extends AbstractPersistenceTest implements Wi
 		return entityManager().createQuery("from NotificadorDeBusqueda", NotificadorDeBusqueda.class).getResultList();
 	}
 	
+	public List<ResultadosDeBusquedas> traerResultadosDeBusquedas(){
+		return entityManager().createQuery("from ResultadosDeBusquedas", ResultadosDeBusquedas.class).getResultList();
+		
+	}
+	
+	public List<ResultadosPorTerminal> traerResultadosPorTerminal(){
+		return entityManager().createQuery("from ResultadosPorTerminal", ResultadosPorTerminal.class).getResultList();
 
+		
+	}
+	
 	
 	public void persistir(NotificadorDeBusqueda notificador) {
 		entityManager().persist(notificador);

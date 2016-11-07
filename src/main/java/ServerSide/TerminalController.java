@@ -14,6 +14,8 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.convert.LocalDateTimeConverter;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
+import F5.Persistencia.PersistidorDeBusqueda;
+import F5.Persistencia.PersistidorDeReportes;
 import F5.Pois.PuntoDeInteres;
 import F5.Pois.SucursalDeBanco;
 import F5.Terminal.RepositorioDePOIs;
@@ -88,7 +90,9 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 
 	private List<ReportePorBusqueda> getBusquedasPorBusqueda() {
 		List<ReportePorBusqueda> reportes = new ArrayList<ReportePorBusqueda>();
-		double demora = 41;
+		PersistidorDeReportes.getInstancia().traerResultadosDeBusquedas().
+							stream().forEach(reportero-> reportes.addAll(reportero.generarReporte()));
+		/*double demora = 41;
 		double demora2 = 1;
 		double demora3 = 11;
 		ReportePorBusqueda reporte = new ReportePorBusqueda("colectivo 5", 2, demora);
@@ -97,6 +101,7 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 		reportes.add(reporte);
 		reportes.add(reporte2);
 		reportes.add(reporte3);
+		*/
 		return reportes;
 	}
 
