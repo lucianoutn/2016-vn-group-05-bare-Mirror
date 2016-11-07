@@ -90,8 +90,9 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 
 	private List<ReportePorBusqueda> getBusquedasPorBusqueda() {
 		List<ReportePorBusqueda> reportes = new ArrayList<ReportePorBusqueda>();
+		withTransaction(()->
 		PersistidorDeReportes.getInstancia().traerResultadosDeBusquedas().
-							stream().forEach(reportero-> reportes.addAll(reportero.generarReporte()));
+							stream().forEach(reportero-> reportes.addAll(reportero.generarReporte())));
 		/*double demora = 41;
 		double demora2 = 1;
 		double demora3 = 11;
@@ -108,12 +109,18 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 
 	private List<ReportePorTerminal>  getBusquedasPorTerminal() {
 		List<ReportePorTerminal> reportes = new ArrayList<ReportePorTerminal>();
+		withTransaction(()->
+		PersistidorDeReportes.getInstancia().traerResultadosPorTerminal().
+						stream().forEach(reportero-> reportes.addAll(reportero.generarReporte(null))));
+		// FALTA ACLARAR QUE TERMINAL EN PARTICULAR TIENE QUE GENERARSE EL REPORTE
+		/*
 		ReportePorTerminal reporte = new ReportePorTerminal();
 		double cant =2;
 		reporte.setCantResultados(cant);
 		reporte.setUnaTerminal(new Terminal("Abasto", null));
-		reportes.add(reporte);
+		reportes.add(reporte);		*/
 		return reportes;
+
 	}
 
 
@@ -132,6 +139,8 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 		//ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock("009"));
 		//ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock("010"));
 
+		
+		
 		RepositorioDePOIs unMapa = new RepositorioDePOIs(null, null);
 		unMapa.anadirPOI(new SucursalDeBanco("HSBC", null, null));
 		unMapa.anadirPOI(new SucursalDeBanco("galicia", null, null));
