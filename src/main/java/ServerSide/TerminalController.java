@@ -138,8 +138,6 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 	private List<PuntoDeInteres> buscar(String criterio) {
 		//ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock("009"));
 		//ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock("010"));
-
-		
 		
 		RepositorioDePOIs unMapa = new RepositorioDePOIs(null, null);
 		unMapa.anadirPOI(new SucursalDeBanco("HSBC", null, null));
@@ -147,6 +145,7 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 		unMapa.anadirPOI(new SucursalDeBanco("frances", null, null));
 		
 		Terminal unaTerminal = new Terminal("Caballito", unMapa);
+		
 		
 		BusquedasPorFecha reporteroDeBusquedas= new BusquedasPorFecha();
 		List<NotificadorDeBusqueda> listaDeUnReportero = new ArrayList<NotificadorDeBusqueda>();
@@ -156,10 +155,9 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 		List<PuntoDeInteres> poisEncontrados =  unaTerminal.buscarEnTerminal(criterio, Logueado.usuario);
 		reporteroDeBusquedas.reportesPorFecha.forEach(r -> persist(r));
 		
+		
 		busquedasPorFecha = reporteroDeBusquedas.reportesPorFecha;
-		return ((List<PuntoDeInteres>) poisEncontrados);
-		
-		
+		return ((List<PuntoDeInteres>) poisEncontrados);	
 		
 	}
 

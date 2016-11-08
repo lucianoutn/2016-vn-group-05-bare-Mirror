@@ -71,8 +71,8 @@ public class LoginController implements WithGlobalEntityManager, EntityManagerOp
 			 //   return null;
 			//}
 			if(1==1){ //aca valida si el usuario va a la terminal
-				res.redirect("http://localhost:9000/administrador/pois/show");
-				//res.redirect("http://localhost:9000/terminal/show");
+				//res.redirect("http://localhost:9000/administrador/pois/show");
+				res.redirect("http://localhost:9000/terminal/show");
 			    return null;
 			}
 		}

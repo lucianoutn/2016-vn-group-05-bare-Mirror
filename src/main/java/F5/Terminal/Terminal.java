@@ -2,6 +2,8 @@ package F5.Terminal;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,6 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import F5.Busqueda;
+import F5.Persistencia.PersistidorDeBusqueda;
 import F5.Pois.PuntoDeInteres;
 import Reportes.NotificadorDeBusqueda;
 
@@ -35,7 +38,7 @@ public class Terminal extends INotificarCambioHorario {
 	@OneToOne
 	private RepositorioDePOIs unMapa;
 	
-	@ManyToMany
+	@ManyToMany(cascade = { CascadeType.ALL })
 	@JoinTable(name="Terminal_Notificadores",joinColumns=@JoinColumn(name="id_Terminal"),inverseJoinColumns=@JoinColumn(name="id"))
 	private List<NotificadorDeBusqueda> listaObservadores= new ArrayList<NotificadorDeBusqueda>();
 	
@@ -90,7 +93,9 @@ public class Terminal extends INotificarCambioHorario {
 
 	public List<PuntoDeInteres> buscarEnTerminal(String unaFrase, Usuario user){
 		Busqueda unaBusqueda= new Busqueda(this,user,unaFrase);
-		return unaBusqueda.buscoFrase(unaFrase, unMapa);
+		List<PuntoDeInteres> resultadoBusqueda= unaBusqueda.buscoFrase(unaFrase, unMapa);
+		PersistidorDeBusqueda.getInstancia().persistir(unaBusqueda);
+		return resultadoBusqueda;
 	}
 
 	@Override
