@@ -5,18 +5,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
+
 import F5.Pois.CGP;
 import F5.Pois.DiaAtencion;
 import F5.Pois.ParadaDeColectivo;
 import F5.Pois.Punto;
 import F5.Pois.PuntoDeInteres;
 import F5.Pois.SucursalDeBanco;
+import F5.Terminal.Terminal;
 import TestFactoryF5.*;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-public class AdministradorController {
+public class AdministradorController  implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps{
 
 	public ModelAndView administradorPoisShow(Request req, Response res) {
 		if(Logueado.usuario == null){
@@ -24,24 +29,28 @@ public class AdministradorController {
 		    return null;
 		}
 		List<PuntoDeInteres> pois = getPois();
-		
+		List<Terminal> terminales = getTerminales();
 		String usuarioLogueado = Logueado.usuario.getNombre();
 		
 		
 		Map<String, Object> model = new HashMap<>();
 		
 		model.put("todosLosPois", pois);
+		model.put("terminales", terminales);
 		model.put("usuario", usuarioLogueado);
 
 		return new ModelAndView(model, "administrador-pois-show.hbs");
 	}
 	
 	
+	private List<Terminal> getTerminales() {
+		return entityManager().createQuery("from Terminal", Terminal.class).getResultList();
+		
+	}
+
+
 	private List<PuntoDeInteres> getPois() {
-		//LUCHO-EMI  ESTO TIENE QE SALIR DEL MAPA DE LAS TERMINALES
-		
-		
-			return  Logueado.terminal.getUnMapa().getPOIs();
+		return  Logueado.terminal.getUnMapa().getPOIs();
  		
 	}
 }

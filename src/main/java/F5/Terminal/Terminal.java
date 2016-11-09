@@ -29,6 +29,18 @@ public class Terminal extends INotificarCambioHorario {
 	@GeneratedValue
 	private int id_Terminal;
 	
+	public int getId_Terminal() {
+		return id_Terminal;
+	}
+
+	public void setId_Terminal(int id_Terminal) {
+		this.id_Terminal = id_Terminal;
+	}
+
+	public void setNombreDeTerminal(String nombreDeTerminal) {
+		this.nombreDeTerminal = nombreDeTerminal;
+	}
+
 	private String nombreDeTerminal;
 	
 	public String getNombreDeTerminal() {

@@ -102,8 +102,13 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			
 			Terminal unaTerminal = new Terminal("Caballito", unMapa);
 			unaTerminal.setListaObservadores(listaDeUnReportero);
+			Terminal boedo = new Terminal("Boedo", unMapa);
+			boedo.setListaObservadores(listaDeUnReportero);
+			Terminal palermo = new Terminal("Palermo", unMapa);
+			boedo.setListaObservadores(listaDeUnReportero);
 			persist(unaTerminal);
-			
+			persist(boedo);
+			persist(palermo);
 		});
 	}
 }

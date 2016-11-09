@@ -16,17 +16,7 @@ import org.uqbarproject.jpa.java8.extras.convert.LocalDateTimeConverter;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
 import F5.Busqueda;
-import F5.Persistencia.PersistidorDeBusqueda;
-import F5.Persistencia.PersistidorDeReportes;
 import F5.Pois.PuntoDeInteres;
-import F5.Pois.SucursalDeBanco;
-import F5.Terminal.RepositorioDePOIs;
-import F5.Terminal.Terminal;
-import F5.Terminal.Usuario;
-import InterfacesExternas.ConsultorBancos;
-import InterfacesExternas.ConsultorCGP;
-import InterfacesExternas.SistemaExternoBancoMock;
-import InterfacesExternas.SistemaExternoCGPMock;
 import Reportes.BusquedasPorFecha;
 import Reportes.NotificadorDeBusqueda;
 import Reportes.ReportePorBusqueda;
