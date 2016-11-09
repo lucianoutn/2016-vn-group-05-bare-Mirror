@@ -10,8 +10,8 @@
 	 	<!-- Fin Metadatos convencionales -->
  	</head>
 	<body>
-		<!-- Contenidos -->
-		<div class="contenido">
+	<!-- Contenidos -->
+	<div class="contenido">
 		<p class="banner"><marquee><strong>Bienvenido {{usuario}} al Sistema POIS Ciudad de Buenos Aires</strong></marquee></p>
 	  	
    		<ul class="redessociales">
@@ -20,19 +20,20 @@
   		</ul> 
 	
 	
-		<h1>Puntos de Interes</h1>
+		<h2>Puntos de Interes</h2>
 		<form action="/terminal/show" >
 		  <div class="row">
 			  <div class="col-md-10">
-				  <input type="text" class="form-control" name="criterio">
-				</div>
-				<div class="col-md-2">
-				  <input type="submit" class="form-control btn btn-default">
-				</div>
+				<div class="criterio"><input type="text" class="criterio" name="criterio"></div>
+			  </div>
+				<br></br>
+			  <div class="col-md-2">
+				<div class="submitcriterio">  <input type="submit" class="submitcriterio" name="submitcriterio"></div>
+			  </div>
 		  </div>
 		</form>
 
-		<h1>Puntos de Interes</h1>
+		<h2>Puntos de Interes</h2>
 		
 		
 		
@@ -64,7 +65,7 @@
 			</div>
 		</div>
 		
-		<h1>Historial de Busquedas</h1>
+		<h2>Historial de Busquedas</h2>
 		<div class="row">
 			<div class="col-md-12">	
 			<table class="table table-striped" >
@@ -89,10 +90,12 @@
 			{{/todasLasBusquedas}}				
 			</table>
 			</div>
-		</div>
+	<br></br>
+	<br></br>
 		
-		
-		<!-- Fin de Contenidos -->
+	</div>	
+	</div>
+	<!-- Fin de Contenidos -->
 
 	<!-- Firma -->
 	<address>&copy; 2016-vn-group-05. Todos los Derechos Reservados.
