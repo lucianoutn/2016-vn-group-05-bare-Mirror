@@ -59,19 +59,21 @@ public class LoginController implements WithGlobalEntityManager, EntityManagerOp
 			password = "";
 		}
 			
-		
+		nombreUsuario = "Ezequiel";
+		password = "unaPass";
+		//nombreUsuario = "Franco";
+		//password = "passfranco";
 		
 		List<Usuario> usuarios = getUsuarios(); //esto deberia ser un find pero no esta funcionando
 		
 		if (estaLogueadoCorrectamente(usuarios, nombreUsuario, password)){
-			Logueado.usuario = usuarios.get(0);
 			
-		   // if(1==1){ //aca valida si el usuario va a la terminal
-			//	res.redirect("http://localhost:9000/administrador/pois/show");
-			 //   return null;
-			//}
-			if(1==1){ //aca valida si el usuario va a la terminal
-				//res.redirect("http://localhost:9000/administrador/pois/show");
+			
+		  
+			if(Logueado.usuario.isAdmin()){ //aca valida si el usuario va a la terminal
+				res.redirect("http://localhost:9000/administrador/pois/show");
+				return null;
+			}else{
 				res.redirect("http://localhost:9000/terminal/show");
 			    return null;
 			}
@@ -83,7 +85,9 @@ public class LoginController implements WithGlobalEntityManager, EntityManagerOp
 
 	public boolean estaLogueadoCorrectamente(List<Usuario> usuarios, String usuario, String password) {
 		
-			
+		Logueado.usuario = usuarios.get(0); //Ezequiel
+		//Logueado.usuario = usuarios.get(1); //Franco
+		
 			
 		//return true;
 		//NO ESTA LLEGANDO LOS QUERYPARAMS

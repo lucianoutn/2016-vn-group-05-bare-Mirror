@@ -94,7 +94,7 @@ public class Terminal extends INotificarCambioHorario {
 	public List<PuntoDeInteres> buscarEnTerminal(String unaFrase, Usuario user){
 		Busqueda unaBusqueda= new Busqueda(this,user,unaFrase);
 		List<PuntoDeInteres> resultadoBusqueda= unaBusqueda.buscoFrase(unaFrase, unMapa);
-		PersistidorDeBusqueda.getInstancia().persistir(unaBusqueda);
+		//PersistidorDeBusqueda.getInstancia().persistir(unaBusqueda);
 		return resultadoBusqueda;
 	}
 

@@ -1,6 +1,7 @@
 package ServerSide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.uqbar.geodds.Polygon;
 import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
@@ -19,6 +20,9 @@ import InterfacesExternas.ConsultorBancos;
 import InterfacesExternas.ConsultorCGP;
 import InterfacesExternas.SistemaExternoBancoMock;
 import InterfacesExternas.SistemaExternoCGPMock;
+import Reportes.BusquedasPorFecha;
+import Reportes.NotificadorDeBusqueda;
+import Reportes.ResultadosPorTerminal;
 
 public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps{
 	
@@ -70,9 +74,9 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			
 			Comuna comuna = new Comuna(1, (Polygon)null);
 			persist(comuna);
-			Usuario ezequiel = new Usuario("Ezequiel", comuna, "unaPass");
+			Usuario ezequiel = new Usuario("Ezequiel", comuna, "unaPass", true);
 			persist(ezequiel);
-			Usuario franco = new Usuario("Franco", comuna, "passfranco");
+			Usuario franco = new Usuario("Franco", comuna, "passfranco", false);
 			persist(franco);
 			
 			ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock("009"));
@@ -88,8 +92,16 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			
 			
 			persist(unMapa);
+			BusquedasPorFecha reporteroDeBusquedas= new BusquedasPorFecha();
+			ResultadosPorTerminal reporteroDeTerminal = new ResultadosPorTerminal();
+			List<NotificadorDeBusqueda> listaDeUnReportero = new ArrayList<NotificadorDeBusqueda>();
+			listaDeUnReportero.add(reporteroDeBusquedas);
+			listaDeUnReportero.add(reporteroDeTerminal);
+			persist(reporteroDeBusquedas);
+			persist(reporteroDeTerminal);
 			
 			Terminal unaTerminal = new Terminal("Caballito", unMapa);
+			unaTerminal.setListaObservadores(listaDeUnReportero);
 			persist(unaTerminal);
 			
 		});

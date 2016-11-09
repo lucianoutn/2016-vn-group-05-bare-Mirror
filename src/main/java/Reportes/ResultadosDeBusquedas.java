@@ -26,6 +26,14 @@ public class ResultadosDeBusquedas extends NotificadorDeBusqueda {
 	@JoinColumn(name = "numeroDeRenglon")
 	private List<ReportePorBusqueda> reporte = new ArrayList<ReportePorBusqueda>();
 
+	public List<ReportePorBusqueda> getReporte() {
+		return reporte;
+	}
+
+	public void setReporte(List<ReportePorBusqueda> reporte) {
+		this.reporte = reporte;
+	}
+
 	@Override
 	public void notificarBusqueda(Busqueda unaBusqueda) {
 		ReportePorBusqueda nuevoResultado = new ReportePorBusqueda(unaBusqueda.getFraseBuscada(),

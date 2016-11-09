@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.swing.JSpinner.DateEditor;
 
@@ -14,6 +15,7 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.convert.LocalDateTimeConverter;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
+import F5.Busqueda;
 import F5.Persistencia.PersistidorDeBusqueda;
 import F5.Persistencia.PersistidorDeReportes;
 import F5.Pois.PuntoDeInteres;
@@ -30,15 +32,17 @@ import Reportes.NotificadorDeBusqueda;
 import Reportes.ReportePorBusqueda;
 import Reportes.ReportePorFecha;
 import Reportes.ReportePorTerminal;
+import Reportes.ResultadosDeBusquedas;
+import Reportes.ResultadosPorTerminal;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
 public class TerminalController implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps{
 
-	public List<ReportePorFecha> busquedasPorFecha;
-	public List<ReportePorTerminal> busquedasPorTerminal;
-	public List<ReportePorBusqueda> reportesPorBusqueda;
+	public List<ReportePorFecha> busquedasPorFecha = new ArrayList<ReportePorFecha>();
+	public List<ReportePorTerminal> busquedasPorTerminal = new ArrayList<ReportePorTerminal>();
+	public List<ReportePorBusqueda> reportesPorBusqueda = new ArrayList<ReportePorBusqueda>();
 	
 
 	public ModelAndView terminalShow(Request req, Response res) throws Exception{ 
@@ -76,11 +80,8 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 	
 	private Object getBusquedas() {
 		List<Object> busquedas = new ArrayList<Object>();
-		Object porFecha = getBusquedasPorFecha();
-		if(porFecha != null){
-			busquedas.addAll((List<Object>)(porFecha));
-		}
-			
+		
+		busquedas.addAll(getBusquedasPorFecha());
 		busquedas.addAll(getBusquedasPorTerminal());
 		busquedas.addAll(getBusquedasPorBusqueda());
 		
@@ -89,10 +90,11 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 
 
 	private List<ReportePorBusqueda> getBusquedasPorBusqueda() {
-		List<ReportePorBusqueda> reportes = new ArrayList<ReportePorBusqueda>();
-		withTransaction(()->
-		PersistidorDeReportes.getInstancia().traerResultadosDeBusquedas().
-							stream().forEach(reportero-> reportes.addAll(reportero.generarReporte())));
+		return reportesPorBusqueda;
+		//List<ReportePorBusqueda> reportes = new ArrayList<ReportePorBusqueda>();
+		//withTransaction(()->
+		//PersistidorDeReportes.getInstancia().traerResultadosDeBusquedas().
+			//				stream().forEach(reportero-> reportes.addAll(reportero.generarReporte())));
 		/*double demora = 41;
 		double demora2 = 1;
 		double demora3 = 11;
@@ -103,60 +105,52 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 		reportes.add(reporte2);
 		reportes.add(reporte3);
 		*/
-		return reportes;
+		//return reportes;
 	}
 
 
 	private List<ReportePorTerminal>  getBusquedasPorTerminal() {
-		List<ReportePorTerminal> reportes = new ArrayList<ReportePorTerminal>();
-		withTransaction(()->
-		PersistidorDeReportes.getInstancia().traerResultadosPorTerminal().
-						stream().forEach(reportero-> reportes.addAll(reportero.generarReporte(null))));
-		// FALTA ACLARAR QUE TERMINAL EN PARTICULAR TIENE QUE GENERARSE EL REPORTE
-		/*
-		ReportePorTerminal reporte = new ReportePorTerminal();
-		double cant =2;
-		reporte.setCantResultados(cant);
-		reporte.setUnaTerminal(new Terminal("Abasto", null));
-		reportes.add(reporte);		*/
-		return reportes;
+		return busquedasPorTerminal;
+		
 
 	}
 
 
 	public List<ReportePorFecha> getBusquedasPorFecha() {
-		if (busquedasPorFecha != null ){
-			busquedasPorFecha.get(0).setCantidadDeBusquedas(5);
-			busquedasPorFecha.get(0).setDiaDeLaBusqueda(LocalTime.now());
-		}
-				
-		return busquedasPorFecha; //ESTO TIENE QUE SALIR de la base de datos segun las busquedas
+		Random randomGenerator = new Random();
+	
+		busquedasPorFecha.forEach(b -> b.setCantidadDeBusquedas(randomGenerator.nextInt(10)));
+		busquedasPorFecha.forEach(b -> b.setDiaDeLaBusqueda(LocalTime.now()));
+		
+		return busquedasPorFecha; 
 	}
 
 
 
 	private List<PuntoDeInteres> buscar(String criterio) {
-		//ConsultorCGP unConsultorCGP = new ConsultorCGP(new SistemaExternoCGPMock("009"));
-		//ConsultorBancos consultorBanco = new ConsultorBancos(new SistemaExternoBancoMock("010"));
-		
-		RepositorioDePOIs unMapa = new RepositorioDePOIs(null, null);
-		unMapa.anadirPOI(new SucursalDeBanco("HSBC", null, null));
-		unMapa.anadirPOI(new SucursalDeBanco("galicia", null, null));
-		unMapa.anadirPOI(new SucursalDeBanco("frances", null, null));
-		
-		Terminal unaTerminal = new Terminal("Caballito", unMapa);
+	
 		
 		
 		BusquedasPorFecha reporteroDeBusquedas= new BusquedasPorFecha();
+		ResultadosPorTerminal resultadosPorTerminal = new ResultadosPorTerminal();
+		ResultadosDeBusquedas resultadosPorBusqueda = new ResultadosDeBusquedas();
 		List<NotificadorDeBusqueda> listaDeUnReportero = new ArrayList<NotificadorDeBusqueda>();
 		listaDeUnReportero.add(reporteroDeBusquedas);
-		unaTerminal.setListaObservadores(listaDeUnReportero);
+		listaDeUnReportero.add(resultadosPorTerminal);
+		listaDeUnReportero.add(resultadosPorBusqueda);
 		
-		List<PuntoDeInteres> poisEncontrados =  unaTerminal.buscarEnTerminal(criterio, Logueado.usuario);
-		reporteroDeBusquedas.reportesPorFecha.forEach(r -> persist(r));
+		Logueado.terminal.setListaObservadores(listaDeUnReportero);
 		
 		
-		busquedasPorFecha = reporteroDeBusquedas.reportesPorFecha;
+		Busqueda unaBusqueda= new Busqueda(Logueado.terminal, Logueado.usuario,criterio);
+		unaBusqueda.setListaObservers(listaDeUnReportero);
+		List<PuntoDeInteres> poisEncontrados= unaBusqueda.buscoFrase(criterio, Logueado.terminal.getUnMapa());
+		
+		
+		
+		busquedasPorFecha.addAll(reporteroDeBusquedas.reportesPorFecha);
+		busquedasPorTerminal.addAll(resultadosPorTerminal.getReportesPorTerminal());
+		reportesPorBusqueda.addAll(resultadosPorBusqueda.getReporte());
 		return ((List<PuntoDeInteres>) poisEncontrados);	
 		
 	}

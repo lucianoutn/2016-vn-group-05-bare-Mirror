@@ -42,6 +42,16 @@ public class Usuario {
 	@Transient
 	private List<AccionPostBusqueda> accionesRealizables = new ArrayList<AccionPostBusqueda>();
 
+	private boolean isAdmin;
+
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
 	public List<AccionPostBusqueda> getAccionesRealizables() {
 		return accionesRealizables;
 	}
@@ -55,6 +65,15 @@ public class Usuario {
 		nombre = unNombre;
 		comuna = unaComuna;
 		this.password = password;
+	}
+
+	
+	public Usuario(String unNombre, Comuna unaComuna, String password, boolean isAdmin) {
+		nombre = unNombre;
+		comuna = unaComuna;
+		this.password = password;
+		this.isAdmin = isAdmin;
+		
 	}
 
 	public Usuario() {

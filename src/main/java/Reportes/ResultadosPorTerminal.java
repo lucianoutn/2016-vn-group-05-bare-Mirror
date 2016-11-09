@@ -30,6 +30,14 @@ public class ResultadosPorTerminal extends NotificadorDeBusqueda {
 	@JoinColumn(name = "numeroDeRenglon")
 	List<ReportePorTerminal> reportesPorTerminal = new ArrayList<ReportePorTerminal>();
 
+	public List<ReportePorTerminal> getReportesPorTerminal() {
+		return reportesPorTerminal;
+	}
+
+	public void setReportesPorTerminal(List<ReportePorTerminal> reportesPorTerminal) {
+		this.reportesPorTerminal = reportesPorTerminal;
+	}
+
 	public ResultadosPorTerminal() {
 	}
 
@@ -41,7 +49,7 @@ public class ResultadosPorTerminal extends NotificadorDeBusqueda {
 		else
 			reportesPorTerminal.add(new ReportePorTerminal(unaBusqueda.getTerminal(), unaBusqueda.getCantResultados()));
 	
-		//PersistidorDeReportes.getInstancia().guardaParaPersistir(this);
+		//PersistidorDeReportes.getInstancia().persist(this);
 	}
 	
 

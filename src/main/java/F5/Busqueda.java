@@ -59,6 +59,10 @@ public class Busqueda {
 	@JoinTable(name = "Busqueda_Notificadores", joinColumns = @JoinColumn(name = "id_Busqueda"), inverseJoinColumns = @JoinColumn(name = "id"))
 	private List<NotificadorDeBusqueda> listaObservers;
 
+	public List<NotificadorDeBusqueda> getListaObservers() {
+		return listaObservers;
+	}
+
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "Busqueda_POIs", joinColumns = @JoinColumn(name = "id_Busqueda"), inverseJoinColumns = @JoinColumn(name = "id_Poi"))
 	private List<PuntoDeInteres> poisEncontrados = new ArrayList<PuntoDeInteres>();
