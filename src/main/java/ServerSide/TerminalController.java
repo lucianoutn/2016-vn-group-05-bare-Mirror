@@ -2,21 +2,22 @@ package ServerSide;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import javax.swing.JSpinner.DateEditor;
+
 
 import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
-import org.uqbarproject.jpa.java8.extras.convert.LocalDateTimeConverter;
+
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
 import F5.Busqueda;
 import F5.Pois.PuntoDeInteres;
+import F5.Terminal.Terminal;
 import Reportes.BusquedasPorFecha;
 import Reportes.NotificadorDeBusqueda;
 import Reportes.ReportePorBusqueda;
@@ -149,6 +150,35 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 
 	private List<PuntoDeInteres> getBancos() {
 		return Logueado.terminal.getUnMapa().getPOIs();
+	}
+	
+	
+	public ModelAndView terminalNew(Request req, Response res) throws Exception{ 
+		if(Logueado.usuario == null){
+			res.redirect("http://localhost:9000/user/login");
+		    return null;
+		}
+		
+		Map<String, Object> model = new HashMap<>();
+		
+		model.put("usuario", Logueado.usuario.getNombre());
+		return new ModelAndView(null, "terminal-new.hbs");
+	}
+	
+	public ModelAndView crear(Request req, Response res) throws Exception{ 
+		
+		String nombreDeTerminal = req.queryParams("nombreDeTerminal");
+		
+		Terminal terminalNueva = new Terminal(nombreDeTerminal, Logueado.terminal.getUnMapa());
+	   
+		withTransaction(() -> {
+			entityManager().persist(terminalNueva);
+	    });
+
+	    res.redirect("/administrador/pois/show");
+		return null;
+		
+		
 	}
 	
 }

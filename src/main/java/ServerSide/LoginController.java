@@ -59,8 +59,8 @@ public class LoginController implements WithGlobalEntityManager, EntityManagerOp
 			password = "";
 		}
 			
-		nombreUsuario = "Ezequiel";
-		password = "unaPass";
+		//nombreUsuario = "Ezequiel";
+		//password = "unaPass";
 		//nombreUsuario = "Franco";
 		//password = "passfranco";
 		
