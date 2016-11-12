@@ -85,7 +85,7 @@ public class LoginController implements WithGlobalEntityManager, EntityManagerOp
 
 	public boolean estaLogueadoCorrectamente(List<Usuario> usuarios, String usuario, String password) {
 		
-		Logueado.usuario = usuarios.get(0); //Ezequiel
+		Logueado.usuario = usuarios.get(3); //Ezequiel
 		//Logueado.usuario = usuarios.get(1); //Franco
 		
 			

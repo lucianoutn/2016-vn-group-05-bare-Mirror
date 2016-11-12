@@ -29,7 +29,7 @@ public class Router {
 		});
 		Spark.get("/user/login", loginController::login, engine);
 		Spark.get("/user/login", loginController::login, engine);
-		Spark.post("/user/checkLogin", loginController::checkLogin);
+		Spark.get("/user/checkLogin", loginController::checkLogin);
 		Spark.get("/terminal/show", terminalController::terminalShow, engine);
 		Spark.get("/terminal/new", terminalController::terminalNew, engine);
 		Spark.post("/terminal/new", terminalController::crear);
