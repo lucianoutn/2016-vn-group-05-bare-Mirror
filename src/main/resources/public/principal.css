@@ -127,7 +127,7 @@ ul a {
 	}
 
 div.contenido {
-	height:400px;
+	height:500px;
 	padding: 0;
 	background-color:silver;
 	/*padding-bottom: 27.5em;*/
@@ -299,7 +299,7 @@ marquee {
 ul.redessociales li {
 	margin:0;
 	padding:0;
-	top:20px;
+	top:2em;
 	display:inline-block;
 	/*float:left;*/
 	position:fixed;
@@ -309,7 +309,7 @@ ul.redessociales li {
 #face {
 	position:fixed;
 	right:12px;
-	top:20px;
+	top:2em;
 	}
 	
 .contactos {
@@ -334,10 +334,10 @@ address {
 	left: 0;
 	right:0;
 	/*bottom: 0;*/
-	padding-top: 2em;
-	padding: 1em;
+	padding-top: 0,5em;
+	padding: 0,5em;
 	border-top: 2px solid black;
-	padding-bottom: 4em;
+	padding-bottom: 0,5em;
 	background-color:#FFF;
 	text-align:center;
 	}
