@@ -21,36 +21,45 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-public class AdministradorController  implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps{
+public class AdministradorController implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps {
 
 	public ModelAndView administradorPoisShow(Request req, Response res) {
-		if(Logueado.usuario == null){
+		if (Logueado.usuario == null) {
 			res.redirect("http://localhost:9000/user/login");
-		    return null;
+			return null;
 		}
 		List<PuntoDeInteres> pois = getPois();
 		List<Terminal> terminales = getTerminales();
 		String usuarioLogueado = Logueado.usuario.getNombre();
-		
-		
+
 		Map<String, Object> model = new HashMap<>();
-		
+
 		model.put("todosLosPois", pois);
 		model.put("terminales", terminales);
 		model.put("usuario", usuarioLogueado);
 
 		return new ModelAndView(model, "administrador-pois-show.hbs");
 	}
+
+	private void eliminarPoi(long id) {
+
+		Logueado.terminal.getUnMapa().eliminarPOIporID(id);
+
+	}
 	
-	
-	private List<Terminal> getTerminales() {
-		return entityManager().createQuery("from Terminal", Terminal.class).getResultList();
-		
+	private void editarPoi(long id, String nombre, String calle, Punto ubicacion){
+		Logueado.terminal.getUnMapa().getPuntosDeInteres()
+				.stream().filter(poi-> poi.getId().equals(id))
+				.forEach( p-> p.editarPoi(nombre,calle,ubicacion));
 	}
 
+	private List<Terminal> getTerminales() {
+		return entityManager().createQuery("from Terminal", Terminal.class).getResultList();
+
+	}
 
 	private List<PuntoDeInteres> getPois() {
-		return  Logueado.terminal.getUnMapa().getPOIs();
- 		
+		return Logueado.terminal.getUnMapa().getPOIs();
+
 	}
 }
