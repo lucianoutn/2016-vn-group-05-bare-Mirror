@@ -29,6 +29,17 @@ public abstract class PuntoDeInteres {
 	private double coordenadaX;
 	private double coordenadaY;
 
+	public void editarPoi(String nombre, String street, Punto pos){
+		if(nombre != null)
+			nombrePoi= nombre;
+		if(street != null)
+			calle= street;
+		if(pos != null)
+			posicion = pos;
+			
+	}
+	
+	
 	@Id
 	@GeneratedValue
 	@Column(name = "id_Poi", unique = true, nullable = false)

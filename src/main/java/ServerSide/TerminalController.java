@@ -79,11 +79,7 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 	}
 	
 	
-	private void eliminarPoi(long id){
-		
-		Logueado.terminal.getUnMapa().eliminarPOIporID(id);
-		
-	}
+	
 	
 	
 	private List<ReportePorBusqueda> getBusquedasPorBusqueda() {
