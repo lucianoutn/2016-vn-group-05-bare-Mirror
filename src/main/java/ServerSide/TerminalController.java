@@ -8,8 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-
-
+import org.uqbar.geodds.Polygon;
 import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
@@ -78,8 +77,15 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 		
 		return busquedas;
 	}
-
-
+	
+	
+	private void eliminarPoi(long id){
+		
+		Logueado.terminal.getUnMapa().eliminarPOIporID(id);
+		
+	}
+	
+	
 	private List<ReportePorBusqueda> getBusquedasPorBusqueda() {
 		return reportesPorBusqueda;
 		//List<ReportePorBusqueda> reportes = new ArrayList<ReportePorBusqueda>();

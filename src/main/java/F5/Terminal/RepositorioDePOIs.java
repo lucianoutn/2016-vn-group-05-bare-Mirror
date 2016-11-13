@@ -34,6 +34,10 @@ public class RepositorioDePOIs {
 	@JoinColumn(name = "nroDePoi")
 	private List<PuntoDeInteres> puntosDeInteres = new ArrayList<>();
 	
+	public void eliminarPOIporID(long id){
+			puntosDeInteres = (List<PuntoDeInteres>) puntosDeInteres.stream().filter(poi -> !poi.getId().equals(id) );
+	}
+	
 	@OneToMany
 	@JoinColumn(name="nroDeBusq")
 	private static List<Busqueda> busquedas = new ArrayList<Busqueda>();
