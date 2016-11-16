@@ -51,8 +51,17 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 		String criterio = req.queryParams("criterio");
 		String idPoiAEliminar = req.queryParams("eliminar");
 		String idPoiAModificar = req.queryParams("editarID");
+		String terminal  = req.queryParams("terminal");
 		
-		if(idPoiAModificar != null && idPoiAModificar.isEmpty() ){
+		if(terminal != null && !terminal.isEmpty() && !busquedasPorTerminal.isEmpty() ){
+			
+			busquedasPorTerminal = (List<ReportePorTerminal>) busquedasPorTerminal.stream()
+					.filter(bus-> bus.getUnaTerminal().equals(Long.parseLong(terminal)));
+			
+		}
+		
+		
+		if(idPoiAModificar != null && !idPoiAModificar.isEmpty() ){
 			String nombre = req.queryParams("nombrePoi");
 			String call = req.queryParams("CallePoi");
 			String lat = req.queryParams("latitudPoi");
