@@ -15,6 +15,9 @@ import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
 
 import F5.Busqueda;
+import F5.Persistencia.PersistidorDePOIs;
+import F5.Persistencia.PersistidorDeTerminal;
+import F5.Pois.Punto;
 import F5.Pois.PuntoDeInteres;
 import F5.Terminal.Terminal;
 import Reportes.BusquedasPorFecha;
@@ -46,8 +49,30 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 		
 		String user = req.queryParams("user");
 		String criterio = req.queryParams("criterio");
+		String idPoiAEliminar = req.queryParams("eliminar");
+		String idPoiAModificar = req.queryParams("editarID");
+		
+		if(idPoiAModificar != null && idPoiAModificar.isEmpty() ){
+			String nombre = req.queryParams("nombrePoi");
+			String call = req.queryParams("CallePoi");
+			String lat = req.queryParams("latitudPoi");
+			String longi = req.queryParams("longitudPoi");
+			if(lat != null && !lat.isEmpty() && longi != null && !longi.isEmpty())
+				this.editarPoi(Long.parseLong(idPoiAModificar), nombre, call, 
+						new Punto( Long.parseLong(lat),Long.parseLong(longi)));
+			else
+				this.editarPoi(Long.parseLong(idPoiAModificar), nombre, call, null);
+			
+		}
+		
 		if(criterio != null && !criterio.isEmpty()){
 			pois = buscar(criterio);
+		}
+		
+		if(idPoiAEliminar != null && !idPoiAEliminar.isEmpty()){
+			
+			this.eliminarPoi(Long.parseLong(idPoiAEliminar));
+			
 		}
 		
 		String usuarioLogueado = "";
@@ -84,21 +109,6 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 	
 	private List<ReportePorBusqueda> getBusquedasPorBusqueda() {
 		return reportesPorBusqueda;
-		//List<ReportePorBusqueda> reportes = new ArrayList<ReportePorBusqueda>();
-		//withTransaction(()->
-		//PersistidorDeReportes.getInstancia().traerResultadosDeBusquedas().
-			//				stream().forEach(reportero-> reportes.addAll(reportero.generarReporte())));
-		/*double demora = 41;
-		double demora2 = 1;
-		double demora3 = 11;
-		ReportePorBusqueda reporte = new ReportePorBusqueda("colectivo 5", 2, demora);
-		ReportePorBusqueda reporte2= new ReportePorBusqueda("CGP Saavedra", 0, demora2);
-		ReportePorBusqueda reporte3 = new ReportePorBusqueda("Banco Galicia", 1, demora3);
-		reportes.add(reporte);
-		reportes.add(reporte2);
-		reportes.add(reporte3);
-		*/
-		//return reportes;
 	}
 
 
@@ -182,5 +192,22 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 		
 		
 	}
+	
+
+	private void eliminarPoi(long id) {
+
+		Logueado.terminal.getUnMapa().eliminarPOIporID(id);
+
+	}
+	
+	private void editarPoi(long id, String nombre, String calle, Punto ubicacion){
+		Logueado.terminal.getUnMapa().getPuntosDeInteres()
+				.stream().filter(poi-> poi.getId().equals(id))
+				.forEach( p-> p.editarPoi(nombre,calle,ubicacion));
+		withTransaction(()->{
+		PersistidorDeTerminal.getInstancia().persistir(Logueado.terminal);});
+		
+	}
+
 	
 }

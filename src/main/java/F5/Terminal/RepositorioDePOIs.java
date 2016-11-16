@@ -35,7 +35,7 @@ public class RepositorioDePOIs {
 	private List<PuntoDeInteres> puntosDeInteres = new ArrayList<>();
 	
 	public void eliminarPOIporID(long id){
-			puntosDeInteres = (List<PuntoDeInteres>) puntosDeInteres.stream().filter(poi -> !poi.getId().equals(id) );
+			puntosDeInteres = (List<PuntoDeInteres>) puntosDeInteres.stream().filter(poi-> !poi.getId_Poi().equals(id));
 	}
 	
 	@OneToMany
