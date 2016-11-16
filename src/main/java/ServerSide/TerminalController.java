@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import org.uqbar.geodds.Polygon;
 import org.uqbarproject.jpa.java8.extras.EntityManagerOps;
@@ -55,8 +56,9 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 		
 		if(terminal != null && !terminal.isEmpty() && !busquedasPorTerminal.isEmpty() ){
 			
-			busquedasPorTerminal = (List<ReportePorTerminal>) busquedasPorTerminal.stream()
-					.filter(bus-> bus.getUnaTerminal().equals(Long.parseLong(terminal)));
+			busquedasPorTerminal = busquedasPorTerminal.stream()
+					.filter(bus-> bus.getUnaTerminal().getNombreDeTerminal().equals(terminal)).
+					collect(Collectors.toList());
 			
 		}
 		
