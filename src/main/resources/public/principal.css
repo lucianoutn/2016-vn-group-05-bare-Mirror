@@ -59,25 +59,43 @@ h1.titulo img {
 	border:0
   }
 
-ul.menu {
-	position: absolute;
+/*ul.menu {*/
+ul.boton {
+	/*position: absolute;*/
 	/*top: 121px;*/
-	left: 0;
+	/*left: 0;*/
 	/*bottom: 0;*/
-	width: 12em;
-	height:600px;
+	/*width: 12em;*/
+	/*height:600px;*/
 	/*padding-bottom:inherit;*/
 	/*padding-bottom:auto;*/
 	list-style-type: none;
 	/*padding-bottom: 22em;*/
-	padding-left: 2em;
-	padding-right: 2em;
-	margin: 0;
+	/*padding-left: 2em;*/
+	/*padding-right: 2em;*/
+	/*margin: 0;*/
+	/*background-color: #CCC;*/
+	/*background-image:url(/steel.jpg);*/
+	/*border:0.25em;*/
+	/*color:silver;*/
+	/*border-style:outset;*/
+	}
+
+
+/*.menu li {*/
+.boton li {
+	/*background: white;*/
+	width:8em;
 	background-color: #CCC;
-	background-image:url(/steel.jpg);
-	border:0.25em;
-	color:silver;
+	margin: 2em 0;
+	padding: 0.3em;
+	border-color: silver;
+	border-right: 0.5em solid black;
+	
+	/*border-style:ridge;*/
 	border-style:outset;
+	color:black;
+	/*background-image:url(/steel.jpg);*/
 	}
 	
 ul.submenu {
@@ -102,14 +120,7 @@ ul.item li img {
 	
 }
 
-.menu li {
-	background: white;
-	margin: 2em 0;
-	padding: 0.3em;
-	border-right: 0.5em solid black;
-	border-style:ridge;
-	color:black; 
-	}
+
 
 .submenu li {
 	display:inline-block;
@@ -247,7 +258,23 @@ p.portada{
 	text-align:center;
 	margin:0;
 	}	
+
+label {
+	color:black;
+	}
 	
+table {
+	text-align:center;
+	}
+
+hr	{
+	color:black;
+	}
+
+th	{
+	color:black;
+	}
+
 #servicios li {
 	margin-left: 0em;
 	margin-right: 0em;
@@ -395,90 +422,6 @@ div.imgportada {
 	
 }
 
-#imgportada {
-	width:310px;
-	height:281px;
-	margin:auto;
-	padding:1em;
-}
-
-#nuestraempresa {
-	background:fixed;
-	background-position:bottom right;
-	background-repeat:no-repeat;
-	background-image:url(../imagenes/nuestraempresaimg.png);
-}
-
-#servmonlub {
-	width:800px;
-	height:533px;
-	margin:auto;
-	display:block;
-
-}
-
-#analisis {
-	width:275px;
-	height:183px;
-	}
-
-#lubenplanta {
-	width:463px;
-	height:400px;
-	}
-
-#lubricantes1 {
-	width:399px;
-	height:299px;
-	}
-#lubricantes2 {
-	width:400px;
-	height:189px;
-	}
-#lubricantes3 {
-	width:468px;
-	height:130px;
-	}
-	
-#combustibles1 {
-	width:399px;
-	height:300px;
-	}
-#combustibles2 {
-	width:645px;
-	height:131px;
-	}
-#combustibles3 {
-	width:399px;
-	height:131px;
-	}
-
-
-#termografia1 {
-	width:204px;
-	height:152px;
-	}
-
-#termografia2 {
-	width:373px;
-	height:230px;
-	margin-top:1em;
-	}
-
-#ultrasonido {
-	width:300px;
-	height:225px;
-	}
-	
-#microfiltrado {
-	width:131px;
-	height:190px;
-	}
-	
-#vibraciones {
-	width:367px;
-	height:155px;
-  }
 	
 #descargas {
 	width:120px;
@@ -534,53 +477,7 @@ div.imgportada {
 	
 	}
 
-#flash-ferrosider {
-	width:853px;
-	height:243px;
-	display:block;
-	margin:auto;
-	margin-top:1em;
-	margin-bottom:1em;
-	}
-		
-#logo-ferrosider {
-	margin:auto;
-	margin-top:1em;
-	margin-bottom:1em;
-	text-align:center;
-	}
 
-#logo-ferrosider p{
-	margin:0;
-	}	
-
-#logo-resolver {
-	margin:auto;
-	margin-top:1em;
-	margin-bottom:1em;
-	text-align:center;
-	}
-
-#logo-transona {
-	margin:auto;
-	margin-top:1em;
-	margin-bottom:1em;
-	text-align:center;
- 	}
-	
-#logo-tridente {
-	margin:auto;
-	margin-top:1em;
-	margin-bottom:1em;
-	text-align:center;
- 	}
-
-#logo-fonseca {
-	margin:auto;
-	margin-top:1em;
-	margin-bottom:1em;
-	text-align:center;
-	}
 
 #logo-empresa {
 	margin:auto;

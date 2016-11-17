@@ -12,7 +12,7 @@
 	<body>
 	<!-- Contenidos -->
 	<div class="contenido">
-		<p class="banner"><marquee><strong>Bienvenido {{usuario}} al Sistema POIS Ciudad de Buenos Aires</strong></marquee></p>
+		<p class="banner"><marquee><strong>Bienvenidos al Sistema POIS Ciudad de Buenos Aires</strong></marquee></p>
 	  	
    		<ul class="redessociales">
  		 <li><g:plusone href="http://ddsutn.com.ar/"></g:plusone></li>
@@ -20,15 +20,14 @@
   		</ul> 
 	
 	
-		<h1>Nueva Terminal</h1>
-
+		<h2>Nueva Terminal</h2>
+		<br></br>
 		<form action="/terminal/new" method="POST">
 		
-		  <label for="nombreDeTerminal">Nombre</label>
-		  <input type="text" name="nombreDeTerminal">
-			
-			
-		  <input type="submit">
+		  <div class="criterio"><label for="nombreDeTerminal">Nombre: </label></div>
+		  <div class="criterio"><input type="text" name="nombreDeTerminal"></div>
+		  <br></br>	
+		   <div class="criterio"><input type="submit" value="Crear"></div>
 		</form>
 				
 		

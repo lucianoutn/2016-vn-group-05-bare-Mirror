@@ -11,7 +11,7 @@
 	<body>
 		<!-- Contenidos -->
 		<div class="contenido">
-		<p class="banner"><marquee><strong>Bienvenido {{usuario}} al Administrador de POIS Ciudad de Buenos Aires</strong></marquee></p>
+		<p class="banner"><marquee><strong>Bienvenidos al Administrador de POIS Ciudad de Buenos Aires</strong></marquee></p>
 	  	
    		<ul class="redessociales">
  		 <li><g:plusone href="http://ddsutn.com.ar/"></g:plusone></li>
@@ -19,22 +19,23 @@
   		</ul> 
 		
 		
-		<h1>Puntos de Interes</h1>
+		<h2>Puntos de Interes</h2>
 		
 		
 		
 		<div class="row">
 			<div class="col-md-12">	
 			<table class="table table-striped" >
-				<td>Id</td>
-				<td>Nombre</td>
-				<td>Calle</td>
-				<td>Altura</td>
-				<td>Comuna</td>
-				<td>Rubro </td>
-				<td>Nombre</td>
-				<td>Linea</td>
-				</hr>
+				
+				<th>Id</th>
+				<th>Nombre</th>
+				<th>Calle</th>
+				<th>Altura</th>
+				<th>Comuna</th>
+				<th>Rubro </th>
+				<th>Nombre</th>
+				<th>Linea</th>
+				
 			{{#todosLosPois}}
 				<tr>
 					<td>{{id_Poi}}</td>
@@ -51,14 +52,14 @@
 			</div>
 			
 			
-		<h1>Terminales</h1>
+		<h2>Terminales</h2>
 		<div class="row">
 			<div class="col-md-12">	
 			<table class="table table-striped" >
-				<td>Id</td>
-				<td>Nombre</td>
+				<th>Id</th>
+				<th>Nombre</th>
 				
-				</hr>
+				
 			{{#terminales}}
 				<tr>
 					<td>{{id_Terminal}}</td>
@@ -71,10 +72,13 @@
 			
 			</div>
 			<div class="pull-right">
-  				<a class="btn btn-primary"   href="/terminal/new">Nueva Terminal</a>
+  				<ul class="boton"><a href="/terminal/new"><li class="nuevo">Nueva Terminal</li></a></ul>
 			</div>
-		</div>
 		
+		<br></br>
+		</div>
+		</div>
+		</div>
 		<!-- Firma -->
 		<address>&copy; 2016-vn-group-05. Todos los Derechos Reservados.
 			<div id="codqr">

@@ -12,7 +12,7 @@
 	<body>
 	<!-- Contenidos -->
 	<div class="contenido">
-		<p class="banner"><marquee><strong>Bienvenido {{usuario}} al Sistema POIS Ciudad de Buenos Aires</strong></marquee></p>
+		<p class="banner"><marquee><strong>Bienvenidos al Sistema POIS Ciudad de Buenos Aires</strong></marquee></p>
 	  	
    		<ul class="redessociales">
  		 <li><g:plusone href="http://ddsutn.com.ar/"></g:plusone></li>
@@ -20,7 +20,7 @@
   		</ul> 
 	
 	
-		<h2>Puntos de Interes</h2>
+		<h2>Consulta de Puntos de Interes</h2>
 		<form action="/terminal/show" >
 		  <div class="row">
 			  <div class="col-md-10">
@@ -28,7 +28,7 @@
 			  </div>
 				<br></br>
 			  <div class="col-md-2">
-				<div class="submitcriterio">  <input type="submit" class="submitcriterio" name="submitcriterio"></div>
+				<div class="submitcriterio">  <input type="submit" value="Consultar" class="submitcriterio" name="submitcriterio"></div>
 			  </div>
 		  </div>
 		</form>
@@ -41,14 +41,14 @@
 		<div class="row">
 			<div class="col-md-12">	
 			<table class="table table-striped" >
-				<td>Id</td>
-				<td>Nombre</td>
-				<td>Calle</td>
-				<td>Altura</td>
-				<td>Comuna</td>
-				<td>Rubro </td>
-				<td>Nombre</td>
-				<td>Linea</td>
+				<th>Id</th>
+				<th>Nombre</th>
+				<th>Calle</th>
+				<th>Altura</th>
+				<th>Comuna</th>
+				<th>Rubro </th>
+				<th>Nombre</th>
+				<th>Linea</th>
 				</hr>
 			{{#todosLosPois}}
 				<tr>
@@ -67,7 +67,7 @@
 		</div>
 		
 		<h2> Filtrar Historial </h2>
-		<h> Según la terminal </h>
+		<div class="criterio"><label for="terminal">Según la terminal: </label></div>
 		
 		<form action="/terminal/show" >
 		  <div class="row">
@@ -76,7 +76,7 @@
 			  </div>
 				<br></br>
 			  <div class="col-md-2">
-				<div class="submitcriterio">  <input type="submit" class="submitcriterio" name="submitcriterio"></div>
+				<div class="submitcriterio">  <input type="submit" value="Filtrar" class="submitcriterio" name="submitcriterio"></div>
 			  </div>
 		  </div>
 		
@@ -85,14 +85,14 @@
 		<div class="row">
 			<div class="col-md-12">	
 			<table class="table table-striped" >
-				<td>Cantidad De Busquedas</td>
-				<td>Dia de Busqueda</td>
-				<td>Terminal</td>
-				<td>Cantidad de Resultados</td>
-				<td>Frase buscada</td>
-				<td>Demora </td>
-				<td>Cantidad de Resultados</td>
-				</hr>
+				<th>Cantidad De Busquedas</th>
+				<th>Dia de Busqueda</th>
+				<th>Terminal</th>
+				<th>Cantidad de Resultados</th>
+				<th>Frase buscada</th>
+				<th>Demora </th>
+				<th>Cantidad de Resultados</th>
+				
 			{{#todasLasBusquedas}}
 				<tr>
 					<td>{{cantidadDeBusquedas}}</td>
@@ -110,7 +110,7 @@
 	<br></br>
 	
 	<h2>Editar Punto de Interés</h2>
-	<h> ID </h>
+	<div class="criterio"><label for="editarID">ID: </label></div>
 		<form action="/terminal/show" >
 		  <div class="row">
 			  <div class="col-md-11">
@@ -120,7 +120,7 @@
 		  </div>
 		</form>
 		
-	<h>  Nombre </h>
+	<div class="criterio"><label for="nombrePoi">Nombre: </label></div>
 		<form action="/terminal/show" >
 		  <div class="row">
 			  <div class="col-md-11">
@@ -130,7 +130,7 @@
 		  </div>
 		</form>
 		
-	<h>  Calle </h>
+	<div class="criterio"><label for="CallePoi">Calle: </label></div>
 		<form action="/terminal/show" >
 		  <div class="row">
 			  <div class="col-md-11">
@@ -140,7 +140,7 @@
 		  </div>
 		</form>
 		
-	<h>  latitud </h>
+	<div class="criterio"><label for="latitudPoi">Latitud: </label></div>
 		<form action="/terminal/show" >
 		  <div class="row">
 			  <div class="col-md-11">
@@ -150,7 +150,7 @@
 		  </div>
 		</form>
 		
-	<h>  longitud </h>
+	<div class="criterio"><label for="longitudPoi">Longitud: </label></div>
 		<form action="/terminal/show" >
 		  <div class="row">
 			  <div class="col-md-11">
@@ -158,7 +158,7 @@
 			  </div>
 				<br></br>
 			  <div class="col-md-2">
-				<div class="submitcriterio">  <input type="submit" class="submitcriterio" name="submitcriterio"></div>
+				<div class="submitcriterio">  <input type="submit" class="submitcriterio" name="submitcriterio" value="Editar"></div>
 			  </div>
 		  </div>
 		</form>
@@ -171,12 +171,12 @@
 			  </div>
 				<br></br>
 			  <div class="col-md-2">
-				<div class="submitcriterio">  <input type="submit" class="submitcriterio" name="submitcriterio"></div>
+				<div class="submitcriterio">  <input type="submit" class="submitcriterio" name="submitcriterio" value="Eliminar"></div>
 			  </div>
 		  </div>
 		</form>
 	
-		
+		<br></br>
 	</div>	
 	</div>
 	<!-- Fin de Contenidos -->
