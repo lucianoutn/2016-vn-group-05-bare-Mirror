@@ -50,40 +50,9 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 		
 		String user = req.queryParams("user");
 		String criterio = req.queryParams("criterio");
-		String idPoiAEliminar = req.queryParams("eliminar");
-		String idPoiAModificar = req.queryParams("editarID");
-		String terminal  = req.queryParams("terminal");
-		
-		if(terminal != null && !terminal.isEmpty() && !busquedasPorTerminal.isEmpty() ){
-			
-			busquedasPorTerminal = busquedasPorTerminal.stream()
-					.filter(bus-> bus.getUnaTerminal().getNombreDeTerminal().equals(terminal)).
-					collect(Collectors.toList());
-			
-		}
-		
-		
-		if(idPoiAModificar != null && !idPoiAModificar.isEmpty() ){
-			String nombre = req.queryParams("nombrePoi");
-			String call = req.queryParams("CallePoi");
-			String lat = req.queryParams("latitudPoi");
-			String longi = req.queryParams("longitudPoi");
-			if(lat != null && !lat.isEmpty() && longi != null && !longi.isEmpty())
-				this.editarPoi(Long.parseLong(idPoiAModificar), nombre, call, 
-						new Punto( Long.parseLong(lat),Long.parseLong(longi)));
-			else
-				this.editarPoi(Long.parseLong(idPoiAModificar), nombre, call, null);
-			
-		}
 		
 		if(criterio != null && !criterio.isEmpty()){
 			pois = buscar(criterio);
-		}
-		
-		if(idPoiAEliminar != null && !idPoiAEliminar.isEmpty()){
-			
-			this.eliminarPoi(Long.parseLong(idPoiAEliminar));
-			
 		}
 		
 		String usuarioLogueado = "";
@@ -94,40 +63,17 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 		Map<String, Object> model = new HashMap<>();
 		
 		model.put("todosLosPois", pois);
-		model.put("busquedasPorFecha", getBusquedasPorFecha());
-		model.put("busquedasPorTerminal", getBusquedasPorTerminal());
-		model.put("busquedasPorBusqueda", getBusquedasPorBusqueda());
-		model.put("todasLasBusquedas", getBusquedas());
 		model.put("usuario", usuarioLogueado);
 
 		return new ModelAndView(model, "terminal-show.hbs");
 	}
 	
 	
-	private Object getBusquedas() {
-		List<Object> busquedas = new ArrayList<Object>();
-		
-		busquedas.addAll(getBusquedasPorFecha());
-		busquedas.addAll(getBusquedasPorTerminal());
-		busquedas.addAll(getBusquedasPorBusqueda());
-		
-		return busquedas;
-	}
 	
 	
 	
 	
 	
-	private List<ReportePorBusqueda> getBusquedasPorBusqueda() {
-		return reportesPorBusqueda;
-	}
-
-
-	private List<ReportePorTerminal>  getBusquedasPorTerminal() {
-		return busquedasPorTerminal;
-		
-
-	}
 
 
 	public List<ReportePorFecha> getBusquedasPorFecha() {
@@ -203,22 +149,5 @@ public class TerminalController implements WithGlobalEntityManager, EntityManage
 		
 		
 	}
-	
-
-	private void eliminarPoi(long id) {
-
-		Logueado.terminal.getUnMapa().eliminarPOIporID(id);
-
-	}
-	
-	private void editarPoi(long id, String nombre, String calle, Punto ubicacion){
-		Logueado.terminal.getUnMapa().getPuntosDeInteres()
-				.stream().filter(poi-> poi.getId().equals(id))
-				.forEach( p-> p.editarPoi(nombre,calle,ubicacion));
-		withTransaction(()->{
-		PersistidorDeTerminal.getInstancia().persistir(Logueado.terminal);});
-		
-	}
-
 	
 }
