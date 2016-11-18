@@ -126,23 +126,47 @@
 			<table class="table table-striped" >
 				<th>Cantidad De Busquedas</th>
 				<th>Dia de Busqueda</th>
-				<th>Terminal</th>
-				<th>Cantidad de Resultados</th>
-				<th>Frase buscada</th>
-				<th>Demora </th>
-				<th>Cantidad de Resultados</th>
+				
 				
 			{{#todasLasBusquedas}}
 				<tr>
 					<td>{{cantidadDeBusquedas}}</td>
 					<td>{{diaDeLaBusqueda}}</td>
+					
+				</tr>
+			{{/todasLasBusquedas}}				
+			</table>
+			<table class="table table-striped" >
+				
+				<th>Terminal</th>
+				<th>Cantidad de Resultados</th>
+				
+			{{#todasLasBusquedas}}
+				<tr>
+					
 					<td>{{unaTerminal.nombreDeTerminal}}</td>
 					<td>{{cantResultados}}</td>
+					
+				</tr>
+			{{/todasLasBusquedas}}		
+				
+			</table>
+			<table class="table table-striped" >
+				
+				<th>Frase buscada</th>
+				<th>Demora </th>
+				<th>Cantidad de Resultados</th>
+			
+			{{#todasLasBusquedas}}
+				<tr>
+					
 					<td>{{fraseBuscada}}</td>
 					<td>{{demoraDeBusqueda}}</td>
 					<td>{{cantidadDeResultados}}</td>
+					
 				</tr>
-			{{/todasLasBusquedas}}				
+			{{/todasLasBusquedas}}		
+				
 			</table>
 			</div>
 		</div>
